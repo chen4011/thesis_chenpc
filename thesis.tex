@@ -1,0 +1,108 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper, 12pt, oneside]{book}
+
+\input{PackageSetting}
+\input{XeCJKsetting}
+\begin{document}
+
+%----------- hyphenation  -----------
+%\righthyphenmin=10  % Best hyphenation parameter
+
+%----------- watermark -----------
+\CenterWallPaper{0.174}{figure/watermark.jpg}
+\setlength{\wpXoffset}{6.1725cm}
+\setlength{\wpYoffset}{10.5225cm}
+
+%----------- cover page -----------
+\maketitle
+
+%----------- side page, used for printing on spline -----------
+% \makeside
+
+\frontmatter
+%----------- generate the certification page by LaTeX -----------
+% \makecertification
+
+%----------- include pdf by using package pdfpages -----------
+\addcontentsline{toc}{chapter}{口試委員會審定書}
+\includepdf[pages={1}]{cert.pdf}
+
+\onehalfspacing % 1.5 倍行距
+\input{chapter/acknowledgementsCH}
+\input{chapter/abstractCH}
+
+\doublespacing  % 2 倍行距
+\input{chapter/abstractEN}
+
+\onehalfspacing
+\tableofcontents
+\listoffigures
+\listoftables
+% \input{chapter/SymbolList} % 符號列表
+
+% changes the behavior back to the expected version, and resets the page number
+\mainmatter 
+
+\onehalfspacing
+%----------- Include/Input your thesis here -----------
+% normal cite == \input
+% chapter cite  == \include
+
+\input{chapter/01Introduction.tex}
+\input{chapter/02LiteratureReview.tex}
+\input{chapter/03Method.tex}
+\input{chapter/04Optimization.tex}
+\input{chapter/05ResultsDiscussion.tex}
+\input{chapter/06Conclusion.tex}
+
+%---------- Input your reference here ---------
+\bibliographystyle{ieeetr}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{thesis}
+
+% %----------- Input your appendix here  -----------
+% \appendix
+% \titlecontents{chapter}[0em]{\fontsize{12}{18}\selectfont}
+% {\hspace{3.5em}\contentslabel[附錄\,\thecontentslabel]{3.5em}}
+% {}{\hspace{0.5em}\titlerule*{.}\contentspage}
+%
+% \titleformat{\chapter}[display]
+% {\bf\Large}
+% {\filleft 附錄\,\thechapter}
+% {1ex}
+% {\huge\titlerule
+% 	\vspace{2ex}%
+% 	\filright}
+% [\vspace{2ex}%
+% 	\titlerule]
+%
+% \input{chapter/AppendixA}
+% 
+% \backmatter
+
+\end{document}
+
+%
+%                     ooOoo       
+%                   o8888888o            
+%                   88" . "88            
+%                   (| -_- |)          
+%                   O\  =  /O            
+%                 ___/`---'\___            
+%              .'  \\|     |//  `.          
+%             /  \\|||  :  |||//  \            
+%            /  _||||| -:- |||||-  \         
+%            |   | \\\  -  /// |   |           
+%            | \_|  ''\---/''  |   |           
+%             \  .-\__  -  ___/-. /            
+%           ___. .'  /--.--\  . . ___         
+%       ."" '<  `.___\_<|>_/___.'  >'"".        
+%        | | :  - \.;`\ _ /`;.`/ - ` : | |     
+%       \  \ -.   \_ __\ /__ _/   .- /  /           
+%   =====`-.____-.___\_____/___.-____.-'=====    
+%                    `=---='                        
+%  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+%            佛祖庇佑         永無BUG     
+%
+% (僅代表可悲的人體組傳承宥廷學長的好運佛祖)
