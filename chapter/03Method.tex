@@ -50,7 +50,7 @@
 % ------------------------- 3.2 ------------------------- %
 \section{資料前處理}
 % 資料前處理介紹
-利用章節 3.1 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續的數據分析。
+利用章節 3.1 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
 資料前處理分為人體骨架建立、時間軸對齊、
 IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，等四個章節，
 將於下列四小章節進行討論。
@@ -58,8 +58,8 @@ IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，�
 \subsection{人體骨架建立}
 % 人體骨架建立介紹
 在文獻 Fusing wearable imus with multi-view images 中，作者使用 Vicon 系統所提供的骨架資料，
-並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，
-因此本研究透過 pose2sim 的方法，使用影像辨識技術辨識每一視角中人體的關節點位置，
+並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得骨架資料。
+因此本研究透過 pose2sim 提出之方法，使用影像辨識技術辨識每一視角中人體的關節點位置，
 並利用相機校正技術建立出關節在空間中的位置，以此方式建立人體骨架，
 後續利用 total capture dataset 提供的 Vicon 資料，進行影像辨識與三角化結果與 Vicon 資料的比對，以驗證此方法的可行性。
 
@@ -84,11 +84,32 @@ IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，�
     \label{ch3_fig_openpose_result}
 \end{figure}
 
-\subsubsection{驗證與結果}
-% 驗證與結果
+\subsubsection{結果與驗證}
+% 骨架建立結果與驗證
 由於 total capture dataset 已提供完整之影像資料及 Vicon 資料，
 因此本研究取 total capture dataset 中 s1 - rom1 之相機 1 與相機 8 影像資料進行 openpose 影像辨識，
-並利用相機校正技術建立出骨架，最後將計算骨架之四肢長度與 Vicon 骨架隻四肢長度，並進行比較。
+並利用相機校正技術建立出骨架，最後計算骨架之四肢長度與 Vicon 骨架之四肢長度，並進行比較。
+結果如表 \ref{ch3_skeleton_compare} 所示，可以發現自行建立之骨架之四肢長度與 Vicon 骨架之四肢長度相當接近，
+因此證明本方法的可行性。
+\begin{table}[!ht]
+   \caption[骨架建立結果與驗證]{骨架建立結果與驗證}
+   \centering
+   \label{ch3_skeleton_compare}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \resizebox{\textwidth}{!}{
+   \begin{tabular}{c|c|c|c|c}
+      & 左上臂 & 左下臂 & 右上臂 & 右下臂 \\
+      \midrule
+      Vicon 骨架 & 0.0000 & 0.0000 & 肘關節 & 0.0000 \\
+      自行建立骨架 & 0.0000 & 0.0000 & 手腕關節 & 0.0000 \\
+      \hline\hline
+      & 左大腿 & 左小腿 & 右大腿 & 右小腿 \\
+      \midrule
+      Vicon 骨架 & 0.0000 & 0.0000 & 膝關節 & 0.0000 \\
+      自行建立骨架 & 0.0000 & 0.0000 & 踝關節 & 0.0000 \\
+   \end{tabular}}
+\end{table}
 
 \subsection{時間軸對齊}
 % 時間軸對齊介紹
