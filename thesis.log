@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 23.10.12) (preloaded format=xelatex 2024.5.21)  21 MAY 2024 23:21
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 23.10.12) (preloaded format=xelatex 2024.5.21)  22 MAY 2024 20:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1569,19 +1569,23 @@ File: figure/watermark.jpg Graphic file (type bmp)
 
 
 ]
-File: figure/ch3_flowchart_All.png Graphic file (type bmp)
-<figure/ch3_flowchart_All.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
  [9]
+File: figure/ch3_fig_skeleton_flow.png Graphic file (type bmp)
+<figure/ch3_fig_skeleton_flow.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
  [10
 
 ]
+File: figure/ch3_fig_openpose_result.png Graphic file (type bmp)
+<figure/ch3_fig_openpose_result.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
  [11]
+File: figure/ch3_fig_cameraset_totalcap.png Graphic file (type bmp)
+<figure/ch3_fig_cameraset_totalcap.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
  [12]
@@ -1590,11 +1594,34 @@ File: figure/watermark.jpg Graphic file (type bmp)
  [13]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [14]) (chapter/04Optimization.tex
+ [14
+
+]
+File: figure/watermark.jpg Graphic file (type bmp)
+<figure/watermark.jpg>
+ [15
+
+]
+File: figure/ch3_fig_1.2.3.4cam.png Graphic file (type bmp)
+<figure/ch3_fig_1.2.3.4cam.png>
+File: figure/watermark.jpg Graphic file (type bmp)
+<figure/watermark.jpg>
+ [16
+
+]
+File: figure/watermark.jpg Graphic file (type bmp)
+<figure/watermark.jpg>
+ [17]
+File: figure/watermark.jpg Graphic file (type bmp)
+<figure/watermark.jpg>
+ [18]
+File: figure/watermark.jpg Graphic file (type bmp)
+<figure/watermark.jpg>
+ [19]) (chapter/04Optimization.tex
 Chapter 4.
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
-[15
+[20
 
 
 ]
@@ -1612,7 +1639,7 @@ File: figure/ch4_fig_arm26Muscles_BRA.png Graphic file (type bmp)
 <figure/ch4_fig_arm26Muscles_BRA.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [16]
+ [21]
 File: figure/ch4_fig_arm26Dof_0_0.png Graphic file (type bmp)
 <figure/ch4_fig_arm26Dof_0_0.png>
 File: figure/ch4_fig_arm26Dof_30_0.png Graphic file (type bmp)
@@ -1621,7 +1648,7 @@ File: figure/ch4_fig_arm26Dof_30_90.png Graphic file (type bmp)
 <figure/ch4_fig_arm26Dof_30_90.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [17
+ [22
 
 ]
 File: figure/ch4_fig_ModelwithLoad_0_0.png Graphic file (type bmp)
@@ -1630,15 +1657,15 @@ File: figure/ch4_fig_ModelwithLoad_0_90.png Graphic file (type bmp)
 <figure/ch4_fig_ModelwithLoad_0_90.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [18
+ [23
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [19]
+ [24]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [20
+ [25
 
 ]
 File: figure/ch4_fig_DesiredTrajExample_F_0_0_130.jpg Graphic file (type bmp)
@@ -1647,26 +1674,26 @@ File: figure/ch4_fig_DesiredTrajExample_E_180_90_130.jpg Graphic file (type bmp)
 <figure/ch4_fig_DesiredTrajExample_E_180_90_130.jpg>
 
 
-LaTeX Warning: Reference `ch3_flowchart_CMC' on page 21 undefined on input line 186.
+LaTeX Warning: Reference `ch3_flowchart_CMC' on page 26 undefined on input line 186.
 
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
-[21
-
-]
-File: figure/watermark.jpg Graphic file (type bmp)
-<figure/watermark.jpg>
- [22
+[26
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [23]
+ [27
+
+]
+File: figure/watermark.jpg Graphic file (type bmp)
+<figure/watermark.jpg>
+ [28]
 File: figure/ch4_flowchart_SA.PNG Graphic file (type bmp)
 <figure/ch4_flowchart_SA.PNG>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [24
+ [29
 
 ]
 File: figure/ch4_fig_SAResults_BIClong.JPG Graphic file (type bmp)
@@ -1675,7 +1702,7 @@ File: figure/ch4_fig_SAResults_BICshort.JPG Graphic file (type bmp)
 <figure/ch4_fig_SAResults_BICshort.JPG>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [25
+ [30
 
 ]
 File: figure/ch4_fig_SAExample_20.JPG Graphic file (type bmp)
@@ -1688,15 +1715,15 @@ File: figure/ch4_flowchart_Vali.PNG Graphic file (type bmp)
 <figure/ch4_flowchart_Vali.PNG>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [26
+ [31
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [27]
+ [32]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [28]
+ [33]
 File: figure/ch4_fig_SAResults_OptLong_7.JPG Graphic file (type bmp)
 <figure/ch4_fig_SAResults_OptLong_7.JPG>
 File: figure/ch4_fig_SAResults_OptShort_7.JPG Graphic file (type bmp)
@@ -1711,22 +1738,22 @@ File: figure/ch4_fig_SAResults_ValiShort_40.JPG Graphic file (type bmp)
 <figure/ch4_fig_SAResults_ValiShort_40.JPG>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [29
+ [34
 
 ]
 
-LaTeX Warning: Text page 30 contains only floats.
+LaTeX Warning: Text page 35 contains only floats.
 
 
 Overfull \vbox (3.41637pt too high) has occurred while \output is active []
 
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [30]) (chapter/05ResultsDiscussion.tex
+ [35]) (chapter/05ResultsDiscussion.tex
 Chapter 5.
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
-[31
+[36
 
 
 ]
@@ -1734,25 +1761,25 @@ File: figure/ch5_flowchart_StudyCase.png Graphic file (type bmp)
 <figure/ch5_flowchart_StudyCase.png>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [32
+ [37
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [33
+ [38
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [34]
+ [39]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [35
+ [40
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [36]
+ [41]
 Overfull \hbox (8.27507pt too wide) in paragraph at lines 248--252
  [][] 
  []
@@ -1761,7 +1788,7 @@ File: figure/ch5_fig_CaseE_BICs_Opt_7.JPG Graphic file (type bmp)
 <figure/ch5_fig_CaseE_BICs_Opt_7.JPG>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
-[37
+[42
 
 ]
 File: figure/ch5_fig_CaseE_BICs_Vali_40.JPG Graphic file (type bmp)
@@ -1770,41 +1797,41 @@ File: figure/ch5_fig_CaseE_BICs_Opt_8.JPG Graphic file (type bmp)
 <figure/ch5_fig_CaseE_BICs_Opt_8.JPG>
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [38
+ [43
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [39
+ [44
 
 ]) (chapter/06Conclusion.tex
 Chapter 6.
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
-[40
+[45
 
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [41
+ [46
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [42]) (thesis.bbl
+ [47]) (thesis.bbl
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [43
+ [48
 
 
 ]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [44]
+ [49]
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [45]
+ [50]
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 (xeCJK)                
@@ -1814,7 +1841,7 @@ Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 )
 File: figure/watermark.jpg Graphic file (type bmp)
 <figure/watermark.jpg>
- [46] (thesis.aux)
+ [51] (thesis.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2022/08/05>
@@ -1824,15 +1851,15 @@ L3 programming layer <2022/08/05>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 1ED9190BB97CB7C9BEE10534B5B20A9F;6997.
+(rerunfilecheck)             Checksum: 5793FAD5CD3790A15846715DCCDF63D2;7037.
  ) 
 Here is how much of TeX's memory you used:
- 42844 strings out of 409621
- 882668 string characters out of 5774071
- 1982122 words of memory out of 5000000
- 64162 multiletter control sequences out of 15000+600000
- 567151 words of font info for 110 fonts, out of 8000000 for 9000
+ 42885 strings out of 409621
+ 884105 string characters out of 5774071
+ 1956122 words of memory out of 5000000
+ 64198 multiletter control sequences out of 15000+600000
+ 567167 words of font info for 112 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  100i,19n,136p,829b,574s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on thesis.xdv (58 pages, 944124 bytes).
+Output written on thesis.xdv (63 pages, 1002588 bytes).

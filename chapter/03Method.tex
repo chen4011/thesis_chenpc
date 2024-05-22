@@ -20,20 +20,12 @@
 \end{itemize}
 
 % 研究流程圖 + 說明
-本研究之流程圖如圖 \ref{ch3_flowchart_All} 所示，首先輸入標準模型和分析參數來執行敏感度分析，
+本研究之流程圖如圖 所示，首先輸入標準模型和分析參數來執行敏感度分析，
 藉由全因子實驗設計法來評估出所有任務之敏感度指標，接下來挑選適合的組合集作為最佳化之評估任務，
 以生成最佳模型，最終透過高敏感度任務進行模型驗證，來評估最佳模型之正確性。
 若於模型驗證階段成功，代表評估正確，並結束程式執行；若於模型驗證階段失敗，則返回至最佳化步驟重新評估；
 若模型驗證失敗次數過多，則返回至敏感度分析流程，重新挑選合適的評估任務。
 程式碼將發布於 https://github.com/solab-ntu/MuscleParamEstimation 該網址中，執行細節可檢視程式碼中的註解說明。
-
-\bigskip
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=8cm]{figure/ch3_flowchart_All.png}
-    \caption[研究總流程圖]{研究總流程圖}
-    \label{ch3_flowchart_All}
-\end{figure}
 
 \clearpage
 
@@ -58,29 +50,63 @@
 % ------------------------- 3.2 ------------------------- %
 \section{資料前處理}
 % 資料前處理介紹
-123123
+利用章節 3.1 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續的數據分析。
+資料前處理分為人體骨架建立、時間軸對齊、
+IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，等四個章節，
+將於下列四小章節進行討論。
 
 \subsection{人體骨架建立}
 % 人體骨架建立介紹
-pose2sim
+在文獻 Fusing wearable imus with multi-view images 中，作者使用 Vicon 系統所提供的骨架資料，
+並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，
+因此本研究透過 pose2sim 的方法，使用影像辨識技術辨識每一視角中人體的關節點位置，
+並利用相機校正技術建立出關節在空間中的位置，以此方式建立人體骨架，
+後續利用 total capture dataset 提供的 Vicon 資料，進行影像辨識與三角化結果與 Vicon 資料的比對，以驗證此方法的可行性。
+
+\subsubsection{建立方法}
+% 影像辨識
+本方法流程如圖 \ref{ch3_fig_skeleton_flow} 所示。
+首先，使用 openpose 影像辨識技術辨識每一視角中人體的關節點位置，辨識結果如圖 \ref{ch3_fig_openpose_result} 所示；
+接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
+再來，利用方才相機校正之結果，經由三角化計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
+最後，基於 total capture dataset 提供之 vicon 骨架，利用計算出的距離進行骨架伸縮。
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=8cm]{figure/ch3_fig_skeleton_flow.png}
+    \caption[骨架建立流程圖]{骨架建立流程圖}
+    \label{ch3_fig_skeleton_flow}
+\end{figure}
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=8cm]{figure/ch3_fig_openpose_result.png}
+    \caption[openpose 辨識結果]{openpose 辨識結果}
+    \label{ch3_fig_openpose_result}
+\end{figure}
+
+\subsubsection{驗證與結果}
+% 驗證與結果
+由於 total capture dataset 已提供完整之影像資料及 Vicon 資料，
+因此本研究取 total capture dataset 中 s1 - rom1 之相機 1 與相機 8 影像資料進行 openpose 影像辨識，
+並利用相機校正技術建立出骨架，最後將計算骨架之四肢長度與 Vicon 骨架隻四肢長度，並進行比較。
 
 \subsection{時間軸對齊}
 % 時間軸對齊介紹
 拍手及加速度判斷
 
-\subsection{IMU - 全域座標轉換矩陣計算}
+\subsection{IMU - 全域座標旋轉矩陣計算}
 % IMU - 全域座標轉換矩陣計算介紹
 $R_{ig}$
 
-\subsection{IMU - 骨架座標轉換矩陣計算}
+\subsection{IMU - 骨架座標旋轉矩陣計算}
 % IMU - 骨架座標轉換矩陣計算介紹
 $R_{ib}$
 
 % ------------------------- 3.3 ------------------------- %
 \section{探討減少相機數量的可行性及其擺放位置}
 % 探討減少相機數量的可行性及其擺放位置介紹
-total capture dataset 的資料總共包含 8 台相機與 13 個 IMU 的 data，
-而在 Fusing wearable imus with multi-view images 中，作者表明他只使用到 4 台相機及 8 個 IMU 的資料；
+total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 data，
+而在文獻 Fusing wearable imus with multi-view images 中，作者表明他只使用到 4 台相機及 8 個 IMU 的資料；
 另外在 total capture 發表的文獻中則有提到他們嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
 因此本章節嘗試選擇相機數量與位置並進行感測器融合計算，
 將得到的結果與 total capture dataset 提供的 Vicon 資料進行比對，計算 MPJPE，
@@ -90,9 +116,16 @@ total capture dataset 的資料總共包含 8 台相機與 13 個 IMU 的 data�
 % 實驗方法介紹
 % 目前的相機用量及擺放位置敘述，要 cite totalcapture 和 data fusion
 從 total capture dataset 提供的影像資料可以觀察出其實驗環境為一個方形的空間，每一面牆面上方架設兩台相機，
-四面牆共計八台相機，擺放位置如圖 所示。
+四面牆共計八台相機，擺放位置如圖 \ref{ch3_fig_cameraset_totalcap} 所示。
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=8cm]{figure/ch3_fig_cameraset_totalcap.png}
+    \caption[相機擺放位置]{相機擺放位置}
+    \label{ch3_fig_cameraset_totalcap}
+\end{figure}
+
 \subsubsection{四台相機}
-將圖 中的相機進行排列組合，共計有 70 種組合方式，每一種組合方式皆會產生一組 MPJPE，
+將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選四台進行排列組合，共計有 70 種組合方式，每一種組合方式皆會產生一組 MPJPE，
 結果如表 \ref{ch3_cameraset_4cam}所示，其中最佳組合方式為相機 1357，其 MPJPE 為 24.5789(mm)；
 而最差組合方式為相機 2567，其 MPJPE 為 38.9142(mm)。標準差為 3.6860(mm)，平均值為 31.0114(mm)。
 經由標準差可以知道四台相機組合的表現都相當穩定，無論如何選擇都不會有太大的影響。
@@ -109,41 +142,48 @@ total capture dataset 的資料總共包含 8 台相機與 13 個 IMU 的 data�
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|}
-      \midrule
+      \hline
       相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \midrule
+      \hline
       1234 & 30.9409 & 1235 & 28.8549 & 1236 & 30.3748 & 1237 & 28.8213 & 1238 & 31.1560 \\
       1245 & 33.1706 & 1246 & 31.5377 & 1247 & 32.1031 & 1248 & 33.6613 &            &         \\
       1256 & 34.5089 & 1257 & 34.6787 & 1258 & 35.2625 &            &         &            &         \\
       1267 & 31.7009 & 1268 & 33.0636 & 1278 & 34.6861 &            &         &            &         \\
-      \midrule
+      \hline
       1345 & 26.9753 & 1346 & 28.2925 & 1347 & 25.4715 & 1348 & 26.7584 &            &         \\
       1356 & 27.7651 & 1357 & 24.5789 & 1358 & 25.8578 &            &         &            &         \\
       1367 & 26.3845 & 1368 & 26.9445 & 1378 & 26.1466 &            &         &            &         \\
-      \midrule
+      \hline
       1456 & 29.9311 & 1457 & 26.6848 & 1458 & 27.9429 &            &         &            &         \\
       1467 & 26.8121 & 1468 & 27.5472 & 1478 & 27.1979 &            &         &            &         \\
-      \midrule
+      \hline
       1567 & 27.5824 & 1568 & 29.1892 & 1578 & 27.4552 & 1678 & 27.8378 &            &         \\
-      \midrule
+      \hline
       2345 & 34.0972 & 2346 & 36.5508 & 2347 & 36.7314 & 2348 & 33.7047 &            &         \\
       2356 & 35.6585 & 2357 & 36.3698 & 2358 & 30.8585 &            &         &            &         \\
       2367 & 36.8662 & 2368 & 32.6160 & 2378 & 34.8430 &            &         &            &         \\
-      \midrule
+      \hline
       2456 & 35.6440 & 2457 & 37.1359 & 2458 & 33.4067 &            &         &            &         \\
       2467 & 35.8266 & 2468 & 33.2654 & 2478 & 36.6081 &            &         &            &         \\
       2567 & 38.9142 & 2568 & 33.7187 & 2578 & 38.7211 & 2678 & 34.3506 &            &         \\
-      \midrule
+      \hline
       3456 & 32.4429 & 3457 & 27.7338 & 3458 & 27.6554 &            &         &            &         \\
       3467 & 31.0735 & 3468 & 29.9925 & 3478 & 27.9168 &            &         &            &         \\
       3567 & 29.2876 & 3568 & 28.3170 & 3578 & 26.8460 & 3678 & 29.4004 &            &         \\
-      \midrule
+      \hline
       4567 & 29.8717 & 4568 & 29.7963 & 4578 & 28.2055 & 4678 & 28.9104 & 5678 & 29.5824 \\
-      \midrule
+      \hline
    \end{tabular}}
 \end{table}
 
+\clearpage
+
 \subsubsection{三台相機}
+將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選三台進行排列組合，共計有 56 種組合方式，每一種組合方式皆會產生一組 MPJPE，
+結果如表 \ref{ch3_cameraset_3cam}所示，其中最佳組合方式為相機 137，其 MPJPE 為 27.1579(mm)；
+而最差組合方式為相機 257，其 MPJPE 為 82.8158(mm)。標準差為 13.8423(mm)，平均值為 42.9001(mm)。
+經由標準差可以知道三台相機的組合相較四台相機來說表現相對較不穩定，
+但只要位置恰當，僅用三台相機也可以有四台相機的表現水準。
 \begin{table}[!ht]
    \caption[三台相機組合與其估計結果誤差]{三台相機組合與其估計結果誤差}
    \centering
@@ -157,48 +197,52 @@ total capture dataset 的資料總共包含 8 台相機與 13 個 IMU 的 data�
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|}
-      \midrule
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \midrule
-      123 & 41.8538 & 124 & 43.2544 & 125 & 70.4747 & 126 & 41.7470 \\
-      127 & 54.5721 & 128 & 46.7714 & & & & \\
-      \midrule
-      134 & 30.9862 & 135 & 29.0275 & 136 & 33.6116 & 137 & 27.1579 \\
-      138 & 29.9961 & & & & & & \\
-      \midrule
-      145 & 34.4860 & 146 & 32.7227 & 147 & 29.9785 & 148 & 31.5573 \\
-      \midrule
-      156 & 38.3802 & 157 & 33.2107 & 158 & 33.4297 & & \\
-      \midrule
-      167 & 32.4098 & 168 & 33.4044 & 178 & 32.2636 & & \\
-      \midrule
-      234 & 52.0193 & 235 & 76.4435 & 236 & 52.6657 & 237 & 65.5297 \\
-      238 & 44.5936 & & & & & & \\
-      \midrule
-      245 & 76.6047 & 246 & 42.4841 & 247 & 54.8719 & 248 & 45.2496 \\
-      \midrule
-      256 & 74.8608 & 257 & 82.8158 & 258 & 62.4336 & & \\
-      \midrule
-      267 & 58.7578 & 268 & 39.2619 & 278 & 62.7102 & & \\
-      \midrule
-      345 & 35.9928 & 346 & 42.7418 & 347 & 35.2381 & 348 & 33.5695 \\
-      \midrule
-      356 & 42.9933 & 357 & 35.1894 & 358 & 29.6995 & & \\
-      \midrule
-      367 & 40.0411 & 368 & 35.8360 & 378 & 34.9221 & & \\
-      \midrule
-      456 & 40.0658 & 457 & 37.2030 & 458 & 32.7289 & & \\
-      \midrule
-      467 & 35.6906 & 468 & 33.8860 & 478 & 35.3151 & & \\
-      \midrule
-      567 & 41.5287 & 568 & 34.8289 & 578 & 37.5083 & & \\
-      \midrule
-      678 & 34.8273 & & & & & & \\
-      \midrule
+      \hline
+      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+      \hline
+      123 & 41.8538 & 124 & 43.2544 & 125 & 70.4747 & 126 & 41.7470 & 127 & 54.5721 \\
+      128 & 46.7714 & & & & & & & & \\
+      \hline
+      134 & 30.9862 & 135 & 29.0275 & 136 & 33.6116 & 137 & 27.1579 & 138 & 29.9961 \\
+      \hline
+      145 & 34.4860 & 146 & 32.7227 & 147 & 29.9785 & 148 & 31.5573 & & \\
+      \hline
+      156 & 38.3802 & 157 & 33.2107 & 158 & 33.4297 & & & & \\
+      \hline
+      167 & 32.4098 & 168 & 33.4044 & 178 & 32.2636 & & & & \\
+      \hline
+      234 & 52.0193 & 235 & 76.4435 & 236 & 52.6657 & 237 & 65.5297 & 238 & 44.5936 \\
+      \hline
+      245 & 76.6047 & 246 & 42.4841 & 247 & 54.8719 & 248 & 45.2496 & & \\
+      \hline
+      256 & 74.8608 & 257 & 82.8158 & 258 & 62.4336 & & & & \\
+      \hline
+      267 & 58.7578 & 268 & 39.2619 & 278 & 62.7102 & & & & \\
+      \hline
+      345 & 35.9928 & 346 & 42.7418 & 347 & 35.2381 & 348 & 33.5695 & & \\
+      \hline
+      356 & 42.9933 & 357 & 35.1894 & 358 & 29.6995 & & & & \\
+      \hline
+      367 & 40.0411 & 368 & 35.8360 & 378 & 34.9221 & & & & \\
+      \hline
+      456 & 40.0658 & 457 & 37.2030 & 458 & 32.7289 & & & & \\
+      \hline
+      467 & 35.6906 & 468 & 33.8860 & 478 & 35.3151 & & & & \\
+      \hline
+      567 & 41.5287 & 568 & 34.8289 & 578 & 37.5083 & & & & \\
+      \hline
+      678 & 34.8273 & & & & & & & & \\
+      \hline
    \end{tabular}}
 \end{table}
 
+\clearpage
+
 \subsubsection{兩台相機}
+將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選兩台進行排列組合，共計有 28 種組合方式，每一種組合方式皆會產生一組 MPJPE，
+結果如表 \ref{ch3_cameraset_2cam}所示，其中最佳組合方式為相機 18，其 MPJPE 為 46.9798(mm)；
+而最差組合方式為相機 25，其 MPJPE 為 300.1637(mm)。標準差為 61.7928(mm)，平均值為 109.8694(mm)。
+經由結果可以發現相機的擺放位置對估計結果影響甚鉅，若位置選擇得宜，估計結果將會相當準確，反之則會有較大的誤差。
 \begin{table}[!ht]
    \caption[兩台相機組合與其估計結果誤差]{兩台相機組合與其估計結果誤差}
    \centering
@@ -210,37 +254,148 @@ total capture dataset 的資料總共包含 8 台相機與 13 個 IMU 的 data�
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|}
-      \midrule
+      \hline
       相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \midrule
+      \hline
       12 & 194.4957 & 13 & 81.9440 & 14 & 47.4927 & 15 & 76.7795 \\
       16 & 66.8653 & 17 & 58.7619 & 18 & 46.9798 & & \\
-      \midrule
+      \hline
       23 & 227.5722 & 24 & 182.6378 & 25 & 300.1637 & 26 & 183.0773 \\
       27 & 181.6520 & 28 & 145.2458 & & & &\\
-      \midrule
+      \hline
       34 & 99.3426 & 35 & 109.4178 & 36 & 92.7550 & 37 & 97.7435 \\
       38 & 81.3640 & & & & & &\\
-      \midrule
+      \hline
       45 & 87.4750 & 46 & 66.8800 & 47 & 67.4949 & 48 & 52.3318 \\
-      \midrule
+      \hline
       56 & 126.3387 & 57 & 95.1469 & 58 & 64.6374 & &\\
-      \midrule
+      \hline
       67 & 100.7632 & 68 & 63.7904 & & & &\\
-      \midrule
+      \hline
       78 & 77.1948 & & & & & &\\
-      \midrule
+      \hline
    \end{tabular}}
 \end{table}
 
-\subsection{結果}
-% 結果介紹
-123123
-\subsection{結論}
-% 結論介紹
-123123
+\clearpage
+
+\subsubsection{一台相機}
+將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選一台進行估計，共計 8 種估計結果，每一結果皆會產生一組 MPJPE，
+結果如表 \ref{ch3_cameraset_2cam}所示，可以發現無論選擇哪一個位置，其估計誤差都在 500 mm 以上，
+因此我認為只使用一台相機進行估計是不可行的，至少需使用兩台相機進行量測。
+\begin{table}[!ht]
+   \caption[一台相機組合與其估計結果誤差]{一台相機組合與其估計結果誤差}
+   \centering
+   \label{ch3_cameraset_1cam}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \resizebox{\textwidth}{!}{
+   \begin{tabular}{|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|}
+      \hline
+      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+      \hline
+      1	& 514.76 & 2 & 782.01 & 3 & 611.84 & 4 & 520.97 \\
+      5	& 653.96 & 6 & 573.41 & 7 & 599.78 & 8 & 542.36 \\
+      \hline
+   \end{tabular}}
+\end{table}
+
+\subsection{結果與討論}
+% 結果介紹與討論
+將一台相機到四台相機的組合估計結果繪製成圖 \ref{ch3_fig_1.2.3.4cam}，可以發現四台相機的結果相較於三台相機來說比較穩定，
+MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話，結果並不會比四台相機的結果差。
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=12cm]{figure/ch3_fig_1.2.3.4cam.png}
+   \caption[一台相機到四台相機的組合估計結果]{一台相機到四台相機的組合估計結果}
+   \label{ch3_fig_1.2.3.4cam}
+\end{figure}
+
+另外列出每一相機數量的最佳表現及最差表現，如表 \ref{ch3_best_worst_camset}，可以發現相機 1 皆有出現在最佳表現的結果中，而相機 2 皆有出現在最差表現的結果中，
+因此推論相機 1 的位置較為適當。
+\begin{table}[!ht]
+   \caption[相機組合的最差及最佳表現]{相機組合的最差及最佳表現}
+   \centering
+   \label{ch3_best_worst_camset}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \begin{tabular}{c|c|c|c|c}
+       & 1 cam & 2 cam & 3 cam & 4 cam \\ 
+      \midrule[2pt]
+      最差表現 & 2 & 25 & 257 & 2567 \\
+      最佳表現 & 1 & 18 & 137 & 1357 \\
+   \end{tabular}
+\end{table}
+
+\subsection{延伸討論}
+% 延伸討論
+由於目前 fusing 作者等人取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
+因此以下將進一步比較三台相機及兩台相機的估計結果，並進行討論。
+
+\subsubsection{方法}
+將三台相機的估計結果依照兩台相機的配對進行平均，再與兩台相機的結果相減，以此方式觀察多一台相機的影響。
+計算方式如算式 \ref{ch3_3camaveMin2cam}。
+\begin{equation}
+   \label{ch3_3camaveMin2cam}
+   \text{差值} = \text{ave}(\text{MPJPE}_{3 \text{ cam}})-\text{MPJPE}_{2 \text{ cam}}
+\end{equation}
+
+\subsubsection{結果}
+以下表 \ref{ch3_ave_3cam_vs_2cam} 交互相機 18 為例，即將 128、138、148、158、168、178 六組相機配對的估計結果進行平均，
+得 MPJPE = 34.5704，再與直接用兩台相機進行融合估計得到的 MPJPE = 46.9798 相減，得 12.4094。
+由下表 \ref{ch3_ave_3cam_vs_2cam} 可知，相機 1 及相機 8 的配對再加上第三台相機較不會有顯著的改善，
+且前三種配對 (即配對 18、配對 14、配對 48)的改善皆都落在約 10~15 mm 左右，
+所以可以推斷，相機 1、4、8 三個位置，隨意取其中兩者可能是較適合擺放相機的位置。
+\begin{table}[!ht]
+   \caption[兩台相機與三台相機平均之比較]{兩台相機與三台相機平均之比較}
+   \centering
+   \label{ch3_ave_3cam_vs_2cam}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \begin{tabular}{c|c|c|c}
+      交互相機 & $ave(MPJPE_{3 cam})$ & $MPJPE_{2 cam}$ & 差 \\
+      \midrule[2pt]
+      18 & 34.5704 & 46.9798 & 12.4094 \\
+      14 & 33.8308 & 47.4927 & 13.6619 \\
+      48 & 35.3844 & 52.3318 & 16.9474 \\
+      17 & 34.9321 & 58.7619 & 23.8298 \\ 
+      58 & 38.4382 & 64.6374 & 26.1993 \\
+      68 & 35.3408 & 63.7904 & 28.4496 \\
+      46 & 37.9318 & 66.8800 & 28.9481 \\  
+      47 & 38.0495 & 67.4949 & 29.4454 \\ 
+      16 & 35.3793 & 66.8653 & 31.4860 \\ 
+      15 & 39.8348 & 76.7795 & 36.9447 \\
+      78 & 39.5911 & 77.1948 & 37.6037 \\
+   \end{tabular}
+\end{table}
+
+另外，若希望 $MPJPE_{2 cam}$ 低於 80 mm，則從兩台相機的估計結果(表 \ref{ch3_cameraset_2cam})挑選出 $MPJPE_{2 cam}$ 低於 80 mm 的結果，
+並計算每一相機的出現次數，則可得出如下表 \ref{ch3_cam_occurrence} 的結果，觀察下表也可發現相機 1、8 的出現次數最高，
+其次為相機 4 ，因此也可推斷相機 1、4、8 三個位置可能是較適合擺放相機的位置。
+\begin{table}[!ht]
+   \caption[兩台相機估計結果之每台相機的出現次數]{兩台相機估計結果之每台相機的出現次數}
+   \centering
+   \label{ch3_cam_occurrence}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \begin{tabular}{c|c}
+      相機 & 出現次數 \\
+      \midrule[2pt]
+      1 & 5 \\
+      2 & 0 \\
+      3 & 0 \\
+      4 & 4 \\
+      5 & 2 \\
+      6 & 3 \\
+      7 & 3 \\
+      8 & 5 \\
+   \end{tabular}
+\end{table}
 
 % ------------------------- 3.4 ------------------------- %
 \section{結果可視化}

@@ -1,0 +1,11 @@
+paper figure.pptx
+*.aux
+*.blg
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.gz
+*.toc
+*.xdv
