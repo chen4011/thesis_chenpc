@@ -51,9 +51,7 @@
 \section{資料前處理}
 % 資料前處理介紹
 利用章節 3.1 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
-資料前處理分為人體骨架建立、時間軸對齊、
-IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，等四個章節，
-將於下列四小章節進行討論。
+資料前處理分為人體骨架建立、時間軸對齊、座標系轉換三個部分，將於本章節進行討論。
 
 \subsection{人體骨架建立}
 % 人體骨架建立介紹
@@ -65,6 +63,10 @@ IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，�
 
 \subsubsection{建立方法}
 % 影像辨識
+% 這邊好像跟第四章的4.1.1有點重複，如果這邊和4.1都要留的話可能就要把下一節的結果與驗證搬到4.1那邊
+% 這邊就只要簡單介紹一下方法就好，然後這邊可以應該可以把為何要選 openpose 不選 mediapipe 也寫上去
+% 只是這樣的話就要想一下4.1.2的實驗執行要怎麼寫(不然如果真的想不到可能就要刪掉實驗執行這塊，畢竟也只是 run 而已)，
+% 4.1.1的應該可以寫用了哪些數據
 本方法流程如圖 \ref{ch3_fig_skeleton_flow} 所示。
 首先，使用 openpose 影像辨識技術辨識每一視角中人體的關節點位置，辨識結果如圖 \ref{ch3_fig_openpose_result} 所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
@@ -86,42 +88,101 @@ IMU - 全域座標轉換矩陣計算、IMU - 骨架座標轉換矩陣計算，�
 
 \subsubsection{結果與驗證}
 % 骨架建立結果與驗證
+% 可能需要搬到4.1.3，然後再寫的詳細一點
 由於 total capture dataset 已提供完整之影像資料及 Vicon 資料，
 因此本研究取 total capture dataset 中 s1 - rom1 之相機 1 與相機 8 影像資料進行 openpose 影像辨識，
 並利用相機校正技術建立出骨架，最後計算骨架之四肢長度與 Vicon 骨架之四肢長度，並進行比較。
-結果如表 \ref{ch3_skeleton_compare} 所示，可以發現自行建立之骨架之四肢長度與 Vicon 骨架之四肢長度相當接近，
-因此證明本方法的可行性。
+結果如表 \ref{ch3_skeleton_compare} 所示，可以發現自行建立骨架之四肢長度與 Vicon 骨架之四肢長度相當接近，
+平均誤差為 6 mm，因此證明本方法的可行性。
 \begin{table}[!ht]
-   \caption[骨架建立結果與驗證]{骨架建立結果與驗證}
+   \caption[骨架建立結果與比較(mm)]{骨架建立結果與比較(mm)}
    \centering
    \label{ch3_skeleton_compare}
    \setlength{\tabcolsep}{3pt}
    \renewcommand\arraystretch{1.5}
-   \resizebox{\textwidth}{!}{
    \begin{tabular}{c|c|c|c|c}
-      & 左上臂 & 左下臂 & 右上臂 & 右下臂 \\
+      & 左上臂 & 左前臂 & 右上臂 & 右前臂 \\
       \midrule
-      Vicon 骨架 & 0.0000 & 0.0000 & 肘關節 & 0.0000 \\
-      自行建立骨架 & 0.0000 & 0.0000 & 手腕關節 & 0.0000 \\
-      \hline\hline
+      Vicon 骨架 & 288.8676 & 219.6028 & 288.8676 & 219.6028 \\
+      自行建立骨架 & 264.8320 & 254.6333 & 268.2862 & 240.3513 \\
+      \midrule[2pt]
       & 左大腿 & 左小腿 & 右大腿 & 右小腿 \\
       \midrule
-      Vicon 骨架 & 0.0000 & 0.0000 & 膝關節 & 0.0000 \\
-      自行建立骨架 & 0.0000 & 0.0000 & 踝關節 & 0.0000 \\
-   \end{tabular}}
+      Vicon 骨架 & 378.8910 & 375.4379 & 378.8910 & 375.4379 \\
+      自行建立骨架 & 411.5974 & 375.7145 & 381.9922	& 378.9461 \\
+   \end{tabular}
 \end{table}
 
 \subsection{時間軸對齊}
 % 時間軸對齊介紹
 拍手及加速度判斷
 
-\subsection{IMU - 全域座標旋轉矩陣計算}
+\subsection{座標系轉換}
+% 座標系轉換介紹
+在人體量測領域中，每一量測方法都有其固有且常用之座標系，
+因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
+本研究共會涉及四種座標系，分別為骨骼座標系，IMU local 座標系，IMU global 座標系，全域座標系。
+其中，骨骼座標系以 total capture dataset 提供之 Vicon 骨架為基礎，其 +x、+y、+z 方向分別為向右、向後、向下，
+如圖 \ref{ch3_fig_skeleton_frame}所示；
+IMU local 座標系即為感測器座標系，以感測器本身為原點，
+於 Xsens 中，定義其 x 軸為長邊之延伸方向，y 軸為短邊之延伸方向，z 軸則沿最大平面之法向，
+如圖 \ref{ch3_fig_imu_frame} 所示；
+IMU global 座標系則以 x 軸指向正東，y 軸指向正北，z 軸指向天頂為正；
+% 全域座標系還不知道怎麼定義QQ
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth]{figure/ch3_fig_skeleton_frame.png}
+     \caption[骨骼座標系定義]{骨骼座標系定義}
+     \label{ch3_fig_skeleton_frame}
+   \end{minipage}%
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth]{figure/ch3_fig_imu_frame.png}
+     \caption[IMU local 座標系定義]{IMU local 座標系定義}
+     \label{ch3_fig_imu_frame}
+   \end{minipage}
+\end{figure}
+
+\subsubsection{IMU - 全域座標旋轉矩陣計算}
 % IMU - 全域座標轉換矩陣計算介紹
 $R_{ig}$
 
-\subsection{IMU - 骨架座標旋轉矩陣計算}
-% IMU - 骨架座標轉換矩陣計算介紹
-$R_{ib}$
+\subsubsection{IMU - 骨骼座標旋轉矩陣計算}
+% IMU - 骨骼座標轉換矩陣計算介紹
+使用 IMU 進行肢體朝向量測時，由於 IMU 黏貼於肢體上的方向及位置可能會和骨骼定義之方向及位置有所偏差，
+因此需使用 IMU - 骨骼座標旋轉矩陣，將位於 IMU local 座標系的量測數值轉換至骨骼座標系，
+此矩陣($R_{ib}$)可經由 opensim 處理並進一步計算而得，其取得及計算方式如下。
+首先，量測結束之 IMU 資料將透過 opensim 軟體進行處理，並取得 IMU 相對每一骨骼之相對位置及角度，
+處理結果可經由 opensim 軟體可視化，如圖 \ref{ch3_fig_imu_ori} 所示。
+此項數據紀錄於 opensim 輸出之 .osim 檔案的 <BodySet> 元素中，<BodySet> 以骨骼為單位，
+其中包含之 <components> 則記錄一附著於該骨骼上之 IMU 的相對位置及角度，
+<translation> 代表該 IMU 的原點相對於其附著之骨骼原點的平移，
+<orientation> 則代表該 IMU 的坐標軸相對於其附著之骨骼坐標軸的旋轉。
+因此若將 <translation> 數值更改為零，則可看到 IMU 原點與骨骼原點重合，如圖 \ref{ch3_fig_imu_tra}，
+而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與骨骼坐標軸平行，如圖 \ref{ch3_fig_imu_rot}。
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.3\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_ori.png}
+     \caption[opensim 計算結果]{opensim 計算結果}
+     \label{ch3_fig_imu_ori}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_tra.png}
+     \caption[IMU 平移為零]{IMU 平移為零}
+     \label{ch3_fig_imu_tra}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_rot.png}
+      \caption[IMU 旋轉為零]{IMU 旋轉為零}
+      \label{ch3_fig_imu_rot}
+    \end{minipage}
+\end{figure}
 
 % ------------------------- 3.3 ------------------------- %
 \section{探討減少相機數量的可行性及其擺放位置}
