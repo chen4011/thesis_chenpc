@@ -2,3 +2,10 @@ thesis.aux
 thesis.fdb_latexmk
 thesis.fls
 thesis.log
+thesis.blg
+thesis.lof
+thesis.lot
+thesis.out
+thesis.synctex.gz
+thesis.toc
+thesis.xdv
