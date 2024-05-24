@@ -67,8 +67,8 @@
 % 這邊就只要簡單介紹一下方法就好，然後這邊可以應該可以把為何要選 openpose 不選 mediapipe 也寫上去
 % 只是這樣的話就要想一下4.1.2的實驗執行要怎麼寫(不然如果真的想不到可能就要刪掉實驗執行這塊，畢竟也只是 run 而已)，
 % 4.1.1的應該可以寫用了哪些數據
-本方法流程如圖 \ref{ch3_fig_skeleton_flow} 所示。
-首先，使用 openpose 影像辨識技術辨識每一視角中人體的關節點位置，辨識結果如圖 \ref{ch3_fig_openpose_result} 所示；
+本方法流程如圖 ~\ref{ch3_fig_skeleton_flow} 所示。
+首先，使用 openpose 影像辨識技術辨識每一視角中人體的關節點位置，辨識結果如圖 ~\ref{ch3_fig_openpose_result} 所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角化計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
 最後，基於 total capture dataset 提供之 vicon 骨架，利用計算出的距離進行骨架伸縮。
@@ -92,7 +92,7 @@
 由於 total capture dataset 已提供完整之影像資料及 Vicon 資料，
 因此本研究取 total capture dataset 中 s1 - rom1 之相機 1 與相機 8 影像資料進行 openpose 影像辨識，
 並利用相機校正技術建立出骨架，最後計算骨架之四肢長度與 Vicon 骨架之四肢長度，並進行比較。
-結果如表 \ref{ch3_skeleton_compare} 所示，可以發現自行建立骨架之四肢長度與 Vicon 骨架之四肢長度相當接近，
+結果如表 ~\ref{ch3_skeleton_compare} 所示，可以發現自行建立骨架之四肢長度與 Vicon 骨架之四肢長度相當接近，
 平均誤差為 6 mm，因此證明本方法的可行性。
 \begin{table}[!ht]
    \caption[骨架建立結果與比較(mm)]{骨架建立結果與比較(mm)}
@@ -122,11 +122,11 @@
 在人體量測領域中，每一量測方法都有其固有且常用之座標系，
 因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
 本研究共會涉及四種座標系，分別為骨骼座標系，IMU local 座標系，IMU global 座標系，全域座標系。
-其中，骨骼座標系以 total capture dataset 提供之 Vicon 骨架為基礎，其 +x、+y、+z 方向分別為向右、向後、向下，
-如圖 \ref{ch3_fig_skeleton_frame}所示；
+其中，骨骼座標系以 total capture dataset 提供之 Vicon 骨架為基礎，如圖 ~\ref{ch3_fig_skeleton_frame}所示，
+其 +x、+y、+z 方向分別為向右(red)、向後(green)、向下(blue)；
 IMU local 座標系即為感測器座標系，以感測器本身為原點，
 於 Xsens 中，定義其 x 軸為長邊之延伸方向，y 軸為短邊之延伸方向，z 軸則沿最大平面之法向，
-如圖 \ref{ch3_fig_imu_frame} 所示；
+如圖 ~\ref{ch3_fig_imu_frame} 所示；
 IMU global 座標系則以 x 軸指向正東，y 軸指向正北，z 軸指向天頂為正；
 % 全域座標系還不知道怎麼定義QQ
 \begin{figure}[!ht]
@@ -155,13 +155,14 @@ $R_{ig}$
 因此需使用 IMU - 骨骼座標旋轉矩陣，將位於 IMU local 座標系的量測數值轉換至骨骼座標系，
 此矩陣($R_{ib}$)可經由 opensim 處理並進一步計算而得，其取得及計算方式如下。
 首先，量測結束之 IMU 資料將透過 opensim 軟體進行處理，並取得 IMU 相對每一骨骼之相對位置及角度，
-處理結果可經由 opensim 軟體可視化，如圖 \ref{ch3_fig_imu_ori} 所示。
+處理結果可經由 opensim 軟體可視化，如圖 ~\ref{ch3_fig_imu_ori} 所示。
 此項數據紀錄於 opensim 輸出之 .osim 檔案的 <BodySet> 元素中，<BodySet> 以骨骼為單位，
 其中包含之 <components> 則記錄一附著於該骨骼上之 IMU 的相對位置及角度，
 <translation> 代表該 IMU 的原點相對於其附著之骨骼原點的平移，
 <orientation> 則代表該 IMU 的坐標軸相對於其附著之骨骼坐標軸的旋轉。
-因此若將 <translation> 數值更改為零，則可看到 IMU 原點與骨骼原點重合，如圖 \ref{ch3_fig_imu_tra}，
-而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與骨骼坐標軸平行，如圖 \ref{ch3_fig_imu_rot}。
+因此若將 <translation> 數值更改為零，則可看到 IMU 原點與骨骼原點重合，如圖 ~\ref{ch3_fig_imu_tra}，
+而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與骨骼坐標軸平行，如圖 ~\ref{ch3_fig_imu_rot}。
+因此，從 .osim 檔案取得每一 IMU 相對於骨骼之相對位置及角度後，即可計算出 IMU - 骨骼座標四元數。
 \begin{figure}[!ht]
    \centering
    \begin{minipage}{.3\textwidth}
@@ -198,7 +199,7 @@ total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 
 % 實驗方法介紹
 % 目前的相機用量及擺放位置敘述，要 cite totalcapture 和 data fusion
 從 total capture dataset 提供的影像資料可以觀察出其實驗環境為一個方形的空間，每一面牆面上方架設兩台相機，
-四面牆共計八台相機，擺放位置如圖 \ref{ch3_fig_cameraset_totalcap} 所示。
+四面牆共計八台相機，擺放位置如圖 ~\ref{ch3_fig_cameraset_totalcap} 所示。
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=8cm]{figure/ch3_fig_cameraset_totalcap.png}
@@ -207,8 +208,8 @@ total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 
 \end{figure}
 
 \subsubsection{四台相機}
-將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選四台進行排列組合，共計有 70 種組合方式，每一種組合方式皆會產生一組 MPJPE，
-結果如表 \ref{ch3_cameraset_4cam}所示，其中最佳組合方式為相機 1357，其 MPJPE 為 24.5789(mm)；
+將圖 ~\ref{ch3_fig_cameraset_totalcap} 中的相機任選四台進行排列組合，共計有 70 種組合方式，每一種組合方式皆會產生一組 MPJPE，
+結果如表 ~\ref{ch3_cameraset_4cam}所示，其中最佳組合方式為相機 1357，其 MPJPE 為 24.5789(mm)；
 而最差組合方式為相機 2567，其 MPJPE 為 38.9142(mm)。標準差為 3.6860(mm)，平均值為 31.0114(mm)。
 經由標準差可以知道四台相機組合的表現都相當穩定，無論如何選擇都不會有太大的影響。
 \begin{table}[!ht]
@@ -261,8 +262,8 @@ total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 
 \clearpage
 
 \subsubsection{三台相機}
-將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選三台進行排列組合，共計有 56 種組合方式，每一種組合方式皆會產生一組 MPJPE，
-結果如表 \ref{ch3_cameraset_3cam}所示，其中最佳組合方式為相機 137，其 MPJPE 為 27.1579(mm)；
+將圖 ~\ref{ch3_fig_cameraset_totalcap} 中的相機任選三台進行排列組合，共計有 56 種組合方式，每一種組合方式皆會產生一組 MPJPE，
+結果如表 ~\ref{ch3_cameraset_3cam}所示，其中最佳組合方式為相機 137，其 MPJPE 為 27.1579(mm)；
 而最差組合方式為相機 257，其 MPJPE 為 82.8158(mm)。標準差為 13.8423(mm)，平均值為 42.9001(mm)。
 經由標準差可以知道三台相機的組合相較四台相機來說表現相對較不穩定，
 但只要位置恰當，僅用三台相機也可以有四台相機的表現水準。
@@ -321,8 +322,8 @@ total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 
 \clearpage
 
 \subsubsection{兩台相機}
-將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選兩台進行排列組合，共計有 28 種組合方式，每一種組合方式皆會產生一組 MPJPE，
-結果如表 \ref{ch3_cameraset_2cam}所示，其中最佳組合方式為相機 18，其 MPJPE 為 46.9798(mm)；
+將圖 ~\ref{ch3_fig_cameraset_totalcap} 中的相機任選兩台進行排列組合，共計有 28 種組合方式，每一種組合方式皆會產生一組 MPJPE，
+結果如表 ~\ref{ch3_cameraset_2cam}所示，其中最佳組合方式為相機 18，其 MPJPE 為 46.9798(mm)；
 而最差組合方式為相機 25，其 MPJPE 為 300.1637(mm)。標準差為 61.7928(mm)，平均值為 109.8694(mm)。
 經由結果可以發現相機的擺放位置對估計結果影響甚鉅，若位置選擇得宜，估計結果將會相當準確，反之則會有較大的誤差。
 \begin{table}[!ht]
@@ -363,8 +364,8 @@ total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 
 \clearpage
 
 \subsubsection{一台相機}
-將圖 \ref{ch3_fig_cameraset_totalcap} 中的相機任選一台進行估計，共計 8 種估計結果，每一結果皆會產生一組 MPJPE，
-結果如表 \ref{ch3_cameraset_2cam}所示，可以發現無論選擇哪一個位置，其估計誤差都在 500 mm 以上，
+將圖 ~\ref{ch3_fig_cameraset_totalcap} 中的相機任選一台進行估計，共計 8 種估計結果，每一結果皆會產生一組 MPJPE，
+結果如表 ~\ref{ch3_cameraset_2cam}所示，可以發現無論選擇哪一個位置，其估計誤差都在 500 mm 以上，
 因此我認為只使用一台相機進行估計是不可行的，至少需使用兩台相機進行量測。
 \begin{table}[!ht]
    \caption[一台相機組合與其估計結果誤差]{一台相機組合與其估計結果誤差}
@@ -389,7 +390,7 @@ total capture dataset 提供之資料總共包含 8 台相機與 13 個 IMU 的 
 
 \subsection{結果與討論}
 % 結果介紹與討論
-將一台相機到四台相機的組合估計結果繪製成圖 \ref{ch3_fig_1.2.3.4cam}，可以發現四台相機的結果相較於三台相機來說比較穩定，
+將一台相機到四台相機的組合估計結果繪製成圖 ~\ref{ch3_fig_1.2.3.4cam}，可以發現四台相機的結果相較於三台相機來說比較穩定，
 MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話，結果並不會比四台相機的結果差。
 \begin{figure}[!ht]
    \centering
@@ -398,7 +399,7 @@ MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話�
    \label{ch3_fig_1.2.3.4cam}
 \end{figure}
 
-另外列出每一相機數量的最佳表現及最差表現，如表 \ref{ch3_best_worst_camset}，可以發現相機 1 皆有出現在最佳表現的結果中，而相機 2 皆有出現在最差表現的結果中，
+另外列出每一相機數量的最佳表現及最差表現，如表 ~\ref{ch3_best_worst_camset}，可以發現相機 1 皆有出現在最佳表現的結果中，而相機 2 皆有出現在最差表現的結果中，
 因此推論相機 1 的位置較為適當。
 \begin{table}[!ht]
    \caption[相機組合的最差及最佳表現]{相機組合的最差及最佳表現}
@@ -421,16 +422,16 @@ MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話�
 
 \subsubsection{方法}
 將三台相機的估計結果依照兩台相機的配對進行平均，再與兩台相機的結果相減，以此方式觀察多一台相機的影響。
-計算方式如算式 \ref{ch3_3camaveMin2cam}。
+計算方式如算式 ~\ref{ch3_3camaveMin2cam}。
 \begin{equation}
    \label{ch3_3camaveMin2cam}
    \text{差值} = \text{ave}(\text{MPJPE}_{3 \text{ cam}})-\text{MPJPE}_{2 \text{ cam}}
 \end{equation}
 
 \subsubsection{結果}
-以下表 \ref{ch3_ave_3cam_vs_2cam} 交互相機 18 為例，即將 128、138、148、158、168、178 六組相機配對的估計結果進行平均，
+以下表 ~\ref{ch3_ave_3cam_vs_2cam} 交互相機 18 為例，即將 128、138、148、158、168、178 六組相機配對的估計結果進行平均，
 得 MPJPE = 34.5704，再與直接用兩台相機進行融合估計得到的 MPJPE = 46.9798 相減，得 12.4094。
-由下表 \ref{ch3_ave_3cam_vs_2cam} 可知，相機 1 及相機 8 的配對再加上第三台相機較不會有顯著的改善，
+由下表 ~\ref{ch3_ave_3cam_vs_2cam} 可知，相機 1 及相機 8 的配對再加上第三台相機較不會有顯著的改善，
 且前三種配對 (即配對 18、配對 14、配對 48)的改善皆都落在約 10~15 mm 左右，
 所以可以推斷，相機 1、4、8 三個位置，隨意取其中兩者可能是較適合擺放相機的位置。
 \begin{table}[!ht]
@@ -456,8 +457,8 @@ MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話�
    \end{tabular}
 \end{table}
 
-另外，若希望 $MPJPE_{2 cam}$ 低於 80 mm，則從兩台相機的估計結果(表 \ref{ch3_cameraset_2cam})挑選出 $MPJPE_{2 cam}$ 低於 80 mm 的結果，
-並計算每一相機的出現次數，則可得出如下表 \ref{ch3_cam_occurrence} 的結果，觀察下表也可發現相機 1、8 的出現次數最高，
+另外，若希望 $MPJPE_{2 cam}$ 低於 80 mm，則從兩台相機的估計結果(表 ~\ref{ch3_cameraset_2cam})挑選出 $MPJPE_{2 cam}$ 低於 80 mm 的結果，
+並計算每一相機的出現次數，則可得出如下表 ~\ref{ch3_cam_occurrence} 的結果，觀察下表也可發現相機 1、8 的出現次數最高，
 其次為相機 4 ，因此也可推斷相機 1、4、8 三個位置可能是較適合擺放相機的位置。
 \begin{table}[!ht]
    \caption[兩台相機估計結果之每台相機的出現次數]{兩台相機估計結果之每台相機的出現次數}
