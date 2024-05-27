@@ -1,0 +1,86 @@
+\contentsline {chapter}{口試委員會審定書}{i}{Doc-Start}%
+\contentsline {chapter}{誌謝}{ii}{chapter*.1}%
+\contentsline {chapter}{中文摘要}{iv}{chapter*.2}%
+\contentsline {chapter}{Abstract}{v}{chapter*.3}%
+\contentsline {chapter}{目錄}{vi}{chapter*.4}%
+\contentsline {chapter}{圖目錄}{ix}{chapter*.5}%
+\contentsline {chapter}{表目錄}{x}{chapter*.6}%
+\contentsline {chapter}{\numberline {1}緒論}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}前言}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}研究動機與目的}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}論文架構}{4}{section.1.3}%
+\contentsline {chapter}{\numberline {2}文獻回顧}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}動作捕捉系統}{5}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}光學動作捕捉系統}{5}{subsection.2.1.1}%
+\contentsline {subsubsection}{光標記捕捉系統-Vicon}{6}{subsection.2.1.1}%
+\contentsline {subsubsection}{非光標記捕捉系統}{6}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}非光學捕捉系統}{6}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}多感測器動作捕捉系統}{6}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}個人化骨架}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}時間對齊}{6}{section.2.3}%
+\contentsline {section}{\numberline {2.4}小結}{6}{section.2.4}%
+\contentsline {chapter}{\numberline {3}研究方法}{8}{chapter.3}%
+\contentsline {section}{\numberline {3.1}系統架設與實驗環境}{10}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}系統架設}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{硬體-相機擺放}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{軟體-xsens}{10}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}實驗環境}{10}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}資料前處理}{10}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}人體骨架建立}{10}{subsection.3.2.1}%
+\contentsline {subsubsection}{建立方法}{10}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}時間軸對齊}{11}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}座標系轉換}{11}{subsection.3.2.3}%
+\contentsline {subsubsection}{IMU - 全域座標旋轉矩陣計算}{12}{figure.caption.11}%
+\contentsline {subsubsection}{IMU - 骨骼座標旋轉矩陣計算}{12}{figure.caption.11}%
+\contentsline {section}{\numberline {3.3}探討減少相機數量的可行性及其擺放位置}{13}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}實驗方法-數量及位置選擇}{13}{subsection.3.3.1}%
+\contentsline {subsubsection}{四台相機}{14}{figure.caption.13}%
+\contentsline {subsubsection}{三台相機}{15}{table.caption.14}%
+\contentsline {subsubsection}{兩台相機}{16}{table.caption.15}%
+\contentsline {subsubsection}{一台相機}{17}{table.caption.16}%
+\contentsline {subsection}{\numberline {3.3.2}結果與討論}{17}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}延伸討論}{18}{subsection.3.3.3}%
+\contentsline {subsubsection}{方法}{18}{subsection.3.3.3}%
+\contentsline {subsubsection}{結果}{18}{equation.3.3.1}%
+\contentsline {section}{\numberline {3.4}結果可視化}{18}{section.3.4}%
+\contentsline {section}{\numberline {3.5}小結}{19}{section.3.5}%
+\contentsline {chapter}{\numberline {4}系統驗證之實驗結果分析與討論}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}人體骨架建立實驗結果分析與討論}{21}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}實驗設定}{21}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}實驗執行}{21}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}結果與討論}{21}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}運動軌跡與控制訊號生成}{23}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}期望動作生成}{23}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}控制訊號生成}{24}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}運動軌跡生成}{24}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}任務與肌肉參數間之敏感度分析}{25}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}任務種類}{25}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}任務挑選準則}{26}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}敏感度分析}{27}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}肌肉參數最佳化與驗證}{29}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}最佳化與模型驗證}{29}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}執行任務介紹}{32}{subsection.4.4.2}%
+\contentsline {subsubsection}{最佳化任務}{32}{subsection.4.4.2}%
+\contentsline {subsubsection}{模型驗證任務}{32}{figure.caption.30}%
+\contentsline {section}{\numberline {4.5}小結}{32}{section.4.5}%
+\contentsline {chapter}{\numberline {5}參數評估模擬案例與成果探討}{34}{chapter.5}%
+\contentsline {section}{\numberline {5.1}參數評估模擬案例}{34}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}單肌肉單參數案例評估}{35}{subsection.5.1.1}%
+\contentsline {subsubsection}{肱二頭肌長頭之最大等長力量}{35}{subsection.5.1.1}%
+\contentsline {subsubsection}{肱二頭肌長頭之最佳肌纖維長度}{36}{table.caption.33}%
+\contentsline {subsubsection}{肱二頭肌長頭之肌腱鬆弛長度}{36}{table.caption.34}%
+\contentsline {subsection}{\numberline {5.1.2}單肌肉多參數案例評估}{36}{subsection.5.1.2}%
+\contentsline {subsubsection}{肱二頭肌長頭}{36}{subsection.5.1.2}%
+\contentsline {subsubsection}{肱二頭肌短頭}{37}{table.caption.36}%
+\contentsline {subsection}{\numberline {5.1.3}多肌肉多參數案例評估}{37}{subsection.5.1.3}%
+\contentsline {subsubsection}{肱二頭肌群}{37}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}單軌跡案例評估}{38}{subsection.5.1.4}%
+\contentsline {subsubsection}{肱二頭肌群}{38}{subsection.5.1.4}%
+\contentsline {section}{\numberline {5.2}參數評估結果}{38}{section.5.2}%
+\contentsline {section}{\numberline {5.3}肌肉參數不可識別性探討}{40}{section.5.3}%
+\contentsline {section}{\numberline {5.4}小結}{42}{section.5.4}%
+\contentsline {chapter}{\numberline {6}結論與未來工作}{43}{chapter.6}%
+\contentsline {section}{\numberline {6.1}研究成果與貢獻}{43}{section.6.1}%
+\contentsline {section}{\numberline {6.2}未來工作}{44}{section.6.2}%
+\contentsline {chapter}{參考文獻}{46}{section.6.2}%
+\contentsfinish 

@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: ieeetr.bst
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+Database file #1: thesis.bib
+Warning--I didn't find a database entry for "opensim_fwd"
+You've used 32 entries,
+            1876 wiz_defined-function locations,
+            662 strings with 11512 characters,
+and the built_in function-call counts, 9812 in all, are:
+= -- 896
+> -- 544
+< -- 0
++ -- 192
+- -- 160
+* -- 738
+:= -- 1425
+add.period$ -- 32
+call.type$ -- 32
+change.case$ -- 32
+chr.to.int$ -- 0
+cite$ -- 32
+duplicate$ -- 522
+empty$ -- 828
+format.name$ -- 160
+if$ -- 2354
+int.to.chr$ -- 0
+int.to.str$ -- 32
+missing$ -- 32
+newline$ -- 99
+num.names$ -- 32
+pop$ -- 110
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 361
+stack$ -- 0
+substring$ -- 533
+swap$ -- 238
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 80
+width$ -- 34
+write$ -- 313
+(There was 1 warning)

@@ -1,0 +1,42 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces 人體動作模擬與分析之種類劃分}}{2}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces 復健規劃流程}}{3}{figure.caption.8}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 骨架建立流程圖}}{11}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces openpose 辨識結果}}{11}{figure.caption.10}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces 骨骼座標系定義}}{12}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces IMU local 座標系定義}}{12}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces OpenSim 計算結果}}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces IMU 平移為零}}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces IMU 旋轉為零}}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces 相機擺放位置}}{13}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces 一台相機到四台相機的組合估計結果}}{17}{figure.caption.18}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces 期望動作生成範例}}{24}{figure.caption.23}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{24}{subfigure.1.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{24}{subfigure.1.2}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces 敏感度分析之程式執行流程圖}}{27}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces 模擬案例之敏感度分析結果}}{28}{figure.caption.26}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{28}{subfigure.3.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{28}{subfigure.3.2}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 呈現敏感度指標於運動軌跡偏移範例}}{29}{figure.caption.27}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{29}{subfigure.4.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{29}{subfigure.4.2}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces 多運動軌跡預測最佳化之程式執行流程圖}}{30}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces 模型驗證之程式執行流程圖}}{31}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces 最佳化任務之敏感度分析結果}}{33}{figure.caption.30}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{33}{subfigure.7.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{33}{subfigure.7.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{33}{subfigure.7.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{33}{subfigure.7.4}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces 模型驗證任務之敏感度分析結果}}{33}{figure.caption.31}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{33}{subfigure.8.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{33}{subfigure.8.2}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces 研究案例分類}}{35}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces 單軌跡案例於最佳化任務之運動軌跡預測}}{40}{figure.caption.42}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces 單軌跡案例於模型驗證任務之運動軌跡預測}}{41}{figure.caption.43}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces 單軌跡案例於 Task 8 之運動軌跡預測}}{41}{figure.caption.44}%
+\addvspace {10\p@ }
+\contentsfinish 
