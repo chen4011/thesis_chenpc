@@ -887,116 +887,88 @@
 }
 
 % ------------------------- CH 3 ------------------------- %
+% 3.2 人體骨架建立
+@inproceedings{zhang2020fusing,
+  title     = {Fusing wearable imus with multi-view images for human pose estimation: A geometric approach},
+  author    = {Zhang, Zhe and Wang, Chunyu and Qin, Wenhu and Zeng, Wenjun},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year      = {2020},
+  pages     = {2200--2209}
+}
+@article{Pagnon_2022_JOSS,
+  title   = {Pose2Sim: An open-source Python package for multiview markerless kinematics},
+  author  = {Pagnon, David and Domalain, Mathieu and Reveret, Lionel},
+  journal = {Journal of Open Source Software},
+  year    = {2022},
+  doi     = {10.21105/joss.04362},
+  url     = {https://joss.theoj.org/papers/10.21105/joss.04362}
+}
+@article{Pagnon_2021_Robustness,
+  title   = {Pose2Sim: An End-to-End Workflow for 3D Markerless Sports Kinematics—Part 1: Robustness},
+  author  = {Pagnon, David and Domalain, Mathieu and Reveret, Lionel},
+  journal = {Sensors},
+  year    = {2021},
+  doi     = {10.3390/s21196530},
+  url     = {https://www.mdpi.com/1424-8220/21/19/6530}
+}
+@article{Pagnon_2022_Accuracy,
+  title   = {Pose2Sim: An End-to-End Workflow for 3D Markerless Sports Kinematics—Part 2: Accuracy},
+  author  = {Pagnon, David and Domalain, Mathieu and Reveret, Lionel},
+  journal = {Sensors},
+  year    = {2022},
+  doi     = {10.3390/s22072712},
+  url     = {https://www.mdpi.com/1424-8220/22/7/2712}
+}
+@article{8765346,
+  title   = {OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
+  author  = {Z. {Cao} and G. {Hidalgo Martinez} and T. {Simon} and S. {Wei} and Y. A. {Sheikh}},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year    = {2019}
+}
+@inproceedings{wei2016cpm,
+  title     = {Convolutional pose machines},
+  author    = {Shih-En Wei and Varun Ramakrishna and Takeo Kanade and Yaser Sheikh},
+  booktitle = {CVPR},
+  year      = {2016}
+}
+@inproceedings{simon2017hand,
+  title     = {Hand Keypoint Detection in Single Images using Multiview Bootstrapping},
+  author    = {Tomas Simon and Hanbyul Joo and Iain Matthews and Yaser Sheikh},
+  booktitle = {CVPR},
+  year      = {2017}
+}
+@inproceedings{cao2017realtime,
+  title     = {Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
+  author    = {Zhe Cao and Tomas Simon and Shih-En Wei and Yaser Sheikh},
+  booktitle = {CVPR},
+  year      = {2017}
+}
 
-@misc{opensim_fwd,
-  author = {{OpenSim}},
-  title = {Forward Dynamics Documentation in User's Guide},
-	howpublished = {WebPage},
-  note = {Online available at: \url{https://simtk-confluence.stanford.edu:8443/display/OpenSim/Forward+Dynamics}; accessed at 19/5/2023}
-}
-@misc{opensim_id,
-  author = {{OpenSim}},
-  title = {Inverse Dynamics Documentation in User's Guide},
-	howpublished = {WebPage},
-  note = {Online available at: \url{https://simtk-confluence.stanford.edu:8443/display/OpenSim/Inverse+Dynamics}; accessed at 19/5/2023}
-}
-@misc{opensim_so,
-  author = {{OpenSim}},
-  title = {Static Optimization Documentation in User's Guide},
-	howpublished = {WebPage},
-  note = {Online available at: \url{https://simtk-confluence.stanford.edu:8443/display/OpenSim/Static+Optimization}; accessed at 19/5/2023}
-}
-@misc{opensim_cmc,
-  author = {{OpenSim}},
-  title = {Computed Muscle Control Documentation in User's Guide},
-  howpublished = {WebPage},
-  note = {Online available at: \url{https://simtk-confluence.stanford.edu:8443/display/OpenSim/Computed+Muscle+Control}; accessed at 19/5/2023}
-}
-@misc{matlab_pso,
-  author = {{The MathWorks Inc.}},
-  title = {Particle Swarm Documentation in Global Optimization Toolbox},
-  howpublished = {WebPage},
-  note = {Online available at: \url{https://www.mathworks.com/help/gads/particle-swarm.html}; accessed at 19/5/2023}
-}
-@misc{matlab_direct,
-  author = {{The MathWorks Inc.}},
-  title = {Direct Search Documentation in Global Optimization Toolbox},
-  howpublished = {WebPage},
-  note = {Online available at: \url{https://www.mathworks.com/help/gads/direct-search.html}; accessed at 19/5/2023}
-}
-@misc{matlab_search,
-  author = {{The MathWorks Inc.}},
-  title = {Searching and Polling Documentation in Global Optimization Toolbox},
-  howpublished = {WebPage},
-  note = {Online available at: \url{https://www.mathworks.com/help/gads/searching-and-polling.html}; accessed at 19/5/2023}
-}
-@article{hill1938heat,
-  title={The heat of shortening and the dynamic constants of muscle},
-  author={Hill, Archibald Vivian},
-  journal={Proceedings of the Royal Society of London. Series B-Biological Sciences},
-  volume={126},
-  number={843},
-  pages={136--195},
-  year={1938},
-  publisher={The Royal Society London}
-}
-@article{zajac1989muscle,
-  title={Muscle and tendon: properties, models, scaling, and application to biomechanics and motor control.},
-  author={Zajac, Felix E},
-  journal={Critical Reviews in Biomedical Engineering},
-  volume={17},
-  number={4},
-  pages={359--411},
-  year={1989}
-}
-@article{sobol1967distribution,
-  title={On the distribution of points in a cube and the approximate evaluation of integrals},
-  author={Sobol', Il'ya Meerovich},
-  journal={Zhurnal Vychislitel'noi Matematiki i Matematicheskoi Fiziki},
-  volume={7},
-  number={4},
-  pages={784--802},
-  year={1967},
-  publisher={Russian Academy of Sciences, Branch of Mathematical Sciences}
-}
-@article{thelen2006using,
-  title={Using computed muscle control to generate forward dynamic simulations of human walking from experimental data},
-  author={Thelen, Darryl G and Anderson, Frank C},
-  journal={Journal of Biomechanics},
-  volume={39},
-  number={6},
-  pages={1107--1115},
-  year={2006},
-  publisher={Elsevier}
-}
-@article{thelen2003generating,
-  title={Generating dynamic simulations of movement using computed muscle control},
-  author={Thelen, Darryl G and Anderson, Frank C and Delp, Scott L},
-  journal={Journal of Biomechanics},
-  volume={36},
-  number={3},
-  pages={321--328},
-  year={2003},
-  publisher={Elsevier}
-}
-@article{millard2013flexing,
-  title={Flexing computational muscle: modeling and simulation of musculotendon dynamics},
-  author={Millard, Matthew and Uchida, Thomas and Seth, Ajay and Delp, Scott L},
-  journal={Journal of Biomechanical Engineering},
-  volume={135},
-  number={2},
-  year={2013},
-  publisher={American Society of Mechanical Engineers Digital Collection}
-}
+% 3.2 IMU to bone
 @article{delp2007opensim,
-  title={OpenSim: open-source software to create and analyze dynamic simulations of movement},
-  author={Delp, Scott L and Anderson, Frank C and Arnold, Allison S and Loan, Peter and Habib, Ayman and John, Chand T and Guendelman, Eran and Thelen, Darryl G},
-  journal={IEEE Transactions on Biomedical Engineering},
-  volume={54},
-  number={11},
-  pages={1940--1950},
-  year={2007},
-  publisher={IEEE}
+  title     = {OpenSim: open-source software to create and analyze dynamic simulations of movement},
+  author    = {Delp, Scott L and Anderson, Frank C and Arnold, Allison S and Loan, Peter and Habib, Ayman and John, Chand T and Guendelman, Eran and Thelen, Darryl G},
+  journal   = {IEEE Transactions on Biomedical Engineering},
+  year      = {2007},
+  volume    = {54},
+  number    = {11},
+  pages     = {1940--1950},
+  publisher = {IEEE}
+}
+
+% 3.3 相機選擇
+@inproceedings{Trumble:BMVC:2017,
+  title     = {Total Capture: 3D Human Pose Estimation Fusing Video and Inertial Sensors},
+  author    = {Trumble, Matt and Gilbert, Andrew and Malleson, Charles and  Hilton, Adrian and Collomosse, John},
+  booktitle = {2017 British Machine Vision Conference (BMVC)},
+  year      = {2017}
+}
+@inproceedings{trumble2017total,
+  title     = {Total capture: 3d human pose estimation fusing video and inertial sensors},
+  author    = {Trumble, Matthew and Gilbert, Andrew and Malleson, Charles and Hilton, Adrian and Collomosse, John},
+  booktitle = {Proceedings of 28th British Machine Vision Conference},
+  year      = {2017},
+  pages     = {1--13}
 }
 
 % ------------------------- CH 4 ------------------------- %

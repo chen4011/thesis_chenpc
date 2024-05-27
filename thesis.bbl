@@ -1,0 +1,36 @@
+\begin{thebibliography}{10}
+
+\bibitem{zhang2020fusing}
+Z.~Zhang, C.~Wang, W.~Qin, and W.~Zeng, ``Fusing wearable imus with multi-view images for human pose estimation: A geometric approach,'' in {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pp.~2200--2209, 2020.
+
+\bibitem{Pagnon_2021_Robustness}
+D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for 3d markerless sports kinematics—part 1: Robustness,'' {\em Sensors}, 2021.
+
+\bibitem{Pagnon_2022_Accuracy}
+D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for 3d markerless sports kinematics—part 2: Accuracy,'' {\em Sensors}, 2022.
+
+\bibitem{Pagnon_2022_JOSS}
+D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An open-source python package for multiview markerless kinematics,'' {\em Journal of Open Source Software}, 2022.
+
+\bibitem{8765346}
+Z.~{Cao}, G.~{Hidalgo Martinez}, T.~{Simon}, S.~{Wei}, and Y.~A. {Sheikh}, ``Openpose: Realtime multi-person 2d pose estimation using part affinity fields,'' {\em IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2019.
+
+\bibitem{wei2016cpm}
+S.-E. Wei, V.~Ramakrishna, T.~Kanade, and Y.~Sheikh, ``Convolutional pose machines,'' in {\em CVPR}, 2016.
+
+\bibitem{simon2017hand}
+T.~Simon, H.~Joo, I.~Matthews, and Y.~Sheikh, ``Hand keypoint detection in single images using multiview bootstrapping,'' in {\em CVPR}, 2017.
+
+\bibitem{cao2017realtime}
+Z.~Cao, T.~Simon, S.-E. Wei, and Y.~Sheikh, ``Realtime multi-person 2d pose estimation using part affinity fields,'' in {\em CVPR}, 2017.
+
+\bibitem{delp2007opensim}
+S.~L. Delp, F.~C. Anderson, A.~S. Arnold, P.~Loan, A.~Habib, C.~T. John, E.~Guendelman, and D.~G. Thelen, ``Opensim: open-source software to create and analyze dynamic simulations of movement,'' {\em IEEE Transactions on Biomedical Engineering}, vol.~54, no.~11, pp.~1940--1950, 2007.
+
+\bibitem{Trumble:BMVC:2017}
+M.~Trumble, A.~Gilbert, C.~Malleson, A.~Hilton, and J.~Collomosse, ``Total capture: 3d human pose estimation fusing video and inertial sensors,'' in {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
+
+\bibitem{trumble2017total}
+M.~Trumble, A.~Gilbert, C.~Malleson, A.~Hilton, and J.~Collomosse, ``Total capture: 3d human pose estimation fusing video and inertial sensors,'' in {\em Proceedings of 28th British Machine Vision Conference}, pp.~1--13, 2017.
+
+\end{thebibliography}
