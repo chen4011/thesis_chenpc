@@ -53,27 +53,31 @@
 利用章節 3.1 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
 資料前處理分為人體骨架建立、時間軸對齊、座標系轉換三個部分，將於本章節進行討論。
 
-\subsection{人體骨架建立}
+\subsection{人體骨架建立}\label{sec3_skeleton_method}
 % 人體骨架建立介紹
+% 伸縮沒有寫到，要怎麼加進去?
 在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的骨架資料，
 並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得骨架資料。
-因此本研究透過 pose2sim~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS}提出之方法，
-使用影像辨識技術辨識每一視角中人體的關節點位置，並利用相機校正技術建立出關節在空間中的位置，以此方式建立人體骨架，
-後續利用 total capture dataset 提供的 Vicon 資料，進行影像辨識與三角化結果與 Vicon 資料的比對，以驗證此方法的可行性。
+因此本研究透過 Pose2Sim~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS}提出之方法，
+使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立人體骨架。
+章節~\ref{sec4_skeleton_exp}將會利用 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供的影像資料，進行影像辨識與三角化，
+並將結果與 TotalCapture Dataset 提供之 Vicon 骨架資料比對，以驗證此方法的可行性。
 
 \subsubsection{建立方法}
 % 影像辨識
 % 這邊好像跟第四章的4.1.1有點重複，如果這邊和4.1都要留的話可能就要把下一節的結果與驗證搬到4.1那邊
-% 這邊就只要簡單介紹一下方法就好，然後這邊可以應該可以把為何要選 openpose 不選 mediapipe 也寫上去
+% 這邊就只要簡單介紹一下方法就好，然後這邊可以應該可以把為何要選 OpenPose 不選 mediapipe 也寫上去
 % 只是這樣的話就要想一下4.1.2的實驗執行要怎麼寫(不然如果真的想不到可能就要刪掉實驗執行這塊，畢竟也只是 run 而已)，
 % 4.1.1的應該可以寫用了哪些數據
 本方法流程如圖~\ref{ch3_fig_skeleton_flow} 所示。
-首先，使用 openpose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
-影像辨識技術辨識每一視角中人體的關節點位置，辨識結果如圖~\ref{ch3_fig_openpose_result} 所示；
+首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
+影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
+其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角化計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
-最後，基於 total capture dataset 提供之 vicon 骨架，利用計算出的距離進行骨架伸縮，
-得到與受試者四肢、身高相似之骨架，如圖\ref{}。
+最後，基於 TotalCapture Dataset 提供之 vicon 骨架，利用計算出的距離進行骨架伸縮，
+得到與受試者四肢、身高相似之骨架，如圖~\ref{ch3_fig_my_skeleton}。
+
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=8cm]{figure/ch3_fig_skeleton_flow.png}
@@ -83,11 +87,19 @@
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=8cm]{figure/ch3_fig_openpose_result.png}
-    \caption[openpose 辨識結果]{openpose 辨識結果}
-    \label{ch3_fig_openpose_result}
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth]{figure/ch3_fig_OpenPose_result.png}
+     \caption[OpenPose 辨識結果]{OpenPose 辨識結果}
+     \label{ch3_fig_OpenPose_result}
+   \end{minipage}%
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth]{figure/ch3_fig_my_skeleton.png}
+     \caption[骨架建立結果]{骨架建立結果}
+     \label{ch3_fig_my_skeleton}
+   \end{minipage}
 \end{figure}
-% 用 minipage 的方法加上自己建立的骨架圖片
 
 \subsection{時間軸對齊}
 % 時間軸對齊介紹
@@ -99,7 +111,7 @@
 在人體量測領域中，每一量測方法都有其固有且常用之座標系，
 因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
 本研究共會涉及四種座標系，分別為骨骼座標系，IMU local 座標系，IMU global 座標系，全域座標系。
-其中，骨骼座標系以 total capture dataset 提供之 Vicon 骨架為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
+其中，骨骼座標系以 TotalCapture Dataset 提供之 Vicon 骨架為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
 其 +x、+y、+z 方向分別為向右(red)、向後(green)、向下(blue)；
 IMU local 座標系即為感測器座標系，以感測器本身為原點，
 於 Xsens 中，定義其 x 軸為長邊之延伸方向，y 軸為短邊之延伸方向，z 軸則沿最大平面之法向，
@@ -165,17 +177,17 @@ $R_{ig}$
 % ------------------------- 3.3 ------------------------- %
 \section{探討減少相機數量的可行性及其擺放位置}
 % 探討減少相機數量的可行性及其擺放位置介紹
-total capture dataset~\cite{Trumble:BMVC:2017}提供之資料總共包含 8 台相機與 13 個 IMU 的 data，
+TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供之資料總共包含 8 台相機與 13 個 IMU 的 data，
 而在文獻~\cite{zhang2020fusing}中，作者使用到 4 台相機及 8 個 IMU 的資料；
-另外在 total capture dataset 發表的文獻~\cite{trumble2017total}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
+另外在 TotalCapture Dataset 發表的文獻~\cite{trumble2017total}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
 因此本章節嘗試選擇相機數量與位置並進行感測器融合計算，
-將得到的結果與 total capture dataset 提供的 Vicon 資料進行比對，計算 MPJPE，
+將得到的結果與 TotalCapture Dataset 提供的 Vicon 資料進行比對，計算 MPJPE，
 藉此方式欲探討相機數量的減少對於動作捕捉的影響，並嘗試探討相機擺放位置的選擇。
 
 \subsection{實驗方法-數量及位置選擇}
 % 實驗方法介紹
 % 目前的相機用量及擺放位置敘述，要 cite totalcapture 和 data fusion
-從 total capture dataset 提供的影像資料可以觀察出其實驗環境為一個方形的空間，每一面牆面上方架設兩台相機，
+從 TotalCapture Dataset 提供的影像資料可以觀察出其實驗環境為一個方形的空間，每一面牆面上方架設兩台相機，
 四面牆共計八台相機，擺放位置如圖~\ref{ch3_fig_cameraset_totalcap} 所示。
 \begin{figure}[!ht]
    \centering
@@ -311,12 +323,12 @@ total capture dataset~\cite{Trumble:BMVC:2017}提供之資料總共包含 8 台�
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|}
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|}
       \hline
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+      {相機配置} & {MPJPE} & {相機配置} & {MPJPE} & {相機配置} & {MPJPE} & {相機配置} & {MPJPE} \\
       \hline
       12 & 194.4957 & 13 & 81.9440 & 14 & 47.4927 & 15 & 76.7795 \\
       16 & 66.8653 & 17 & 58.7619 & 18 & 46.9798 & & \\
