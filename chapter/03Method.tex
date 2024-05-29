@@ -177,7 +177,7 @@ $R_{ig}$
 % ------------------------- 3.3 ------------------------- %
 \section{探討減少相機數量的可行性及其擺放位置}
 % 探討減少相機數量的可行性及其擺放位置介紹
-TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供之資料總共包含 8 台相機與 13 個 IMU 的 data，
+TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供 8 台相機與 13 個 IMU 的量測資料，
 而在文獻~\cite{zhang2020fusing}中，作者使用到 4 台相機及 8 個 IMU 的資料；
 另外在 TotalCapture Dataset 發表的文獻~\cite{trumble2017total}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
 因此本章節嘗試選擇相機數量與位置並進行感測器融合計算，
@@ -380,7 +380,7 @@ TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供之資料總共包含 8 台�
 \subsection{結果與討論}
 % 結果介紹與討論
 將一台相機到四台相機的組合估計結果繪製成圖~\ref{ch3_fig_1.2.3.4cam}，可以發現四台相機的結果相較於三台相機來說比較穩定，
-MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話，結果並不會比四台相機的結果差。
+MPJPE 約都在 20\textasciitilde40 mm 左右，只是如果三台相機的配置適當的話，結果並不會比四台相機的結果差。
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=12cm]{figure/ch3_fig_1.2.3.4cam.png}
@@ -406,7 +406,7 @@ MPJPE 約都在 20~40 mm 左右，只是如果三台相機的配置適當的話�
 
 \subsection{延伸討論}
 % 延伸討論
-由於目前~\cite{zhang2020fusing}取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
+由於目前文獻~\cite{zhang2020fusing}取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
 因此以下將進一步比較三台相機及兩台相機的估計結果，並進行討論。
 
 \subsubsection{方法}
