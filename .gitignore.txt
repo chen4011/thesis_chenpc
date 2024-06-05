@@ -9,4 +9,3 @@ thesis.out
 thesis.synctex.gz
 thesis.toc
 thesis.xdv
-ntu.sty
