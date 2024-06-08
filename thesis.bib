@@ -186,66 +186,52 @@
 
 % ------------------------- CH 2 ------------------------- %
 
-% 2.1.1 MC
-@article{taborri2020sport,
-  title={Sport biomechanics applications using inertial, force, and EMG sensors: A literature overview},
-  author={Taborri, Juri and Keogh, Justin and Kos, Anton and Santuz, Alessandro and Umek, Anton and Urbanczyk, Caryn and van der Kruk, Eline and Rossi, Stefano},
-  journal={Applied Bionics and Biomechanics},
-  volume={2020},
-  year={2020},
-  publisher={Hindawi}
-}
-@article{menolotto2020motion,
-  title={Motion capture technology in industrial applications: A systematic review},
-  author={Menolotto, Matteo and Komaris, Dimitrios-Sokratis and Tedesco, Salvatore and O’Flynn, Brendan and Walsh, Michael},
-  journal={Sensors},
-  volume={20},
-  number={19},
-  pages={5687},
-  year={2020},
-  publisher={MDPI}
-}
-@article{dang2020sensor,
-  title={Sensor-based and vision-based human activity recognition: A comprehensive survey},
-  author={Dang, L Minh and Min, Kyungbok and Wang, Hanxiang and Piran, Md Jalil and Lee, Cheol Hee and Moon, Hyeonjoon},
-  journal={Pattern Recognition},
-  volume={108},
-  pages={107561},
-  year={2020},
-  publisher={Elsevier}
-}
-% OMC
-@article{colyer2018review,
-  title={A review of the evolution of vision-based motion analysis and the integration of advanced computer vision methods towards developing a markerless system},
-  author={Colyer, Steffi L and Evans, Murray and Cosker, Darren P and Salo, Aki IT},
-  journal={Sports Medicine-Open},
-  volume={4},
-  number={1},
-  pages={1--15},
-  year={2018},
-  publisher={SpringerOpen}
-}
-@article{lam2023systematic,
-  title={A systematic review of the applications of markerless motion capture (MMC) technology for clinical measurement in rehabilitation},
-  author={Lam, Winnie WT and Tang, Yuk Ming and Fong, Kenneth NK},
-  journal={Journal of NeuroEngineering and Rehabilitation},
-  volume={20},
-  number={1},
-  pages={1--26},
-  year={2023},
-  publisher={BioMed Central}
-}
+% 2.1.1 vicon
 @misc{vicon_web,
   author = {{Vicon Motion Systems Ltd.}},
   title = {VICON},
   howpublished = {WebPage},
   note = {Online available at: \url{https://www.vicon.com}; accessed at 19/5/2023}
 }
+% 2.1.2 image recognition
 @misc{mediapipe_web,
   author = {{Google Inc.}},
   title = {MediaPipe},
   howpublished = {WebPage},
   note = {Online available at: \url{https://developers.google.com/mediapipe}; accessed at 19/5/2023}
+}
+% OpenPose
+@article{8765346,
+  title   = {OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
+  author  = {Z. {Cao} and G. {Hidalgo Martinez} and T. {Simon} and S. {Wei} and Y. A. {Sheikh}},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year    = {2019}
+}
+@inproceedings{wei2016cpm,
+  title     = {Convolutional pose machines},
+  author    = {Shih-En Wei and Varun Ramakrishna and Takeo Kanade and Yaser Sheikh},
+  booktitle = {CVPR},
+  year      = {2016}
+}
+@inproceedings{simon2017hand,
+  title     = {Hand Keypoint Detection in Single Images using Multiview Bootstrapping},
+  author    = {Tomas Simon and Hanbyul Joo and Iain Matthews and Yaser Sheikh},
+  booktitle = {CVPR},
+  year      = {2017}
+}
+@inproceedings{cao2017realtime,
+  title     = {Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
+  author    = {Zhe Cao and Tomas Simon and Shih-En Wei and Yaser Sheikh},
+  booktitle = {CVPR},
+  year      = {2017}
+}
+% top-down
+@inproceedings{nie2019single,
+  title     = {Single-stage multi-person pose machines},
+  author    = {Nie, Xuecheng and Feng, Jiashi and Zhang, Jianfeng and Yan, Shuicheng},
+  booktitle = {Proceedings of the IEEE/CVF international conference on computer vision},
+  year      = {2019},
+  pages     = {6951--6960}
 }
 % IMC
 @inproceedings{young2009comparison,
@@ -918,30 +904,6 @@
   year    = {2022},
   doi     = {10.3390/s22072712},
   url     = {https://www.mdpi.com/1424-8220/22/7/2712}
-}
-@article{8765346,
-  title   = {OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
-  author  = {Z. {Cao} and G. {Hidalgo Martinez} and T. {Simon} and S. {Wei} and Y. A. {Sheikh}},
-  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year    = {2019}
-}
-@inproceedings{wei2016cpm,
-  title     = {Convolutional pose machines},
-  author    = {Shih-En Wei and Varun Ramakrishna and Takeo Kanade and Yaser Sheikh},
-  booktitle = {CVPR},
-  year      = {2016}
-}
-@inproceedings{simon2017hand,
-  title     = {Hand Keypoint Detection in Single Images using Multiview Bootstrapping},
-  author    = {Tomas Simon and Hanbyul Joo and Iain Matthews and Yaser Sheikh},
-  booktitle = {CVPR},
-  year      = {2017}
-}
-@inproceedings{cao2017realtime,
-  title     = {Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
-  author    = {Zhe Cao and Tomas Simon and Shih-En Wei and Yaser Sheikh},
-  booktitle = {CVPR},
-  year      = {2017}
 }
 
 % 3.2 IMU to bone

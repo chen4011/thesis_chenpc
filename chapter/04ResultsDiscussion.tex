@@ -15,29 +15,30 @@
 其相比於轉動角度更能呈現出細微差異，在求解的肌肉參數精準度上，也將會有更好的效果。
 
 % ------------------------- 4.1 ------------------------- %
-\section{人體骨架建立實驗結果分析與討論}\label{sec4_skeleton_exp}
+\section{人體立體骨架建立實驗結果分析與討論}\label{sec4_skeleton_exp}
 % 實驗設定；實驗執行；結果與討論
-在章節~\ref{sec3_skeleton_method}中已詳細描述了人體骨架建立的方法，
-本節使用 TotalCapture Dataset 之 s1\_acting、s1\_freestyle、s1\_rom 進行骨架建立，
+在章節~\ref{sec3_skeleton_method}中已詳細描述了人體立體骨架建立的方法，
+本節使用 TotalCapture Dataset 提供的影片資料及相機校正數據，嘗試建立影片受試者的立體骨架，
 並進行比較及討論。
 
 \subsection{實驗設定}
 % 把 total capture dataset s1 系列做完
-本章節使用 TotalCapture Dataset 之 s1\_acting1 ~ s1\_acting3、s1\_freestyle1 ~ s1\_freestyle3、s1\_rom1 ~ s1\_rom3 共九組資訊進行實驗，
+本章節使用 TotalCapture Dataset 之 s1\_acting1 ~ s1\_acting3、s1\_freestyle1 ~ s1\_freestyle3、s1\_rom1 ~ s1\_rom3 共九組影片資料及相機校正資料進行實驗，
 每組實驗皆取用 TotalCapture Dataset 提供之相機 1 與相機 8 影像資料、兩台相機之校正資訊，
-及 .bvh 檔案中 HIERARCHY 部分之資訊(此資訊可由 Vicon 量測而得，因此以下將稱為 Vicon 骨架)。
-首先，使用影像資料進行 OpenPose 影像辨識，並利用 Pose2Sim 進行相機校正及三角化，建立出骨架，
-最後計算骨架之四肢長度與 Vicon 骨架之四肢長度，並進行比較。
+及 .bvh 檔案中 HIERARCHY 部分提供之資訊(此資訊可由 Vicon 量測而得，因此以下將稱為 Vicon 立體骨架)。
+首先，使用影像資料進行 OpenPose 影像辨識，並利用 Pose2Sim 進行相機校正及三角測量計算，建立出立體立體骨架，
+最後取前 200 幀的計算立體骨架之平均四肢長度與 Vicon 立體骨架之四肢長度進行比較。
 
-\subsection{結果與討論}
-% 骨架建立結果與驗證
+\subsection{誤差評估}
+% 立體骨架建立結果與驗證
 % 分別評估四肢的誤差，然後再綜合再一起評估，總結誤差大概在多少內
-分別計算出自行建立骨架的四肢長度及 Vicon 骨架長度後，將兩者相減得到誤差，並計算平均誤差，
-結果如表~\ref{ch3_skeleton_compare} 所示，可以發現自行建立骨架之四肢長度與 Vicon 骨架之四肢長度相當接近，
-平均誤差為 17.77 mm，因此證明本方法的可行性。
+分別計算出自行建立立體骨架的四肢長度及 Vicon 立體骨架長度後，將兩者相減得到誤差，並計算平均誤差，
+結果如表~\ref{ch3_skeleton_compare} 所示，可以發現自行建立立體骨架之四肢長度與 Vicon 立體骨架之四肢長度相當接近，
+下半身的平均誤差較小，約 10.6125 (mm)，上半身的平均誤差較大，約 24.93 (mm)，整體平均誤差為 17.42 (mm)。
+本研究推斷，\sout{可能？？？？是由於影像辨識的精準度不足，導致立體骨架建立的誤差。}
 
 \begin{table}[!ht]
-   \caption[骨架建立結果與比較(mm)]{骨架建立結果與比較(mm)}
+   \caption[立體骨架建立結果與比較(mm)]{立體骨架建立結果與比較(mm)}
    \centering
    \label{ch3_skeleton_compare}
    \setlength{\tabcolsep}{3pt}
@@ -58,6 +59,11 @@
       average & 15.3655 & 18.5611 & 13.7222 & 15.4817 & 15.2795 & 26.0002 & 18.1121 & 20.0002 & 17.4246 & \\
    \end{tabular}}
 \end{table}
+
+\subsection{結論}
+% 結論
+由以上誤差評估可知，本方法的整體平均誤差約為 17.42 (mm)，
+若僅評估人體姿勢，不延伸應用於評估手指姿勢等細微動作，則此誤差並不會造成誤判的影響，因此證明本方法確實可行。
 
 \clearpage
 

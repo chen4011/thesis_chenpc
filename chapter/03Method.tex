@@ -42,8 +42,12 @@
 \subsubsection{軟體-xsens}
 % 軟體介紹；xsens
 123123
+\subsubsection{軟體-OpenPose}
+% 軟體介紹；OpenPose
+123123
 \subsubsection{感測器融合方法}
 % 感測器融合方法介紹
+% 這邊如果篇幅過大也可以另立成3.3，cameraset 就改成 3.4
 IMU image pytorch
 
 \subsection{實驗環境}
@@ -54,17 +58,17 @@ IMU image pytorch
 \section{資料前處理}
 % 資料前處理介紹
 利用章節 3.1 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
-資料前處理分為人體骨架建立、時間軸對齊、座標系轉換三個部分，將於本章節進行討論。
+資料前處理分為人體立體骨架建立、時間軸對齊、座標系轉換三個部分，將於本章節進行討論。
 
-\subsection{人體骨架建立}\label{sec3_skeleton_method}
-% 人體骨架建立介紹
+\subsection{人體立體骨架建立}\label{sec3_skeleton_method}
+% 人體立體骨架建立介紹
 % 伸縮沒有寫到，要怎麼加進去?
-在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的骨架資料，
-並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得骨架資料。
+在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的立體骨架資料，
+並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得立體骨架資料。
 因此本研究透過 Pose2Sim~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS}提出之方法，
-使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立人體骨架。
+使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立人體立體骨架。
 章節~\ref{sec4_skeleton_exp}將會利用 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供的影像資料，進行影像辨識與三角測量計算，
-並將結果與 TotalCapture Dataset 提供之 Vicon 骨架資料比對，以驗證此方法的可行性。
+並將結果與 TotalCapture Dataset 提供之 Vicon 立體骨架資料比對，以驗證此方法的可行性。
 
 \subsubsection{建立方法}
 % 影像辨識
@@ -73,18 +77,19 @@ IMU image pytorch
 % 只是這樣的話就要想一下4.1.2的實驗執行要怎麼寫(不然如果真的想不到可能就要刪掉實驗執行這塊，畢竟也只是 run 而已)，
 % 4.1.1的應該可以寫用了哪些數據
 本方法流程如圖~\ref{ch3_fig_skeleton_flow} 所示。
+以 T pose 的姿勢拍攝影片後，進入後續軟體端處理流程。
 首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
 影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
-其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置 \sout{，還在考慮要不要加上 OpenPose 會辨識出的骨架圖}；
+其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置 \sout{，還在考慮要不要加上 OpenPose 會辨識出的關節點圖}；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
-最後，基於 TotalCapture Dataset 提供之 vicon 骨架，利用計算出的距離進行骨架伸縮，
-得到與受試者四肢、身高相似之骨架，如圖~\ref{ch3_fig_my_skeleton}。
+最後，基於 TotalCapture Dataset 提供之 vicon 立體骨架，利用計算出的距離進行立體骨架伸縮，
+得到與受試者四肢、身高相似之立體骨架，如圖~\ref{ch3_fig_my_skeleton}。
 
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=8cm]{figure/ch3_fig_skeleton_flow.png}
-    \caption[骨架建立流程圖]{骨架建立流程圖}
+    \caption[立體骨架建立流程圖]{立體骨架建立流程圖}
     \label{ch3_fig_skeleton_flow}
 \end{figure}
 
@@ -99,7 +104,7 @@ IMU image pytorch
    \begin{minipage}{.5\textwidth}
      \centering
      \includegraphics[width=.8\linewidth]{figure/ch3_fig_my_skeleton.png}
-     \caption[骨架建立結果]{骨架建立結果}
+     \caption[立體骨架建立結果]{立體骨架建立結果}
      \label{ch3_fig_my_skeleton}
    \end{minipage}
 \end{figure}
@@ -114,12 +119,12 @@ IMU image pytorch
 在人體量測領域中，每一量測方法都有其固有且常用之座標系，
 因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
 本研究共會涉及四種座標系，分別為骨骼座標系，IMU local 座標系，IMU global 座標系，全域座標系。
-其中，骨骼座標系以 TotalCapture Dataset 提供之 Vicon 骨架為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
-其 +x、+y、+z 方向分別為向右(red)、向後(green)、向下(blue)；
+其中，骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
+其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右(red)、向後(green)、向下(blue)；
 IMU local 座標系即為感測器座標系，以感測器本身為原點，
-於 Xsens 中，定義其 x 軸為長邊之延伸方向，y 軸為短邊之延伸方向，z 軸則沿最大平面之法向，
+於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
 如圖~\ref{ch3_fig_imu_frame} 所示；
-IMU global 座標系則以 x 軸指向正東，y 軸指向正北，z 軸指向天頂為正；
+IMU global 座標系則以所在地為原點，y 軸沿子午線指向正北為正，z 軸指向天頂為正，x 軸與 yz 平面垂直，指向正東為正；
 % 全域座標系還不知道怎麼定義QQ
 \begin{figure}[!ht]
    \centering
