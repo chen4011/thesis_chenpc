@@ -72,6 +72,7 @@
 為先偵測到關節，再將關節組成群組，最後形成特定姿勢的方法，例如 OpenPose 即為下到上方法，
 其缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組而被判斷為一個人，且也有可能會把非人類，但形狀與人類相似的關節點誤認，
 因此，要使用哪一個系統，需經過學者們仔細思索自身需求，再進行選擇。
+% 要加輸出為關鍵點還是熱圖的解釋嗎?
 由於最容易被大眾應用的相機為 RGB 相機，因此缺乏受試者的深度資訊，需再透過棋盤格方法相機校正及三角測量計算，取得受試者的三維姿態。 \\
 % 精度
 % 其量測精準度約落在\sout{ 7.2 (cm) ~\cite{8765346}}，精準程度會隨著相機數量的減少而降低，adafuse
@@ -81,14 +82,14 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=8cm]{figure/ch2_fig_rec_result.png}
-     \caption[(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果)]{(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果}
+    \includegraphics[width=10cm]{figure/ch2_fig_rec_result.png}
+     \caption[(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果]{(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果}
      \label{ch2_fig_rec_result}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=8cm]{figure/ch2_fig_topvsbottom.png}
+    \includegraphics[width=11cm]{figure/ch2_fig_topvsbottom.png}
      \caption[辨識關節點位置的方法 ~\cite{nie2019single}]{辨識關節點位置的方法 ~\cite{nie2019single}}
      \label{ch2_fig_topvsbottom}
  \end{figure}
