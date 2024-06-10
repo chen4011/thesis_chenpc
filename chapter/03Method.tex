@@ -57,7 +57,7 @@ OpenPose 為一款
 輸入資源包括圖片、影像、網路攝影機等，
 並可輸出原始影像加關鍵點顯示的疊圖 (PNG，JPG，AVI,...)，
 或是輸出純文字檔案 (JSON，XML，YAML...)，其中紀錄關鍵點於圖片中的位置及 0~1 的分數。
-本研究使用 OpenPose 作為基礎架構，搭配其提供之 BODY_25B 模型進行影像辨識，
+本研究使用 OpenPose 作為基礎架構，搭配其提供之 BODY\_25B 模型進行影像辨識，
 共可辨識出 25 個關節點，如圖~\ref{ch3_fig_OpenPose} 所示。
 
 \begin{figure}[!ht]
@@ -98,6 +98,7 @@ IMU image pytorch
 % 這邊就只要簡單介紹一下方法就好，然後這邊可以應該可以把為何要選 OpenPose 不選 mediapipe 也寫上去
 % 只是這樣的話就要想一下4.1.2的實驗執行要怎麼寫(不然如果真的想不到可能就要刪掉實驗執行這塊，畢竟也只是 run 而已)，
 % 4.1.1的應該可以寫用了哪些數據
+% 考慮要不要寫為何選擇使用 OpenPose 不選 mediapipe，要寫的話可以寫在這一段的開頭
 本方法流程如圖~\ref{ch3_fig_skeleton_flow} 所示。
 以 T pose 的姿勢拍攝影片後，進入後續軟體端處理流程。
 首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}

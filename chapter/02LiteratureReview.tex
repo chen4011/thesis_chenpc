@@ -33,7 +33,7 @@
 % - 器材架設不易，價格昂貴
 % - 量測誤差約落在 1 公分
 光標記 (marker-based) 動作捕捉系統，
-如 Ｖicon ~\cite{vicon_web}是目前最常見且最精準的動作捕捉系統，\sout{cite Vicon其量測誤差約落在 1 (cm) 的那篇文獻，}
+如 Vicon ~\cite{vicon_web}是目前最常見且最精準的動作捕捉系統，\sout{cite Vicon其量測誤差約落在 1 (cm) 的那篇文獻，}
 因此常被當作黃金標準，用於確認其他動作捕捉系統的準確性。
 光標記動作捕捉系統所需量測設備為多個紅外光攝影機及多個反光標記點，
 反光標記點需黏貼在受試者多處明顯不易被遮擋的部位，例如骨突點，確保在實驗過程中的多數時間可於影像中看見並被記錄，
@@ -45,7 +45,7 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=8cm]{figure/ch2_fig_OMC_Vicon.png}
+    \includegraphics[width=8cm]{figure/ch2_fig_OMC_Vicon.jpg}
      \caption[Vicon 實驗環境與設置]{Vicon 實驗環境與設置}
      \label{ch2_fig_OMC_Vicon}
  \end{figure}
@@ -61,8 +61,8 @@
     % - 想想看要怎麼把兩種方法的辨識結果圖片塞進去
 因為光標記動作捕捉系統的限制，無標記 (marker-less) 動作捕捉系統逐漸受到重視，
 其中 OpenPose ~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}、
-由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Moicrosoft 開發的 Kinect 等系統是目前常見的無標記動作捕捉系統，
-下方圖\sout{openpose mediapipe的實際應用，同一個場景，兩種辨識結果}為光標記捕捉系統的實際應用。
+由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect 等系統是目前常見的無標記動作捕捉系統，
+下方圖~\ref{ch2_fig_rec_result}為光標記捕捉系統的實際應用。 \\
 透過已經過校正的單一或多個攝影機同時拍攝受試者的影像，利用電腦視覺及深度學習技術辨識出受試者在二維平面上的關節點位置，
 辨識關節點位置的方法分為上到下方法 (top-down method) 及下到上方法 (bottom-up method) 兩種 ~\cite{nie2019single}，
 上到下方法如圖 ~\ref{ch2_fig_topvsbottom} (b) 上半部分，
@@ -70,13 +70,21 @@
 其缺點為若在辨識過程中找不到人，無法匡出周圍方塊，則無法辨識出關節點位置，且計算量會隨著出現在畫面中的人數增加而增加；
 下到上方法如圖 ~\ref{ch2_fig_topvsbottom} (b) 下半部分，
 為先偵測到關節，再將關節組成群組，最後形成特定姿勢的方法，例如 OpenPose 即為下到上方法，
-其缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組而被判斷為一個人，且也有可能會把非人類，但形狀與人類相似的關節點辨識出來。
+其缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組而被判斷為一個人，且也有可能會把非人類，但形狀與人類相似的關節點誤認，
+因此，要使用哪一個系統，需經過學者們仔細思索自身需求，再進行選擇。
 由於最容易被大眾應用的相機為 RGB 相機，因此缺乏受試者的深度資訊，需再透過棋盤格方法相機校正及三角測量計算，取得受試者的三維姿態。 \\
 % 精度
 % 其量測精準度約落在\sout{ 7.2 (cm) ~\cite{8765346}}，精準程度會隨著相機數量的減少而降低，adafuse
 無標記動作捕捉較不受環境光限制，因此可以解決實驗場地必須設置於室內的限制，可拓展至室外進行量測，也增加了可量測的範圍及動作多樣性，
 且器材架設相對容易，使用手機也可進行影像錄製，價格也相對較低，
 但其缺點為易受到遮擋而影響辨識結果，若受試者的部分關節被自身遮擋或是被場域中的其他障礙物遮擋，則無法辨識出被遮擋的關節。 \\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=8cm]{figure/ch2_fig_rec_result.png}
+     \caption[(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果)]{(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果}
+     \label{ch2_fig_rec_result}
+\end{figure}
 
 \begin{figure}[!ht]
     \centering
@@ -93,7 +101,7 @@
 一個測量單元包括加速規 (accelerometers)、陀螺儀 (gyroscopes) 及磁力計 (magnetometers)，
 加速規用於測量三軸加速度，陀螺儀用於測量三軸角速度，磁力計用於測量三軸磁場強度，
 
-\subsection{多感測器動作捕捉系統}
+\subsection{多感測器融合動作捕捉系統}
 % - 相機與 IMU 融合
 % - 3DPW、totalcapture、real-time full-body…、wearable fusing…
 123123
