@@ -62,7 +62,7 @@ OpenPose 為一款
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=8cm]{figure/ch3_fig_OpenPose.png}
+   \includegraphics[width=11cm]{figure/ch3_fig_OpenPose.png}
     \caption[OpenPose 關節點對應位置]{OpenPose 關節點對應位置}
     \label{ch3_fig_OpenPose}
 \end{figure}
@@ -142,13 +142,15 @@ IMU image pytorch
 % 然後要提到因為要從骨骼轉到全域，所以這三個轉換矩陣分別要怎麼取，這樣感覺就可以名正言順的把方程式和代號放進來
 在人體量測領域中，每一量測方法都有其固有且常用之座標系，
 因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
-本研究共會涉及四種座標系，分別為骨骼座標系，IMU local 座標系，IMU global 座標系，全域座標系。
+本研究共會涉及四種座標系，分別為骨骼座標系，感測器座標系，IMU local 座標系，IMU global 座標系。
 其中，骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
 其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右(red)、向後(green)、向下(blue)；
-IMU local 座標系即為感測器座標系，以感測器本身為原點，
+感測器座標系，以感測器本身為原點，
 於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
 如圖~\ref{ch3_fig_imu_frame} 所示；
-IMU global 座標系則以所在地為原點，y 軸沿子午線指向正北為正，z 軸指向天頂為正，x 軸與 yz 平面垂直，指向正東為正；
+IMU local 座標系則以所在地為原點，y 軸沿子午線指向正北為正，z 軸指向天頂為正，x 軸與 yz 平面垂直，指向正東為正；
+% IMU global 座標系還不知道怎麼定義
+座標系間的關係及轉換矩陣將於下一段進行介紹。
 % 全域座標系還不知道怎麼定義QQ
 \begin{figure}[!ht]
    \centering
@@ -165,6 +167,10 @@ IMU global 座標系則以所在地為原點，y 軸沿子午線指向正北為�
      \label{ch3_fig_imu_frame}
    \end{minipage}
 \end{figure}
+
+\subsubsection{各座標系間的關係}
+% 各座標系間的關係介紹
+123123
 
 \subsubsection{IMU - 全域座標旋轉矩陣計算}
 % IMU - 全域座標轉換矩陣計算介紹
