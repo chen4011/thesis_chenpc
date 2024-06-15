@@ -33,33 +33,6 @@ X.~Nie, J.~Feng, J.~Zhang, and S.~Yan, ``Single-stage multi-person pose
   machines,'' in {\em Proceedings of the IEEE/CVF international conference on
   computer vision}, pp.~6951--6960, 2019.
 
-\bibitem{akhundov2022subject}
-R.~Akhundov, D.~J. Saxby, L.~E. Diamond, S.~Edwards, P.~Clausen, K.~Dooley,
-  S.~Blyton, and S.~J. Snodgrass, ``Is subject-specific musculoskeletal
-  modelling worth the extra effort or is generic modelling worth the
-  shortcut?,'' {\em PLoS One}, vol.~17, no.~1, p.~e0262936, 2022.
-
-\bibitem{xiao2010sensitivity}
-M.~Xiao and J.~Higginson, ``Sensitivity of estimated muscle force in forward
-  simulation of normal walking,'' {\em Journal of Applied Biomechanics},
-  vol.~26, no.~2, pp.~142--149, 2010.
-
-\bibitem{bujalski2018monte}
-P.~Bujalski, J.~Martins, and L.~Stirling, ``A monte carlo analysis of muscle
-  force estimation sensitivity to muscle-tendon properties using a hill-based
-  muscle model,'' {\em Journal of Biomechanics}, vol.~79, pp.~67--77, 2018.
-
-\bibitem{hinson2022sensitivity}
-R.~Hinson~Jr, K.~Saul, D.~Kamper, and H.~Huang, ``Sensitivity analysis guided
-  improvement of an electromyogram-driven lumped parameter musculoskeletal hand
-  model,'' {\em Journal of Biomechanics}, vol.~141, p.~111200, 2022.
-
-\bibitem{hicks2015my}
-J.~L. Hicks, T.~K. Uchida, A.~Seth, A.~Rajagopal, and S.~L. Delp, ``Is my model
-  good enough? best practices for verification and validation of
-  musculoskeletal models and simulations of movement,'' {\em Journal of
-  Biomechanical Engineering}, vol.~137, no.~2, 2015.
-
 \bibitem{zhang2020fusing}
 Z.~Zhang, C.~Wang, W.~Qin, and W.~Zeng, ``Fusing wearable imus with multi-view
   images for human pose estimation: A geometric approach,'' in {\em Proceedings
