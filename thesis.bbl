@@ -62,12 +62,6 @@ C.~Malleson, A.~Gilbert, M.~Trumble, J.~Collomosse, A.~Hilton, and M.~Volino,
   ``Real-time full-body motion capture from video and imus,'' in {\em 2017
   international conference on 3D vision (3DV)}, pp.~449--457, IEEE, 2017.
 
-\bibitem{delp2007opensim}
-S.~L. Delp, F.~C. Anderson, A.~S. Arnold, P.~Loan, A.~Habib, C.~T. John,
-  E.~Guendelman, and D.~G. Thelen, ``Opensim: open-source software to create
-  and analyze dynamic simulations of movement,'' {\em IEEE Transactions on
-  Biomedical Engineering}, vol.~54, no.~11, pp.~1940--1950, 2007.
-
 \bibitem{trumble2017total}
 M.~Trumble, A.~Gilbert, C.~Malleson, A.~Hilton, and J.~Collomosse, ``Total
   capture: 3d human pose estimation fusing video and inertial sensors,'' in

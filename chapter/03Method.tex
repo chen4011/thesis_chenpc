@@ -32,22 +32,30 @@
 % ------------------------- 3.1 ------------------------- %
 \section{實驗系統設定與實驗環境}
 % 系統架設；實驗環境
+% 說明會講到實驗流程、系統設定、實驗環境等等的事情
+
+\subsection{實驗流程}
+% 講我蒐集資料的事前工作，和整個流程的概述
+123123
 
 \subsection{實驗系統設定}
 % 系統架設介紹
 % 實驗設定：T pose、拍手等等姿勢
-123123
+% 說明我這一段要講我用了哪些工具的前言
+兩支手機、11顆IMU、校正版規格、OpenPose、Xsens、IMU humanpose pytorch
 
 \subsubsection{位置資訊量測工具-相機及擺放位置}
 % 硬體介紹；使用相機及擺放位置（平面圖和受試者的移動範圍，用上視表示），幀率(frame rate)為 60 Hz
-123123
+擺放位置這邊可能會說在後面實驗環境章節再詳細說明
 
 \subsubsection{朝向資訊量測工具-Xsens}
-% 軟體介紹；xsens，講使用的軟體 MT manager 還有分析出朝向和加速度應用的模型(在 MT manager)，
-% 還有用了幾顆 IMU ，分別擺在身體的哪裡
+% 軟體介紹；xsens，講使用的軟體 MT manager 還有分析出朝向和加速度應用的模型(在 MT manager)，採樣率60HZ
+% 還有用了幾顆 IMU ，分別擺在身體的哪裡，要寫身上和板子上的擺放位置和方向
 本研究使用 Xsens 提供之軟硬體作為量測姿態朝向的工具，採樣率設定為 60 Hz，共使用十顆 IMU 進行量測，
 分別黏貼於左右上臂中段外側、左右前臂中段外側、胸骨、骨盆、左右大腿中段外側、左右小腿中段外側，共十處，
-如圖\sout{放貼了 IMU 的前視及後視圖}所示。
+如圖所示。
+% TODO:說明還有一顆要貼在校正版上，這樣才能轉換到全域座標系
+% TODO:放貼了 IMU 的前視及後視圖
 
 \subsubsection{獲取平面姿態之影像辨識工具-OpenPose}
 % 軟體介紹；OpenPose
@@ -76,7 +84,21 @@ IMU image pytorch
 
 \subsection{實驗環境}
 % 實驗環境介紹
-123123
+使用室內和室外環境，分開介紹
+
+\subsubsection{室內實驗環境及尺寸}
+% 室內實驗環境介紹
+% 這邊可以放一張室內實驗環境的照片
+所有房間尺寸、活動範圍尺寸、相機位置和高度
+
+\subsubsection{室外實驗環境及尺寸}
+% 室外實驗環境介紹
+% 這邊可以放一張室外實驗環境的照片
+所有房間尺寸、活動範圍尺寸、相機位置和高度
+
+\subsection{實驗動作}
+% 實驗動作介紹
+現在還不確定要不要把每個動作的量測目的都寫出來，畢竟結果也不好
 
 % ------------------------- 3.2 ------------------------- %
 \section{資料前處理}
@@ -87,6 +109,7 @@ IMU image pytorch
 \subsection{人體立體骨架建立}\label{sec3_skeleton_method}
 % 人體立體骨架建立介紹
 % 伸縮沒有寫到，要怎麼加進去?
+% TODO:覺得可以把我為甚麼選擇用 OpenPose 不用 mediapipe 寫在這邊
 在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的立體骨架資料，
 並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得立體骨架資料。
 因此本研究透過 Pose2Sim~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS}提出之方法，
@@ -105,7 +128,7 @@ IMU image pytorch
 以 T pose 的姿勢拍攝影片後，進入後續軟體端處理流程。
 首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
 影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
-其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置 \sout{，還在考慮要不要加上 OpenPose 會辨識出的關節點圖}；
+其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose}所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
 最後，基於 TotalCapture Dataset 提供之 vicon 立體骨架，利用計算出的距離進行立體骨架伸縮，
@@ -140,18 +163,23 @@ IMU image pytorch
 
 \subsection{座標系轉換}
 % 座標系轉換介紹
-% 似乎要cite一下這個方程式的來源，可是我也沒有提到這個方程式
-% 然後要提到因為要從骨骼轉到全域，所以這三個轉換矩陣分別要怎麼取，這樣感覺就可以名正言順的把方程式和代號放進來
 在人體量測領域中，每一量測方法都有其固有且常用之座標系，
 因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
-本研究共會涉及四種座標系，分別為骨骼座標系、感測器座標系、IMU local 座標系、IMU global 座標系。
-其中，骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
+本研究共涉及六種座標系，可分為影像系統及 IMU 感測器系統兩大部分，兩部分的共同座標系為全域座標系。
+影像系統涉及三種座標系，分別為校正版座標系、相機座標系及全域座標系；
+IMU 感測系統則涉及四種座標系，分別為骨骼座標系、感測器座標系、IMU local 座標系、全域座標系。
+各座標系的定義及轉換關係將於以下進行介紹。
+
+\subsubsection{座標系定義}
+% 各座標系定義介紹
+% TODO:校正版座標系、相機座標系
+骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_skeleton_frame}所示，
 其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右(red)、向後(green)、向下(blue)；
 感測器座標系，以感測器本身為原點，
 於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
 如圖~\ref{ch3_fig_imu_frame} 所示；
 IMU local 座標系以感測器所在地為原點，y 軸沿子午線指向正北為正，z 軸指向天頂為正，x 軸與 yz 平面垂直，指向正東為正；
-IMU global 座標系以固定的全球基準點為原點 (例如地球中心)，y 軸以磁北極為參考方向，z 軸參考方向與 IMU local 座標系 z 軸相同，指向天頂為正，
+全域座標系以固定的全球基準點為原點 (例如地球中心)，y 軸以磁北極為參考方向，z 軸參考方向與 IMU local 座標系 z 軸相同，指向天頂為正，
 x 軸則以右手定則決定，通常指向東方為正。
 座標系間的關係及旋轉矩陣將於下一段進行介紹。
 
@@ -173,26 +201,36 @@ x 軸則以右手定則決定，通常指向東方為正。
 
 \subsubsection{各座標系間的關係}
 % 各座標系間的關係介紹
-本研究參考~\cite{malleson2017real}所提出之關係式~\ref{ch3_equ_rotation_matrix}，
-將每一關節點由以骨骼座標系為表示方式轉換至以 IMU global 座標系為表示方式。
+% TODO:校正版座標系和相機座標系的關係
+在影像系統座標系定義與轉換的部分，本研究使用關係式~\ref{ch3_equ_image_rotation_matrix}，
+將位置點由以全域座標系為表示方式轉換至以相機座標系為表示方式。
+\begin{equation}
+   R^{cam}_{enu} = R^{cam}_{cb}(R^{enu}_{cb})^{-1}
+   \label{ch3_equ_image_rotation_matrix}
+\end{equation}
+
+其中，$R^{cam}_{enu}$ 為將影像系統所拍攝到的位置點由全域座標系轉換至相機座標系之旋轉矩陣，
+
+在 IMU 感測器系統座標系定義與轉換的部分，本研究參考~\cite{malleson2017real}所提出之關係式~\ref{ch3_equ_imu_rotation_matrix}，
+將每一關節點由以骨骼座標系為表示方式轉換至以全域座標系為表示方式。
 
 \begin{equation}
    R^g_{bi}=R_{ig}R_i(R_{ib})^{-1}
-   \label{ch3_equ_rotation_matrix}
+   \label{ch3_equ_imu_rotation_matrix}
 \end{equation}
 
-其中，$R^g_{bi}$ 為將 IMU 所附著的骨骼朝向由骨骼座標系轉換至 IMU global 座標系之旋轉矩陣，
+其中，$R^g_{bi}$ 為將 IMU 所附著的骨骼朝向由骨骼座標系轉換至全域座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans}中，從黑色座標系轉換至綠色座標系之旋轉矩陣；
-通過將 $R^g_{bi}$ 乘以骨骼座標系中的骨骼朝向，可以將這些座標轉換為以 IMU global 座標系表示的骨骼朝向；
+通過將 $R^g_{bi}$ 乘以骨骼座標系中的骨骼朝向，可以將這些座標轉換為以全域座標系表示的骨骼朝向；
 $(R_{ib})^{-1}$ 為骨骼座標系轉換至感測器座標系之旋轉矩陣；
 即圖~\ref{ch3_fig_coordinate_trans}中，從黑色座標系轉換至紅色座標系之旋轉矩陣；
 通過將 $(R_{ib})^{-1}$ 乘以骨骼座標系中的骨骼朝向，可以將這些座標轉換為以感測器座標系表示的骨骼朝向；
 $R_i$ 為感測器座標系轉換至 IMU local 座標系之旋轉矩陣；
 即圖~\ref{ch3_fig_coordinate_trans}中，從紅色座標系轉換至藍色座標系之旋轉矩陣；
 通過將 $R_i$ 乘以感測器座標系中的骨骼朝向，可以將這些座標轉換為以 IMU local 座標系表示的骨骼朝向；
-$R_{ig}$ 為 IMU local 座標系轉換至 IMU global 座標系之旋轉矩陣；
+$R_{ig}$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣；
 即圖~\ref{ch3_fig_coordinate_trans}中，從藍色座標系轉換至綠色座標系之旋轉矩陣；
-通過將 $R_{ig}$ 乘以 IMU local 座標系中的骨骼朝向，可以將這些座標轉換為以 IMU global 座標系表示的骨骼朝向。
+通過將 $R_{ig}$ 乘以 IMU local 座標系中的骨骼朝向，可以將這些座標轉換為以全域座標系表示的骨骼朝向。
 每一旋轉矩陣之量測與計算方式將於下一段進行介紹。
 
 \begin{figure}[!ht]
@@ -202,61 +240,69 @@ $R_{ig}$ 為 IMU local 座標系轉換至 IMU global 座標系之旋轉矩陣；
     \label{ch3_fig_coordinate_trans}
 \end{figure}
 
+\subsubsection{全域座標 - 校正板座標 - 相機座標}
+%全域座標 - 校正板座標 - 相機座標旋轉矩陣
+板到全域的轉換矩陣
+板到相機的轉換矩陣
+
 \subsubsection{感測器座標 - 骨骼座標旋轉矩陣}
 % IMU - 骨骼座標轉換矩陣計算介紹
 % 解釋表示方法是以哪個座標系去看哪個座標系，然後解釋計算方法
 使用 IMU 進行肢體朝向量測時，由於 IMU 黏貼於肢體上的方向及位置可能會和骨骼定義之方向及位置有所偏差，
-因此需使用感測器座標 - 骨骼座標旋轉矩陣($R_{ib}$)，將位於感測器座標系的量測數值轉換為以骨骼座標系表示的骨骼朝向，
-此矩陣可經由 OpenSim~\cite{delp2007opensim}處理並進一步計算而得，其取得及計算方式如下。
-首先，量測結束之 IMU 資料將透過 OpenSim 軟體進行處理，\sout{使用基礎骨骼模型...}，計算每一 IMU 相對其對應骨骼之相對位置及角度，
-處理結果可經由 OpenSim 軟體可視化，如圖~\ref{ch3_fig_imu_ori} 所示。
-此項數據紀錄於 OpenSim 輸出之 .osim 檔案的 <BodySet> 元素中，<BodySet> 以骨骼為單位，
-其中包含之 <components> 則記錄一附著於該骨骼上之 IMU 的相對位置及角度，
-<translation> 代表該 IMU 的原點相對於其附著之骨骼原點的平移，
-<orientation> 則代表該 IMU 的座標軸相對於其附著之骨骼坐標軸的旋轉。
-因此若將 <translation> 數值更改為零，則可看到 IMU 原點與骨骼原點重合，如圖~\ref{ch3_fig_imu_tra}，
-而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與骨骼坐標軸平行，如圖~\ref{ch3_fig_imu_rot}。
-因此，從 .osim 檔案取得每一 IMU 相對於骨骼之相對位置及角度後，即可計算出感測器座標 - 骨骼座標四元數。
-\begin{figure}[!ht]
-   \centering
-   \begin{minipage}{.3\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_ori.png}
-     \caption[OpenSim 計算結果]{OpenSim 計算結果}
-     \label{ch3_fig_imu_ori}
-   \end{minipage}%
-   \begin{minipage}{.3\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_tra.png}
-     \caption[IMU 平移為零]{IMU 平移為零}
-     \label{ch3_fig_imu_tra}
-   \end{minipage}%
-   \begin{minipage}{.3\textwidth}
-      \centering
-      \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_rot.png}
-      \caption[IMU 旋轉為零]{IMU 旋轉為零}
-      \label{ch3_fig_imu_rot}
-    \end{minipage}
-\end{figure}
+因此需使用感測器座標 - 骨骼座標旋轉矩陣($R_{ib}$)，將位於感測器座標系的量測數值轉換為以骨骼座標系表示的骨骼朝向。
+% TODO:說明概念，然後再說如何實踐
+% 此矩陣可經由 OpenSim~\cite{delp2007opensim}處理並進一步計算而得，其取得及計算方式如下。
+% 首先，量測結束之 IMU 資料將透過 OpenSim 軟體進行處理，\sout{使用基礎骨骼模型...}，計算每一 IMU 相對其對應骨骼之相對位置及角度，
+% 處理結果可經由 OpenSim 軟體可視化，如圖~\ref{ch3_fig_imu_ori} 所示。
+% 此項數據紀錄於 OpenSim 輸出之 .osim 檔案的 <BodySet> 元素中，<BodySet> 以骨骼為單位，
+% 其中包含之 <components> 則記錄一附著於該骨骼上之 IMU 的相對位置及角度，
+% <translation> 代表該 IMU 的原點相對於其附著之骨骼原點的平移，
+% <orientation> 則代表該 IMU 的座標軸相對於其附著之骨骼坐標軸的旋轉。
+% 因此若將 <translation> 數值更改為零，則可看到 IMU 原點與骨骼原點重合，如圖~\ref{ch3_fig_imu_tra}，
+% 而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與骨骼坐標軸平行，如圖~\ref{ch3_fig_imu_rot}。
+% 因此，從 .osim 檔案取得每一 IMU 相對於骨骼之相對位置及角度後，即可計算出感測器座標 - 骨骼座標四元數。
+% \begin{figure}[!ht]
+%    \centering
+%    \begin{minipage}{.3\textwidth}
+%      \centering
+%      \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_ori.png}
+%      \caption[OpenSim 計算結果]{OpenSim 計算結果}
+%      \label{ch3_fig_imu_ori}
+%    \end{minipage}%
+%    \begin{minipage}{.3\textwidth}
+%      \centering
+%      \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_tra.png}
+%      \caption[IMU 平移為零]{IMU 平移為零}
+%      \label{ch3_fig_imu_tra}
+%    \end{minipage}%
+%    \begin{minipage}{.3\textwidth}
+%       \centering
+%       \includegraphics[width=.8\linewidth, height=.8\linewidth]{figure/ch3_fig_imu_rot.png}
+%       \caption[IMU 旋轉為零]{IMU 旋轉為零}
+%       \label{ch3_fig_imu_rot}
+%     \end{minipage}
+% \end{figure}
 
 \subsubsection{感測器座標 - IMU local 旋轉矩陣}
 經過上一步 $(R_{ib})^{-1}$ 的轉換，已將骨骼朝向轉換為以附著其上的 IMU 感測器座標系為表示方式，
-接著，需要進一步將各自表示的感測器座標系轉換至統一以東北天為定義的 IMU local 座標系。
+接著，需要進一步將各自表示的感測器座標系轉換至統一以東北天 (East - North - Up, ENU) 為定義的 IMU local 座標系。
 感測器座標 - IMU local 旋轉矩陣 ($R_i$) 可直接經由 Xsens 系統所提供軟體 (MT manager) 輸出四元數取得。
-在 MT manager 中讀入量測時所記錄的 .mtb 檔案，以 \sout{...模型為基礎}，並於 file>export 中的輸出選項勾選 quaternion 後輸出，
+在 MT manager 中讀入量測時所記錄的 .mtb 檔案，以
+% TODO:...模型為基礎
+，並於 file>export 中的輸出選項勾選 quaternion 後輸出，
 每一 .txt 檔案中的 q0、q1、q2、q3 即為將朝向旋轉成以 IMU local 座標系為表示方式的旋轉矩陣。
 
-\subsubsection{IMU local - IMU global 旋轉矩陣}
+\subsubsection{IMU local - 全域座標旋轉矩陣}
 % IMU - 全域座標轉換矩陣計算介紹
 % 解釋表示方法是以哪個座標系去看哪個座標系，然後解釋計算方法
 經過上一步 $R_i$ 的轉換，已將骨骼朝向轉換為以統一的 IMU local 感測器座標系為表示方式，
 接著，為方便後續與影像辨識而得的位置資訊進行融合，需要進一步將骨骼朝向轉換至位置資訊所在之座標系。
-IMU local - IMU global 旋轉矩陣 $R_{ig}$ 包含兩個階段的旋轉，
-第一階段先將於 IMU local 座標系的骨骼朝向轉換至以 IMU global 座標系表示，與天頂及磁北極對齊，
-第二階段將於 IMU global 座標系的骨骼朝向轉換至位置資訊所在之座標系，該座標系相對 IMU global 座標系的 x 軸旋轉 $-90^{\circ}$。
-在第一階段中，IMU local - IMU global 的轉換與磁偏角 ($\delta$) 有關，
-將 IMU local 座標系繞 z 軸旋轉 $\delta$ 即可轉換至 IMU global 座標系。
-第二階段再將 IMU global 座標系繞 x 軸旋轉 $-90^{\circ}$，轉換至位置資訊所在之座標系。
+IMU local - 全域座標旋轉矩陣 $R_{ig}$ 包含兩個階段的旋轉，
+第一階段先將於 IMU local 座標系的骨骼朝向轉換至以全域座標系表示，與天頂及磁北極對齊，
+第二階段將於全域座標系的骨骼朝向轉換至位置資訊所在之座標系，該座標系相對全域座標系的 x 軸旋轉 $-90^{\circ}$。
+在第一階段中，IMU local - 全域座標的轉換與磁偏角 ($\delta$) 有關，
+將 IMU local 座標系繞 z 軸旋轉 $\delta$ 即可轉換至全域座標系。
+第二階段再將全域座標系繞 x 軸旋轉 $-90^{\circ}$，轉換至位置資訊所在之座標系。
 
 % ------------------------- 3.3 ------------------------- %
 \section{探討減少相機數量的可行性}
