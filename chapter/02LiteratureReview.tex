@@ -66,13 +66,13 @@
 因為光標記動作捕捉系統的限制，無標記 (marker-less) 動作捕捉系統逐漸受到重視，
 其中 OpenPose ~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}、
 由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect 等系統是目前常見的無標記動作捕捉系統，
-下方圖~\ref{ch2_fig_rec_result}為光標記捕捉系統的實際應用。 \\
+下方圖~\ref{ch2_fig_rec_result} 為光標記捕捉系統的實際應用。 \\
 透過已經過校正的單一或多個攝影機同時拍攝受試者的影像，利用電腦視覺及深度學習技術辨識出受試者在二維平面上的關節點位置，
 辨識關節點位置的方法分為上到下方法 (top-down method) 及下到上方法 (bottom-up method) 兩種~\cite{nie2019single}，
-上到下方法如圖~\ref{ch2_fig_topvsbottom}上半部分，
+上到下方法如圖~\ref{ch2_fig_topvsbottom} 上半部分，
 先辨識出受試者的周圍方塊 (detected bounding boxes)，再由周圍方塊內的範圍辨識出關節點位置，例如 MediaPipe 即為上到下方法，
 其缺點為若在辨識過程中找不到人，無法匡出周圍方塊，則無法辨識出關節點位置，且計算量會隨著出現在畫面中的人數增加而增加；
-下到上方法如圖~\ref{ch2_fig_topvsbottom}下半部分，
+下到上方法如圖~\ref{ch2_fig_topvsbottom} 下半部分，
 為先偵測到關節，再將關節組成群組，最後形成特定姿勢的方法，例如 OpenPose 即為下到上方法，
 其缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組而被判斷為一個人，且也有可能會把非人類，但形狀與人類相似的關節點誤認，
 因此，要使用哪一個系統，需經過學者們仔細思索自身需求，再進行選擇。
