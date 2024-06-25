@@ -2,43 +2,64 @@
 
 \bibitem{vicon_web}
 {Vicon Motion Systems Ltd.}, ``Vicon.'' WebPage.
-\newblock Online available at: \url{https://www.vicon.com}; accessed at 19/5/2023.
+\newblock Online available at: \url{https://www.vicon.com}; accessed at
+  19/5/2023.
 
 \bibitem{8765346}
-Z.~{Cao}, G.~{Hidalgo Martinez}, T.~{Simon}, S.~{Wei}, and Y.~A. {Sheikh}, ``Openpose: Realtime multi-person 2d pose estimation using part affinity fields,'' {\em IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2019.
+Z.~{Cao}, G.~{Hidalgo Martinez}, T.~{Simon}, S.~{Wei}, and Y.~A. {Sheikh},
+  ``Openpose: Realtime multi-person 2d pose estimation using part affinity
+  fields,'' {\em IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 2019.
 
 \bibitem{wei2016cpm}
-S.-E. Wei, V.~Ramakrishna, T.~Kanade, and Y.~Sheikh, ``Convolutional pose machines,'' in {\em CVPR}, 2016.
+S.-E. Wei, V.~Ramakrishna, T.~Kanade, and Y.~Sheikh, ``Convolutional pose
+  machines,'' in {\em CVPR}, 2016.
 
 \bibitem{simon2017hand}
-T.~Simon, H.~Joo, I.~Matthews, and Y.~Sheikh, ``Hand keypoint detection in single images using multiview bootstrapping,'' in {\em CVPR}, 2017.
+T.~Simon, H.~Joo, I.~Matthews, and Y.~Sheikh, ``Hand keypoint detection in
+  single images using multiview bootstrapping,'' in {\em CVPR}, 2017.
 
 \bibitem{cao2017realtime}
-Z.~Cao, T.~Simon, S.-E. Wei, and Y.~Sheikh, ``Realtime multi-person 2d pose estimation using part affinity fields,'' in {\em CVPR}, 2017.
+Z.~Cao, T.~Simon, S.-E. Wei, and Y.~Sheikh, ``Realtime multi-person 2d pose
+  estimation using part affinity fields,'' in {\em CVPR}, 2017.
 
 \bibitem{mediapipe_web}
 {Google Inc.}, ``Mediapipe.'' WebPage.
-\newblock Online available at: \url{https://developers.google.com/mediapipe}; accessed at 19/5/2023.
+\newblock Online available at: \url{https://developers.google.com/mediapipe};
+  accessed at 19/5/2023.
 
 \bibitem{nie2019single}
-X.~Nie, J.~Feng, J.~Zhang, and S.~Yan, ``Single-stage multi-person pose machines,'' in {\em Proceedings of the IEEE/CVF international conference on computer vision}, pp.~6951--6960, 2019.
+X.~Nie, J.~Feng, J.~Zhang, and S.~Yan, ``Single-stage multi-person pose
+  machines,'' in {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pp.~6951--6960, 2019.
 
 \bibitem{zhang2020fusing}
-Z.~Zhang, C.~Wang, W.~Qin, and W.~Zeng, ``Fusing wearable imus with multi-view images for human pose estimation: A geometric approach,'' in {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pp.~2200--2209, 2020.
+Z.~Zhang, C.~Wang, W.~Qin, and W.~Zeng, ``Fusing wearable imus with multi-view
+  images for human pose estimation: A geometric approach,'' in {\em Proceedings
+  of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pp.~2200--2209, 2020.
 
 \bibitem{Pagnon_2021_Robustness}
-D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for 3d markerless sports kinematics—part 1: Robustness,'' {\em Sensors}, 2021.
+D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for
+  3d markerless sports kinematics—part 1: Robustness,'' {\em Sensors}, 2021.
 
 \bibitem{Pagnon_2022_Accuracy}
-D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for 3d markerless sports kinematics—part 2: Accuracy,'' {\em Sensors}, 2022.
+D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for
+  3d markerless sports kinematics—part 2: Accuracy,'' {\em Sensors}, 2022.
 
 \bibitem{Pagnon_2022_JOSS}
-D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An open-source python package for multiview markerless kinematics,'' {\em Journal of Open Source Software}, 2022.
+D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An open-source python
+  package for multiview markerless kinematics,'' {\em Journal of Open Source
+  Software}, 2022.
 
 \bibitem{Trumble:BMVC:2017}
-M.~Trumble, A.~Gilbert, C.~Malleson, A.~Hilton, and J.~Collomosse, ``Total capture: 3d human pose estimation fusing video and inertial sensors,'' in {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
+M.~Trumble, A.~Gilbert, C.~Malleson, A.~Hilton, and J.~Collomosse, ``Total
+  capture: 3d human pose estimation fusing video and inertial sensors,'' in
+  {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
 
 \bibitem{malleson2017real}
-C.~Malleson, A.~Gilbert, M.~Trumble, J.~Collomosse, A.~Hilton, and M.~Volino, ``Real-time full-body motion capture from video and imus,'' in {\em 2017 international conference on 3D vision (3DV)}, pp.~449--457, IEEE, 2017.
+C.~Malleson, A.~Gilbert, M.~Trumble, J.~Collomosse, A.~Hilton, and M.~Volino,
+  ``Real-time full-body motion capture from video and imus,'' in {\em 2017
+  international conference on 3D vision (3DV)}, pp.~449--457, IEEE, 2017.
 
 \end{thebibliography}
