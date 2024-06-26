@@ -38,7 +38,7 @@
 
 \subsection{實驗流程}
 % 講我蒐集資料的事前工作，和整個流程的概述
-在進行人體實驗估計的實驗流程如下圖所示，
+在進行人體姿態估計的實驗流程如圖~\ref{ch3_fig_exp_flow} 所示，
 首先進行相機內部參數及外部參數拍攝，
 拍攝內部參數影片時，需使棋盤格校正板盡可能填滿畫面，並涵蓋多種不同角度的畫面，以便進行內部參數的計算，
 拍攝外部參數影片時，需由受試者站在實驗初始位置並拿著棋盤格校正板，以便進行外部參數的計算。
@@ -50,7 +50,13 @@
 完成實驗動作資料搜集。
 實驗資料搜集到此告一段落，接著將搜集到的影像資料及 IMU 量測資料進行時間對齊、空間對齊，並進行感測器融合，
 輸出即為立體人體姿態估計結果，最後進行肢段長度計算進行驗證。
-% TODO:放實驗流程圖，內外參數拍攝、骨架資料搜集、實驗動作資料搜集、資料處理、驗證
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=\linewidth]{figure/ch3_fig_exp_flow.png}
+    \caption[人體姿態估計實驗流程]{人體姿態估計實驗流程}
+    \label{ch3_fig_exp_flow}
+\end{figure}
 
 \subsection{實驗系統設定}
 % 系統架設介紹
@@ -79,11 +85,42 @@ Xsens 用於記錄人體各肢段及棋盤格校正板的朝向資訊，共使�
 % 還有用了幾顆 IMU ，分別擺在身體的哪裡，要寫身上和板子上的擺放位置和方向
 本研究使用 Xsens 提供之硬體及軟體 MT-manager 作為量測姿態朝向的工具，採樣率設定為 60 Hz，共使用 10+1 顆 IMU 進行量測，
 十顆 IMU 分別黏貼於左右上臂中段外側、左右手腕外側、胸骨、骨盆、左右大腿中段外側、左右小腿中段外側，共十處，
-如圖所示， IMU 長軸 (即 x 軸) 與骨頭長度方向對齊，隨時間進行搜集各時間點受試者各肢段的朝向資訊。
-另一顆 IMU 黏貼於棋盤格校正版，量測棋盤格校正板的初始朝向，用以轉換影像座標系至全域座標系，如圖所示，
+如圖~\ref{ch3_fig_humanimu} 所示， IMU 長軸 (即 x 軸) 與骨頭長度方向對齊，隨時間進行搜集各時間點受試者各肢段的朝向資訊。
+另一顆 IMU 黏貼於棋盤格校正版，量測棋盤格校正板的初始朝向，用以轉換影像座標系至全域座標系，如圖~\ref{ch3_fig_cbimu} 所示，
 IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
-% TODO:放貼了 IMU 的前視及後視圖
-% TODO:放貼了 IMU 的校正板圖
+
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.25\textwidth}
+     \centering
+     \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_frontimu.JPG}
+     \caption*{(a)}
+   \end{minipage}%
+   \begin{minipage}{.25\textwidth}
+      \centering
+      \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_leftimu.JPG}
+      \caption*{(b)}
+   \end{minipage}%
+   \begin{minipage}{.25\textwidth}
+      \centering
+      \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_backimu.JPG}
+      \caption*{(c)}
+   \end{minipage}%
+   \begin{minipage}{.25\textwidth}
+     \centering
+     \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_rightimu.JPG}
+     \caption*{(d)}
+   \end{minipage}
+   \caption[IMU 於人體黏貼位置及方向 (a)前視(b)左視(c)後視(d)右視]{IMU 於人體黏貼位置及方向 (a)前視(b)左視(c)後視(d)右視}
+   \label{ch3_fig_humanimu}
+\end{figure}
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=8cm]{figure/ch3_fig_cbimu.JPG}
+    \caption[IMU 於棋盤格校正板黏貼位置及方向]{IMU 於棋盤格校正板黏貼位置及方向}
+    \label{ch3_fig_cbimu}
+\end{figure}
 
 \subsection{實驗環境}
 % 實驗環境介紹
@@ -139,25 +176,23 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=8cm]{figure/ch3_fig_skeleton_flow.png}
+   \includegraphics[width=\linewidth]{figure/ch3_fig_skeleton_flow.png}
     \caption[立體骨架建立流程圖]{立體骨架建立流程圖}
     \label{ch3_fig_skeleton_flow}
 \end{figure}
 
 \begin{figure}[!ht]
    \centering
-   \begin{minipage}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figure/ch3_fig_OpenPose_result.png}
-     \caption[OpenPose 辨識結果]{OpenPose 辨識結果}
-     \label{ch3_fig_OpenPose_result}
-   \end{minipage}%
-   \begin{minipage}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figure/ch3_fig_my_skeleton.png}
-     \caption[立體骨架建立結果]{立體骨架建立結果}
-     \label{ch3_fig_my_skeleton}
-   \end{minipage}
+   \includegraphics[width=8cm]{figure/ch3_fig_OpenPose_result.png}
+   \caption[OpenPose 辨識結果]{OpenPose 辨識結果}
+   \label{ch3_fig_OpenPose_result}
+\end{figure}
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=8cm]{figure/ch3_fig_my_skeleton.png}
+   \caption[立體骨架建立結果]{立體骨架建立結果}
+   \label{ch3_fig_my_skeleton}
 \end{figure}
 
 \subsection{計算骨盆在影像中的像素位置}
@@ -175,7 +210,7 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=11cm]{figure/ch3_fig_OpenPose.png}
+   \includegraphics[width=\linewidth]{figure/ch3_fig_OpenPose.png}
     \caption[OpenPose 關節點對應位置]{OpenPose 關節點對應位置}
     \label{ch3_fig_OpenPose}
 \end{figure}
@@ -203,15 +238,13 @@ IMU 感測系統則涉及四種座標系，分別為骨骼座標系 (b)、感測
 
 \subsubsection{座標系定義}
 % 各座標系定義介紹
-圖像座標系為二維座標系，以圖像左上角為原點，x 軸沿圖像右側為延伸為正，y 軸沿圖像下側延伸為正，如圖所示；
-% TODO:放校正板的畫上圖像座標軸的圖
-相機座標系以相機的光心為原點，z 軸與光軸重和，指向相機前方為正， x 軸指向相機右方為正， y 軸指向相機下方為正，如圖所示；
-% TODO:放相機畫上相機座標軸的圖
-骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_skeleton_frame} 所示，
+圖像座標系為二維座標系，以圖像左上角為原點，x 軸沿圖像右側為延伸為正，y 軸沿圖像下側延伸為正，如圖~\ref{ch3_fig_frame} (a) 所示；
+相機座標系以相機的光心為原點，z 軸與光軸重和，指向相機前方為正， x 軸指向相機右方為正， y 軸指向相機下方為正，如圖!\ref{ch3_fig_frame} (b) 所示；
+骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_frame} (c) 所示，
 其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右 (red)、向後 (green)、向下 (blue)；
 感測器座標系，以感測器本身為原點，
 於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
-如圖~\ref{ch3_fig_imu_frame} 所示；
+如圖~\ref{ch3_fig_frame} (d) 所示；
 IMU local 座標系以感測器所在地為原點，y 軸沿子午線指向正北為正，z 軸指向天頂為正，x 軸與 yz 平面垂直，指向正東為正；
 全域座標系以固定的全球基準點為原點 (例如地球中心)，x 軸以磁北極為參考方向，z 軸參考方向與 IMU local 座標系 z 軸相同，指向天頂為正，
 y 軸則以右手定則決定，通常指向西方為正。
@@ -220,17 +253,28 @@ y 軸則以右手定則決定，通常指向西方為正。
 \begin{figure}[!ht]
    \centering
    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch3_fig_cbframe.png}
+      \caption*{(a)}
+   \end{minipage}%
+   \vspace{5mm}%
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch3_fig_camframe.png}
+      \caption*{(b)}
+   \end{minipage}
+   \begin{minipage}{.5\textwidth}
      \centering
-     \includegraphics[width=.8\linewidth]{figure/ch3_fig_skeleton_frame.png}
-     \caption[骨骼座標系定義]{骨骼座標系定義}
-     \label{ch3_fig_skeleton_frame}
+     \includegraphics[width=\linewidth]{figure/ch3_fig_skeleton_frame.png}
+     \caption*{(c)}
    \end{minipage}%
    \begin{minipage}{.5\textwidth}
      \centering
-     \includegraphics[width=.8\linewidth]{figure/ch3_fig_imu_frame.png}
-     \caption[IMU local 座標系定義]{IMU local 座標系定義}
-     \label{ch3_fig_imu_frame}
+     \includegraphics[width=\linewidth]{figure/ch3_fig_imu_frame.png}
+     \caption*{(d)}
    \end{minipage}
+   \caption[座標系定義 (a)影像座標系 (b)相機座標系 (c)骨架座標系 (d)IMU 座標系]{座標系定義 (a)影像座標系 (b)相機座標系 (c)骨架座標系 (d)IMU 座標系}
+   \label{ch3_fig_frame}
 \end{figure}
 
 \subsubsection{各座標系間的關係}
@@ -276,10 +320,9 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 通過將 $R^g_i$ 乘以 IMU local 座標系中的骨骼朝向，將以 IMU loccal 座標系表示之骨骼朝向轉換為以全域座標系表示的骨骼朝向。
 上述所提即之每一旋轉矩陣的量測與計算方式將於後續進行介紹。
 
-% TODO:改座標系間的轉換關係這張圖
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=11cm]{figure/ch3_fig_coordinate_trans.png}
+   \includegraphics[width=\textwidth]{figure/ch3_fig_coordinate_trans.png}
     \caption[各座標系間的關係]{各座標系間的關係}
     \label{ch3_fig_coordinate_trans}
 \end{figure}
@@ -361,9 +404,9 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 經過上一步 $(R^b_s)^{-1}$ 的轉換，已將骨骼朝向轉換為以附著其上的 IMU 感測器座標系為表示方式，
 接著，需要進一步將各自表示的感測器座標系轉換至統一以東北天 (East - North - Up, ENU) 為定義的 IMU local 座標系。
 感測器座標 - IMU local 旋轉矩陣 ($R^i_s$) 為 IMU 的量測朝向，可直接經由 Xsens 系統所提供軟體 (MT manager) 輸出四元數取得。
-在 MT manager 中讀入量測時所記錄的 .mtb 檔案，以
+在 MT manager 中讀入量測時所記錄的 .mtb 檔案，
 % TODO:...模型為基礎
-，並於 file>export 中的輸出選項勾選 quaternion 後輸出，
+並於 file>export 中的輸出選項勾選 quaternion 後輸出，
 每一 .txt 檔案中的 q0、q1、q2、q3 即為將朝向旋轉成以 IMU local 座標系為表示方式的旋轉四元數，分別代表四元數的 w、x、y、z，
 將四元數轉換為旋轉矩陣即可得感測器座標 - IMU local 旋轉矩陣。
 
@@ -403,7 +446,7 @@ TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供 8 台相機與 13 個 IMU �
 TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面牆面上方架設兩台相機，
 四面牆共計八台相機，每台相機距離地面高度皆為 2.5 (m)，擺放位置以上視的視角呈現，如圖~\ref{ch3_fig_cameraset_totalcap} 所示。
 本次實驗將分成七類情況進行，第一類情況為從八台相機中任選一台相機進行感測器融合計算，
-並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算 MPJPE，
+並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，
 第二類為任選兩台相機進行姿勢估計，以此方式遞增至第七類，任選七台相機進行姿勢估計，每一類情況皆會產生一組 MPJPE。
 
 \begin{figure}[!ht]

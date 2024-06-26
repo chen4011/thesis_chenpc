@@ -36,7 +36,7 @@
 % - 量測誤差約落在 1 公分
 光標記 (marker-based) 動作捕捉系統，
 如 Vicon ~\cite{vicon_web}是目前最常見且最精準的動作捕捉系統，
-% TODO:cite Vicon其量測誤差約落在 1 (cm) 的那篇文獻，
+其在靜態實驗中，平均絕對定位誤差為 0.15 (mm)~\cite{merriaux2017study}，
 因此常被當作黃金標準，用於確認其他動作捕捉系統的準確性。
 光標記動作捕捉系統所需量測設備為多個紅外光攝影機及多個反光標記點，
 反光標記點需黏貼在受試者多處明顯不易被遮擋的部位，例如骨突點，確保在實驗過程中的多數時間可於影像中看見並被記錄，
@@ -87,10 +87,19 @@
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=10cm]{figure/ch2_fig_rec_result.png}
-     \caption[(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果]{(左) OpenPose 辨識結果，(右) MediaPipe 辨識結果}
-     \label{ch2_fig_rec_result}
-\end{figure}
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch2_fig_rec_openpose.png}
+      \caption*{(a)}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=\linewidth]{figure/ch2_fig_rec_mediapipe.png}
+       \caption*{(b)}
+    \end{minipage}
+    \caption[影像辨識結果 (a)OpenPose (b)MediaPipe]{影像辨識結果 (a)OpenPose (b)MediaPipe}
+    \label{ch2_fig_rec_result}
+ \end{figure}
 
 \begin{figure}[!ht]
     \centering
