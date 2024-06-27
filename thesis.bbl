@@ -1,65 +1,127 @@
 \begin{thebibliography}{10}
 
 \bibitem{vicon_web}
-{Vicon Motion Systems Ltd.}, ``Vicon.'' WebPage.
+{Vicon Motion Systems Ltd.}
+\newblock Vicon.
+\newblock WebPage.
 \newblock Online available at: \url{https://www.vicon.com}; accessed at
   19/5/2023.
 
+\bibitem{merriaux2017study}
+Pierre Merriaux, Yohan Dupuis, R{\'e}mi Boutteau, Pascal Vasseur, and Xavier
+  Savatier.
+\newblock A study of vicon system positioning performance.
+\newblock {\em Sensors}, 17(7):1591, 2017.
+
 \bibitem{8765346}
-Z.~{Cao}, G.~{Hidalgo Martinez}, T.~{Simon}, S.~{Wei}, and Y.~A. {Sheikh},
-  ``Openpose: Realtime multi-person 2d pose estimation using part affinity
-  fields,'' {\em IEEE Transactions on Pattern Analysis and Machine
-  Intelligence}, 2019.
+Z.~{Cao}, G.~{Hidalgo Martinez}, T.~{Simon}, S.~{Wei}, and Y.~A. {Sheikh}.
+\newblock Openpose: Realtime multi-person 2d pose estimation using part
+  affinity fields.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  2019.
 
 \bibitem{wei2016cpm}
-S.-E. Wei, V.~Ramakrishna, T.~Kanade, and Y.~Sheikh, ``Convolutional pose
-  machines,'' in {\em CVPR}, 2016.
+Shih-En Wei, Varun Ramakrishna, Takeo Kanade, and Yaser Sheikh.
+\newblock Convolutional pose machines.
+\newblock In {\em CVPR}, 2016.
 
 \bibitem{simon2017hand}
-T.~Simon, H.~Joo, I.~Matthews, and Y.~Sheikh, ``Hand keypoint detection in
-  single images using multiview bootstrapping,'' in {\em CVPR}, 2017.
+Tomas Simon, Hanbyul Joo, Iain Matthews, and Yaser Sheikh.
+\newblock Hand keypoint detection in single images using multiview
+  bootstrapping.
+\newblock In {\em CVPR}, 2017.
 
 \bibitem{cao2017realtime}
-Z.~Cao, T.~Simon, S.-E. Wei, and Y.~Sheikh, ``Realtime multi-person 2d pose
-  estimation using part affinity fields,'' in {\em CVPR}, 2017.
+Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
+\newblock Realtime multi-person 2d pose estimation using part affinity fields.
+\newblock In {\em CVPR}, 2017.
 
 \bibitem{mediapipe_web}
-{Google Inc.}, ``Mediapipe.'' WebPage.
+{Google Inc.}
+\newblock Mediapipe.
+\newblock WebPage.
 \newblock Online available at: \url{https://developers.google.com/mediapipe};
   accessed at 19/5/2023.
 
 \bibitem{nie2019single}
-X.~Nie, J.~Feng, J.~Zhang, and S.~Yan, ``Single-stage multi-person pose
-  machines,'' in {\em Proceedings of the IEEE/CVF international conference on
-  computer vision}, pp.~6951--6960, 2019.
+Xuecheng Nie, Jiashi Feng, Jianfeng Zhang, and Shuicheng Yan.
+\newblock Single-stage multi-person pose machines.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 6951--6960, 2019.
 
-\bibitem{zhang2020fusing}
-Z.~Zhang, C.~Wang, W.~Qin, and W.~Zeng, ``Fusing wearable imus with multi-view
-  images for human pose estimation: A geometric approach,'' in {\em Proceedings
-  of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pp.~2200--2209, 2020.
+\bibitem{zhang1999flexible}
+Zhengyou Zhang.
+\newblock Flexible camera calibration by viewing a plane from unknown
+  orientations.
+\newblock In {\em Proceedings of the seventh ieee international conference on
+  computer vision}, volume~1, pages 666--673. Ieee, 1999.
 
-\bibitem{Pagnon_2021_Robustness}
-D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for
-  3d markerless sports kinematics—part 1: Robustness,'' {\em Sensors}, 2021.
+\bibitem{nakano2020evaluation}
+Nobuyasu Nakano, Tetsuro Sakura, Kazuhiro Ueda, Leon Omura, Arata Kimura,
+  Yoichi Iino, Senshi Fukashiro, and Shinsuke Yoshioka.
+\newblock Evaluation of 3d markerless motion capture accuracy using openpose
+  with multiple video cameras.
+\newblock {\em Frontiers in sports and active living}, 2:50, 2020.
 
-\bibitem{Pagnon_2022_Accuracy}
-D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An end-to-end workflow for
-  3d markerless sports kinematics—part 2: Accuracy,'' {\em Sensors}, 2022.
+\bibitem{zhang2020adafuse}
+Zhe Zhang, Chunyu Wang, Weichao Qiu, Wenhu Qin, and Wenjun Zeng.
+\newblock Adafuse: Adaptive multiview fusion for accurate human pose estimation
+  in the wild.
+\newblock {\em IJCV}, pages 1--16, 2020.
 
-\bibitem{Pagnon_2022_JOSS}
-D.~Pagnon, M.~Domalain, and L.~Reveret, ``Pose2sim: An open-source python
-  package for multiview markerless kinematics,'' {\em Journal of Open Source
-  Software}, 2022.
+\bibitem{pons2012data}
+Gerard Pons-Moll, Laura Leal-Taix{\'e}, Juergen Gall, and Bodo Rosenhahn.
+\newblock Data-driven manifolds for outdoor motion capture.
+\newblock In {\em Outdoor and Large-Scale Real-World Scene Analysis: 15th
+  International Workshop on Theoretical Foundations of Computer Vision,
+  Dagstuhl Castle, Germany, June 26-July 1, 2011. Revised Selected Papers},
+  pages 305--328. Springer, 2012.
+
+\bibitem{destelle2014low}
+Fran{\c{c}}ois Destelle, Amin Ahmadi, Noel~E O'Connor, Kieran Moran, Anargyros
+  Chatzitofis, Dimitrios Zarpalas, and Petros Daras.
+\newblock Low-cost accurate skeleton tracking based on fusion of kinect and
+  wearable inertial sensors.
+\newblock In {\em 2014 22nd European Signal Processing Conference (EUSIPCO)},
+  pages 371--375. IEEE, 2014.
 
 \bibitem{Trumble:BMVC:2017}
-M.~Trumble, A.~Gilbert, C.~Malleson, A.~Hilton, and J.~Collomosse, ``Total
-  capture: 3d human pose estimation fusing video and inertial sensors,'' in
-  {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
+Matt Trumble, Andrew Gilbert, Charles Malleson, Adrian Hilton, and John
+  Collomosse.
+\newblock Total capture: 3d human pose estimation fusing video and inertial
+  sensors.
+\newblock In {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
+
+\bibitem{zhang2020fusing}
+Zhe Zhang, Chunyu Wang, Wenhu Qin, and Wenjun Zeng.
+\newblock Fusing wearable imus with multi-view images for human pose
+  estimation: A geometric approach.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 2200--2209, 2020.
+
+\bibitem{Pagnon_2021_Robustness}
+David Pagnon, Mathieu Domalain, and Lionel Reveret.
+\newblock Pose2sim: An end-to-end workflow for 3d markerless sports
+  kinematics—part 1: Robustness.
+\newblock {\em Sensors}, 2021.
+
+\bibitem{Pagnon_2022_Accuracy}
+David Pagnon, Mathieu Domalain, and Lionel Reveret.
+\newblock Pose2sim: An end-to-end workflow for 3d markerless sports
+  kinematics—part 2: Accuracy.
+\newblock {\em Sensors}, 2022.
+
+\bibitem{Pagnon_2022_JOSS}
+David Pagnon, Mathieu Domalain, and Lionel Reveret.
+\newblock Pose2sim: An open-source python package for multiview markerless
+  kinematics.
+\newblock {\em Journal of Open Source Software}, 2022.
 
 \bibitem{malleson2017real}
-C.~Malleson, A.~Gilbert, M.~Trumble, J.~Collomosse, A.~Hilton, and M.~Volino,
-  ``Real-time full-body motion capture from video and imus,'' in {\em 2017
-  international conference on 3D vision (3DV)}, pp.~449--457, IEEE, 2017.
+Charles Malleson, Andrew Gilbert, Matthew Trumble, John Collomosse, Adrian
+  Hilton, and Marco Volino.
+\newblock Real-time full-body motion capture from video and imus.
+\newblock In {\em 2017 international conference on 3D vision (3DV)}, pages
+  449--457. IEEE, 2017.
 
 \end{thebibliography}
