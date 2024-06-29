@@ -5,7 +5,7 @@
 \newblock Vicon.
 \newblock WebPage.
 \newblock Online available at: \url{https://www.vicon.com}; accessed at
-  19/5/2023.
+  27/6/2024.
 
 \bibitem{merriaux2017study}
 Pierre Merriaux, Yohan Dupuis, R{\'e}mi Boutteau, Pascal Vasseur, and Xavier
@@ -41,7 +41,7 @@ Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
 \newblock Mediapipe.
 \newblock WebPage.
 \newblock Online available at: \url{https://developers.google.com/mediapipe};
-  accessed at 19/5/2023.
+  accessed at 27/6/2024.
 
 \bibitem{nie2019single}
 Xuecheng Nie, Jiashi Feng, Jianfeng Zhang, and Shuicheng Yan.
@@ -91,6 +91,19 @@ Matt Trumble, Andrew Gilbert, Charles Malleson, Adrian Hilton, and John
 \newblock Total capture: 3d human pose estimation fusing video and inertial
   sensors.
 \newblock In {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
+
+\bibitem{kaichi2020resolving}
+Tomoya Kaichi, Tsubasa Maruyama, Mitsunori Tada, and Hideo Saito.
+\newblock Resolving position ambiguity of imu-based human pose with a single
+  rgb camera.
+\newblock {\em Sensors}, 20(19):5453, 2020.
+
+\bibitem{needham2021accuracy}
+Laurie Needham, Murray Evans, Darren~P Cosker, Logan Wade, Polly~M McGuigan,
+  James~L Bilzon, and Steffi~L Colyer.
+\newblock The accuracy of several pose estimation methods for 3d joint centre
+  localisation.
+\newblock {\em Scientific reports}, 11(1):20673, 2021.
 
 \bibitem{zhang2020fusing}
 Zhe Zhang, Chunyu Wang, Wenhu Qin, and Wenjun Zeng.

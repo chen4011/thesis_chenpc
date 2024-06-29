@@ -130,7 +130,26 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 \subsubsection{室內實驗環境及尺寸}
 % 室內實驗環境介紹
 % 這邊可以放一張室內實驗環境的照片
-所有房間尺寸、活動範圍尺寸、相機位置和高度
+室內實驗環境為一 8.8*8.8 (m) 之空間，照明設備為....，全室僅以拉上遮光布的方式遮蔽室外光線，
+量測時間為晚上 8 點至 9 點，以確保環境光線穩定，並減少環境光對影像資料的影響。
+受試者於實驗過程中於一 2.78*2.83 (m) 的範圍內進行動作，整體尺度規格如圖所示。
+實際實驗環境及實驗者位置如圖~\ref{ch3_fig_indoor_position} 所示。
+% TODO:補上室內尺規圖片、照明設備
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position1.png}
+     \caption*{(a)相機與受試者位置 (前視)}
+   \end{minipage}%
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position2.png}
+      \caption*{(b)相機與受試者位置 (後視)}
+   \end{minipage}%
+   \caption[室內實驗環境及相機與受試者位置]{室內實驗環境及相機與受試者位置}
+   \label{ch3_fig_indoor_position}
+\end{figure}
 
 \subsubsection{室外實驗環境及尺寸}
 % 室外實驗環境介紹
@@ -219,7 +238,7 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 
 \subsection{時間對齊}
 % 時間軸對齊介紹
-本研究參考的方法進行時間對齊，在實驗動作開始及結束時，受試者皆需進行拍手動作，
+本研究使用拍手~\cite{pons2012data} 的方法進行時間對齊，在實驗動作開始及結束時，受試者皆需進行拍手動作，
 動作流程為：兩手打直張開呈現 T 姿勢維持 1~2 秒，然後迅速合攏雙手並拍手，最後維持合掌姿勢 1~2 秒。
 透過拍手動作，可在影像資料的音軌中找到明顯地拍手聲音，
 並在 IMU 資料中找到快速拍手動作的時間點，因為迅速合攏手掌的拍手動作會產生明顯的加速度變化，
@@ -227,7 +246,6 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 在對齊並剪輯影像資料及 IMU 資料時有一點需要注意，
 裁切 IMU 資料時，需將拍手動作前後一個時間差的資料保留，以確保拍手動作的加速度變化完整呈現，
 因此進行影像剪輯時，需將合掌姿勢前後一個時間差的影像資料保留，以確保拍手動作的完整呈現，且可與 IMU 資料對齊。
-% TODO:等第二章時間對齊的部分寫完記得來 cite clappping 那一篇
 
 \subsection{空間對齊}
 % 座標系轉換介紹
