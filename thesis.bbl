@@ -13,6 +13,12 @@ Pierre Merriaux, Yohan Dupuis, R{\'e}mi Boutteau, Pascal Vasseur, and Xavier
 \newblock A study of vicon system positioning performance.
 \newblock {\em Sensors}, 17(7):1591, 2017.
 
+\bibitem{sarafianos20163d}
+Nikolaos Sarafianos, Bogdan Boteanu, Bogdan Ionescu, and Ioannis~A Kakadiaris.
+\newblock 3d human pose estimation: A review of the literature and analysis of
+  covariates.
+\newblock {\em Computer Vision and Image Understanding}, 152:1--20, 2016.
+
 \bibitem{8765346}
 Z.~{Cao}, G.~{Hidalgo Martinez}, T.~{Simon}, S.~{Wei}, and Y.~A. {Sheikh}.
 \newblock Openpose: Realtime multi-person 2d pose estimation using part
@@ -43,6 +49,11 @@ Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
 \newblock Online available at: \url{https://developers.google.com/mediapipe};
   accessed at 27/6/2024.
 
+\bibitem{zhang2012microsoft}
+Zhengyou Zhang.
+\newblock Microsoft kinect sensor and its effect.
+\newblock {\em IEEE multimedia}, 19(2):4--10, 2012.
+
 \bibitem{nie2019single}
 Xuecheng Nie, Jiashi Feng, Jianfeng Zhang, and Shuicheng Yan.
 \newblock Single-stage multi-person pose machines.
@@ -69,6 +80,136 @@ Zhe Zhang, Chunyu Wang, Weichao Qiu, Wenhu Qin, and Wenjun Zeng.
   in the wild.
 \newblock {\em IJCV}, pages 1--16, 2020.
 
+\bibitem{young2009comparison}
+Alexander~D Young.
+\newblock Comparison of orientation filter algorithms for realtime wireless
+  inertial posture tracking.
+\newblock In {\em 2009 Sixth International Workshop on Wearable and Implantable
+  Body Sensor Networks}, pages 59--64. IEEE, 2009.
+
+\bibitem{madgwick2011estimation}
+Sebastian~OH Madgwick, Andrew~JL Harrison, and Ravi Vaidyanathan.
+\newblock Estimation of imu and marg orientation using a gradient descent
+  algorithm.
+\newblock In {\em 2011 IEEE international conference on rehabilitation
+  robotics}, pages 1--7. Ieee, 2011.
+
+\bibitem{nazarahari202140}
+Milad Nazarahari and Hossein Rouhani.
+\newblock 40 years of sensor fusion for orientation tracking via magnetic and
+  inertial measurement units: Methods, lessons learned, and future challenges.
+\newblock {\em Information Fusion}, 68:67--84, 2021.
+
+\bibitem{roetenberg2009xsens}
+Daniel Roetenberg, Henk Luinge, Per Slycke, et~al.
+\newblock Xsens mvn: Full 6dof human motion tracking using miniature inertial
+  sensors.
+\newblock {\em Xsens Motion Technologies BV, Tech. Rep}, 1(2009):1--7, 2009.
+
+\bibitem{paulich2018xsens}
+Monique Paulich, Martin Schepers, Nina Rudigkeit, and Giovanni Bellusci.
+\newblock Xsens mtw awinda: Miniature wireless inertial-magnetic motion tracker
+  for highly accurate 3d kinematic applications.
+\newblock {\em Xsens: Enschede, The Netherlands}, pages 1--9, 2018.
+
+\bibitem{mcgrath2020body}
+Timothy McGrath and Leia Stirling.
+\newblock Body-worn imu human skeletal pose estimation using a factor
+  graph-based optimization framework.
+\newblock {\em Sensors}, 20(23):6887, 2020.
+
+\bibitem{DIP:SIGGRAPHAsia:2018}
+Yinghao Huang, Manuel Kaufmann, Emre Aksan, Michael~J. Black, Otmar Hilliges,
+  and Gerard Pons-Moll.
+\newblock Deep inertial poser learning to reconstruct human pose from
+  sparseinertial measurements in real time.
+\newblock {\em ACM Transactions on Graphics, (Proc. SIGGRAPH Asia)},
+  37(6):185:1--185:15, November 2018.
+
+\bibitem{mcginnis2016quantifying}
+Ryan~S McGinnis, Stephen~M Cain, Steven~P Davidson, Rachel~V Vitali, Noel~C
+  Perkins, and Scott~G McLean.
+\newblock Quantifying the effects of load carriage and fatigue under load on
+  sacral kinematics during countermovement vertical jump with imu-based method.
+\newblock {\em Sports Engineering}, 19:21--34, 2016.
+
+\bibitem{miranda2022accuracy}
+Paulo Miranda-Oliveira, Marco Branco, and Orlando Fernandes.
+\newblock Accuracy of inertial measurement units when applied to the
+  countermovement jump of track and field athletes.
+\newblock {\em Sensors}, 22(19):7186, 2022.
+
+\bibitem{wang2020imu}
+Lei Wang, Yun Sun, Qingguo Li, Tao Liu, and Jingang Yi.
+\newblock Imu-based gait normalcy index calculation for clinical evaluation of
+  impaired gait.
+\newblock {\em IEEE Journal of Biomedical and Health Informatics}, 25(1):3--12,
+  2020.
+
+\bibitem{uchitomi2022three}
+Hirotaka Uchitomi, Yuki Hirobe, and Yoshihiro Miyake.
+\newblock Three-dimensional continuous gait trajectory estimation using single
+  shank-worn inertial measurement units and clinical walk test application.
+\newblock {\em Scientific Reports}, 12(1):5368, 2022.
+
+\bibitem{fiorentino2017soft}
+Niccolo~M Fiorentino, Penny~R Atkins, Michael~J Kutschke, Justine~M Goebel,
+  K~Bo Foreman, and Andrew~E Anderson.
+\newblock Soft tissue artifact causes significant errors in the calculation of
+  joint angles and range of motion at the hip.
+\newblock {\em Gait \& posture}, 55:184--190, 2017.
+
+\bibitem{stagni2005quantification}
+Rita Stagni, Silvia Fantozzi, Angelo Cappello, and Alberto Leardini.
+\newblock Quantification of soft tissue artefact in motion analysis by
+  combining 3d fluoroscopy and stereophotogrammetry: a study on two subjects.
+\newblock {\em Clinical biomechanics}, 20(3):320--329, 2005.
+
+\bibitem{li2023visual}
+Tong Li and Haoyong Yu.
+\newblock Visual--inertial fusion-based human pose estimation: A review.
+\newblock {\em IEEE Transactions on Instrumentation and Measurement}, 72:1--16,
+  2023.
+
+\bibitem{jinyu2019survey}
+Li~Jinyu, Yang Bangbang, Chen Danpeng, Wang Nan, Zhang Guofeng, and Bao Hujun.
+\newblock Survey and evaluation of monocular visual-inertial slam algorithms
+  for augmented reality.
+\newblock {\em Virtual Reality \& Intelligent Hardware}, 1(4):386--410, 2019.
+
+\bibitem{zhu2023camera}
+Jun Zhu, Hongyi Li, and Tao Zhang.
+\newblock Camera, lidar, and imu based multi-sensor fusion slam: A survey.
+\newblock {\em Tsinghua Science and Technology}, 29(2):415--429, 2023.
+
+\bibitem{Trumble:BMVC:2017}
+Matt Trumble, Andrew Gilbert, Charles Malleson, Adrian Hilton, and John
+  Collomosse.
+\newblock Total capture: 3d human pose estimation fusing video and inertial
+  sensors.
+\newblock In {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
+
+\bibitem{zhang2020fusing}
+Zhe Zhang, Chunyu Wang, Wenhu Qin, and Wenjun Zeng.
+\newblock Fusing wearable imus with multi-view images for human pose
+  estimation: A geometric approach.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 2200--2209, 2020.
+
+\bibitem{Marcard_2018_ECCV}
+Timo von Marcard, Roberto Henschel, Michael~J. Black, Bodo Rosenhahn, and
+  Gerard Pons-Moll.
+\newblock Recovering accurate 3d human pose in the wild using imus and a moving
+  camera.
+\newblock In {\em Proceedings of the European Conference on Computer Vision
+  (ECCV)}, September 2018.
+
+\bibitem{gong2016human}
+Wenjuan Gong, Xuena Zhang, Jordi Gonz{\`a}lez, Andrews Sobral, Thierry
+  Bouwmans, Changhe Tu, and El-hadi Zahzah.
+\newblock Human pose estimation from monocular images: A comprehensive survey.
+\newblock {\em Sensors}, 16(12):1966, 2016.
+
 \bibitem{pons2012data}
 Gerard Pons-Moll, Laura Leal-Taix{\'e}, Juergen Gall, and Bodo Rosenhahn.
 \newblock Data-driven manifolds for outdoor motion capture.
@@ -85,13 +226,6 @@ Fran{\c{c}}ois Destelle, Amin Ahmadi, Noel~E O'Connor, Kieran Moran, Anargyros
 \newblock In {\em 2014 22nd European Signal Processing Conference (EUSIPCO)},
   pages 371--375. IEEE, 2014.
 
-\bibitem{Trumble:BMVC:2017}
-Matt Trumble, Andrew Gilbert, Charles Malleson, Adrian Hilton, and John
-  Collomosse.
-\newblock Total capture: 3d human pose estimation fusing video and inertial
-  sensors.
-\newblock In {\em 2017 British Machine Vision Conference (BMVC)}, 2017.
-
 \bibitem{kaichi2020resolving}
 Tomoya Kaichi, Tsubasa Maruyama, Mitsunori Tada, and Hideo Saito.
 \newblock Resolving position ambiguity of imu-based human pose with a single
@@ -104,13 +238,6 @@ Laurie Needham, Murray Evans, Darren~P Cosker, Logan Wade, Polly~M McGuigan,
 \newblock The accuracy of several pose estimation methods for 3d joint centre
   localisation.
 \newblock {\em Scientific reports}, 11(1):20673, 2021.
-
-\bibitem{zhang2020fusing}
-Zhe Zhang, Chunyu Wang, Wenhu Qin, and Wenjun Zeng.
-\newblock Fusing wearable imus with multi-view images for human pose
-  estimation: A geometric approach.
-\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
-  Pattern Recognition}, pages 2200--2209, 2020.
 
 \bibitem{Pagnon_2021_Robustness}
 David Pagnon, Mathieu Domalain, and Lionel Reveret.

@@ -42,14 +42,14 @@
 首先進行相機內部參數及外部參數拍攝，
 拍攝內部參數影片時，需使棋盤格校正板盡可能填滿畫面，並涵蓋多種不同角度的畫面，以便進行內部參數的計算，
 拍攝外部參數影片時，需由受試者站在實驗初始位置並拿著棋盤格校正板，以便進行外部參數的計算。
-接著進行人體骨架資料搜集，
-由受試者站在實驗初始位置，進行時間對齊動作後，維持 T 姿勢約 1~2 秒進行拍攝及 IMU 量測，最後再進行一次時間對齊動作，
-完成人體骨架資料搜集。
+接著進行個人化三維人體模型資料搜集，
+由受試者站在實驗初始位置，進行時間對齊動作後，維持 T 姿勢約 1 \textasciitilde\ 2 秒進行拍攝及 IMU 量測，最後再進行一次時間對齊動作，
+完成個人化三維人體模型資料搜集。
 再來即可開時進行實驗動作資料搜集，
 由受試者站在實驗初始位置，進行時間對齊動作後，進行實驗動作拍攝及 IMU 量測，最後再進行一次時間對齊動作，
 完成實驗動作資料搜集。
 實驗資料搜集到此告一段落，接著將搜集到的影像資料及 IMU 量測資料進行時間對齊、空間對齊，並進行感測器融合，
-輸出即為立體人體姿態估計結果，最後進行肢段長度計算進行驗證。
+輸出即為立體人體姿態估計結果，最後計算肢段長度進行驗證。
 
 \begin{figure}[!ht]
    \centering
@@ -57,6 +57,46 @@
     \caption[人體姿態估計實驗流程]{人體姿態估計實驗流程}
     \label{ch3_fig_exp_flow}
 \end{figure}
+
+\subsection{實驗環境}
+% 實驗環境介紹
+使用室內和室外環境，分開介紹
+
+\subsubsection{室內實驗環境及尺寸}
+% 室內實驗環境介紹
+室內實驗環境空間尺寸為 880 $\times$ 880 (cm)，全室拉上遮光布遮蔽室外光線，
+量測時間為晚上 8 點至 9 點，以確保環境光線穩定，並減少環境光對影像資料的影響。
+實驗環境及尺寸如圖~\ref{ch3_fig_indoor_scale} 所示，
+受試者初始位置為圖中黑色空心圓圈位置，實驗過程中於 278 $\times$ 283 (cm) 的方形範圍內進行動作。
+實際實驗環境及受試者位置如圖~\ref{ch3_fig_indoor_position} 所示。
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_scale.png}
+    \caption[室內實驗環境及尺寸]{室內實驗環境及尺寸}
+    \label{ch3_fig_indoor_scale}
+\end{figure}
+
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position1.png}
+     \caption*{(a)相機與受試者位置 (前視)}
+   \end{minipage}%
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position2.png}
+      \caption*{(b)相機與受試者位置 (後視)}
+   \end{minipage}%
+   \caption[室內實際實驗環境及相機與受試者位置]{室內實際實驗環境及相機與受試者位置}
+   \label{ch3_fig_indoor_position}
+\end{figure}
+
+\subsubsection{室外實驗環境及尺寸}
+% 室外實驗環境介紹
+% 這邊可以放一張室外實驗環境的照片
+所有房間尺寸、活動範圍尺寸、相機位置和高度
 
 \subsection{實驗系統設定}
 % 系統架設介紹
@@ -77,7 +117,8 @@ Xsens 用於記錄人體各肢段及棋盤格校正板的朝向資訊，共使�
 兩支手機皆設定影像擷取畫面為 1920x1080，幀率設定為 60 Hz。
 
 本研究將 iPhone XR 編號為 cam01，將 iPhone 15 Pro 編號為 cam02，
-手機擺放位置如圖所示，cam01 拍攝高度為 79 (cm)，cam02 拍攝高度為 74 (cm)，
+手機擺放位置為圖~\ref{ch3_fig_indoor_scale} 中紅色圓點處，cam01 拍攝高度為 79 (cm)，cam02 拍攝高度為 74 (cm)，
+cam 01 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中綠色範圍，cam 02 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中藍色範圍，
 在實驗資料搜集過程中，拍攝角度及位置皆維持不變。
 % TODO:補相機在空間中的位置圖(簡略的畫一下空間尺度就好，詳細的尺度放在室內實驗環境及尺寸)
 
@@ -123,39 +164,6 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
     \label{ch3_fig_cbimu}
 \end{figure}
 
-\subsection{實驗環境}
-% 實驗環境介紹
-使用室內和室外環境，分開介紹
-
-\subsubsection{室內實驗環境及尺寸}
-% 室內實驗環境介紹
-% 這邊可以放一張室內實驗環境的照片
-室內實驗環境為一 8.8*8.8 (m) 之空間，照明設備為....，全室僅以拉上遮光布的方式遮蔽室外光線，
-量測時間為晚上 8 點至 9 點，以確保環境光線穩定，並減少環境光對影像資料的影響。
-受試者於實驗過程中於一 2.78*2.83 (m) 的範圍內進行動作，整體尺度規格如圖所示。
-實際實驗環境及實驗者位置如圖~\ref{ch3_fig_indoor_position} 所示。
-% TODO:補上室內尺規圖片、照明設備
-\begin{figure}[!ht]
-   \centering
-   \begin{minipage}{.5\textwidth}
-     \centering
-     \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position1.png}
-     \caption*{(a)相機與受試者位置 (前視)}
-   \end{minipage}%
-   \begin{minipage}{.5\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position2.png}
-      \caption*{(b)相機與受試者位置 (後視)}
-   \end{minipage}%
-   \caption[室內實驗環境及相機與受試者位置]{室內實驗環境及相機與受試者位置}
-   \label{ch3_fig_indoor_position}
-\end{figure}
-
-\subsubsection{室外實驗環境及尺寸}
-% 室外實驗環境介紹
-% 這邊可以放一張室外實驗環境的照片
-所有房間尺寸、活動範圍尺寸、相機位置和高度
-
 \subsection{實驗動作}
 % 實驗動作介紹
 現在還不確定要不要把每個動作的量測目的都寫出來，畢竟結果也不好
@@ -164,19 +172,19 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 \section{資料前處理}
 % 資料前處理介紹
 利用章節~\ref{ch3_exp_setting} 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
-資料前處理分為人體立體骨架建立、獲取骨盆中點位置、時間對齊、空間對齊四個部分，將於本章節進行討論。
+資料前處理分為個人化人體模型建立、獲取骨盆中點位置、時間對齊、空間對齊四個部分，將於本章節進行討論。
 
-\subsection{人體立體骨架建立}\label{ch3_skeleton_method}
-% 人體立體骨架建立介紹
+\subsection{個人化人體模型建立}\label{ch3_skeleton_method}
+% 個人化三維人體模型建立介紹
 % 伸縮沒有寫到，要怎麼加進去?
 % TODO:覺得可以把我為甚麼選擇用 OpenPose 不用 mediapipe 寫在這邊
-在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的立體骨架資料，
-並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得立體骨架資料。
+在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的三維人體模型，
+並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得三維人體模型。
 因此本研究透過 Pose2Sim~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS}提出之方法，
-使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立人體立體骨架。
+使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立個人三維人體模型。
 
 章節~\ref{ch4_skeleton_exp} 將會利用 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供的影像資料，進行影像辨識與三角測量計算，
-並將結果與 TotalCapture Dataset 提供之 Vicon 立體骨架資料比對，以驗證此方法的可行性。
+並將結果與 TotalCapture Dataset 提供之 Vicon 三維人體模型比對，以驗證此方法的可行性。
 
 \subsubsection{建立方法}
 % 影像辨識
@@ -192,13 +200,13 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose} 所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
-最後，基於 TotalCapture Dataset 提供之 vicon 立體骨架，利用計算出的距離進行立體骨架伸縮，
-得到與受試者四肢、身高相似之立體骨架，如圖~\ref{ch3_fig_my_skeleton}。
+最後，基於 TotalCapture Dataset 提供之 vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，
+得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}。
 
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=\linewidth]{figure/ch3_fig_skeleton_flow.png}
-    \caption[立體骨架建立流程圖]{立體骨架建立流程圖}
+    \caption[個人化三維人體模型建立流程圖]{個人化三維人體模型建立流程圖}
     \label{ch3_fig_skeleton_flow}
 \end{figure}
 
@@ -212,7 +220,7 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=8cm]{figure/ch3_fig_my_skeleton.png}
-   \caption[立體骨架建立結果]{立體骨架建立結果}
+   \caption[個人化三維人體模型建立結果]{個人化三維人體模型建立結果}
    \label{ch3_fig_my_skeleton}
 \end{figure}
 
@@ -260,7 +268,7 @@ IMU 感測系統則涉及四種座標系，分別為骨骼座標系 (b)、感測
 % 各座標系定義介紹
 圖像座標系為二維座標系，以圖像左上角為原點，x 軸沿圖像右側為延伸為正，y 軸沿圖像下側延伸為正，如圖~\ref{ch3_fig_frame} (a) 所示；
 相機座標系以相機的光心為原點，z 軸與光軸重和，指向相機前方為正， x 軸指向相機右方為正， y 軸指向相機下方為正，如圖~\ref{ch3_fig_frame} (b) 所示；
-骨骼座標系以 TotalCapture Dataset 提供之 Vicon 立體骨架所在之座標系為基礎，如圖~\ref{ch3_fig_frame} (c) 所示，
+骨骼座標系以 TotalCapture Dataset 提供之 Vicon 三維人體模型所在之座標系為基礎，如圖~\ref{ch3_fig_frame} (c) 所示，
 其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右 (red)、向後 (green)、向下 (blue)；
 感測器座標系，以感測器本身為原點，
 於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
@@ -293,6 +301,7 @@ y 軸則以右手定則決定，通常指向西方為正。
      \includegraphics[width=\linewidth]{figure/ch3_fig_imu_frame.png}
      \caption*{(d)}
    \end{minipage}
+   \captionsetup{justification=centering}
    \caption[座標系定義 (a)影像座標系 (b)相機座標系 (c)骨骼座標系 (d)感測器座標系]{座標系定義 (a)影像座標系 (b)相機座標系 (c)骨骼座標系 (d)感測器座標系}
    \label{ch3_fig_frame}
 \end{figure}
@@ -380,7 +389,7 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 假設受試者在最初始開始實驗時，設定一個與 IMU local 座標系對齊的座標系統，且受試者的姿勢為 T 姿勢，
 因此此時 IMU 到其附著肢段的旋轉矩陣與 IMU 到 IMU local 的旋轉矩陣相同，即 $R^{b}_{s}(t_0) = R^{i}_{s}(t_0)$，
 因此，在 $t_0$ 時刻量得的 IMU - IMU local 旋轉四元數即可視為感測器座標 - 骨骼座標旋轉四元數，
-而由於在章節~\ref{ch3_skeleton_method} 中建立的骨架座標與 IMU 附著於骨骼定義的座標系相差 $180^{\circ}$，
+而由於在章節~\ref{ch3_skeleton_method} 中建立的人體模型座標與 IMU 附著於骨骼定義的座標系相差 $180^{\circ}$，
 因此，再將整體座標系對 x 軸旋轉 $180^{\circ}$ ，即可得最終感測器座標 - 骨骼座標旋轉矩陣。 
 
 \begin{equation}

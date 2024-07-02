@@ -16,7 +16,7 @@
 
 % ------------------------- CH 2 ------------------------- %
 
-% 2.1.1 vicon
+% motion cap vicon
 @misc{vicon_web,
   author = {{Vicon Motion Systems Ltd.}},
   title = {VICON},
@@ -33,12 +33,15 @@
   year={2017},
   publisher={MDPI}
 }
-% 2.1.2 image recognition
-@misc{mediapipe_web,
-  author = {{Google Inc.}},
-  title = {MediaPipe},
-  howpublished = {WebPage},
-  note = {Online available at: \url{https://developers.google.com/mediapipe}; accessed at 27/6/2024}
+% motion cap image recognition
+@article{sarafianos20163d,
+  title={3d human pose estimation: A review of the literature and analysis of covariates},
+  author={Sarafianos, Nikolaos and Boteanu, Bogdan and Ionescu, Bogdan and Kakadiaris, Ioannis A},
+  journal={Computer Vision and Image Understanding},
+  volume={152},
+  pages={1--20},
+  year={2016},
+  publisher={Elsevier}
 }
 % OpenPose
 @article{8765346,
@@ -64,6 +67,24 @@
   author    = {Zhe Cao and Tomas Simon and Shih-En Wei and Yaser Sheikh},
   booktitle = {CVPR},
   year      = {2017}
+}
+% MediaPipe
+@misc{mediapipe_web,
+  author = {{Google Inc.}},
+  title = {MediaPipe},
+  howpublished = {WebPage},
+  note = {Online available at: \url{https://developers.google.com/mediapipe}; accessed at 27/6/2024}
+}
+% Kinect
+@article{zhang2012microsoft,
+  title={Microsoft kinect sensor and its effect},
+  author={Zhang, Zhengyou},
+  journal={IEEE multimedia},
+  volume={19},
+  number={2},
+  pages={4--10},
+  year={2012},
+  publisher={IEEE}
 }
 @inproceedings{nie2019single,
   title     = {Single-stage multi-person pose machines},
@@ -97,6 +118,191 @@
       journal={IJCV},
       publisher={Springer},
       pages={1--16},
+}
+
+% motion cap IMU
+@inproceedings{young2009comparison,
+  title={Comparison of orientation filter algorithms for realtime wireless inertial posture tracking},
+  author={Young, Alexander D},
+  booktitle={2009 Sixth International Workshop on Wearable and Implantable Body Sensor Networks},
+  pages={59--64},
+  year={2009},
+  organization={IEEE}
+}
+@inproceedings{madgwick2011estimation,
+  title={Estimation of IMU and MARG orientation using a gradient descent algorithm},
+  author={Madgwick, Sebastian OH and Harrison, Andrew JL and Vaidyanathan, Ravi},
+  booktitle={2011 IEEE international conference on rehabilitation robotics},
+  pages={1--7},
+  year={2011},
+  organization={Ieee}
+}
+@article{nazarahari202140,
+  title={40 years of sensor fusion for orientation tracking via magnetic and inertial measurement units: Methods, lessons learned, and future challenges},
+  author={Nazarahari, Milad and Rouhani, Hossein},
+  journal={Information Fusion},
+  volume={68},
+  pages={67--84},
+  year={2021},
+  publisher={Elsevier}
+}
+@article{roetenberg2009xsens,
+  title={Xsens MVN: Full 6DOF human motion tracking using miniature inertial sensors},
+  author={Roetenberg, Daniel and Luinge, Henk and Slycke, Per and others},
+  journal={Xsens Motion Technologies BV, Tech. Rep},
+  volume={1},
+  number={2009},
+  pages={1--7},
+  year={2009},
+  publisher={Citeseer}
+}
+@article{paulich2018xsens,
+  title={Xsens MTw Awinda: Miniature wireless inertial-magnetic motion tracker for highly accurate 3D kinematic applications},
+  author={Paulich, Monique and Schepers, Martin and Rudigkeit, Nina and Bellusci, Giovanni},
+  journal={Xsens: Enschede, The Netherlands},
+  pages={1--9},
+  year={2018}
+}
+@article{mcgrath2020body,
+  title={Body-worn IMU human skeletal pose estimation using a factor graph-based optimization framework},
+  author={McGrath, Timothy and Stirling, Leia},
+  journal={Sensors},
+  volume={20},
+  number={23},
+  pages={6887},
+  year={2020},
+  publisher={MDPI}
+}
+@article{DIP:SIGGRAPHAsia:2018,
+  title = {Deep Inertial Poser Learning to Reconstruct Human Pose from SparseInertial Measurements in Real Time},
+  author = {Huang, Yinghao and Kaufmann, Manuel and Aksan, Emre and Black, Michael J. and Hilliges, Otmar and Pons-Moll, Gerard},
+  month = nov,
+  number = {6},
+  volume = {37},
+  pages = {185:1--185:15}, 
+  journal = {ACM Transactions on Graphics, (Proc. SIGGRAPH Asia)},
+  year = {2018}
+}
+@article{mcginnis2016quantifying,
+  title={Quantifying the effects of load carriage and fatigue under load on sacral kinematics during countermovement vertical jump with IMU-based method},
+  author={McGinnis, Ryan S and Cain, Stephen M and Davidson, Steven P and Vitali, Rachel V and Perkins, Noel C and McLean, Scott G},
+  journal={Sports Engineering},
+  volume={19},
+  pages={21--34},
+  year={2016},
+  publisher={Springer}
+}
+@article{miranda2022accuracy,
+  title={Accuracy of Inertial Measurement Units When Applied to the Countermovement Jump of Track and Field Athletes},
+  author={Miranda-Oliveira, Paulo and Branco, Marco and Fernandes, Orlando},
+  journal={Sensors},
+  volume={22},
+  number={19},
+  pages={7186},
+  year={2022},
+  publisher={MDPI}
+}
+@article{wang2020imu,
+  title={IMU-based gait normalcy index calculation for clinical evaluation of impaired gait},
+  author={Wang, Lei and Sun, Yun and Li, Qingguo and Liu, Tao and Yi, Jingang},
+  journal={IEEE Journal of Biomedical and Health Informatics},
+  volume={25},
+  number={1},
+  pages={3--12},
+  year={2020},
+  publisher={IEEE}
+}
+@article{uchitomi2022three,
+  title={Three-dimensional continuous gait trajectory estimation using single shank-worn inertial measurement units and clinical walk test application},
+  author={Uchitomi, Hirotaka and Hirobe, Yuki and Miyake, Yoshihiro},
+  journal={Scientific Reports},
+  volume={12},
+  number={1},
+  pages={5368},
+  year={2022},
+  publisher={Nature Publishing Group UK London}
+}
+@article{fiorentino2017soft,
+  title={Soft tissue artifact causes significant errors in the calculation of joint angles and range of motion at the hip},
+  author={Fiorentino, Niccolo M and Atkins, Penny R and Kutschke, Michael J and Goebel, Justine M and Foreman, K Bo and Anderson, Andrew E},
+  journal={Gait \& posture},
+  volume={55},
+  pages={184--190},
+  year={2017},
+  publisher={Elsevier}
+}
+@article{stagni2005quantification,
+  title={Quantification of soft tissue artefact in motion analysis by combining 3D fluoroscopy and stereophotogrammetry: a study on two subjects},
+  author={Stagni, Rita and Fantozzi, Silvia and Cappello, Angelo and Leardini, Alberto},
+  journal={Clinical biomechanics},
+  volume={20},
+  number={3},
+  pages={320--329},
+  year={2005},
+  publisher={Elsevier}
+}
+
+% motion cap multi sensor
+@article{li2023visual,
+  title={Visual--inertial fusion-based human pose estimation: A review},
+  author={Li, Tong and Yu, Haoyong},
+  journal={IEEE Transactions on Instrumentation and Measurement},
+  volume={72},
+  pages={1--16},
+  year={2023},
+  publisher={IEEE}
+}
+@article{jinyu2019survey,
+  title={Survey and evaluation of monocular visual-inertial SLAM algorithms for augmented reality},
+  author={Jinyu, Li and Bangbang, Yang and Danpeng, Chen and Nan, Wang and Guofeng, Zhang and Hujun, Bao},
+  journal={Virtual Reality \& Intelligent Hardware},
+  volume={1},
+  number={4},
+  pages={386--410},
+  year={2019},
+  publisher={Elsevier}
+}
+@article{zhu2023camera,
+  title={Camera, LiDAR, and IMU based multi-sensor fusion SLAM: A survey},
+  author={Zhu, Jun and Li, Hongyi and Zhang, Tao},
+  journal={Tsinghua Science and Technology},
+  volume={29},
+  number={2},
+  pages={415--429},
+  year={2023},
+  publisher={TUP}
+}
+@inproceedings{Trumble:BMVC:2017,
+	AUTHOR = "Trumble, Matt and Gilbert, Andrew and Malleson, Charles and  Hilton, Adrian and Collomosse, John",
+	TITLE = "Total Capture: 3D Human Pose Estimation Fusing Video and Inertial Sensors",
+	BOOKTITLE = "2017 British Machine Vision Conference (BMVC)",
+	YEAR = "2017",
+}
+@inproceedings{zhang2020fusing,
+  title     = {Fusing wearable imus with multi-view images for human pose estimation: A geometric approach},
+  author    = {Zhang, Zhe and Wang, Chunyu and Qin, Wenhu and Zeng, Wenjun},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year      = {2020},
+  pages     = {2200--2209}
+}
+@InProceedings{Marcard_2018_ECCV,
+  author = {von Marcard, Timo and Henschel, Roberto and Black, Michael J. and Rosenhahn, Bodo and Pons-Moll, Gerard},
+  title = {Recovering Accurate 3D Human Pose in The Wild Using IMUs and a Moving Camera},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  month = {September},
+  year = {2018}
+}
+
+% 2.2 personal human body model
+@article{gong2016human,
+  title={Human pose estimation from monocular images: A comprehensive survey},
+  author={Gong, Wenjuan and Zhang, Xuena and Gonz{\`a}lez, Jordi and Sobral, Andrews and Bouwmans, Thierry and Tu, Changhe and Zahzah, El-hadi},
+  journal={Sensors},
+  volume={16},
+  number={12},
+  pages={1966},
+  year={2016},
+  publisher={MDPI}
 }
 
 % 2.3 time synchronization
@@ -139,13 +345,6 @@
 
 % ------------------------- CH 3 ------------------------- %
 % 3.2 人體骨架建立
-@inproceedings{zhang2020fusing,
-  title     = {Fusing wearable imus with multi-view images for human pose estimation: A geometric approach},
-  author    = {Zhang, Zhe and Wang, Chunyu and Qin, Wenhu and Zeng, Wenjun},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year      = {2020},
-  pages     = {2200--2209}
-}
 @article{Pagnon_2022_JOSS,
   title   = {Pose2Sim: An open-source Python package for multiview markerless kinematics},
   author  = {Pagnon, David and Domalain, Mathieu and Reveret, Lionel},
@@ -190,13 +389,6 @@
   pages     = {1940--1950},
   publisher = {IEEE}
 }
-
-% 3.3 相機選擇
-@inproceedings{Trumble:BMVC:2017,
-	AUTHOR = "Trumble, Matt and Gilbert, Andrew and Malleson, Charles and  Hilton, Adrian and Collomosse, John",
-	TITLE = "Total Capture: 3D Human Pose Estimation Fusing Video and Inertial Sensors",
-	BOOKTITLE = "2017 British Machine Vision Conference (BMVC)",
-	YEAR = "2017",}
 
 % ------------------------- CH 4 ------------------------- %
 
