@@ -210,6 +210,24 @@ Wenjuan Gong, Xuena Zhang, Jordi Gonz{\`a}lez, Andrews Sobral, Thierry
 \newblock Human pose estimation from monocular images: A comprehensive survey.
 \newblock {\em Sensors}, 16(12):1966, 2016.
 
+\bibitem{Toshev_2014_CVPR}
+Alexander Toshev and Christian Szegedy.
+\newblock Deeppose: Human pose estimation via deep neural networks.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, June 2014.
+
+\bibitem{wei2016convolutional}
+Shih-En Wei, Varun Ramakrishna, Takeo Kanade, and Yaser Sheikh.
+\newblock Convolutional pose machines.
+\newblock In {\em Proceedings of the IEEE conference on Computer Vision and
+  Pattern Recognition}, pages 4724--4732, 2016.
+
+\bibitem{johnson2010clustered}
+Sam Johnson and Mark Everingham.
+\newblock Clustered pose and nonlinear appearance models for human pose
+  estimation.
+\newblock In {\em bmvc}, volume~2, page~5. Aberystwyth, UK, 2010.
+
 \bibitem{pons2012data}
 Gerard Pons-Moll, Laura Leal-Taix{\'e}, Juergen Gall, and Bodo Rosenhahn.
 \newblock Data-driven manifolds for outdoor motion capture.
