@@ -127,7 +127,7 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 一個測量單元包括加速規 (accelerometers)、陀螺儀 (gyroscopes) 及磁力計 (magnetometers) 三種感測器，
 加速規用於測量三軸加速度，陀螺儀用於測量三軸角速度，磁力計用於測量三軸磁場強度，
 透過三個感測器量得重力方向及地球磁場方向，
-經由資料融合演算法推估出 IMU 當下的的姿態~\cite{young2009comparison}~\cite{madgwick2011estimation}~\cite{nazarahari202140}，
+經由資料融合演算法推估出 IMU 當下的姿態~\cite{young2009comparison}~\cite{madgwick2011estimation}~\cite{nazarahari202140}，
 將 IMU 黏貼於欲量測的身體部位，例如頭部、手臂、腰部、腿等，即可量測受試者該部位的姿態。
 現今最常被使用於量測人體姿態的 IMU 設備為 Xsens ~\cite{roetenberg2009xsens}~\cite{paulich2018xsens}，
 其使用無線傳輸技術傳遞量測資料，並可透過其提供的軟體進行各感測器間的時間與空間校正，
@@ -169,7 +169,7 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 多感測器融合方法可應用於自動駕駛、智慧機器人、增強實境 (AR) 及虛擬實境 (VR) 等領域~\cite{jinyu2019survey}~\cite{zhu2023camera}，
 也可應用於人體動作捕捉領域，人體動作捕捉範圍可包含手部、上半身、下半身、全身等不同部位，
 例如 Trumble Matt 等人使用 4 或 8 台相機及 13 個 IMU 進行融合，建立人體全身姿態，
-並發表一系列經過時間對齊的多視角影片 (mult-viewpoint video, MVV) 搭配 IMU 資料集~\cite{Trumble:BMVC:2017}；
+並發表一系列經過時間對齊的多視角影片 (multi-viewpoint video, MVV) 搭配 IMU 資料集~\cite{Trumble:BMVC:2017}；
 或如學者 Zhang Zhe 等人使用 TotalCapture 資料集中的 4 台攝影機，及 8 個 IMU 資料融合，
 並使用同資料集的 Vicon 資料驗證融合方法，誤差為 24.6 (mm) ~\cite{zhang2020fusing}；
 又如學者 Von Marcard 等人提出的 3DPW ~\cite{Marcard_2018_ECCV}，
@@ -204,10 +204,10 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 % TODO:下面三種模型舉例，體積模型的敘述還沒寫完
 \subsection{運動學模型}
 運動學模型是最常見且最頻繁被應用的模型，可用於描述二維或三維人體姿態，
-通常只考慮人體骨骼結構，不考慮人體的肌肉組織，以點描述關節位置，並以棍子連接關節，代表人體指定肢體的骨骼方向，
+通常只考慮人體骨架結構，不考慮人體的肌肉組織，以點描述關節位置，並以棍子連接關節，代表人體指定肢體的骨骼方向，
 因此運動學模型可以淺顯易懂的方式描述人體部位間的關係，但無法描述人體的形狀及表面紋理。
 
-運動學模型可分為兩類，一類為預定義模型 (predefined model)，另一類為學習圖像結構模型 (learned graph structure model)，
+運動學模型可分為兩類，一類為預定義模型 (predefined model)，另一類為學習圖像結構模型 (learned graph structure model)。
 預定義模型結構為基於人體解剖學與物理定義所建構，其關節點名稱、層級與父子關係皆有既定定義，
 不受動作捕捉數據影響，不涉及任何機器學習過程，例如 Vicon 系統中的骨架結構。
 除 Vicon 系統的骨架結構外，也有學者使用預定義模型描述人體姿態估計，例如 DeepPose ~\cite{Toshev_2014_CVPR}，
