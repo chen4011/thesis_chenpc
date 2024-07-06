@@ -12,9 +12,8 @@
 \section{動作捕捉系統}
 % 概述人體動作捕捉，再說分為單感測器動作捕捉系統及多感測器動作捕捉系統，單感測動作捕捉系統又分為光學動作系統及無學動作捕捉系統
 % 下面的子段落要寫的：原理、特色、目前可達到的誤差、優缺點
-動作捕捉系統為現今常用於擷取人體動作、表情、手勢或其他物體動作等資訊的技術，其可應用於運動分析、醫學研究
-% TODO:運動分析找找看有沒有應用的文獻，醫學研究 cite 中風後的復健應用
-、遊戲開發、影片製作等領域，
+動作捕捉系統為現今常用於擷取人體動作、表情、手勢或其他物體動作等資訊的技術，其可應用於運動分析~\cite{armitano2022swot}、
+醫學研究~\cite{alarcon2020upper}~\cite{gu2023imu}、遊戲開發、影片製作等領域，
 藉由取得的資訊，可進行分析、模擬、辨識等應用。
 根據感測器種類及數量的不同，動作捕捉系統可分為單感測器動作捕捉系統及多感測器融合動作捕捉系統，
 其中單感測器動作捕捉系統又可分為光學動作捕捉系統及慣性動作捕捉系統。 
@@ -172,10 +171,10 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 並發表一系列經過時間對齊的多視角影片 (multi-viewpoint video, MVV) 搭配 IMU 資料集~\cite{Trumble:BMVC:2017}；
 或如學者 Zhang Zhe 等人使用 TotalCapture 資料集中的 4 台攝影機，及 8 個 IMU 資料融合，
 並使用同資料集的 Vicon 資料驗證融合方法，誤差為 24.6 (mm) ~\cite{zhang2020fusing}；
-又如學者 Von Marcard 等人提出的 3DPW ~\cite{Marcard_2018_ECCV}，
+又如學者 Von Marcard 等人提出的 3DPW ~\cite{vonMarcard2018}，
 使用一台手持式可移動相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，
 使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集。
-% TODO:想加上下半身的研究
+% FIXME:想加上下半身的研究
 相機及 IMU 使用數量可有多種組合，端看學者們的需求及實驗設計。
 
 \begin{figure}[!ht]
@@ -189,20 +188,36 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 \section{個人化人體模型}
 % 個人化骨架，還沒頭緒要寫什麼
 % - 可能可以提及前人的做法，例如使用 Vicon 作為骨架，但是這樣的骨架不夠個人化，所以我要做這些事情
-使用動作捕捉系統重新建立人體姿態後，常會使用人體模型 (human body model) 來描述與表示受試者的姿態，
+在人體姿態估計領域，使用動作捕捉系統過程中，通常會參考人體模型的骨架結構及物理限制，以避免估計出不符合人體結構的姿態，
+動作捕捉系統建立人體姿態後，常會使用人體模型 (human body model) 來描述與表示受試者的姿態，
+因此需建立一個個人化的人體模型，其符合受試者的骨架結構、體型及物理限制，以提高姿態估計的準確性，
 人體模型可用於描述人體結構、人體形狀及人體表面紋理等資訊~\cite{gong2016human}。
 依照模型包含的資訊不同，人體模型可分為運動學模型 (Kinematic model)、平面模型 (Planar Model)、體積模型 (Volumetric Model) 三類，
-如圖~\ref{ch2_fig_personal_model}所示。
+如圖~\ref{ch2_fig_personal_model} 所示。
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{figure/ch2_fig_personal_model.png}
-     \caption[三種不同的人體模型 (a) 運動學模型 (b) 平面模型 (c) 體積模型]{三種不同的人體模型 (a) 運動學模型 (b) 平面模型 (c) 體積模型}
-     \label{ch2_fig_personal_model}
-\end{figure}
+    \begin{minipage}{.33\textwidth}
+       \centering
+       \includegraphics[width=\linewidth]{figure/ch2_fig_personal_kinematic_model.png}
+       \caption*{(a)}
+    \end{minipage}%
+    \begin{minipage}{.33\textwidth}
+       \centering
+       \includegraphics[width=\linewidth]{figure/ch2_fig_personal_volumetric_model.png}
+       \caption*{(b)}
+    \end{minipage}%
+    \begin{minipage}{.33\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch2_fig_personal_planar_model.png}
+      \caption*{(c)}
+    \end{minipage}
+    \captionsetup{justification=centering}
+    \caption[三種不同的人體模型 (a) 運動學模型 (b) 平面模型 (c) 體積模型]{三種不同的人體模型 (a) 運動學模型 (b) 平面模型 (c) 體積模型}
+    \label{ch2_fig_personal_model}
+ \end{figure}
 
-% TODO:下面三種模型舉例，體積模型的敘述還沒寫完
-\subsection{運動學模型}
+\subsection*{運動學模型}
 運動學模型是最常見且最頻繁被應用的模型，可用於描述二維或三維人體姿態，
 通常只考慮人體骨架結構，不考慮人體的肌肉組織，以點描述關節位置，並以棍子連接關節，代表人體指定肢體的骨骼方向，
 因此運動學模型可以淺顯易懂的方式描述人體部位間的關係，但無法描述人體的形狀及表面紋理。
@@ -218,14 +233,20 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 學習圖像結構模型的方法十分多樣，一種最為常見的模型為圖像結構模型 (Pictorial Structure Models, PSM)~\cite{johnson2010clustered}，
 學習圖像模型可以捕捉複雜的運動模式，具有較好的人體描述能力，且模型可從數據中學習到更多的特徵，減少人工設計的成分，
 但模型結構較為複雜，且可能缺乏明確的物理意義，因此難以解釋。
-% TODO:上圖
 
-\subsection{平面模型}
-平面模型則是將人體分割成多個平面，以平面描述人體的外觀及形狀，身體各部位由與人體部位相似的矩形組成，可被用於描述二維人體姿態，
+\subsection*{平面模型}
+平面模型則是將人體分割成多個平面，以平面描述人體的外觀及形狀，
+身體各部位由與人體部位相似的矩形組成，可被用於描述二維人體姿態，
+例如 Active Shape Model (ASM)，其使用主成分分析方法 (principal component analysis, PCA) 取得完整的人體形狀及輪廓，
+以表示人體全身姿態~\cite{freifeld2010contour}。平面模型由於組成比體積模型簡單，因此計算速度較快，
+但是因為只能描述二維人體姿態，缺乏深度資訊，因此對於複雜的三維人體姿態描述能力較差。
 
-\subsection{體積模型}
-體積模型包括人體的形狀資訊，人體部位由相似形狀的圓柱體或圓錐體描述，人體表面由數千個網格組成，
-可被用於描述三維人體姿態，模型的樣貌最接近人體型態，
+\subsection*{體積模型}
+體積模型包括人體的形狀資訊，人體部位由相似形狀的圓柱體或圓錐體描述，圓柱體或圓椎體間的接點即為關節，
+或是使用數千個網格組成人體表面，形成人體體積模型，可被用於描述三維人體姿態，模型的樣貌最接近人體型態，
+例如學者 Matthew Loper 等人提出的 SMPL 模型 (Skinned Multi-Person Linear model)~\cite{SMPL:2015}，
+SMPL 模型為一款開源的人體體積模型，由 23 個關節及 6890 個網格頂點組成，可用於描述人體的形狀及姿態，
+體積模型可以描述人體的形狀及表面紋理，且具有較好的人體描述能力，但是模型結構較為複雜，且計算速度較慢。
 
 % ------------------------- 2.3 ------------------------- %
 \section{時間對齊}
@@ -247,7 +268,39 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 % ------------------------- 2.4 ------------------------- %
 \section{感測器融合演算法}
 % 感測器融合演算法
-感測器融合演算法，還沒頭緒要寫什麼
+使用多種不同感測器量測人體姿態，其資料間可能存在不同的誤差或雜訊，因此需進行感測器融合 (sensor fusion) 處理，
+感測器融合方法可依照融合層級分類為原始資料層級融合 (Raw Data-Level Fusion)、特徵層級融合 (Feature-Level Fusion)、
+決策層級融合 (Decision-Level Fusion) ~\cite{majumder2020vision}；
+也可依照融合演算法分類為直接融合方法 (Deterministic Method)、濾波融合方法 (Filter-Based Methods)、
+最佳化融合方法 (Optimization-Based Methods)、機器學習融合方法 (Learning-Based Methods) ~\cite{li2023visual}。
+
+% TODO:猶豫要不要把層級融合的圖放上去，如果要放應該是放層級融合那篇的 fig3
+
+\subsection*{直接融合方法}
+% 直接融合方法 (Deterministic Method) 使用簡單的邏輯計算或是加權平均計算，不涉及複雜的模型或算法，
+% 將多個感測器的資料直接合併得到最終的姿態估計。
+直接融合方法 (Deterministic Method) 屬於決策層級融合，
+在執行融合前，無標記光學動作捕捉系統及慣性動作捕捉系統皆已完成數據蒐集、特徵提取、姿態估計，
+直接融合方法僅將兩者的結果進一步進行邏輯計算或是加權平均，得到最終的姿態估計，
+不涉及複雜的模型或算法，也不涉及原始數據的修正及是否提取特定特徵的判斷。
+例如學者 Masataka Yamamoto 等人為了提高人體踝關節角度的估計準確度，
+將慣性動作捕捉系統的加速度及角加速度數據與無光標記動作捕捉系統數據使用互補濾波器進行融合~\cite{yamamoto2022verification}；
+又如學者 Grzegorz Glonek 等人，分別計算出兩種捕捉系統的軸關節角度，
+並依無光標記動作捕捉系統的關節狀態是否可見，決定其結果是否可靠，從而決定兩者的融合權重~\cite{s17122857}。
+
+直接融合方法的優點為計算簡單直接，不需要複雜的模型及冗長的計算，但是每一種量測方法都存在誤差及雜訊，
+直接融合方法沒有對誤差及雜訊進行處理，將這些誤差及雜訊也一併進行融合，因此可能會導致融合結果不夠準確。
+
+\subsection*{濾波融合方法}
+在需要即時處理多模態且帶有雜訊的感測器數據時，濾波融合方法 (Filter-Based Methods) 是一種常見的原始資料層級融合方法，
+在執行濾波融合時，輸入通常是 IMU 的原始加速度、角速度及影像的特徵點座標，融合過程中直接對原始資料進行濾波處理，估計人體姿態。
+例如
+
+% FIXME:濾波融合方法的例子和優缺點
+
+\subsection*{最佳化融合方法}
+
+\subsection*{機器學習融合方法}
 
 % ------------------------- 2.5 ------------------------- %
 \section{小結}

@@ -1,5 +1,24 @@
 \begin{thebibliography}{10}
 
+\bibitem{armitano2022swot}
+Cortney Armitano-Lago, Dominic Willoughby, and Adam~W Kiefer.
+\newblock A swot analysis of portable and low-cost markerless motion capture
+  systems to assess lower-limb musculoskeletal kinematics in sport.
+\newblock {\em Frontiers in Sports and Active Living}, 3:809898, 2022.
+
+\bibitem{alarcon2020upper}
+Andrea~Catherine Alarc{\'o}n-Aldana, Mauro Callejas-Cuervo, and Antonio
+  Padilha~Lanari Bo.
+\newblock Upper limb physical rehabilitation using serious videogames and
+  motion capture systems: A systematic review.
+\newblock {\em Sensors}, 20(21):5989, 2020.
+
+\bibitem{gu2023imu}
+Chenyu Gu, Weicong Lin, Xinyi He, Lei Zhang, and Mingming Zhang.
+\newblock Imu-based motion capture system for rehabilitation applications: A
+  systematic review.
+\newblock {\em Biomimetic Intelligence and Robotics}, 3(2):100097, 2023.
+
 \bibitem{vicon_web}
 {Vicon Motion Systems Ltd.}
 \newblock Vicon.
@@ -167,7 +186,7 @@ Rita Stagni, Silvia Fantozzi, Angelo Cappello, and Alberto Leardini.
 
 \bibitem{li2023visual}
 Tong Li and Haoyong Yu.
-\newblock Visual--inertial fusion-based human pose estimation: A review.
+\newblock Visual–inertial fusion-based human pose estimation: A review.
 \newblock {\em IEEE Transactions on Instrumentation and Measurement}, 72:1--16,
   2023.
 
@@ -196,13 +215,12 @@ Zhe Zhang, Chunyu Wang, Wenhu Qin, and Wenjun Zeng.
 \newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pages 2200--2209, 2020.
 
-\bibitem{Marcard_2018_ECCV}
-Timo von Marcard, Roberto Henschel, Michael~J. Black, Bodo Rosenhahn, and
-  Gerard Pons-Moll.
+\bibitem{vonMarcard2018}
+Timo von Marcard, Roberto Henschel, Michael Black, Bodo Rosenhahn, and Gerard
+  Pons-Moll.
 \newblock Recovering accurate 3d human pose in the wild using imus and a moving
   camera.
-\newblock In {\em Proceedings of the European Conference on Computer Vision
-  (ECCV)}, September 2018.
+\newblock In {\em European Conference on Computer Vision (ECCV)}, sep 2018.
 
 \bibitem{gong2016human}
 Wenjuan Gong, Xuena Zhang, Jordi Gonz{\`a}lez, Andrews Sobral, Thierry
@@ -227,6 +245,19 @@ Sam Johnson and Mark Everingham.
 \newblock Clustered pose and nonlinear appearance models for human pose
   estimation.
 \newblock In {\em bmvc}, volume~2, page~5. Aberystwyth, UK, 2010.
+
+\bibitem{freifeld2010contour}
+Oren Freifeld, Alexander Weiss, Silvia Zuffi, and Michael~J Black.
+\newblock Contour people: A parameterized model of 2d articulated human shape.
+\newblock In {\em 2010 IEEE computer society conference on computer vision and
+  pattern recognition}, pages 639--646. IEEE, 2010.
+
+\bibitem{SMPL:2015}
+Matthew Loper, Naureen Mahmood, Javier Romero, Gerard Pons-Moll, and Michael~J.
+  Black.
+\newblock {SMPL}: A skinned multi-person linear model.
+\newblock {\em ACM Trans. Graphics (Proc. SIGGRAPH Asia)}, 34(6):248:1--248:16,
+  October 2015.
 
 \bibitem{pons2012data}
 Gerard Pons-Moll, Laura Leal-Taix{\'e}, Juergen Gall, and Bodo Rosenhahn.
@@ -256,6 +287,23 @@ Laurie Needham, Murray Evans, Darren~P Cosker, Logan Wade, Polly~M McGuigan,
 \newblock The accuracy of several pose estimation methods for 3d joint centre
   localisation.
 \newblock {\em Scientific reports}, 11(1):20673, 2021.
+
+\bibitem{majumder2020vision}
+Sharmin Majumder and Nasser Kehtarnavaz.
+\newblock Vision and inertial sensing fusion for human action recognition: A
+  review.
+\newblock {\em IEEE Sensors Journal}, 21(3):2454--2467, 2020.
+
+\bibitem{yamamoto2022verification}
+Masataka Yamamoto, Koji Shimatani, Yuto Ishige, and Hiroshi Takemura.
+\newblock Verification of gait analysis method fusing camera-based pose
+  estimation and an imu sensor in various gait conditions.
+\newblock {\em Scientific reports}, 12(1):17719, 2022.
+
+\bibitem{s17122857}
+Grzegorz Glonek and Adam Wojciechowski.
+\newblock Hybrid orientation based human limbs motion tracking method.
+\newblock {\em Sensors}, 17(12), 2017.
 
 \bibitem{Pagnon_2021_Robustness}
 David Pagnon, Mathieu Domalain, and Lionel Reveret.
