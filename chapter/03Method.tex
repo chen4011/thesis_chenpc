@@ -179,9 +179,9 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 % 伸縮沒有寫到，要怎麼加進去?
 % TODO:覺得可以把我為甚麼選擇用 OpenPose 不用 mediapipe 寫在這邊
 % FIXME:通用模型轉成個人化模型
-在文獻~\cite{zhang2020fusing} 中，作者使用 Vicon 系統所提供的三維人體模型，
+在文獻~\cite{Zhang_2020_CVPR} 中，作者使用 Vicon 系統所提供的三維人體模型，
 並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得三維人體模型。
-因此本研究透過 Pose2Sim~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS}提出之方法，
+因此本研究透過 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy} 提出之方法，
 使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立個人三維人體模型。
 
 章節~\ref{ch4_skeleton_exp} 將會利用 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供的影像資料，進行影像辨識與三角測量計算，
@@ -380,7 +380,7 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 圖像座標 - 相機座標旋轉矩陣 ($R^{cam}_{cb}$) 為計算受試者手上棋盤格校正板與相機間關係之旋轉矩陣，
 其可將圖像座標系轉換至相機座標系，
 本研究之計算方式為使用一 5x4，方格寬度為 50 (mm) 的棋盤格校正板，
-並使用 Pose2Sim ~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}~\cite{Pagnon_2022_JOSS} 提供的校正工具進行外部參數及內部參數計算，
+並使用 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy} 提供的校正工具進行外部參數及內部參數計算，
 透過相機校正所得之外部參數即為棋盤格校正板與相機間的旋轉及平移關係。
 
 \subsubsection{感測器座標 - 骨骼座標旋轉矩陣，$R^b_s$}
@@ -467,7 +467,7 @@ IMU image pytorch
 % 探討減少相機數量的可行性及其擺放位置介紹，可是擺放位置的結論還沒有可以很好的呈現方式，所以暫時先不要有這方面的結論和討論
 % FIXME:可以從增加實驗架設方便性方面作為開頭著手，然後這邊應該可以算是解釋為何我要用兩台相機，所以位置可能需要改到第三章的最一開始
 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供 8 台相機與 13 個 IMU 的量測資料，
-而在文獻~\cite{zhang2020fusing}中，作者使用到 4 台相機及 8 個 IMU 的資料；
+而在文獻~\cite{Zhang_2020_CVPR}中，作者使用到 4 台相機及 8 個 IMU 的資料；
 % 另外在 TotalCapture Dataset 發表的文獻~\cite{Trumble:BMVC:2017}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
 因此本章節嘗試以減少相機數量\sout{並選擇相機擺放位置}進行感測器融合計算的方式，
 探討減少相機使用數量對於動作捕捉的影響，\sout{並嘗試探討相機擺放位置的選擇}。
@@ -742,7 +742,7 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 
 % \subsection{延伸討論}
 % % 延伸討論，因為現在沒有一個比較好可以呈現這個結論的方式，所以先不放
-% 由於目前文獻~\cite{zhang2020fusing}取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
+% 由於目前文獻~\cite{Zhang_2020_CVPR}取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
 % 因此以下將進一步比較三台相機及兩台相機的估計結果，並進行討論。
 
 % \subsubsection{方法}
