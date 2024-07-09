@@ -87,7 +87,7 @@
 從熱圖結果中篩選出研究者有興趣的關節點位置~\cite{kocabas2018multiposenet}。
 因此，要使用哪一種辨識方法，是否對輸出的熱圖進行後處理，需經過學者們仔細思索自身需求，再進行選擇。
 無論選擇哪一種辨識方法，最容易被大眾應用的相機為 RGB 相機 (Red-Green-Blue camera)，因此蒐集到的影像資訊缺乏受試者的深度資訊，
-需再透過棋盤格方法~\cite{zhang1999flexible} 進行相機校正及三角測量計算，取得受試者的三維姿態。 
+需再透過棋盤格方法~\cite{zhang1999flexible} 進行相機校正及三角測量計算，取得受試者的三維姿態。
 
 使用無標記動作捕捉系統進行人體姿態重建時，誤差會受到多個因素影響，
 例如輸入影像辨識模型訓練集的多樣性、受試者的姿態及服裝顏色、背景複雜程度、相機校正的準確度、相機的數量等，
@@ -103,14 +103,14 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
     \begin{minipage}{.5\textwidth}
       \centering
       \includegraphics[width=\linewidth]{figure/ch2_fig_rec_openpose.png}
-      \caption*{(a)}
+      \caption*{(a) OpenPose}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=\linewidth]{figure/ch2_fig_rec_mediapipe.png}
-       \caption*{(b)}
+       \caption*{(b) MediaPipe}
     \end{minipage}
-    \caption[影像辨識結果 (a) OpenPose (b) MediaPipe]{影像辨識結果 (a) OpenPose (b) MediaPipe}
+    \caption[影像辨識結果]{影像辨識結果}
     \label{ch2_fig_rec_result}
 \end{figure}
 
@@ -184,7 +184,7 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 又如學者 Von Marcard 等人提出的 3DPW ~\cite{vonMarcard2018}，
 使用一台手持式可移動相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，
 使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集。
-% FIXME:想加上下半身的研究
+% TODO:想加上下半身的研究
 相機及 IMU 使用數量可有多種組合，端看學者們的需求及實驗設計。
 
 \begin{figure}[!ht]
@@ -210,20 +210,20 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
     \begin{minipage}{.33\textwidth}
        \centering
        \includegraphics[width=\linewidth]{figure/ch2_fig_personal_kinematic_model.png}
-       \caption*{(a)}
+       \caption*{(a) 運動學模型}
     \end{minipage}%
     \begin{minipage}{.33\textwidth}
        \centering
        \includegraphics[width=\linewidth]{figure/ch2_fig_personal_volumetric_model.png}
-       \caption*{(b)}
+       \caption*{(b) 平面模型}
     \end{minipage}%
     \begin{minipage}{.33\textwidth}
       \centering
       \includegraphics[width=\linewidth]{figure/ch2_fig_personal_planar_model.png}
-      \caption*{(c)}
+      \caption*{(c) 體積模型}
     \end{minipage}
     \captionsetup{justification=centering}
-    \caption[三種不同的人體模型 (a) 運動學模型 (b) 平面模型 (c) 體積模型]{三種不同的人體模型 (a) 運動學模型 (b) 平面模型 (c) 體積模型}
+    \caption[三種人體模型]{三種人體模型}
     \label{ch2_fig_personal_model}
  \end{figure}
 

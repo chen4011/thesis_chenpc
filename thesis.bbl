@@ -346,6 +346,13 @@ Ahmed Ahmed and Stergios Roumeliotis.
 \newblock In {\em 2018 IEEE International Conference on Robotics and Automation
   (ICRA)}, pages 4614--4621. IEEE, 2018.
 
+\bibitem{dehkharghani2014geometric}
+Shima~Sehati Dehkharghani and Snejana Pleshkova.
+\newblock {Geometric thermal infrared camera calibration for target tracking by
+  a mobile robot}.
+\newblock {\em Comptes rendus de l’Academie bulgare des Sciences},
+  67(1):109--114, 2014.
+
 \bibitem{Pagnon_2022_JOSS}
 David Pagnon, Mathieu Domalain, and Lionel Reveret.
 \newblock {Pose2Sim: An open-source Python package for multiview markerless

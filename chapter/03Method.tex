@@ -33,22 +33,22 @@
 \section{實驗系統設定與實驗環境}\label{ch3_exp_setting}
 % 系統架設；實驗環境
 % 說明會講到實驗流程、系統設定、實驗環境等等的事情
-進行人體姿勢估計的實驗，需要使用多種感測器來量測人體姿態，且需要多項事情準備工作及設置，
-本章節將會依序說明整體實驗流程、實驗系統設定、實驗環境及實驗動作。
+進行人體姿勢估計實驗時，需要使用多種感測器來量測人體姿態，且需要多項事前準備工作及設置，
+本章節將會依序說明整體實驗流程、室內室外實驗環境、實驗系統設定及實驗動作。
 
 \subsection{實驗流程}
 % 講我蒐集資料的事前工作，和整個流程的概述
 在進行人體姿態估計的實驗流程如圖~\ref{ch3_fig_exp_flow} 所示，
 首先進行相機內部參數及外部參數拍攝，
-拍攝內部參數影片時，需使棋盤格校正板盡可能填滿畫面，並涵蓋多種不同角度的畫面，以便進行內部參數的計算，
-拍攝外部參數影片時，需由受試者站在實驗初始位置並拿著棋盤格校正板，以便進行外部參數的計算。
-接著進行個人化三維人體模型資料搜集，
+拍攝內部參數影片時，需使棋盤格校正板盡可能填滿畫面，並涵蓋多種不同角度的畫面，以便進行內部參數校正，
+拍攝外部參數影片時，需由受試者站在實驗初始位置並拿著棋盤格校正板，以便進行外部參數校正。
+接著進行個人化三維人體模型資料蒐集，
 由受試者站在實驗初始位置，進行時間對齊動作後，維持 T pose 約 1 \textasciitilde\ 2 秒進行拍攝及 IMU 量測，最後再進行一次時間對齊動作，
-完成個人化三維人體模型資料搜集。
-再來即可開始進行實驗動作資料搜集，
+完成個人化三維人體模型資料蒐集。
+再來即可開始進行實驗動作資料蒐集，
 由受試者站在實驗初始位置，進行時間對齊動作後，進行實驗動作拍攝及 IMU 量測，最後再進行一次時間對齊動作，
-完成實驗動作資料搜集。
-實驗資料搜集到此告一段落，接著將搜集到的影像資料及 IMU 量測資料進行時間對齊、空間對齊，並進行感測器融合，
+完成實驗動作資料蒐集。
+實驗資料蒐集到此告一段落，接著將蒐集到的影像資料及 IMU 量測資料進行時間對齊、空間對齊，並進行感測器融合，
 輸出即為立體人體姿態估計結果，最後計算肢段長度進行驗證。
 
 \begin{figure}[!ht]
@@ -58,16 +58,17 @@
     \label{ch3_fig_exp_flow}
 \end{figure}
 
-\subsection{實驗環境}
-% 實驗環境介紹
-使用室內和室外環境，分開介紹
+% \subsection{實驗環境}
+% % 實驗環境介紹
+% 使用室內和室外環境，分開介紹
 
-\subsubsection{室內實驗環境及尺寸}
+\subsection{室內實驗環境及尺寸}
 % 室內實驗環境介紹
-室內實驗環境空間尺寸為 880 $\times$ 880 (cm)，全室拉上遮光布遮蔽室外光線，
+室內實驗環境空間尺寸為 880$\times$880 (cm)，全室拉上遮光布遮蔽室外光線，
 量測時間為晚上 8 點至 9 點，以確保環境光線穩定，並減少環境光對影像資料的影響。
 實驗環境及尺寸如圖~\ref{ch3_fig_indoor_scale} 所示，
-受試者初始位置為圖中黑色空心圓圈位置，實驗過程中於 278 $\times$ 283 (cm) 的方形範圍內進行動作。
+受試者初始位置為圖中黑色空心圓圈位置，實驗過程中於 278$\times$283 (cm) 的方形範圍內進行動作，
+用於錄製影像的兩台手機位置於圖~\ref{ch3_fig_indoor_scale}中紅點標示處。
 實際實驗環境及受試者位置如圖~\ref{ch3_fig_indoor_position} 所示。
 
 \begin{figure}[!ht]
@@ -93,75 +94,69 @@
    \label{ch3_fig_indoor_position}
 \end{figure}
 
-\subsubsection{室外實驗環境及尺寸}
+\subsection{室外實驗環境及尺寸}
 % 室外實驗環境介紹
 % 這邊可以放一張室外實驗環境的照片
 所有房間尺寸、活動範圍尺寸、相機位置和高度
 
 \subsection{實驗系統設定}
 % 系統架設介紹
-% 實驗設定：T pose、拍手等等姿勢
-% 說明我這一段要講我用了哪些工具的前言
-本研究用於量測人體姿態的工具包含兩台 iPhone 手機、Xsens、棋盤格校正板，各自的功能如下：
-兩台手機用於記錄人體姿態的影像資料，擺放於特定位置，拍攝受試者的全身影像；
+本研究用於量測人體姿態的工具包含兩台 iPhone 手機、Xsens、棋盤格校正板。
+兩台手機用於記錄人體姿態的影像資料，擺放於固定位置、固定角度，拍攝受試者的全身影像；
 Xsens 用於記錄人體各肢段及棋盤格校正板的朝向資訊，共使用 10+1 顆 IMU 進行量測；
-棋盤格校正板用於轉換影像座標系至全域座標系，以建立影像座標系與全域座標系間的關係。
+棋盤格校正板用於進行相機校正，取得相機內部參數及外部參數，以建立影像座標系與全域座標系間的關係。
 另外，需要求受試者穿著黑色長袖上衣及黑色長褲，長度盡可能遮蓋住手腕及腳踝。
 
 
 \subsubsection{位置資訊量測工具 - 相機及擺放位置}
-% 硬體介紹；使用相機及擺放位置（平面圖和受試者的移動範圍，用上視表示），幀率(frame rate)為 60 Hz，校正板規格、黑色長秀長庫
-% 擺放位置這邊可能會說在後面實驗環境章節再詳細說明
-本研究使用兩支 iPhone 手機進行影像資料量測，分別為 iPhone XR 及 iPhone 15 Pro，皆以主鏡頭錄影格式進行拍攝，
-拍攝過程不使用縮放功能，僅使用手機本身的鏡頭進行拍攝，
+本研究使用兩支 iPhone 手機進行影像資料蒐集，分別為 iPhone XR 及 iPhone 15 Pro，
+iPhone XR 使用主鏡頭進行拍攝，焦距 26 (mm)，光圈 ƒ/1.8，iPhone 15 Pro 使用主鏡頭進行拍攝，焦距 24 (mm)，光圈 ƒ/1.78，
 兩支手機皆設定影像擷取畫面為 1920x1080，幀率設定為 60 Hz。
 
+% FIXME:環境有室內環境和室外環境，這邊有必要分開描述，但要再想想該如何描述
 本研究將 iPhone XR 編號為 cam01，將 iPhone 15 Pro 編號為 cam02，
 手機擺放位置為圖~\ref{ch3_fig_indoor_scale} 中紅色圓點處，cam01 拍攝高度為 79 (cm)，cam02 拍攝高度為 74 (cm)，
 cam 01 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中綠色範圍，cam 02 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中藍色範圍，
-在實驗資料搜集過程中，拍攝角度及位置皆維持不變。
-% FIXME:補相機在空間中的位置圖(簡略的畫一下空間尺度就好，詳細的尺度放在室內實驗環境及尺寸)，還有要加鏡頭資訊
+在實驗資料蒐集過程中，拍攝角度及位置皆維持不變。
 
 \subsubsection{朝向資訊量測工具 - Xsens}
-% 軟體介紹；xsens，講使用的軟體 MT manager 還有分析出朝向和加速度應用的模型(在 MT manager)，採樣率60HZ
-% 還有用了幾顆 IMU ，分別擺在身體的哪裡，要寫身上和板子上的擺放位置和方向
 本研究使用 Xsens 提供之硬體及軟體 MT-manager 作為量測姿態朝向的工具，採樣率設定為 60 Hz，共使用 10+1 顆 IMU 進行量測，
 十顆 IMU 分別黏貼於左右上臂中段外側、左右手腕外側、胸骨、骨盆、左右大腿中段外側、左右小腿中段外側，共十處，
-如圖~\ref{ch3_fig_humanimu} 所示， IMU 長軸 (即 x 軸) 與骨頭長度方向對齊，隨時間進行搜集各時間點受試者各肢段的朝向資訊。
-另一顆 IMU 黏貼於棋盤格校正板，量測棋盤格校正板的初始朝向，用以轉換影像座標系至全域座標系，如圖~\ref{ch3_fig_cbimu} 所示，
-IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
+如圖~\ref{ch3_fig_humanimu} 所示， IMU 長軸 (即 x 軸) 與骨頭長度方向對齊，隨時間進行蒐集各時間點受試者各肢段的朝向資訊。
+另一顆 IMU 黏貼於棋盤格校正板，量測棋盤格校正板的初始朝向，用以轉換影像座標系至全域座標系，如圖~\ref{ch3_fig_imgimu} 所示，
+IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 
 \begin{figure}[!ht]
    \centering
    \begin{minipage}{.25\textwidth}
      \centering
      \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_frontimu.JPG}
-     \caption*{(a)}
+     \caption*{(a) 前視}
    \end{minipage}%
    \begin{minipage}{.25\textwidth}
       \centering
       \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_leftimu.JPG}
-      \caption*{(b)}
+      \caption*{(b) 左視}
    \end{minipage}%
    \begin{minipage}{.25\textwidth}
       \centering
       \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_backimu.JPG}
-      \caption*{(c)}
+      \caption*{(c) 後視}
    \end{minipage}%
    \begin{minipage}{.25\textwidth}
      \centering
      \includegraphics[width=\linewidth, angle=-90]{figure/ch3_fig_rightimu.JPG}
-     \caption*{(d)}
+     \caption*{(d) 右視}
    \end{minipage}
-   \caption[IMU 於人體黏貼位置及方向 (a)前視(b)左視(c)後視(d)右視]{IMU 於人體黏貼位置及方向 (a)前視(b)左視(c)後視(d)右視}
+   \caption[IMU 於人體黏貼位置及方向]{IMU 於人體黏貼位置及方向}
    \label{ch3_fig_humanimu}
 \end{figure}
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=8cm]{figure/ch3_fig_cbimu.png}
+   \includegraphics[width=8cm]{figure/ch3_fig_imgimu.png}
     \caption[IMU 於棋盤格校正板黏貼位置及方向]{IMU 於棋盤格校正板黏貼位置及方向}
-    \label{ch3_fig_cbimu}
+    \label{ch3_fig_imgimu}
 \end{figure}
 
 \subsection{實驗動作}
@@ -171,21 +166,77 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 % ------------------------- 3.2 ------------------------- %
 \section{資料前處理}
 % 資料前處理介紹
-利用章節~\ref{ch3_exp_setting} 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
-資料前處理分為個人化人體模型建立、獲取骨盆中點位置、時間對齊、空間對齊四個部分，將於本章節進行討論。
+% 利用章節~\ref{ch3_exp_setting} 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
+% 資料前處理分為個人化人體模型建立、獲取骨盆中點位置、時間對齊、空間對齊四個部分，將於本章節進行討論。
 
-\subsection{個人化人體模型建立}\label{ch3_skeleton_method}
+\subsection{相機校正}
+相機校正可視為影像世界和真實世界之間的轉換，其中包含外部參數 (Extrinsic Parameter) 及內部參數 (Intrinsic Parameter) 兩部分，
+透過相機校正計算公式~\ref{ch3_equ_camera_calibration}，可以將全域座標系中的點轉換成在影像座標系中的點，
+如圖~\ref{ch3_fig_camera_calibration}所示，
+將在全域座標系 (global coordinate system, g) 中的點 $P_g$，經過特定的旋轉、平移轉換及投影後，
+就可以轉換成影像座標系 (image coordinate system, img) 中的點 $P_{img}$。
+
+\begin{equation}
+   s
+   \begin{bmatrix}
+      u \\ v \\ 1
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+      \alpha_x & s & u_o \\
+      0 & \alpha_y & v_o \\
+      0 & 0 & 1 \\
+   \end{bmatrix}
+   \begin{bmatrix}
+      r_{11} & r_{12} & r_{13} & t_{1} \\
+      r_{21} & r_{22} & r_{23} & t_{2} \\
+      r_{31} & r_{32} & r_{33} & t_{3} \\
+   \end{bmatrix}
+   \begin{bmatrix}
+      X \\
+      Y \\
+      Z \\
+      1 \\
+   \end{bmatrix}
+   \label{ch3_equ_camera_calibration}
+\end{equation}
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=\linewidth]{figure/ch3_fig_camera_calibration.png}
+    \caption[相機校正座標系~\cite{dehkharghani2014geometric}]{相機校正座標系~\cite{dehkharghani2014geometric}}
+    \label{ch3_fig_camera_calibration}
+\end{figure}
+
+\subsubsection*{外部參數}
+如圖~\ref{ch3_fig_camera_calibration}，
+假設有一在原點為校正板左上角的全域座標系 (global coordinate system, g) 中的點 $P_g$，
+將 $P_g$ 經過特定的旋轉及平移轉換後，就可以轉換成以相機焦點為原點的相機座標系 (camera coordinate system, cam) 中的點 $P_{cam}$，
+這個特定的旋轉及平移轉換即為相機的外部參數，旋轉以一個 3$\times$3 的旋轉矩陣 $R$ 表示，平移以一個 3$\times$1 的平移向量 $T$ 表示，
+因為在矩陣計算上，世界座標會先經過旋轉再平移，因此平移向量 $T$ 會經過旋轉矩陣 $R$ 的作用，形成 $RT$，
+再將 $[R|RT]$ 合併形成一個 3$\times$4 的外部參數矩陣 $[R|RT]$，
+即為式~\ref{ch3_equ_camera_calibration}中，等號右邊第二項。
+
+\subsubsection*{內部參數}
+將在相機座標系中的點 $P_{cam}$ 經過投影、平移及幾何校正，轉換成在影像座標系 (image coordinate system) 中的點為 $P_{img}$，
+為圖~\ref{ch3_fig_camera_calibration}中，將 $P_{cam}$ 轉換至 $P_{img}$ 的過程，
+這個投影、平移及幾何校正的過程即為相機的內部參數，為一個 3$\times$3 的矩陣，
+即為式~\ref{ch3_equ_camera_calibration}中，等號右邊第一項，
+內部參數包含焦距、影像座標系的圓點位置、解析度、 pixel 夾角等參數，
+由於這些參數皆與相機內部的硬體參數有關，因此稱為相機內部參數。
+
+\subsection{個人化三維人體模型建立}\label{ch3_skeleton_method}
 % 個人化三維人體模型建立介紹
 % 伸縮沒有寫到，要怎麼加進去?
 % TODO:覺得可以把我為甚麼選擇用 OpenPose 不用 mediapipe 寫在這邊
-% FIXME:通用模型轉成個人化模型
+% FIXME:通用模型轉成個人化模型，要補上這邊的人體模型是為了讓 IMU 建立人體姿態
 在文獻~\cite{Zhang_2020_CVPR} 中，作者使用 Vicon 系統所提供的三維人體模型，
 並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得三維人體模型。
 因此本研究透過 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy} 提出之方法，
 使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立個人三維人體模型。
 
-章節~\ref{ch4_skeleton_exp} 將會利用 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供的影像資料，進行影像辨識與三角測量計算，
-並將結果與 TotalCapture Dataset 提供之 Vicon 三維人體模型比對，以驗證此方法的可行性。
+% 章節~\ref{ch4_skeleton_exp} 將會利用 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供的影像資料，進行影像辨識與三角測量計算，
+% 並將結果與 TotalCapture Dataset 提供之 Vicon 三維人體模型比對，以驗證此方法的可行性。
 
 \subsubsection{建立方法}
 % 影像辨識
@@ -198,6 +249,7 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 以 T pose 的姿勢拍攝影片後，進入後續軟體端處理流程。
 首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
 影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
+% FIXME:想把這張圖改成用 T pose 辨識出來的圖
 其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose} 所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
@@ -234,6 +286,7 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 % 輸入資源包括圖片、影像、網路攝影機等，
 % 並可輸出原始影像加關鍵點顯示的疊圖 (PNG，JPG，AVI,...)，
 % 或是輸出純文字檔案 (JSON，XML，YAML...)，其中紀錄關鍵點相對於輸入圖像的像素座標位置及 0~1 的分數。
+% FIXME:在fusing wearable 中用 vicon 和相機參數轉換到影像坐標系，在進行裁切
 本研究使用 OpenPose 作為影像辨識工具，搭配其提供之 BODY\_25B 模型進行影像辨識，
 辨識出每一幀照片中 25 個人體關鍵點在圖像中的像素位置，可辨識出的關鍵點如圖~\ref{ch3_fig_OpenPose} 所示，
 並進一步計算左骨盆及右骨盆的中點在圖像中的像素位置，以此計算結果作為該張影像的中點進行畫面裁切，減低後續感測器融合的計算量。
@@ -248,20 +301,21 @@ IMU 的 x、y 軸對齊棋盤格校正板的 x、y 座標方向。
 \subsection{時間對齊}
 % 時間軸對齊介紹
 本研究使用拍手~\cite{pons2012data} 的方法進行時間對齊，在實驗動作開始及結束時，受試者皆需進行拍手動作，
-動作流程為：兩手打直張開呈現 T pose 維持 1~2 秒，然後迅速合攏雙手並拍手，最後維持合掌姿勢 1~2 秒。
-透過拍手動作，可在影像資料的音軌中找到明顯地拍手聲音，
-並在 IMU 資料中找到快速拍手動作的時間點，因為迅速合攏手掌的拍手動作會產生明顯的加速度變化，
+動作流程為：兩手打直張開呈現 T pose 維持 1 \textasciitilde\ 2 秒，然後迅速合攏雙手並拍手，最後維持合掌姿勢 1 \textasciitilde\ 2 秒。
+透過拍手動作，可在影像資料的音軌中找到明顯的拍手聲音，
+並在 IMU 資料中找到快速拍手動作的時間點，因為迅速合攏手掌的拍手動作會產生明顯加速度變化，
 以此時間點作為時間對齊的基準點，將影像資料及 IMU 資料進行時間對齊，以確保兩者之間的時間軸一致。
 在對齊並剪輯影像資料及 IMU 資料時有一點需要注意，
-裁切 IMU 資料時，需將拍手動作前後一個時間差的資料保留，以確保拍手動作的加速度變化完整呈現，
-因此進行影像剪輯時，需將合掌姿勢前後一個時間差的影像資料保留，以確保拍手動作的完整呈現，且可與 IMU 資料對齊。
+對齊兩種資訊時，由於加速度的明顯變化是發生在拍手那一刻的前後一幀，
+因此在裁切 IMU 資料時，需將拍手動作前後一幀的資料保留，確保拍手動作的加速度變化完整呈現，
+進行影像剪輯時，需將合掌姿勢前後一個幀的影像資料保留，以確保拍手動作的完整呈現，且可與 IMU 資料對齊。
 
 \subsection{空間對齊}
 % 座標系轉換介紹
-在人體量測領域中，每一量測方法都有其固有且常用之座標系，
-因此在進行感測器融合時，必須將各感測器之座標系轉換至同一座標系，以方便後續感測器融合計算。
+在人體量測領域中，每一量測方法都有其固有且常用的座標系，
+因此在進行感測器融合時，必須將各感測器的座標系轉換至同一座標系，以方便後續感測器融合計算。
 本研究共涉及六種座標系，可分為影像系統及 IMU 感測器系統兩大部分，兩部分的共同座標系為全域座標系 (global coordinate system, g)。
-影像系統涉及三種座標系，分別為圖像座標系 (checkboard coordinate system, cb)、
+影像系統涉及三種座標系，分別為圖像座標系 (image coordinate system, img)、
 相機座標系 (camera coordinate system, cam) 及全域座標系 (global coordinate system, g)；
 IMU 感測系統則涉及四種座標系，分別為骨骼座標系 (bone coordinate system, b)、感測器座標系 (sensor coordinate system, s)、
 IMU local 座標系 (imu local coordinate system, i)、全域座標系 (global coordinate system, g)。
@@ -285,27 +339,27 @@ y 軸則以右手定則決定，通常指向西方為正。
    \centering
    \begin{minipage}{.5\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{figure/ch3_fig_cbframe.png}
-      \caption*{(a)}
+      \includegraphics[width=\linewidth]{figure/ch3_fig_imgframe.png}
+      \caption*{(a) 影像座標系}
    \end{minipage}%
    \vspace{5mm}%
    \begin{minipage}{.5\textwidth}
       \centering
       \includegraphics[width=\linewidth]{figure/ch3_fig_camframe.png}
-      \caption*{(b)}
+      \caption*{(b) 相機座標系}
    \end{minipage}
    \begin{minipage}{.5\textwidth}
      \centering
      \includegraphics[width=\linewidth]{figure/ch3_fig_skeleton_frame.png}
-     \caption*{(c)}
+     \caption*{(c) 骨骼座標系}
    \end{minipage}%
    \begin{minipage}{.5\textwidth}
      \centering
      \includegraphics[width=\linewidth]{figure/ch3_fig_imu_frame.png}
-     \caption*{(d)}
+     \caption*{(d) 感測器座標系}
    \end{minipage}
    \captionsetup{justification=centering}
-   \caption[座標系定義 (a)影像座標系 (b)相機座標系 (c)骨骼座標系 (d)感測器座標系]{座標系定義 (a)影像座標系 (b)相機座標系 (c)骨骼座標系 (d)感測器座標系}
+   \caption[座標系定義]{座標系定義}
    \label{ch3_fig_frame}
 \end{figure}
 
@@ -315,19 +369,19 @@ y 軸則以右手定則決定，通常指向西方為正。
 將在空間中的位置點由以全域座標系為表示方式轉換至以相機座標系為表示方式。
 
 \begin{equation}
-   R^{cam}_{g} = R^{cam}_{cb}(R^{g}_{cb})^{-1}
+   R^{cam}_{g} = R^{cam}_{img}(R^{g}_{img})^{-1}
    \label{ch3_equ_image_rotation_matrix}
 \end{equation}
 
 其中，$R^{cam}_g$ 為將空間中的位置點由全域座標系轉換至相機座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從綠色座標系轉換至紫色座標系之旋轉矩陣，
 通過將 $R^{cam}_g$ 乘以全域座標系中的骨骼朝向，將以全域座標系表示之朝向轉換為以相機座標系表示的骨骼朝向；
-$(R^{g}_{cb})^{-1}$ 為全域座標系轉換至圖像座標系之旋轉矩陣，
+$(R^{g}_{img})^{-1}$ 為全域座標系轉換至圖像座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從綠色座標系轉換至粉色座標系之旋轉矩陣，
 通過將 $R^{cam}_g$ 乘以全域座標系中的骨骼朝向，將以全域座標系表示之朝向轉換為以圖像座標系表示的骨骼朝向；
-$R^{cam}_{cb}$ 為圖像座標系轉換至相機座標系之旋轉矩陣，
+$R^{cam}_{img}$ 為圖像座標系轉換至相機座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從粉色座標系轉換至紫色座標系之旋轉矩陣，
-通過將 $R^{cam}_{cb}$ 乘以圖像座標系中的骨骼朝向，將以圖像座標系表示之朝向轉換為以相機座標系表示的骨骼朝向。
+通過將 $R^{cam}_{img}$ 乘以圖像座標系中的骨骼朝向，將以圖像座標系表示之朝向轉換為以相機座標系表示的骨骼朝向。
 
 在 IMU 感測器系統座標系定義與轉換的部分，
 本研究參考文獻~\cite{malleson2017real}所提出之關係式~\ref{ch3_equ_imu_rotation_matrix}，並進行修正以更有助於理解，
@@ -359,25 +413,25 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
     \label{ch3_fig_coordinate_trans}
 \end{figure}
 
-\subsubsection{圖像座標 - 全域座標旋轉矩陣，$R^{g}_{cb}$}
+\subsubsection{圖像座標 - 全域座標旋轉矩陣，$R^{g}_{img}$}
 %圖像座標 - 全域座標旋轉矩陣
-圖像座標 - 全域座標旋轉矩陣 ($R^{g}_{cb}$) 為計算受試者手上棋盤格校正板與全域座標系間關係之旋轉矩陣，
+圖像座標 - 全域座標旋轉矩陣 ($R^{g}_{img}$) 為計算受試者手上棋盤格校正板與全域座標系間關係之旋轉矩陣，
 其可將圖像座標系轉換至全域座標系，
 將座標系統一轉換到全域座標系，以方便後續進行感測器融合計算。
-圖像座標 - 全域座標旋轉矩陣計算方式如方程式~\ref{ch3_equ_cb2g_rotation_matrix} ，
+圖像座標 - 全域座標旋轉矩陣計算方式如方程式~\ref{ch3_equ_img2g_rotation_matrix} ，
 本研究將棋盤格校正板安裝上 IMU，並將棋盤格校正板的 x、y 座標方向與 IMU 的 x、y 對齊，
-經過對齊後，IMU 的朝向可直接視為棋盤格校正板的朝向，因此 $R^{i}_{cb} = R^{i}_{s}$，
+經過對齊後，IMU 的朝向可直接視為棋盤格校正板的朝向，因此 $R^{i}_{img} = R^{i}_{s}$，
 經由 IMU 量得的 IMU - IMU local 旋轉四元數即可視為棋盤格校正板 - IMU local 的旋轉四元數，
 再將整體座標系對 y 軸旋轉 $90^{\circ}$ ，對 x 軸旋轉 $180^{\circ}$ ，即可得到圖像座標 - 全域座標旋轉矩陣。
 
 \begin{equation}
-   R^{g}_{cb} = R_{x}(\theta_{x})R{y}(\theta_{y})R^{i}_{cb} = R_{x}(\theta_{x})R{y}(\theta_{y})R^{i}_{s}
-   \label{ch3_equ_cb2g_rotation_matrix}
+   R^{g}_{img} = R_{x}(\theta_{x})R{y}(\theta_{y})R^{i}_{img} = R_{x}(\theta_{x})R{y}(\theta_{y})R^{i}_{s}
+   \label{ch3_equ_img2g_rotation_matrix}
 \end{equation}
 
-\subsubsection{圖像座標 - 相機座標旋轉矩陣，$R^{cam}_{cb}$}
+\subsubsection{圖像座標 - 相機座標旋轉矩陣，$R^{cam}_{img}$}
 % 圖像座標 - 相機座標旋轉矩陣
-圖像座標 - 相機座標旋轉矩陣 ($R^{cam}_{cb}$) 為計算受試者手上棋盤格校正板與相機間關係之旋轉矩陣，
+圖像座標 - 相機座標旋轉矩陣 ($R^{cam}_{img}$) 為計算受試者手上棋盤格校正板與相機間關係之旋轉矩陣，
 其可將圖像座標系轉換至相機座標系，
 本研究之計算方式為使用一 5x4，方格寬度為 50 (mm) 的棋盤格校正板，
 並使用 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy} 提供的校正工具進行外部參數及內部參數計算，
@@ -465,7 +519,7 @@ IMU image pytorch
 % ------------------------- 3.4 ------------------------- %
 \section{探討減少相機數量的可行性}
 % 探討減少相機數量的可行性及其擺放位置介紹，可是擺放位置的結論還沒有可以很好的呈現方式，所以暫時先不要有這方面的結論和討論
-% FIXME:可以從增加實驗架設方便性方面作為開頭著手，然後這邊應該可以算是解釋為何我要用兩台相機，所以位置可能需要改到第三章的最一開始
+% FIXME:可以從增加實驗架設方便性方面作為開頭著手，然後這邊應該可以算是解釋為何我要用兩台相機，所以位置可能需要改到第三章的最一開始，補充 total 還有提供完整的相機、IMU、vicon 資料，可以方便的直接開始進行探討
 TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供 8 台相機與 13 個 IMU 的量測資料，
 而在文獻~\cite{Zhang_2020_CVPR}中，作者使用到 4 台相機及 8 個 IMU 的資料；
 % 另外在 TotalCapture Dataset 發表的文獻~\cite{Trumble:BMVC:2017}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
@@ -487,323 +541,6 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
     \caption[相機擺放位置]{相機擺放位置}
     \label{ch3_fig_cameraset_totalcap}
 \end{figure}
-
-% FIXME:這邊以下的結果應該要放到第四章的實驗結果
-\subsection{實驗結果}
-% 實驗結果
-經過上述七類情況之實驗後，得到的 MPJPE 結果如以下所示。
-
-\subsubsection{一台相機}
-將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選一台進行估計，共計有 8 種估計結果，每一結果皆可計算出 MPJPE，
-MPJPE 計算結果如表~\ref{ch3_cameraset_1cam} 所示，可以發現無論選擇哪一個位置的相機，其估計誤差皆超過 500 (mm)。
-標準差為 87.6016 (mm)，平均值為 599.8855 (mm)。
-% 因此本研究認為只使用一台相機進行估計是不可行的，至少需使用兩台相機進行量測。
-\begin{table}[!ht]
-   \caption[一台相機組合與其估計結果誤差]{一台相機組合與其估計結果誤差}
-   \centering
-   \label{ch3_cameraset_1cam}
-   \setlength{\tabcolsep}{3pt}
-   \renewcommand\arraystretch{1.5}
-   \resizebox{\textwidth}{!}{
-   \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \hline
-      1	& 514.76 & 2 & 782.01 & 3 & 611.84 & 4 & 520.97 \\
-      5	& 653.96 & 6 & 573.41 & 7 & 599.78 & 8 & 542.36 \\
-   \end{tabular}}
-\end{table}
-\clearpage
-
-\subsubsection{兩台相機}
-將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選兩台進行排列組合，共計有 28 種組合方式之估計結果，每一結果皆可計算出 MPJPE，
-MPJPE 計算結果如表~\ref{ch3_cameraset_2cam} 所示，其中最佳組合方式為相機 18，其 MPJPE 為 46.9798 (mm)；
-而最差組合方式為相機 25，其 MPJPE 為 300.1637 (mm)。標準差為 61.7928 (mm)，平均值為 109.8694 (mm)。
-經由平均值可以發現兩台相機的姿勢估計表現相對一台相機的姿勢估計表現有大幅度的進步，進步幅度約為 500 (mm)；
-但是由標準差可知兩台相機的姿勢估計結果仍不穩定。
-% 經由結果可以發現相機的擺放位置對估計結果影響甚鉅，若位置選擇得宜，估計結果將會相當準確，反之則會有較大的誤差。
-\begin{table}[!ht]
-   \caption[兩台相機組合與其估計結果誤差]{兩台相機組合與其估計結果誤差}
-   \centering
-   \label{ch3_cameraset_2cam}
-   \setlength{\tabcolsep}{3pt}
-   \renewcommand\arraystretch{1.5}
-   \resizebox{\textwidth}{!}{
-   \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \hline
-      12 & 194.4957 & 13 & 81.9440 & 14 & 47.4927 & 15 & 76.7795 \\
-      16 & 66.8653 & 17 & 58.7619 & 18 & 46.9798 & & \\
-      \hline
-      23 & 227.5722 & 24 & 182.6378 & 25 & 300.1637 & 26 & 183.0773 \\
-      27 & 181.6520 & 28 & 145.2458 & & & &\\
-      \hline
-      34 & 99.3426 & 35 & 109.4178 & 36 & 92.7550 & 37 & 97.7435 \\
-      38 & 81.3640 & & & & & &\\
-      \hline
-      45 & 87.4750 & 46 & 66.8800 & 47 & 67.4949 & 48 & 52.3318 \\
-      \hline
-      56 & 126.3387 & 57 & 95.1469 & 58 & 64.6374 & &\\
-      \hline
-      67 & 100.7632 & 68 & 63.7904 & & & &\\
-      \hline
-      78 & 77.1948 & & & & & &\\
-   \end{tabular}}
-\end{table}
-\clearpage
-
-\subsubsection{三台相機}
-將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選三台進行排列組合，共計有 56 種組合方式之估計結果，每一結果皆可計算出 MPJPE，
-MPJPE 計算結果如表~\ref{ch3_cameraset_3cam} 所示，其中最佳組合方式為相機 137，其 MPJPE 為 27.1579 (mm)；
-而最差組合方式為相機 257，其 MPJPE 為 82.8158 (mm)。標準差為 13.8423 (mm)，平均值為 42.9001 (mm)。
-經由平均值可以發現：相較兩台相機的姿勢估計結果，三台相機的姿勢估計結果準確性仍有明顯提升，進步幅度約為 60 (mm)；
-由標準差可以知道三台相機的姿勢估計結果漸趨穩定。
-% 但只要位置恰當，僅用三台相機也可以有四台相機的表現水準。
-\begin{table}[!ht]
-   \caption[三台相機組合與其估計結果誤差]{三台相機組合與其估計結果誤差}
-   \centering
-   \label{ch3_cameraset_3cam}
-   \setlength{\tabcolsep}{3pt}
-   \renewcommand\arraystretch{1.5}
-   \resizebox{\textwidth}{!}{
-   \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \hline
-      123 & 41.8538 & 124 & 43.2544 & 125 & 70.4747 & 126 & 41.7470 & 127 & 54.5721 \\
-      128 & 46.7714 & & & & & & & & \\
-      134 & 30.9862 & 135 & 29.0275 & 136 & 33.6116 & 137 & 27.1579 & 138 & 29.9961 \\
-      145 & 34.4860 & 146 & 32.7227 & 147 & 29.9785 & 148 & 31.5573 & & \\
-      156 & 38.3802 & 157 & 33.2107 & 158 & 33.4297 & & & & \\
-      167 & 32.4098 & 168 & 33.4044 & 178 & 32.2636 & & & & \\
-      \hline
-      234 & 52.0193 & 235 & 76.4435 & 236 & 52.6657 & 237 & 65.5297 & 238 & 44.5936 \\
-      245 & 76.6047 & 246 & 42.4841 & 247 & 54.8719 & 248 & 45.2496 & & \\
-      256 & 74.8608 & 257 & 82.8158 & 258 & 62.4336 & & & & \\
-      267 & 58.7578 & 268 & 39.2619 & 278 & 62.7102 & & & & \\
-      \hline
-      345 & 35.9928 & 346 & 42.7418 & 347 & 35.2381 & 348 & 33.5695 & & \\
-      356 & 42.9933 & 357 & 35.1894 & 358 & 29.6995 & & & & \\
-      367 & 40.0411 & 368 & 35.8360 & 378 & 34.9221 & & & & \\
-      \hline
-      456 & 40.0658 & 457 & 37.2030 & 458 & 32.7289 & & & & \\
-      467 & 35.6906 & 468 & 33.8860 & 478 & 35.3151 & & & & \\
-      \hline
-      567 & 41.5287 & 568 & 34.8289 & 578 & 37.5083 & & & & \\
-      \hline
-      678 & 34.8273 & & & & & & & & \\
-   \end{tabular}}
-\end{table}
-\clearpage
-
-\subsubsection{四台相機}
-將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選四台進行排列組合，共計有 70 種組合方式之估計結果，每一結果皆可計算出 MPJPE，
-MPJPE 計算結果如表~\ref{ch3_cameraset_4cam} 所示，其中最佳組合方式為相機 1357，其 MPJPE 為 24.5789 (mm)；
-而最差組合方式為相機 2567，其 MPJPE 為 38.9142 (mm)。標準差為 3.6860 (mm)，平均值為 31.0114 (mm)。
-經由平均值可以發現，四台相機的姿勢估計結果相對三台相機的姿勢估計結果有進一步提升，進步幅度約為 10 (mm)，
-相較兩台相機與三台相機的進步幅度有逐漸平穩的趨勢；
-而由標準差可以知道四台相機組合的表現都相當穩定，無論如何選擇都不會有太大的影響。
-\begin{table}[!ht]
-   \caption[四台相機組合與其估計結果誤差]{四台相機組合與其估計結果誤差}
-   \centering
-   \label{ch3_cameraset_4cam}
-   \setlength{\tabcolsep}{3pt}
-   \renewcommand\arraystretch{1.5}
-   \resizebox{\textwidth}{!}{
-   \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      % \hline
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \hline
-      1234 & 30.9409 & 1235 & 28.8549 & 1236 & 30.3748 & 1237 & 28.8213 & 1238 & 31.1560 \\
-      1245 & 33.1706 & 1246 & 31.5377 & 1247 & 32.1031 & 1248 & 33.6613 &            &         \\
-      1256 & 34.5089 & 1257 & 34.6787 & 1258 & 35.2625 &            &         &            &         \\
-      1267 & 31.7009 & 1268 & 33.0636 & 1278 & 34.6861 &            &         &            &         \\
-      1345 & 26.9753 & 1346 & 28.2925 & 1347 & 25.4715 & 1348 & 26.7584 &            &         \\
-      1356 & 27.7651 & 1357 & 24.5789 & 1358 & 25.8578 &            &         &            &         \\
-      1367 & 26.3845 & 1368 & 26.9445 & 1378 & 26.1466 &            &         &            &         \\
-      1456 & 29.9311 & 1457 & 26.6848 & 1458 & 27.9429 &            &         &            &         \\
-      1467 & 26.8121 & 1468 & 27.5472 & 1478 & 27.1979 &            &         &            &         \\
-      1567 & 27.5824 & 1568 & 29.1892 & 1578 & 27.4552 & 1678 & 27.8378 &            &         \\
-      \hline
-      2345 & 34.0972 & 2346 & 36.5508 & 2347 & 36.7314 & 2348 & 33.7047 &            &         \\
-      2356 & 35.6585 & 2357 & 36.3698 & 2358 & 30.8585 &            &         &            &         \\
-      2367 & 36.8662 & 2368 & 32.6160 & 2378 & 34.8430 &            &         &            &         \\
-      2456 & 35.6440 & 2457 & 37.1359 & 2458 & 33.4067 &            &         &            &         \\
-      2467 & 35.8266 & 2468 & 33.2654 & 2478 & 36.6081 &            &         &            &         \\
-      2567 & 38.9142 & 2568 & 33.7187 & 2578 & 38.7211 & 2678 & 34.3506 &            &         \\
-      \hline
-      3456 & 32.4429 & 3457 & 27.7338 & 3458 & 27.6554 &            &         &            &         \\
-      3467 & 31.0735 & 3468 & 29.9925 & 3478 & 27.9168 &            &         &            &         \\
-      3567 & 29.2876 & 3568 & 28.3170 & 3578 & 26.8460 & 3678 & 29.4004 &            &         \\
-      \hline
-      4567 & 29.8717 & 4568 & 29.7963 & 4578 & 28.2055 & 4678 & 28.9104 & 5678 & 29.5824 \\
-   \end{tabular}}
-\end{table}
-\clearpage
-
-\subsubsection{五台相機}
-將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選三台進行排列組合，共計有 56 種組合方式之估計結果，每一結果皆可計算出 MPJPE，
-MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方式為相機 13578，其 MPJPE 為 23.9568 (mm)；
-而最差組合方式為相機 23467，其 MPJPE 為 32.1120 (mm)。標準差為 2.0034 (mm)，平均值為 27.6608 (mm)。
-經由平均值可以發現：相較四台相機的姿勢估計結果，五台相機的姿勢估計結果並無明顯提升，進步幅度約為 4 (mm)；
-由標準差可以知道五台相機的姿勢估計結果十分集中，且將平均值與四台相機的平均值相比並無明顯進步。
-\begin{table}[!ht]
-   \caption[五台相機組合與其估計結果誤差]{五台相機組合與其估計結果誤差}
-   \centering
-   \label{ch3_cameraset_5cam}
-   \setlength{\tabcolsep}{3pt}
-   \renewcommand\arraystretch{1.5}
-   \resizebox{\textwidth}{!}{
-   \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
-      \hline
-      12345 & 27.2222 & 12346 & 28.7270 & 12347 & 27.2410 & 12348 & 28.1424 & 12356 & 27.5630  \\
-      12357 & 25.4345 & 12358 & 26.9508 & 12367 & 27.4309 & 12368 & 27.9631 & 12378 & 27.5871  \\
-      12456 & 29.2157 & 12457 & 27.4585 & 12458 & 29.1856 & 12467 & 28.0690 & 12468 & 28.8999  \\
-      12478 & 28.9294 & 12567 & 28.2794 & 12568 & 29.9585 & 12578 & 29.0917 & 12678 & 29.1141  \\
-      13456 & 26.5308 & 13457 & 24.2506 & 13458 & 24.7973 & 13467 & 25.4456 & 13468 & 25.5140  \\
-      13478 & 24.5152 & 13567 & 24.7163 & 13568 & 25.2622 & 13578 & 23.9568 & 13678 & 25.0847  \\
-      14567 & 25.6222 & 14568 & 26.3839 & 14578 & 25.2386 & 14678 & 25.3628 & 15678 & 26.0199  \\
-      \hline
-      23456 & 31.3515 & 23457 & 28.8724 & 23458 & 28.4882 & 23467 & 32.1120 & 23468 & 30.4884  \\
-      23478 & 29.8341 & 23567 & 29.8954 & 23568 & 28.7786 & 23578 & 27.9967 & 23678 & 30.1241  \\
-      24567 & 30.4360 & 24568 & 30.1827 & 24578 & 29.4012 & 24678 & 30.1792 & 25678 & 30.1283  \\
-      \hline
-      34567 & 27.4939 & 34568 & 27.0215 & 34578 & 25.1997 & 34678 & 27.0385 & 35678 & 26.0327  \\
-      \hline
-      45678 & 26.7827 & ~ & ~ & ~ & ~ & ~ & ~ & ~ &   \\
-   \end{tabular}}
-\end{table}
-\clearpage
-
-\subsubsection{六台相機、七台相機}
-由於六台相機與七台相機之估計結果皆與四台相機及五台相機的估計結果相近，因此不再完整將結果列出。
-六台相機姿勢估計誤差之標準差為 1.3281 (mm)，平均值為 25.9980 (mm)，
-七台相機姿勢估計誤差之標準差為 0.8525 (mm)，平均值為 24.9272 (mm)。
-將兩者的標準差及平均值與五台相機的標準差及平均值進行比較，
-可以發現六台相機及七台相機的表現皆與五台相機的表現結果相近，無大幅度的進步，
-因此推測增加相機數量以改善姿勢估計誤差的策略存在極限，使用四台相機即可，
-再繼續增加相機數量無法顯著改善估計準確性。
-
-\subsection{結果與討論}
-% 結果介紹與討論
-將一台相機到七台相機的全部 MPJPE 繪製成圖~\ref{ch3_fig_1to7cam}，
-可以發現相機數量從一台增加到四台時，MPJPE 隨著相機數量的增加有明顯下降的趨勢，從四台相機開始，MPJPE 的下降幅度逐漸減緩，
-因此可以推斷，當相機數量增加到四台時，MPJPE 的表現已經相當穩定，且相機數量增加到五台以上時，MPJPE 的表現並不會有太大的改善。
-另外，若觀察每一相機數量的最佳表現 (即 MPJPE 最小值)，可以發現兩台相機及三台相機的最佳表現皆有到達誤差 50 (mm) 以下，
-所以，若希望盡可能減少相機數量，且容許誤差 50 (mm) 以下，則可以選擇兩台相機或三台相機進行姿勢估計，
-因此，綜上所述可推斷，為增加實驗架設方便性，減少相機數量是可考慮的選擇。
-% 所以，若要達到最佳的姿勢估計結果，相機數量應選擇四台即可。
-% MPJPE 約都在 20\textasciitilde40 mm 左右，只是如果三台相機的配置適當的話，結果並不會比四台相機的結果差。
-\begin{figure}[!ht]
-   \centering
-   \includegraphics[width=\linewidth]{figure/ch3_fig_1to7cam.png}
-   \caption[一台相機到七台相機的組合估計結果]{一台相機到七台相機的組合估計結果}
-   \label{ch3_fig_1to7cam}
-\end{figure}
-
-% 跟位置討論有關的事情都先不放
-% 另外列出每一相機數量的最佳表現及最差表現，如表~\ref{ch3_best_worst_camset}，可以發現相機 1 皆有出現在最佳表現的結果中，而相機 2 皆有出現在最差表現的結果中，
-% 因此推論相機 1 的位置較為適當。
-% \begin{table}[!ht]
-%    \caption[相機組合的最差及最佳表現]{相機組合的最差及最佳表現}
-%    \centering
-%    \label{ch3_best_worst_camset}
-%    \setlength{\tabcolsep}{3pt}
-%    \renewcommand\arraystretch{1.5}
-%    \begin{tabular}{c|c|c|c|c}
-%        & 1 cam & 2 cam & 3 cam & 4 cam \\ 
-%       \midrule[2pt]
-%       最差表現 & 2 & 25 & 257 & 2567 \\
-%       最佳表現 & 1 & 18 & 137 & 1357 \\
-%    \end{tabular}
-% \end{table}
-
-% \subsection{延伸討論}
-% % 延伸討論，因為現在沒有一個比較好可以呈現這個結論的方式，所以先不放
-% 由於目前文獻~\cite{Zhang_2020_CVPR}取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
-% 因此以下將進一步比較三台相機及兩台相機的估計結果，並進行討論。
-
-% \subsubsection{方法}
-% 將三台相機的估計結果依照兩台相機的配對進行平均，再與兩台相機的結果相減，以此方式觀察多一台相機的影響。
-% 計算方式如算式~\ref{ch3_3camaveMin2cam}。
-% \begin{equation}
-%    \label{ch3_3camaveMin2cam}
-%    \text{差值} = \text{ave}(\text{MPJPE}_{3 \text{ cam}})-\text{MPJPE}_{2 \text{ cam}}
-% \end{equation}
-
-% \subsubsection{結果}
-% 以下表~\ref{ch3_ave_3cam_vs_2cam} 交互相機 18 為例，即將 128、138、148、158、168、178 六組相機配對的估計結果進行平均，
-% 得 MPJPE = 34.5704，再與直接用兩台相機進行融合估計得到的 MPJPE = 46.9798 相減，得 12.4094。
-% 由下表~\ref{ch3_ave_3cam_vs_2cam} 可知，相機 1 及相機 8 的配對再加上第三台相機較不會有顯著的改善，
-% 且前三種配對 (即配對 18、配對 14、配對 48)的改善皆都落在約 10~15 mm 左右，
-% 所以可以推斷，相機 1、4、8 三個位置，隨意取其中兩者可能是較適合擺放相機的位置。
-% \begin{table}[!ht]
-%    \caption[兩台相機與三台相機平均之比較]{兩台相機與三台相機平均之比較}
-%    \centering
-%    \label{ch3_ave_3cam_vs_2cam}
-%    \setlength{\tabcolsep}{3pt}
-%    \renewcommand\arraystretch{1.5}
-%    \begin{tabular}{c|c|c|c}
-%       交互相機 & $ave(MPJPE_{3 cam})$ & $MPJPE_{2 cam}$ & 差 \\
-%       \midrule[2pt]
-%       18 & 34.5704 & 46.9798 & 12.4094 \\
-%       14 & 33.8308 & 47.4927 & 13.6619 \\
-%       48 & 35.3844 & 52.3318 & 16.9474 \\
-%       17 & 34.9321 & 58.7619 & 23.8298 \\ 
-%       58 & 38.4382 & 64.6374 & 26.1993 \\
-%       68 & 35.3408 & 63.7904 & 28.4496 \\
-%       46 & 37.9318 & 66.8800 & 28.9481 \\  
-%       47 & 38.0495 & 67.4949 & 29.4454 \\ 
-%       16 & 35.3793 & 66.8653 & 31.4860 \\ 
-%       15 & 39.8348 & 76.7795 & 36.9447 \\
-%       78 & 39.5911 & 77.1948 & 37.6037 \\
-%    \end{tabular}
-% \end{table}
-
-% 另外，若希望 $MPJPE_{2 cam}$ 低於 80 mm，則從兩台相機的估計結果(表~\ref{ch3_cameraset_2cam})挑選出 $MPJPE_{2 cam}$ 低於 80 mm 的結果，
-% 並計算每一相機的出現次數，則可得出如下表~\ref{ch3_cam_occurrence} 的結果，觀察下表也可發現相機 1、8 的出現次數最高，
-% 其次為相機 4 ，因此也可推斷相機 1、4、8 三個位置可能是較適合擺放相機的位置。
-% \begin{table}[!ht]
-%    \caption[兩台相機估計結果之每台相機的出現次數]{兩台相機估計結果之每台相機的出現次數}
-%    \centering
-%    \label{ch3_cam_occurrence}
-%    \setlength{\tabcolsep}{3pt}
-%    \renewcommand\arraystretch{1.5}
-%    \begin{tabular}{c|c}
-%       相機 & 出現次數 \\
-%       \midrule[2pt]
-%       1 & 5 \\
-%       2 & 0 \\
-%       3 & 0 \\
-%       4 & 4 \\
-%       5 & 2 \\
-%       6 & 3 \\
-%       7 & 3 \\
-%       8 & 5 \\
-%    \end{tabular}
-% \end{table}
 
 % ------------------------- 3.4 ------------------------- %
 \section{結果可視化}
