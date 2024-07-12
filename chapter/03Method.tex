@@ -30,11 +30,41 @@
 \clearpage
 
 % ------------------------- 3.1 ------------------------- %
+\section{探討減少相機數量的可行性}
+% 探討減少相機數量的可行性及其擺放位置介紹，可是擺放位置的結論還沒有可以很好的呈現方式，所以暫時先不要有這方面的結論和討論
+% FIXME:可以從增加實驗架設方便性方面作為開頭著手，然後這邊應該可以算是解釋為何我要用兩台相機，所以位置可能需要改到第三章的最一開始，補充 total 還有提供完整的相機、IMU、vicon 資料，可以方便的直接開始進行探討
+% TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供 8 台相機與 13 個 IMU 的量測資料，
+在文獻~\cite{Zhang_2020_CVPR}中，作者使用到 4 台相機及 8 個 IMU 的資料；
+% 另外在 TotalCapture Dataset 發表的文獻~\cite{Trumble:BMVC:2017}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
+因此本章節嘗試減少相機數量\sout{並選擇相機擺放位置}進行感測器融合計算，
+探討減少相機使用數量對於人體姿態估計的影響，\sout{並嘗試探討相機擺放位置的選擇}。
+
+\subsection{實驗方法}
+% 實驗方法介紹
+% 目前的相機用量及擺放位置敘述，要 cite totalcapture 和 data fusion
+TotalCapture Dataset~\cite{Trumble:BMVC:2017} 共蒐集了五位受試者的動作資料，每位受試者進行四組動作，每組動作重複三次，每組動作皆提供 8 台相機資料，可將整個實驗場域完整拍攝、13 個 IMU 資料、Vicon 資料，且這些資料已進行時間對齊、空間對齊，可直接進行感測器融合實驗，因此本研究選擇使用 TotalCapture Dataset 進行實驗。
+
+TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面牆面上方架設兩台相機，
+四面牆共計八台相機，每台相機距離地面高度皆為 2.5 (m)，擺放位置以上視的視角呈現，如圖~\ref{ch3_fig_cameraset_totalcap} 所示。
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=8cm]{figure/ch3_fig_cameraset_totalcap.png}
+    \caption[相機擺放位置]{相機擺放位置}
+    \label{ch3_fig_cameraset_totalcap}
+\end{figure}
+
+本次實驗將分成七類情況進行，第一類情況為從八台相機中任選一台相機進行感測器融合計算，
+並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，
+第二類為任選兩台相機進行姿勢估計，以此方式遞增至第七類，任選七台相機進行姿勢估計，每一類情況皆會產生一組 MPJPE，
+藉由觀察每一類 MPJPE 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
+
+% ------------------------- 3.2 ------------------------- %
 \section{實驗系統設定與實驗環境}\label{ch3_exp_setting}
 % 系統架設；實驗環境
 % 說明會講到實驗流程、系統設定、實驗環境等等的事情
 進行人體姿勢估計實驗時，需要使用多種感測器來量測人體姿態，且需要多項事前準備工作及設置，
-本章節將會依序說明整體實驗流程、室內室外實驗環境、實驗系統設定及實驗動作。
+本章節將會依序說明整體實驗流程、實驗環境、實驗系統設定及實驗動作。
 
 \subsection{實驗流程}
 % 講我蒐集資料的事前工作，和整個流程的概述
@@ -49,7 +79,7 @@
 由受試者站在實驗初始位置，進行時間對齊動作後，進行實驗動作拍攝及 IMU 量測，最後再進行一次時間對齊動作，
 完成實驗動作資料蒐集。
 實驗資料蒐集到此告一段落，接著將蒐集到的影像資料及 IMU 量測資料進行時間對齊、空間對齊，並進行感測器融合，
-輸出即為立體人體姿態估計結果，最後計算肢段長度進行驗證。
+輸出即為三維人體姿態估計結果，最後計算肢段長度進行驗證。
 
 \begin{figure}[!ht]
    \centering
@@ -60,11 +90,10 @@
 
 % \subsection{實驗環境}
 % % 實驗環境介紹
-% 使用室內和室外環境，分開介紹
 
-\subsection{室內實驗環境及尺寸}
-% 室內實驗環境介紹
-室內實驗環境空間尺寸為 880$\times$880 (cm)，全室拉上遮光布遮蔽室外光線，
+\subsection{實驗環境及尺寸}
+% 實驗環境介紹
+實驗環境空間尺寸為 880$\times$880 (cm)，全室拉上遮光布遮蔽室外光線，
 量測時間為晚上 8 點至 9 點，以確保環境光線穩定，並減少環境光對影像資料的影響。
 實驗環境及尺寸如圖~\ref{ch3_fig_indoor_scale} 所示，
 受試者初始位置為圖中黑色空心圓圈位置，實驗過程中於 278$\times$283 (cm) 的方形範圍內進行動作，
@@ -74,7 +103,7 @@
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_scale.png}
-    \caption[室內實驗環境及尺寸]{室內實驗環境及尺寸}
+    \caption[實驗環境及尺寸]{實驗環境及尺寸}
     \label{ch3_fig_indoor_scale}
 \end{figure}
 
@@ -82,22 +111,22 @@
    \centering
    \begin{minipage}{.5\textwidth}
      \centering
-     \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position1.png}
+     \includegraphics[width=.95\linewidth]{figure/ch3_fig_indoor_position1.png}
      \caption*{(a)相機與受試者位置 (前視)}
    \end{minipage}%
    \begin{minipage}{.5\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{figure/ch3_fig_indoor_position2.png}
+      \includegraphics[width=.95\linewidth]{figure/ch3_fig_indoor_position2.png}
       \caption*{(b)相機與受試者位置 (後視)}
    \end{minipage}%
-   \caption[室內實際實驗環境及相機與受試者位置]{室內實際實驗環境及相機與受試者位置}
+   \caption[實際實驗環境及相機與受試者位置]{實際實驗環境及相機與受試者位置}
    \label{ch3_fig_indoor_position}
 \end{figure}
 
-\subsection{室外實驗環境及尺寸}
-% 室外實驗環境介紹
-% 這邊可以放一張室外實驗環境的照片
-所有房間尺寸、活動範圍尺寸、相機位置和高度
+% \subsection{室外實驗環境及尺寸}
+% % 室外實驗環境介紹
+% % 這邊可以放一張室外實驗環境的照片
+% 所有房間尺寸、活動範圍尺寸、相機位置和高度
 
 \subsection{實驗系統設定}
 % 系統架設介紹
@@ -113,7 +142,6 @@ Xsens 用於記錄人體各肢段及棋盤格校正板的朝向資訊，共使�
 iPhone XR 使用主鏡頭進行拍攝，焦距 26 (mm)，光圈 ƒ/1.8，iPhone 15 Pro 使用主鏡頭進行拍攝，焦距 24 (mm)，光圈 ƒ/1.78，
 兩支手機皆設定影像擷取畫面為 1920x1080，幀率設定為 60 Hz。
 
-% FIXME:環境有室內環境和室外環境，這邊有必要分開描述，但要再想想該如何描述
 本研究將 iPhone XR 編號為 cam01，將 iPhone 15 Pro 編號為 cam02，
 手機擺放位置為圖~\ref{ch3_fig_indoor_scale} 中紅色圓點處，cam01 拍攝高度為 79 (cm)，cam02 拍攝高度為 74 (cm)，
 cam 01 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中綠色範圍，cam 02 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中藍色範圍，
@@ -163,7 +191,7 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 % 實驗動作介紹
 現在還不確定要不要把每個動作的量測目的都寫出來，畢竟結果也不好
 
-% ------------------------- 3.2 ------------------------- %
+% ------------------------- 3.3 ------------------------- %
 \section{資料前處理}
 % 資料前處理介紹
 % 利用章節~\ref{ch3_exp_setting} 介紹的系統蒐集完實驗資料後，接下來將進行資料前處理，以利後續進行感測器融合。
@@ -175,6 +203,11 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 如圖~\ref{ch3_fig_camera_calibration}所示，
 將在全域座標系 (global coordinate system, g) 中的點 $P_g$，經過特定的旋轉、平移轉換及投影後，
 就可以轉換成影像座標系 (image coordinate system, img) 中的點 $P_{img}$。
+
+相機校正技術發展至今，已有許多開源軟體可供使用，如 OpenCV~\cite{opencv_library}、MATLAB Camrea Calibration Toolbox，
+也有許多學者對 OpenCV 進行改良，提出更為方便易上手的相機校正工具，
+如 Pose2Sim~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}，
+本研究即使用 Pose2Sim 提供的相機校正工具，計算出相機內部參數及外部參數。
 
 \begin{equation}
    s
@@ -214,7 +247,7 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 將 $P_g$ 經過特定的旋轉及平移轉換後，就可以轉換成以相機焦點為原點的相機座標系 (camera coordinate system, cam) 中的點 $P_{cam}$，
 這個特定的旋轉及平移轉換即為相機的外部參數，旋轉以一個 3$\times$3 的旋轉矩陣 $R$ 表示，平移以一個 3$\times$1 的平移向量 $T$ 表示，
 因為在矩陣計算上，世界座標會先經過旋轉再平移，因此平移向量 $T$ 會經過旋轉矩陣 $R$ 的作用，形成 $RT$，
-再將 $[R|RT]$ 合併形成一個 3$\times$4 的外部參數矩陣 $[R|RT]$，
+再將 $[R|RT]$ 合併成一個 3$\times$4 的外部參數矩陣 $[R|RT]$，
 即為式~\ref{ch3_equ_camera_calibration}中，等號右邊第二項。
 
 \subsubsection*{內部參數}
@@ -229,9 +262,12 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 % 個人化三維人體模型建立介紹
 % 伸縮沒有寫到，要怎麼加進去?
 % TODO:覺得可以把我為甚麼選擇用 OpenPose 不用 mediapipe 寫在這邊
-% FIXME:通用模型轉成個人化模型，要補上這邊的人體模型是為了讓 IMU 建立人體姿態
-在文獻~\cite{Zhang_2020_CVPR} 中，作者使用 Vicon 系統所提供的三維人體模型，
-並以其為基礎，進行 IMU 計算；但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得三維人體模型。
+為方便將影像資訊與 IMU 資訊融合，需將 IMU 的朝向資訊轉換成以座標點為描述方式的人體姿態，
+因此需透過一個以關節座標點為描述方式的三維人體模型，將人體肢段向量與 IMU 朝向資訊相乘，即可得到人體各關節點在活動過程中的位置資訊。
+
+在文獻~\cite{Zhang_2020_CVPR} 中，作者使用 Vicon 系統提供的三維人體模型，並以其為基礎，將 IMU 的朝向資訊轉換成以座標點為描述方式的人體姿態，
+其中，Vicon 系統建立出的三維人體模型為預定義的運動學模型，藉由量測過程中的標記點取得受試者的四肢長度，
+以量測長度進行運動學模型的縮放，成為個人化的三維人體模型，但是在非實驗室的環境中無法使用 Vicon 進行量測，進而取得三維人體模型，
 因此本研究透過 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy} 提出之方法，
 使用影像辨識技術，辨識每一視角中人體的關節點在影像中的位置，並利用相機校正技術建立出每一關節在空間中的位置，以此方式建立個人三維人體模型。
 
@@ -249,12 +285,11 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 以 T pose 的姿勢拍攝影片後，進入後續軟體端處理流程。
 首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
 影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
-% FIXME:想把這張圖改成用 T pose 辨識出來的圖
+圖~\ref{ch3_fig_OpenPose_result} (a) 為
 其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose} 所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
-最後，基於 TotalCapture Dataset 提供之 vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，
-得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}。
+最後，基於 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供之 Vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}。
 
 \begin{figure}[!ht]
    \centering
@@ -265,9 +300,25 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=8cm]{figure/ch3_fig_OpenPose_result.png}
+   \begin{minipage}{.5\textwidth}
+     \centering
+     \includegraphics[width=.95\linewidth]{figure/ch3_fig_OpenPose_result_cam01.png}
+     \caption*{(a) cam01}
+   \end{minipage}%
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\linewidth]{figure/ch3_fig_OpenPose_result_cam02.png}
+      \caption*{(b) cam02}
+   \end{minipage}
    \caption[OpenPose 辨識結果]{OpenPose 辨識結果}
    \label{ch3_fig_OpenPose_result}
+\end{figure}
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=\linewidth]{figure/ch3_fig_OpenPose.png}
+    \caption[OpenPose 關節點對應位置]{OpenPose 關節點對應位置}
+    \label{ch3_fig_OpenPose}
 \end{figure}
 
 \begin{figure}[!ht]
@@ -277,7 +328,7 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
    \label{ch3_fig_my_skeleton}
 \end{figure}
 
-\subsection{計算骨盆在影像中的像素位置}
+\subsection{計算骨盆在影像坐標系中的位置}
 % 軟體介紹；OpenPose
 % OpenPose 為一款
 % 由  Ginés Hidalgo, Zhe Cao, Tomas Simon, Shih-En Wei, Yaadhav Raaj, Hanbyul Joo, and Yaser Sheikh 等人開發的開源軟體，
@@ -286,17 +337,15 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 % 輸入資源包括圖片、影像、網路攝影機等，
 % 並可輸出原始影像加關鍵點顯示的疊圖 (PNG，JPG，AVI,...)，
 % 或是輸出純文字檔案 (JSON，XML，YAML...)，其中紀錄關鍵點相對於輸入圖像的像素座標位置及 0~1 的分數。
-% FIXME:在fusing wearable 中用 vicon 和相機參數轉換到影像坐標系，在進行裁切
-本研究使用 OpenPose 作為影像辨識工具，搭配其提供之 BODY\_25B 模型進行影像辨識，
-辨識出每一幀照片中 25 個人體關鍵點在圖像中的像素位置，可辨識出的關鍵點如圖~\ref{ch3_fig_OpenPose} 所示，
-並進一步計算左骨盆及右骨盆的中點在圖像中的像素位置，以此計算結果作為該張影像的中點進行畫面裁切，減低後續感測器融合的計算量。
+為減少影像辨識過程中的計算量及計算時間，在文獻~\cite{Zhang_2020_CVPR} 中，
+作者使用相機校正的外部參數將 Vicon 系統所提供的骨盆三維量測數據投影至影像座標系中，
+並以在影像座標系中的骨盆座標為中心，進行影像裁切，以減少後續影像辨識及感測器融合的計算量。
 
-\begin{figure}[!ht]
-   \centering
-   \includegraphics[width=\linewidth]{figure/ch3_fig_OpenPose.png}
-    \caption[OpenPose 關節點對應位置]{OpenPose 關節點對應位置}
-    \label{ch3_fig_OpenPose}
-\end{figure}
+由於本研究無法使用 Vicon 系統進行量測，無法使用上述方式進行影像裁切，
+因此本研究選擇以 OpenPose ，搭配其提供之 BODY\_25B 模型進行初步影像辨識，
+辨識出每一幀照片中 25 個人體關鍵點在影像座標系中的位置，
+% 可辨識出的關鍵點如圖~\ref{ch3_fig_OpenPose} 所示，
+並計算左骨盆及右骨盆的中點在影像座標系中的位置，以此計算結果作為該張影像的中點進行影像裁切，減低後續影像辨識及感測器融合的計算量。
 
 \subsection{時間對齊}
 % 時間軸對齊介紹
@@ -339,23 +388,23 @@ y 軸則以右手定則決定，通常指向西方為正。
    \centering
    \begin{minipage}{.5\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{figure/ch3_fig_imgframe.png}
+      \includegraphics[width=.95\linewidth]{figure/ch3_fig_imgframe.png}
       \caption*{(a) 影像座標系}
    \end{minipage}%
    \vspace{5mm}%
    \begin{minipage}{.5\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{figure/ch3_fig_camframe.png}
+      \includegraphics[width=.95\linewidth]{figure/ch3_fig_camframe.png}
       \caption*{(b) 相機座標系}
    \end{minipage}
    \begin{minipage}{.5\textwidth}
      \centering
-     \includegraphics[width=\linewidth]{figure/ch3_fig_skeleton_frame.png}
+     \includegraphics[width=.95\linewidth]{figure/ch3_fig_skeleton_frame.png}
      \caption*{(c) 骨骼座標系}
    \end{minipage}%
    \begin{minipage}{.5\textwidth}
      \centering
-     \includegraphics[width=\linewidth]{figure/ch3_fig_imu_frame.png}
+     \includegraphics[width=.95\linewidth]{figure/ch3_fig_imu_frame.png}
      \caption*{(d) 感測器座標系}
    \end{minipage}
    \captionsetup{justification=centering}
@@ -510,44 +559,75 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 % 將 IMU local 座標系繞 z 軸旋轉 $\delta$ 即可轉換至全域座標系。
 % 第二階段再將全域座標系繞 x 軸旋轉 $-90^{\circ}$，轉換至位置資訊所在之座標系。
 
-% ------------------------- 3.3 ------------------------- %
+% ------------------------- 3.4 ------------------------- %
 \section{感測器融合方法}
 % 感測器融合方法介紹
-% 這邊如果篇幅過大也可以另立成3.3，cameraset 就改成 3.4
-IMU image pytorch
+本研究使用學者 Zhe Zhang 等人提出的感測器融合方法進行影像與 IMU 資訊的融合~\cite{Zhang_2020_CVPR}。
+此方法以學者 Bin Xiao ~\cite{Xiao_2018_ECCV} 等人提出的影像辨識方法作為基本框架，
+並套入 Zhe Zhang 等人訓練的 $occlusion\_person\_8view.pth$ 模型進行影像辨識~\cite{zhang2020adafuse}，
+取得紀錄關節點於影像中位置的初步熱圖 (每一張熱圖僅記錄一個關節點的可能位置，因此同一時刻共會輸出 16 張關節點熱圖)。
+由於初步熱圖可能存在辨識錯誤，因此會再使用 IMU 朝向資料進行同視角融合及跨視角融合。
 
-% ------------------------- 3.4 ------------------------- %
-\section{探討減少相機數量的可行性}
-% 探討減少相機數量的可行性及其擺放位置介紹，可是擺放位置的結論還沒有可以很好的呈現方式，所以暫時先不要有這方面的結論和討論
-% FIXME:可以從增加實驗架設方便性方面作為開頭著手，然後這邊應該可以算是解釋為何我要用兩台相機，所以位置可能需要改到第三章的最一開始，補充 total 還有提供完整的相機、IMU、vicon 資料，可以方便的直接開始進行探討
-TotalCapture Dataset~\cite{Trumble:BMVC:2017}提供 8 台相機與 13 個 IMU 的量測資料，
-而在文獻~\cite{Zhang_2020_CVPR}中，作者使用到 4 台相機及 8 個 IMU 的資料；
-% 另外在 TotalCapture Dataset 發表的文獻~\cite{Trumble:BMVC:2017}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
-因此本章節嘗試以減少相機數量\sout{並選擇相機擺放位置}進行感測器融合計算的方式，
-探討減少相機使用數量對於動作捕捉的影響，\sout{並嘗試探討相機擺放位置的選擇}。
+\subsection{同視角融合}
+假設有一關節點 $J_1$，其對應到影像熱圖 $H_1$ 中的點 $Y_P$，如圖~\ref{ch3_fig_joint_project} 所示，
+且此關節點在空間中的位置必位於相機中心 $C_1$ 與影像熱圖中點 $Y_P$ 的延伸線上，
+因此在直線上均勻取 $K$ 個樣本點 $P_k$， $k = 1, ..., K$，
+利用這些樣本點及 IMU 的朝向資訊 $o$ 與三維人體模型肢段長度 $l$ 資訊，輸入式~\ref{ch3_equ_cal_qk} 中，推斷 $J_1$ 的子關節點 $J_2$ 應位於空間中的位置 $Q_k$， $k = 1, ..., K$ 之中，
+將空間中的位置 $Q_k$ 投影至關節點 $J_2$ 的影像熱圖 $H_2$ 中，得 $Y^1_{Q_k}$， $k = 1, ..., K$。
 
-\subsection{實驗方法}
-% 實驗方法介紹
-% 目前的相機用量及擺放位置敘述，要 cite totalcapture 和 data fusion
-TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面牆面上方架設兩台相機，
-四面牆共計八台相機，每台相機距離地面高度皆為 2.5 (m)，擺放位置以上視的視角呈現，如圖~\ref{ch3_fig_cameraset_totalcap} 所示。
-本次實驗將分成七類情況進行，第一類情況為從八台相機中任選一台相機進行感測器融合計算，
-並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，
-第二類為任選兩台相機進行姿勢估計，以此方式遞增至第七類，任選七台相機進行姿勢估計，每一類情況皆會產生一組 MPJPE。
+\begin{equation}
+   Q_k=P_k+o*l, \forall k=1,...,K
+   \label{ch3_equ_cal_qk}
+\end{equation}
+
+理論上，與 $Y_P$ 相對應的 $Y_{Q_k}$ 的投影位置在熱圖 $H_2$ 上會有很高的數值，藉此提高 $J_1$ 在 $H_1$ 的位置是 $Y_P$ 的機率。但由於缺乏影像的深度資訊，無法得知真正與 $Y_P$ 對應的 $Y_{Q_k}$ 為何，因此 $Y_{Q_k}$ 會一併增加線上的所有網格點的機率，如圖~\ref{ch3_fig_same_view}，可發現圖中有一條明顯的線條，即為 $J_2$ 的可能位置。
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=8cm]{figure/ch3_fig_cameraset_totalcap.png}
-    \caption[相機擺放位置]{相機擺放位置}
-    \label{ch3_fig_cameraset_totalcap}
+   \includegraphics[width=11cm]{figure/ch3_fig_joint_project.png}
+    \caption[影像與 IMU 同視角融合方法]{影像與 IMU 同視角融合方法}
+    \label{ch3_fig_joint_project}
 \end{figure}
 
-% ------------------------- 3.4 ------------------------- %
-\section{結果可視化}
-% 結果可視化介紹
-% 分類成五個部分，分別用甚麼顏色表示
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=11cm]{figure/ch3_fig_same_view.png}
+    \caption[同視角融合結果]{同視角融合結果}
+    \label{ch3_fig_same_view}
+\end{figure}
+
+\subsection{跨視角融合}
+從同視角融合可得到每一視角下被增加機率的格點，這條線上包含與 $Y_P$ 對應的格點及不與 $Y_P$ 對應的格點，也就是說與 $Y_P$ 不相關的格點的機率也被提高，但是，由於每一視角的線條中必存在一個正確的 $Y_{Q_k}$，因此，透過跨視角融合，將每一視角的熱圖與 $J_2$ 的初始熱圖 $H_2$ 進行疊加後取熱圖中的最大值即為 $Y_{Q_k^*}$，進而提高 $J_1$ 在 $H_1$ 的位置是 $Y_P$ 的機率。如圖~\ref{ch3_fig_cross_view}，可發現圖中有兩條明顯的線條，其交點即為正確的關節點位置。
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=11cm]{figure/ch3_fig_cross_view.png}
+    \caption[跨視角融合結果]{跨視角融合結果}
+    \label{ch3_fig_cross_view}
+\end{figure}
 
 % ------------------------- 3.5 ------------------------- %
+\section{人體姿態估計結果可視化}
+% 結果可視化介紹
+% 分類成五個部分，分別用甚麼顏色表示
+感測器融合方法共計算出 16 個關鍵點的三維座標，
+分別為鼻子、頸部、肚子、左右肩膀、左右手肘、左右手腕、骨盆中點、左右骨盆、左右膝蓋、左右腳踝，
+為方便觀察人體姿態，本研究使用 Matplotlib ~\cite{Hunter:2007} 繪製三維人體模型，
+並將 16 個關鍵點分組至五個部位，分別以不同顏色表示，如圖~\ref{ch3_fig_posevis} 所示，
+鼻子、頸部、肚子、骨盆中點分配至 body，以綠色表示，
+右肩膀、右手肘、右手腕分配至 right arm，以藍色表示，
+左肩膀、左手肘、左手腕分配至 left arm，以紫色表示，
+右骨盆、右膝蓋、右腳踝分配至 right leg，以紅色表示，
+左骨盆、左膝蓋、左腳踝分配至 left leg，以橘色表示。
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=11cm]{figure/ch3_fig_posevis.png}
+    \caption[人體姿態可視化]{人體姿態可視化}
+    \label{ch3_fig_posevis}
+\end{figure}
+
+% ------------------------- 3.6 ------------------------- %
 \section{小結}
 % 本章架構
 本章節首先介紹將會使用到的背景知識，像是透過希爾式肌肉模型來模擬肌肉，藉此理解肌肉的機械與生理特性，

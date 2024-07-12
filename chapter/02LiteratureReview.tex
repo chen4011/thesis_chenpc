@@ -80,7 +80,7 @@
 缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組進而被判斷為一個人，
 且也有可能會把非人類，但形狀與人類相似的關節點誤認。
 
-經過影像辨識的圖像的輸出資料為熱圖 (heatmap)，將其可視化後如圖~\ref{ch2_fig_heatmap} 所示，
+經過影像辨識的圖像的輸出資料為熱圖 (heatmap)，熱圖的概念為將一張影像分割成多個網格，每個網格內的數值代表該網格內的像素點為某個關節點的機率，將其可視化後如圖~\ref{ch2_fig_heatmap} 所示，
 由左至右分別為左肩膀、左手肘、左手腕、右肩膀的熱圖，
 有學者會進一步對熱圖進行後處理，例如 OpenPose 將熱圖與其定義的 Part Affinity Fields (PAF) 結合，進一步更準確的辨識出關節點位置，
 又或者如 MultiPoseNet 將熱圖與 Pose Residual Network (PRN) 結合，
@@ -102,12 +102,12 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
     \centering
     \begin{minipage}{.5\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{figure/ch2_fig_rec_openpose.png}
+      \includegraphics[width=.95\linewidth]{figure/ch2_fig_rec_openpose.png}
       \caption*{(a) OpenPose}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
-       \includegraphics[width=\linewidth]{figure/ch2_fig_rec_mediapipe.png}
+       \includegraphics[width=.95\linewidth]{figure/ch2_fig_rec_mediapipe.png}
        \caption*{(b) MediaPipe}
     \end{minipage}
     \caption[影像辨識結果]{影像辨識結果}
@@ -209,17 +209,17 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
     \centering
     \begin{minipage}{.33\textwidth}
        \centering
-       \includegraphics[width=\linewidth]{figure/ch2_fig_personal_kinematic_model.png}
+       \includegraphics[width=.95\linewidth]{figure/ch2_fig_personal_kinematic_model.png}
        \caption*{(a) 運動學模型}
     \end{minipage}%
     \begin{minipage}{.33\textwidth}
        \centering
-       \includegraphics[width=\linewidth]{figure/ch2_fig_personal_volumetric_model.png}
+       \includegraphics[width=.95\linewidth]{figure/ch2_fig_personal_volumetric_model.png}
        \caption*{(b) 平面模型}
     \end{minipage}%
     \begin{minipage}{.33\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{figure/ch2_fig_personal_planar_model.png}
+      \includegraphics[width=.95\linewidth]{figure/ch2_fig_personal_planar_model.png}
       \caption*{(c) 體積模型}
     \end{minipage}
     \captionsetup{justification=centering}

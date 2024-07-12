@@ -1,5 +1,27 @@
 \begin{thebibliography}{10}
 
+\bibitem{tsakanikas2020evaluating}
+Vassilios~D Tsakanikas, Dimitrios Gatsios, Dimitrios Dimopoulos, Athanasios
+  Pardalis, Marousa Pavlou, Matthew~B Liston, and Dimitrios~I Fotiadis.
+\newblock {Evaluating the Performance of Balance Physiotherapy Exercises Using
+  a Sensory Platform: The Basis for a Persuasive Balance Rehabilitation Virtual
+  Coaching System}.
+\newblock {\em Frontiers in digital health}, 2:545885, 2020.
+
+\bibitem{zhao2017imu}
+Hongyu Zhao, Zhelong Wang, Sen Qiu, Yanming Shen, and Jianjun Wang.
+\newblock {IMU-based Gait Analysis for Rehabilitation Assessment of Patients
+  with Gait Disorders}.
+\newblock In {\em 2017 4th International Conference on Systems and Informatics
+  (ICSAI)}, pages 622--626. IEEE, 2017.
+
+\bibitem{vonMarcard2018}
+Timo von Marcard, Roberto Henschel, Michael Black, Bodo Rosenhahn, and Gerard
+  Pons-Moll.
+\newblock {Recovering Accurate 3D Human Pose in The Wild Using IMUs and a
+  Moving Camera}.
+\newblock In {\em European Conference on Computer Vision (ECCV)}, sep 2018.
+
 \bibitem{armitano2022swot}
 Cortney Armitano-Lago, Dominic Willoughby, and Adam~W Kiefer.
 \newblock {A SWOT Analysis of Portable and Low-Cost Markerless Motion Capture
@@ -224,13 +246,6 @@ Zhe Zhang, Chunyu Wang, Wenhu Qin, and Wenjun Zeng.
 \newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition (CVPR)}, June 2020.
 
-\bibitem{vonMarcard2018}
-Timo von Marcard, Roberto Henschel, Michael Black, Bodo Rosenhahn, and Gerard
-  Pons-Moll.
-\newblock {Recovering Accurate 3D Human Pose in The Wild Using IMUs and a
-  Moving Camera}.
-\newblock In {\em European Conference on Computer Vision (ECCV)}, sep 2018.
-
 \bibitem{gong2016human}
 Wenjuan Gong, Xuena Zhang, Jordi Gonz{\`a}lez, Andrews Sobral, Thierry
   Bouwmans, Changhe Tu, and El-hadi Zahzah.
@@ -346,12 +361,10 @@ Ahmed Ahmed and Stergios Roumeliotis.
 \newblock In {\em 2018 IEEE International Conference on Robotics and Automation
   (ICRA)}, pages 4614--4621. IEEE, 2018.
 
-\bibitem{dehkharghani2014geometric}
-Shima~Sehati Dehkharghani and Snejana Pleshkova.
-\newblock {Geometric thermal infrared camera calibration for target tracking by
-  a mobile robot}.
-\newblock {\em Comptes rendus de l’Academie bulgare des Sciences},
-  67(1):109--114, 2014.
+\bibitem{opencv_library}
+G.~Bradski.
+\newblock {The OpenCV Library}.
+\newblock {\em Dr. Dobb's Journal of Software Tools}, 2000.
 
 \bibitem{Pagnon_2022_JOSS}
 David Pagnon, Mathieu Domalain, and Lionel Reveret.
@@ -370,5 +383,23 @@ David Pagnon, Mathieu Domalain, and Lionel Reveret.
 \newblock {Pose2Sim: An End-to-End Workflow for 3D Markerless Sports
   Kinematics—Part 2: Accuracy}.
 \newblock {\em Sensors}, 2022.
+
+\bibitem{dehkharghani2014geometric}
+Shima~Sehati Dehkharghani and Snejana Pleshkova.
+\newblock {Geometric thermal infrared camera calibration for target tracking by
+  a mobile robot}.
+\newblock {\em Comptes rendus de l’Academie bulgare des Sciences},
+  67(1):109--114, 2014.
+
+\bibitem{Xiao_2018_ECCV}
+Bin Xiao, Haiping Wu, and Yichen Wei.
+\newblock {Simple Baselines for Human Pose Estimation and Tracking}.
+\newblock In {\em Proceedings of the European Conference on Computer Vision
+  (ECCV)}, September 2018.
+
+\bibitem{Hunter:2007}
+J.~D. Hunter.
+\newblock Matplotlib: A 2d graphics environment.
+\newblock {\em Computing in Science \& Engineering}, 9(3):90--95, 2007.
 
 \end{thebibliography}
