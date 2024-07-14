@@ -11,7 +11,7 @@
 \subsection{實驗設定}
 本研究使用使用學者 Zhe Zhang 等人提出的感測器融合方法進行影像與 IMU 資訊的融合~\cite{Zhang_2020_CVPR}，沿用其論文中的所有實驗設定，包括相機校正、三維人體模型建立、時間空間對齊、使用 8 個 IMU，分別為左右上臂、左右前臂、左右大腿、左右小腿，僅更改使用相機的數量及組合，每一結果皆可計算出 MPJPE。本研究將進行 7 種不同的實驗設定，分別為使用一台相機、使用兩台相機，以此類推至使用七台相機，並探討不同相機數量對人體姿態估計的影響。
 
-\subsection{誤差評估}
+\subsection{實驗結果與誤差評估}
 \subsubsection{使用一台相機及八個 IMU 進行人體姿態重建實驗結果}
 將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選一台進行估計，共計有 8 種估計結果，每一結果皆可計算出 MPJPE，
 MPJPE 計算結果如表~\ref{ch3_cameraset_1cam} 所示，可以發現無論選擇哪一個位置的相機，其估計誤差皆超過 500 (mm)。
@@ -244,88 +244,6 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 
 \clearpage
 
-% 跟位置討論有關的事情都先不放
-% 另外列出每一相機數量的最佳表現及最差表現，如表~\ref{ch3_best_worst_camset}，可以發現相機 1 皆有出現在最佳表現的結果中，而相機 2 皆有出現在最差表現的結果中，
-% 因此推論相機 1 的位置較為適當。
-% \begin{table}[!ht]
-%    \caption[相機組合的最差及最佳表現]{相機組合的最差及最佳表現}
-%    \centering
-%    \label{ch3_best_worst_camset}
-%    \setlength{\tabcolsep}{3pt}
-%    \renewcommand\arraystretch{1.5}
-%    \begin{tabular}{c|c|c|c|c}
-%        & 1 cam & 2 cam & 3 cam & 4 cam \\ 
-%       \midrule[2pt]
-%       最差表現 & 2 & 25 & 257 & 2567 \\
-%       最佳表現 & 1 & 18 & 137 & 1357 \\
-%    \end{tabular}
-% \end{table}
-
-% \subsection{延伸討論}
-% % 延伸討論，因為現在沒有一個比較好可以呈現這個結論的方式，所以先不放
-% 由於目前文獻~\cite{Zhang_2020_CVPR}取用四台相機，因此若欲減少相機使用數量勢必會往三台相機及兩台相機的配置進行考量，
-% 因此以下將進一步比較三台相機及兩台相機的估計結果，並進行討論。
-
-% \subsubsection{方法}
-% 將三台相機的估計結果依照兩台相機的配對進行平均，再與兩台相機的結果相減，以此方式觀察多一台相機的影響。
-% 計算方式如算式~\ref{ch3_3camaveMin2cam}。
-% \begin{equation}
-%    \label{ch3_3camaveMin2cam}
-%    \text{差值} = \text{ave}(\text{MPJPE}_{3 \text{ cam}})-\text{MPJPE}_{2 \text{ cam}}
-% \end{equation}
-
-% \subsubsection{結果}
-% 以下表~\ref{ch3_ave_3cam_vs_2cam} 交互相機 18 為例，即將 128、138、148、158、168、178 六組相機配對的估計結果進行平均，
-% 得 MPJPE = 34.5704，再與直接用兩台相機進行融合估計得到的 MPJPE = 46.9798 相減，得 12.4094。
-% 由下表~\ref{ch3_ave_3cam_vs_2cam} 可知，相機 1 及相機 8 的配對再加上第三台相機較不會有顯著的改善，
-% 且前三種配對 (即配對 18、配對 14、配對 48)的改善皆都落在約 10~15 mm 左右，
-% 所以可以推斷，相機 1、4、8 三個位置，隨意取其中兩者可能是較適合擺放相機的位置。
-% \begin{table}[!ht]
-%    \caption[兩台相機與三台相機平均之比較]{兩台相機與三台相機平均之比較}
-%    \centering
-%    \label{ch3_ave_3cam_vs_2cam}
-%    \setlength{\tabcolsep}{3pt}
-%    \renewcommand\arraystretch{1.5}
-%    \begin{tabular}{c|c|c|c}
-%       交互相機 & $ave(MPJPE_{3 cam})$ & $MPJPE_{2 cam}$ & 差 \\
-%       \midrule[2pt]
-%       18 & 34.5704 & 46.9798 & 12.4094 \\
-%       14 & 33.8308 & 47.4927 & 13.6619 \\
-%       48 & 35.3844 & 52.3318 & 16.9474 \\
-%       17 & 34.9321 & 58.7619 & 23.8298 \\ 
-%       58 & 38.4382 & 64.6374 & 26.1993 \\
-%       68 & 35.3408 & 63.7904 & 28.4496 \\
-%       46 & 37.9318 & 66.8800 & 28.9481 \\  
-%       47 & 38.0495 & 67.4949 & 29.4454 \\ 
-%       16 & 35.3793 & 66.8653 & 31.4860 \\ 
-%       15 & 39.8348 & 76.7795 & 36.9447 \\
-%       78 & 39.5911 & 77.1948 & 37.6037 \\
-%    \end{tabular}
-% \end{table}
-
-% 另外，若希望 $MPJPE_{2 cam}$ 低於 80 mm，則從兩台相機的估計結果(表~\ref{ch3_cameraset_2cam})挑選出 $MPJPE_{2 cam}$ 低於 80 mm 的結果，
-% 並計算每一相機的出現次數，則可得出如下表~\ref{ch3_cam_occurrence} 的結果，觀察下表也可發現相機 1、8 的出現次數最高，
-% 其次為相機 4 ，因此也可推斷相機 1、4、8 三個位置可能是較適合擺放相機的位置。
-% \begin{table}[!ht]
-%    \caption[兩台相機估計結果之每台相機的出現次數]{兩台相機估計結果之每台相機的出現次數}
-%    \centering
-%    \label{ch3_cam_occurrence}
-%    \setlength{\tabcolsep}{3pt}
-%    \renewcommand\arraystretch{1.5}
-%    \begin{tabular}{c|c}
-%       相機 & 出現次數 \\
-%       \midrule[2pt]
-%       1 & 5 \\
-%       2 & 0 \\
-%       3 & 0 \\
-%       4 & 4 \\
-%       5 & 2 \\
-%       6 & 3 \\
-%       7 & 3 \\
-%       8 & 5 \\
-%    \end{tabular}
-% \end{table}
-
 % ------------------------- 4.2 ------------------------- %
 \section{個人化三維人體模型建立實驗結果與討論}\label{ch4_skeleton_exp}
 % 實驗設定；實驗執行；結果與討論
@@ -337,7 +255,7 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 % 把 total capture dataset s1 系列做完
 本章節使用 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供的 s1\_acting1 \textasciitilde\ s1\_acting3、s1\_freestyle1 \textasciitilde\ s1\_freestyle3、s1\_rom1 \textasciitilde\ s1\_rom3 共九組影片資料及相機校正資料進行實驗，每組實驗皆取用 TotalCapture Dataset  提供的相機 1 與相機 8 之影像資料、兩台相機的校正資訊，以及 .bvh 檔案中 HIERARCHY 部分提供的 Vicon 三維人體模型資訊 (此資訊可由 Vicon 量測而得，因此以下將稱為 Vicon 三維人體模型)。首先，利用影像資料進行 OpenPose 影像辨識，再使用 Pose2Sim 進行相機校正及三角測量計算，建立出個人化三維人體模型。最後，取前 60 幀的資訊，計算個人化三維人體模型的平均四肢長度，並與 Vicon 三維人體模型的四肢長度進行比較。
 
-\subsection{誤差評估}
+\subsection{實驗結果與誤差評估}
 % 個人化三維人體模型建立結果與驗證
 % 分別評估四肢的誤差，然後再綜合再一起評估，總結誤差大概在多少內
 分別計算出自行建立個人化三維人體模型的四肢長度及 Vicon 三維人體模型長度後，將兩者相減得到誤差，並計算平均誤差，結果如表~\ref{ch3_skeleton_compare} 所示，可以發現自行建立個人化三維人體模型之四肢長度與 Vicon 三維人體模型之四肢長度相當接近，整體平均誤差為 25.7515 (mm)。本研究推斷，此項誤差可能來自 OpenPose 自身影像辨識造成的誤差，以及相機校正及三角測量的誤差。
@@ -374,16 +292,86 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 
 % ------------------------- 4.3 ------------------------- %
 \section{使用影像辨識估計姿態}
-單獨 heatmap 的結果
+% 單獨 heatmap 的結果
 \subsection{實驗設定}
 % 實驗設定
-123123
+本章節將自行蒐集的資料輸入進學者 Zhe Zhang 等人提出的感測器融合方法中進行人體姿態重建~\cite{Zhang_2020_CVPR}。該方法中包含兩個主要流程，一為影像辨識，二為影像辨識結果融合 IMU 資訊，本章節僅使用影像辨識進行人體姿態重建，不進行 IMU 資訊融合。使用的影像辨識方法為文獻~\cite{Xiao_2018_ECCV} 中，學者 Bin Xiao 等人提出的方法，並套用 Zhe Zhang 等人訓練的 $occlusion\_person\_8view.pth$ 模型進行影像辨識~\cite{zhang2020adafuse}，取得記錄關節點於影像中位置的初步熱圖後，使用三角測量方法計算關節點的三維位置，進而重建人體姿態。
+
 % \subsection{實驗執行}
 % % 實驗執行
-% 123123
-\subsection{誤差評估}
-% 誤差評估
-123123
+
+\subsection{實驗結果與誤差評估}
+\subsubsection*{T pose實驗結果}
+% 用pose_41、273
+使用影像辨識融合 IMU 資訊的 T pose 重建結果如圖~\ref{ch4_fig_Tpose_noimu} 所示，(a)、(b) 為同一時刻點的 cam01 影像及 cam02 影像，(c) 為人體重建結果；(c)、(d) 為同一時刻點的 cam01 影像及 cam02 影像，(e) 為人體重建結果。可以發現，在第二個時刻的 T pose 人體重建結果與真實人體姿態有些出入。
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.3\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam01_no1.jpg}
+     \caption*{(a) cam01 真實影像}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam02_no1.jpg}
+      \caption*{(b) cam02 真實影像}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_result_no1.png}
+      \caption*{(c) 重建結果}
+   \end{minipage}
+   \begin{minipage}{.3\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam01_no2.jpg}
+     \caption*{(d) cam01 真實影像}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam02_no2.jpg}
+      \caption*{(e) cam02 真實影像}
+    \end{minipage}%
+    \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_result_no2.png}
+      \caption*{(f) 重建結果}
+    \end{minipage}
+   \caption[僅使用影像辨識進行 T pose 重建結果]{僅使用影像辨識進行 T pose 重建結果}
+   \label{ch4_fig_Tpose_noimu}
+\end{figure}
+
+\subsubsection*{T pose 誤差評估}
+T pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，並計算四肢長度決定該幀的每一肢段是否估計成功，再依據成功與否決定估計肢段長度與實際肢段長度的差值是否為有效誤差，結果如表~\ref{ch4_Tpose_result_noimu} 所示，可以發現，T pose 實驗中，肢段的平均估計成功率約 44.34\%，平均有效誤差約在 50.7751 (mm)。
+
+\begin{table}[!ht]
+   \caption[影像辨識 T pose 實驗結果與誤差評估]{影像辨識 T pose 實驗結果與誤差評估}
+   \centering
+   \label{ch4_Tpose_result_noimu}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \resizebox{\textwidth}{!}{
+   \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+      & {右大腿} & {右小腿} & {左大腿} & {左小腿} & {右上臂} & {右前臂} & {左上臂} & {左前臂} & {平均} \\
+      \midrule[1.5pt]
+      成功幀數 & 304 & 187 & 16 & 12 & 61 & 92 & 183 & 273 & \\
+      成功率 & 95.59 & 58.81 & 5.03 & 3.77 & 57.55 & 85.85 & 19.18 & 28.93 & 44.34 \\
+      \midrule
+      平均估計長度 & \num{301.1909} & \num{274.8160} & \num{351.1900} & \num{442.4955} & \num{267.7453} & \num{227.7233} & \num{237.5203} & \num{258.1625} & \\
+      估計誤差 & \num{73.0909} & \num{85.1839} & \num{13.8100} & \num{77.4955} & \num{39.2547} & \num{12.7233} & \num{57.4797} & \num{47.1625} & \num{50.7751} \\
+   \end{tabular}}
+\end{table}
+
+\subsubsection*{雙手握住固定長度的桿子進行蹲站實驗結果}
+\subsubsection*{雙手握住固定長度的桿子進行蹲站誤差評估}
+\subsubsection*{開合跳實驗結果}
+\subsubsection*{開合跳誤差評估}
+\subsubsection*{折返跑實驗結果}
+\subsubsection*{折返跑誤差評估}
+\subsubsection*{熱身運動實驗結果}
+\subsubsection*{熱身運動誤差評估}
+\subsubsection*{組合動作實驗結果}
+\subsubsection*{組合動作誤差評估}
+
 \subsection{結論}
 % 結論
 123123
@@ -406,16 +394,85 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 
 % ------------------------- 4.4 ------------------------- %
 \section{使用影像辨識融合 IMU 估計姿態}
-sensor fusion 在室內的結果
+% sensor fusion 在室內的結果
 \subsection{實驗設定}
 % 實驗設定
-123123
+本章節將自行蒐集的資料輸入進學者 Zhe Zhang 等人提出的感測器融合方法中進行人體姿態重建~\cite{Zhang_2020_CVPR}。該方法中包含兩個主要流程，一為影像辨識，二為影像辨識結果融合 IMU 資訊，本章節使用影像辨識及 IMU 資訊進行人體姿態重建。使用的影像辨識方法為文獻~\cite{Xiao_2018_ECCV} 中，學者 Bin Xiao 等人提出的方法，並套用 Zhe Zhang 等人訓練的 $occlusion\_person\_8view.pth$ 模型進行影像辨識~\cite{zhang2020adafuse}，取得記錄關節點於影像中位置的初步熱圖，並融合 IMU 資訊，使用三角測量方法計算關節點的三維位置，進而重建人體姿態。
+
 % \subsection{實驗執行}
 % % 實驗執行
-% 123123
-\subsection{誤差評估}
-% 誤差評估
-123123
+
+\subsection{實驗結果與誤差評估}
+\subsubsection*{T pose 實驗結果}
+% 用pose_59、172
+使用影像辨識融合 IMU 資訊的 T pose 重建結果如圖~\ref{ch4_fig_Tpose_withimu} 所示，(a)、(b) 為同一時刻點的 cam01 影像及 cam02 影像，(c) 為人體重建結果；(c)、(d) 為同一時刻點的 cam01 影像及 cam02 影像，(e) 為人體重建結果。可以發現，兩個時刻的 T pose 人體重建結果相當接近真實人體姿態。
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.3\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam01_with1.jpg}
+     \caption*{(a) cam01 真實影像}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam02_with1.jpg}
+      \caption*{(b) cam02 真實影像}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_result_with1.png}
+      \caption*{(c) 重建結果}
+   \end{minipage}
+   \begin{minipage}{.3\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam01_with2.jpg}
+     \caption*{(d) cam01 真實影像}
+   \end{minipage}%
+   \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_cam02_with2.jpg}
+      \caption*{(e) cam02 真實影像}
+    \end{minipage}%
+    \begin{minipage}{.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_result_with2.png}
+      \caption*{(f) 重建結果}
+    \end{minipage}
+   \caption[影像辨識融合 IMU 進行 T pose 重建結果]{影像辨識融合 IMU 進行 T pose 重建結果}
+   \label{ch4_fig_Tpose_withimu}
+\end{figure}
+
+\subsubsection*{T pose 誤差評估}
+T pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，並計算四肢長度決定該幀的每一肢段是否估計成功，再依據成功與否決定估計肢段長度與實際肢段長度的差值是否為有效誤差，結果如表~\ref{ch4_Tpose_result_withimu} 所示，可以發現，T pose 實驗中，肢段的平均估計成功率約 59.3\%，平均有效誤差約在 51.0680 (mm)。
+
+\begin{table}[!ht]
+   \caption[影像辨識與 IMU 融合 T pose 實驗結果與誤差評估]{影像辨識與 IMU 融合 T pose 實驗結果與誤差評估}
+   \centering
+   \label{ch4_Tpose_result_withimu}
+   \setlength{\tabcolsep}{3pt}
+   \renewcommand\arraystretch{1.5}
+   \resizebox{\textwidth}{!}{
+   \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+      & {右大腿} & {右小腿} & {左大腿} & {左小腿} & {右上臂} & {右前臂} & {左上臂} & {左前臂} & {平均} \\
+      \midrule[1.5pt]
+      成功幀數 & 317 & 91 & 257 & 245 & 176 & 245 & 41 & 137 & \\
+      成功率 & 99.7 & 28.61 & 80.82 & 77.04 & 55.35 & 77.04 & 12.89 & 43.08 & 59.31 \\
+      \midrule
+      平均估計長度 & \num{322.2769} & \num{277.9209} & \num{328.7976} & \num{295.7648} & \num{273.7784} & \num{227.1334} & \num{238.0457} & \num{277.4777} & \\
+      估計誤差 & \num{52.2303} & \num{82.0791} & \num{36.2124} & \num{69.2352} & \num{33.2216} & \num{12.1334} & \num{56.9543} & \num{66.4777} & \num{51.0680} \\
+   \end{tabular}}
+\end{table}
+
+\subsubsection*{雙手握住固定長度的桿子進行蹲站實驗結果}
+\subsubsection*{雙手握住固定長度的桿子進行蹲站誤差評估}
+\subsubsection*{開合跳實驗結果}
+\subsubsection*{開合跳誤差評估}
+\subsubsection*{折返跑實驗結果}
+\subsubsection*{折返跑誤差評估}
+\subsubsection*{熱身運動實驗結果}
+\subsubsection*{熱身運動誤差評估}
+\subsubsection*{組合動作實驗結果}
+\subsubsection*{組合動作誤差評估}
 \subsection{結論}
 % 結論
 123123
