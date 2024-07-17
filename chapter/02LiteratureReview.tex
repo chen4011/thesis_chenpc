@@ -300,7 +300,7 @@ SMPL 模型為一款開源的人體體積模型，由 23 個關節及 6890 個�
 \subsection*{濾波融合方法}
 在需要即時處理多模態且帶有雜訊的感測器數據時，濾波融合方法 (Filter-Based Methods) 是一種常見的原始資料層級融合方法，
 在執行濾波融合時，輸入通常是 IMU 的原始加速度、角速度及影像的特徵點座標，融合過程中直接對原始資料進行濾波處理，估計人體姿態。
-較常被使用的濾波器包括卡爾曼濾波器 (Kalman Filter)、擴展卡爾曼濾波器 (Extended Kalman Filter)、無迹卡爾曼濾波器 (Unscented Kalman Filter)，
+較常被使用的濾波器包括卡爾曼濾波器 (Kalman Filter)、擴展卡爾曼濾波器 (Extended Kalman Filter)、無跡卡爾曼濾波器 (Unscented Kalman Filter)，
 例如學者 S. M. Orozco-Soto 等人，使用卡爾曼濾波器融合 IMU 資訊及影像資訊，估計受試者的上肢關節角度~\cite{orozco2019development}，
 又如學者 Randa Mallat 等人，使用擴展卡爾曼濾波器融合 IMU 資訊及影像資訊，估計受試者的上肢關節角度，
 藉此評估人類上肢康復過程中的活動能力~\cite{mallat2020upper}。
