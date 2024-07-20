@@ -26,8 +26,12 @@
 例如在文獻~\cite{Zhang_2020_CVPR}中，作者使用到 4 台相機及 8 個 IMU 的資料。儘管相機為相對較易取得的感測器，
 但是要架設至少 4 台相機並不容易，且相機數量的增加也意味著設備的成本增加，並增加實驗架設的複雜度、降低設備的機動性。
 % 另外在 TotalCapture Dataset 發表的文獻~\cite{Trumble:BMVC:2017}中則有提及嘗試減少相機的硬體數量，準確度隨著相機數量的減少而下降，
-因此本章節嘗試減少相機數量\sout{並選擇相機擺放位置}進行感測器融合計算，
-探討減少相機使用數量對於人體姿態估計精準度的影響，\sout{並嘗試探討相機擺放位置的選擇}。
+因此本章節嘗試減少相機數量
+% \sout{並選擇相機擺放位置}
+進行感測器融合計算，
+探討減少相機使用數量對於人體姿態估計精準度的影響
+% ，\sout{並嘗試探討相機擺放位置的選擇}
+。
 
 \subsection{實驗方法}
 % 實驗方法介紹
@@ -44,7 +48,14 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
     \label{ch3_fig_cameraset_totalcap}
 \end{figure}
 
-本次實驗將分成七類情況進行，第一類情況為從八台相機中任選一台相機與 8 個 IMU 進行感測器融合計算，並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，第二類為任選兩台相機與 8 個 IMU 進行姿勢估計，以此方式遞增至第七類，任選七台相機與 8 個 IMU 進行姿勢估計，每一類情況皆會產生一組 MPJPE，藉由觀察每一類 MPJPE 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
+本次實驗將分成七類情況進行，每一類情況的實驗流程皆如圖~\ref{ch3_fig_cameraset_flow}，第一類情況為從八台相機中任選一台相機與 8 個 IMU 進行感測器融合計算，並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，第二類為任選兩台相機與 8 個 IMU 進行姿勢估計，以此方式遞增至第七類，任選七台相機與 8 個 IMU 進行姿勢估計，每一類情況皆會產生一組 MPJPE，藉由觀察每一類 MPJPE 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=\linewidth]{figure/ch3_fig_cameraset_flow.png}
+    \caption[減少相機數量實驗流程]{減少相機數量實驗流程}
+    \label{ch3_fig_cameraset_flow}
+\end{figure}
 
 % ------------------------- 3.2 ------------------------- %
 \section{實驗系統設定與實驗環境}\label{ch3_exp_setting}
@@ -53,10 +64,10 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
 進行人體姿勢估計實驗時，需要使用多種感測器來量測人體姿態，且需要多項事前準備工作及設置，
 本章節將會依序說明整體實驗流程、實驗環境、實驗系統設定及實驗動作。
 
-\subsection{實驗流程}
-% 講我蒐集資料的事前工作，和整個流程的概述
-% FIXME:需要依照實驗流程圖來寫
-在進行人體姿態估計的實驗流程如圖~\ref{ch3_fig_exp_flow} 所示，
+\subsection{實驗方法}
+% 講我蒐集資料的事前工作，和整個方法的概述
+% FIXME:需要依照實驗方法圖來寫
+在進行人體姿態估計的實驗方法如圖~\ref{ch3_fig_exp_flow} 所示，
 首先進行相機內部參數及外部參數拍攝，
 拍攝內部參數影片時，需使棋盤格校正板盡可能填滿畫面，並涵蓋多種不同角度的畫面，以便進行內部參數校正，
 拍攝外部參數影片時，需由受試者站在實驗初始位置並拿著棋盤格校正板，以便進行外部參數校正。
@@ -72,7 +83,7 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=\linewidth]{figure/ch3_fig_exp_flow.png}
-    \caption[人體姿態估計實驗流程]{人體姿態估計實驗流程}
+    \caption[人體姿態估計實驗方法]{人體姿態估計實驗方法}
     \label{ch3_fig_exp_flow}
 \end{figure}
 
@@ -219,8 +230,7 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 % 資料前處理分為個人化人體模型建立、獲取骨盆中點位置、時間同步、空間校正四個部分，將於本章節進行討論。
 
 \subsection{相機校正}
-相機校正可視為影像世界和真實世界之間的轉換，其中包含外部參數 (Extrinsic Parameter) 及內部參數 (Intrinsic Parameter) 兩部分，透過相機校正計算公式~\ref{ch3_equ_camera_calibration}，可以將全域座標系中的點轉換成在影像座標系中的點，
-如圖~\ref{ch3_fig_camera_calibration}所示，將在全域座標系 (global coordinate system, g) 中的點 $P_g$，經過特定的旋轉、平移轉換及投影後，就可以轉換成影像座標系 (image coordinate system, img) 中的點 $P_{img}$。
+相機校正可視為影像世界和真實世界之間的轉換，其中包含外部參數 (Extrinsic Parameter) 及內部參數 (Intrinsic Parameter) 兩部分，透過相機校正計算公式~\ref{ch3_equ_camera_calibration}，可以將全域座標系中的點 $(X, Y, Z)$ 轉換成在影像座標系中的點 $(u, v)$，如圖~\ref{ch3_fig_camera_calibration} 所示，將在全域座標系 (global coordinate system, g) 中的點 $P_g$，經過特定的旋轉、平移轉換及投影後，就可以轉換成影像座標系 (image coordinate system, img) 中的點 $P_{img}$。
 
 相機校正技術發展至今，已有許多開源軟體可供使用，如 OpenCV~\cite{opencv_library}、MATLAB Camrea Calibration Toolbox，也有許多學者對 OpenCV 進行改良，提出更為方便易上手的相機校正工具，如 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy}，本研究即使用 Pose2Sim 提供的相機校正工具，計算出相機內部參數及外部參數。後續將使用相機內部參數及外部參數進行影像座標系與全域座標系的轉換、感測器融合、三角測量計算等工作。
 
@@ -372,10 +382,17 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 透過拍手動作，可在影像資料的音軌中找到明顯的拍手聲音，
 並在 IMU 資料中找到快速拍手動作的時間點，因為迅速合攏手掌的拍手動作會產生明顯加速度變化，
 以此時間點作為時間同步的基準點，將影像資料及 IMU 資料進行時間同步，以確保兩者之間的時間軸一致。
-在同步並剪輯影像資料及 IMU 資料時有一點需要注意，
+在同步並剪輯影像資料及 IMU 資料時有一點需要注意，如圖~\ref{ch3_fig_timesyn} 所示，
 同步兩種資訊時，由於加速度的明顯變化是發生在拍手那一刻的前後一幀，
 因此在裁切 IMU 資料時，需將拍手動作前後一幀的資料保留，確保拍手動作的加速度變化完整呈現，
 進行影像剪輯時，需將合掌姿勢前後一個幀的影像資料保留，以確保拍手動作的完整呈現，且可與 IMU 資料同步。
+
+\begin{figure}[!ht]
+   \centering
+   \includegraphics[width=\linewidth]{figure/ch3_fig_timesyn.png}
+   \caption[時間同步方法]{時間同步方法}
+   \label{ch3_fig_timesyn}
+\end{figure}
 
 \subsection{空間校正}
 % 座標系轉換介紹
@@ -384,7 +401,7 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 本研究共涉及六種座標系，可分為影像系統及 IMU 感測器系統兩大部分，兩部分的共同座標系為全域座標系 (global coordinate system, g)。
 影像系統涉及三種座標系，分別為圖像座標系 (image coordinate system, img)、
 相機座標系 (camera coordinate system, cam) 及全域座標系 (global coordinate system, g)；
-IMU 感測系統則涉及四種座標系，分別為骨骼座標系 (bone coordinate system, b)、感測器座標系 (sensor coordinate system, s)、
+IMU 感測系統則涉及四種座標系，分別為人體模型座標系 (bone coordinate system, b)、感測器座標系 (sensor coordinate system, s)、
 IMU local 座標系 (imu local coordinate system, i)、全域座標系 (global coordinate system, g)。
 各座標系的定義及轉換關係將於以下進行介紹。
 
@@ -392,7 +409,7 @@ IMU local 座標系 (imu local coordinate system, i)、全域座標系 (global c
 % 各座標系定義介紹
 圖像座標系為二維座標系，以圖像左上角為原點，x 軸沿圖像右側為延伸為正，y 軸沿圖像下側延伸為正，如圖~\ref{ch3_fig_frame} (a) 所示；
 相機座標系以相機的光軸 0 點為原點，z 軸與光軸重和，指向相機前方為正， x 軸指向相機右方為正， y 軸指向相機下方為正，如圖~\ref{ch3_fig_frame} (b) 所示；
-骨骼座標系以 TotalCapture Dataset 提供之 Vicon 三維人體模型所在之座標系為基礎，如圖~\ref{ch3_fig_frame} (c) 所示，
+人體模型座標系以 TotalCapture Dataset 提供之 Vicon 三維人體模型所在之座標系為基礎，如圖~\ref{ch3_fig_frame} (c) 所示，
 其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右 (red)、向後 (green)、向下 (blue)；
 感測器座標系，以感測器本身為原點，
 於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
@@ -418,7 +435,7 @@ y 軸則以右手定則決定，通常指向西方為正。
    \begin{minipage}{.5\textwidth}
      \centering
      \includegraphics[width=.95\linewidth]{figure/ch3_fig_skeleton_frame.png}
-     \caption*{(c) 骨骼座標系}
+     \caption*{(c) 人體模型座標系}
    \end{minipage}%
    \begin{minipage}{.5\textwidth}
      \centering
@@ -442,35 +459,35 @@ y 軸則以右手定則決定，通常指向西方為正。
 
 其中，$R^{cam}_g$ 為將空間中的位置點由全域座標系轉換至相機座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從綠色座標系轉換至紫色座標系之旋轉矩陣，
-通過將 $R^{cam}_g$ 乘以全域座標系中的骨骼朝向，將以全域座標系表示之朝向轉換為以相機座標系表示的骨骼朝向；
+通過將 $R^{cam}_g$ 乘以全域座標系中的人體模型朝向，將以全域座標系表示之朝向轉換為以相機座標系表示的人體模型朝向；
 $(R^{g}_{img})^{-1}$ 為全域座標系轉換至圖像座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從綠色座標系轉換至粉色座標系之旋轉矩陣，
-通過將 $R^{cam}_g$ 乘以全域座標系中的骨骼朝向，將以全域座標系表示之朝向轉換為以圖像座標系表示的骨骼朝向；
+通過將 $R^{cam}_g$ 乘以全域座標系中的人體模型朝向，將以全域座標系表示之朝向轉換為以圖像座標系表示的人體模型朝向；
 $R^{cam}_{img}$ 為圖像座標系轉換至相機座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從粉色座標系轉換至紫色座標系之旋轉矩陣，
-通過將 $R^{cam}_{img}$ 乘以圖像座標系中的骨骼朝向，將以圖像座標系表示之朝向轉換為以相機座標系表示的骨骼朝向。
+通過將 $R^{cam}_{img}$ 乘以圖像座標系中的人體模型朝向，將以圖像座標系表示之朝向轉換為以相機座標系表示的人體模型朝向。
 
 在 IMU 感測器系統座標系定義與轉換的部分，
 本研究參考文獻~\cite{malleson2017real}所提出之關係式~\ref{ch3_equ_imu_rotation_matrix}，並進行修正以更有助於理解，
-將每一關節點由以骨骼座標系為表示方式轉換至以全域座標系為表示方式。
+將每一關節點由以人體模型座標系為表示方式轉換至以全域座標系為表示方式。
 
 \begin{equation}
    R^g_b=R^g_iR^i_s(R^b_s)^{-1}
    \label{ch3_equ_imu_rotation_matrix}
 \end{equation}
 
-其中，$R^g_b$ 為將 IMU 所附著的骨骼朝向由骨骼座標系轉換至全域座標系之旋轉矩陣，
+其中，$R^g_b$ 為將 IMU 所附著的人體模型朝向由人體模型座標系轉換至全域座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從黑色座標系轉換至綠色座標系之旋轉矩陣，
-通過將 $R^g_b$ 乘以骨骼座標系中的骨骼朝向，將以骨骼座標系表示之朝向轉換為以全域座標系表示的骨骼朝向；
-$(R^b_s)^{-1}$ 為骨骼座標系轉換至感測器座標系之旋轉矩陣，
+通過將 $R^g_b$ 乘以人體模型座標系中的人體模型朝向，將以人體模型座標系表示之朝向轉換為以全域座標系表示的人體模型朝向；
+$(R^b_s)^{-1}$ 為人體模型座標系轉換至感測器座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從黑色座標系轉換至紅色座標系之旋轉矩陣，
-通過將 $(R^b_s)^{-1}$ 乘以骨骼座標系中的骨骼朝向，將以骨骼座標系表示之骨骼朝向轉換為以感測器座標系表示的骨骼朝向；
+通過將 $(R^b_s)^{-1}$ 乘以人體模型座標系中的人體模型朝向，將以人體模型座標系表示之人體模型朝向轉換為以感測器座標系表示的人體模型朝向；
 $R^i_s$ 為感測器座標系轉換至 IMU local 座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從紅色座標系轉換至藍色座標系之旋轉矩陣，
-通過將 $R^i_s$ 乘以感測器座標系中的骨骼朝向，將以感測器座標系表示之骨骼朝向轉換為以 IMU local 座標系表示的骨骼朝向；
+通過將 $R^i_s$ 乘以感測器座標系中的人體模型朝向，將以感測器座標系表示之人體模型朝向轉換為以 IMU local 座標系表示的人體模型朝向；
 $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 即圖~\ref{ch3_fig_coordinate_trans} 中，從藍色座標系轉換至綠色座標系之旋轉矩陣，
-通過將 $R^g_i$ 乘以 IMU local 座標系中的骨骼朝向，將以 IMU local 座標系表示之骨骼朝向轉換為以全域座標系表示的骨骼朝向。
+通過將 $R^g_i$ 乘以 IMU local 座標系中的人體模型朝向，將以 IMU local 座標系表示之人體模型朝向轉換為以全域座標系表示的人體模型朝向。
 上述所提及之每一旋轉矩陣的量測與計算方式將於後續進行介紹。
 
 \begin{figure}[!ht]
@@ -504,17 +521,17 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 並使用 Pose2Sim ~\cite{Pagnon_2022_JOSS}~\cite{Pagnon_2021_Robustness}~\cite{Pagnon_2022_Accuracy} 提供的校正工具進行外部參數及內部參數計算，
 透過相機校正所得之外部參數即為棋盤格校正板與相機間的旋轉及平移關係。
 
-\subsubsection{感測器座標 - 骨骼座標旋轉矩陣，$R^b_s$}
-% IMU - 骨骼座標轉換矩陣計算介紹
+\subsubsection{感測器座標 - 人體模型座標旋轉矩陣，$R^b_s$}
+% IMU - 人體模型座標轉換矩陣計算介紹
 % 解釋表示方法是以哪個座標系去看哪個座標系，然後解釋計算方法
-使用 IMU 進行肢體朝向量測時，由於 IMU 黏貼於肢體上的方向及位置可能會和骨骼定義之方向及位置有所偏差，
-因此需使用感測器座標 - 骨骼座標旋轉矩陣($R^b_s$)，將位於感測器座標系的量測數值轉換為以骨骼座標系表示的骨骼朝向。
-感測器座標 - 骨骼座標旋轉矩陣計算方式如方程式~\ref{ch3_equ_b2s_rotation_matrix}，
+使用 IMU 進行肢體朝向量測時，由於 IMU 黏貼於肢體上的方向及位置可能會和人體模型定義之方向及位置有所偏差，
+因此需使用感測器座標 - 人體模型座標旋轉矩陣($R^b_s$)，將位於感測器座標系的量測數值轉換為以人體模型座標系表示的人體模型朝向。
+感測器座標 - 人體模型座標旋轉矩陣計算方式如方程式~\ref{ch3_equ_b2s_rotation_matrix}，
 假設受試者在最初始開始實驗時，設定一個與 IMU local 座標系校正的座標系統，且受試者的姿勢為 T pose，
 因此此時 IMU 到其附著肢段的旋轉矩陣與 IMU 到 IMU local 的旋轉矩陣相同，即 $R^{b}_{s}(t_0) = R^{i}_{s}(t_0)$，
-因此，在 $t_0$ 時刻量得的 IMU - IMU local 旋轉四元數即可視為感測器座標 - 骨骼座標旋轉四元數，
-而由於在章節~\ref{ch3_skeleton_method} 中建立的人體模型座標與 IMU 附著於骨骼定義的座標系相差 $180^{\circ}$，
-因此，再將整體座標系對 x 軸旋轉 $180^{\circ}$ ，即可得最終感測器座標 - 骨骼座標旋轉矩陣。 
+因此，在 $t_0$ 時刻量得的 IMU - IMU local 旋轉四元數即可視為感測器座標 - 人體模型座標旋轉四元數，
+而由於在章節~\ref{ch3_skeleton_method} 中建立的人體模型座標與 IMU 附著於人體模型定義的座標系相差 $180^{\circ}$，
+因此，再將整體座標系對 x 軸旋轉 $180^{\circ}$ ，即可得最終感測器座標 - 人體模型座標旋轉矩陣。 
 
 \begin{equation}
    R^{b}_{s} = R_{x}(\theta_{x})R^{b}_{s}(t_0) = R_{x}(\theta_{x})R^{i}_{s}(t_0)
@@ -522,15 +539,15 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 \end{equation}
 
 % 此矩陣可經由 OpenSim~\cite{delp2007opensim}處理並進一步計算而得，其取得及計算方式如下。
-% 首先，量測結束之 IMU 資料將透過 OpenSim 軟體進行處理，\sout{使用基礎骨骼模型...}，計算每一 IMU 相對其對應骨骼之相對位置及角度，
+% 首先，量測結束之 IMU 資料將透過 OpenSim 軟體進行處理，\sout{使用基礎人體模型模型...}，計算每一 IMU 相對其對應人體模型之相對位置及角度，
 % 處理結果可經由 OpenSim 軟體可視化，如圖~\ref{ch3_fig_imu_ori} 所示。
-% 此項數據紀錄於 OpenSim 輸出之 .osim 檔案的 <BodySet> 元素中，<BodySet> 以骨骼為單位，
-% 其中包含之 <components> 則記錄一附著於該骨骼上之 IMU 的相對位置及角度，
-% <translation> 代表該 IMU 的原點相對於其附著之骨骼原點的平移，
-% <orientation> 則代表該 IMU 的座標軸相對於其附著之骨骼坐標軸的旋轉。
-% 因此若將 <translation> 數值更改為零，則可看到 IMU 原點與骨骼原點重合，如圖~\ref{ch3_fig_imu_tra}，
-% 而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與骨骼坐標軸平行，如圖~\ref{ch3_fig_imu_rot}。
-% 因此，從 .osim 檔案取得每一 IMU 相對於骨骼之相對位置及角度後，即可計算出感測器座標 - 骨骼座標四元數。
+% 此項數據紀錄於 OpenSim 輸出之 .osim 檔案的 <BodySet> 元素中，<BodySet> 以人體模型為單位，
+% 其中包含之 <components> 則記錄一附著於該人體模型上之 IMU 的相對位置及角度，
+% <translation> 代表該 IMU 的原點相對於其附著之人體模型原點的平移，
+% <orientation> 則代表該 IMU 的座標軸相對於其附著之人體模型坐標軸的旋轉。
+% 因此若將 <translation> 數值更改為零，則可看到 IMU 原點與人體模型原點重合，如圖~\ref{ch3_fig_imu_tra}，
+% 而若將 <orientation> 數值更改為零，則可看到 IMU 坐標軸與人體模型坐標軸平行，如圖~\ref{ch3_fig_imu_rot}。
+% 因此，從 .osim 檔案取得每一 IMU 相對於人體模型之相對位置及角度後，即可計算出感測器座標 - 人體模型座標四元數。
 % \begin{figure}[!ht]
 %    \centering
 %    \begin{minipage}{.3\textwidth}
@@ -554,7 +571,7 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 % \end{figure}
 
 \subsubsection{感測器座標 - IMU local 旋轉矩陣，$R^i_s$}
-經過上一步 $(R^b_s)^{-1}$ 的轉換，已將骨骼朝向轉換為以附著其上的 IMU 感測器座標系為表示方式，
+經過上一步 $(R^b_s)^{-1}$ 的轉換，已將人體模型朝向轉換為以附著其上的 IMU 感測器座標系為表示方式，
 接著，需要進一步將各自表示的感測器座標系轉換至統一以東北天 (East - North - Up, ENU) 為定義的 IMU local 座標系。
 感測器座標 - IMU local 旋轉矩陣 ($R^i_s$) 為 IMU 的量測朝向，可直接經由 Xsens 系統所提供軟體 (MT manager) 輸出四元數取得。
 在 MT manager 中讀入量測時所記錄的 .mtb 檔案，
@@ -566,13 +583,13 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 \subsubsection{IMU local - 全域座標旋轉矩陣，$R^g_i$}
 % IMU - 全域座標轉換矩陣計算介紹
 % 解釋表示方法是以哪個座標系去看哪個座標系，然後解釋計算方法
-經過上一步 $R^i_s$ 的轉換，已將骨骼朝向轉換為以統一的 IMU local 感測器座標系為表示方式，
-接著，為方便後續與影像辨識而得的位置資訊進行融合，需要進一步將骨骼朝向轉換至位置資訊所在之座標系。
+經過上一步 $R^i_s$ 的轉換，已將人體模型朝向轉換為以統一的 IMU local 感測器座標系為表示方式，
+接著，為方便後續與影像辨識而得的位置資訊進行融合，需要進一步將人體模型朝向轉換至位置資訊所在之座標系。
 假設所有 IMU 間的 IMU local - 全域座標旋轉矩陣 $R^g_i$ 皆一致，且與天頂及磁北極校正，
 再將整體座標系相對 x 軸旋轉 $-90^{\circ}$，即可得 IMU local - 全域座標旋轉矩陣。
 % 包含兩個階段的旋轉，
-% 第一階段先將於 IMU local 座標系的骨骼朝向轉換至以全域座標系表示，與天頂及磁北極校正，
-% 第二階段將於全域座標系的骨骼朝向轉換至位置資訊所在之座標系，該座標系相對全域座標系的 x 軸旋轉 $-90^{\circ}$。
+% 第一階段先將於 IMU local 座標系的人體模型朝向轉換至以全域座標系表示，與天頂及磁北極校正，
+% 第二階段將於全域座標系的人體模型朝向轉換至位置資訊所在之座標系，該座標系相對全域座標系的 x 軸旋轉 $-90^{\circ}$。
 % 在第一階段中，IMU local - 全域座標的轉換與磁偏角 ($\delta$) 有關，
 % 將 IMU local 座標系繞 z 軸旋轉 $\delta$ 即可轉換至全域座標系。
 % 第二階段再將全域座標系繞 x 軸旋轉 $-90^{\circ}$，轉換至位置資訊所在之座標系。
