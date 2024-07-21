@@ -1,4 +1,5 @@
-\chapter{系統驗證之實驗結果與討論}
+% \chapter{系統驗證之實驗結果與討論}
+\chapter{結果與討論}
 \fontsize{12pt}{18pt}\selectfont %字體大小，行距
 
 % ------------------------- 4.0 ------------------------- %
@@ -6,11 +7,12 @@
 本章節首先透過先前學者們提出的資料集與影像辨識融合 IMU 方法，探討減少相機使用數量對於人體姿態估計精準度的影響，以最大程度的減少量測設備的成本及架設時間。此外，本研究提出使用影像辨識及三角測量計算方法建立三維人體模型，並使用先前學者提出的資料集進行驗證。最後，本研究將透過蹲站、開合跳、折返跑、熱身運動等實驗，驗證融合 IMU 資訊是否對於影像辨識重建人體姿態有所改善。
 
 % ------------------------- 4.1 ------------------------- %
-\section{探討減少相機使用數量對於人體姿態估計精準度的影響實驗結果與討論}\label{ch4_sec_cameraset}
+% \section{探討減少相機使用數量對於人體姿態估計精準度的影響實驗結果與討論}\label{ch4_sec_cameraset}
+\section{探討減少相機使用數量對於人體姿態估計精準度的影響實驗}\label{ch4_sec_cameraset}
 % 實驗結果
 % 經過上述七類情況之實驗後，得到的 MPJPE 結果如以下所示。
 \subsection{實驗設定}
-本研究使用使用學者 Zhe Zhang 等人提出的感測器融合方法進行影像與 IMU 資訊的融合~\cite{Zhang_2020_CVPR}，沿用其論文中的所有實驗設定，包括相機校正、三維人體模型建立、時間同步及空間校正、使用 8 個 IMU，分別為左右上臂、左右前臂、左右大腿、左右小腿，僅更改使用相機的數量及組合，每一結果皆可計算出 MPJPE。本研究將進行 7 種不同的實驗設定，分別為使用一台相機、使用兩台相機，以此類推至使用七台相機，並探討不同相機數量對人體姿態估計的影響。
+本研究使用使用學者 Zhe Zhang 等人提出的感測器融合方法進行影像與 IMU 資訊的融合~\cite{Zhang_2020_CVPR}，沿用其文獻中的所有實驗設定，包括相機校正、三維人體模型建立、時間同步及空間校正、使用 8 個 IMU，分別為左右上臂、左右前臂、左右大腿、左右小腿，僅更改使用相機的數量及組合，每一結果皆可計算出 MPJPE。本研究將進行 7 種不同的實驗設定，分別為使用一台相機、使用兩台相機，以此類推至使用七台相機，並探討不同相機數量對人體姿態估計的影響。
 
 \clearpage
 
@@ -32,7 +34,7 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_1cam} 所示，可以發現無論選
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c|
    >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+      相機編號 & MPJPE & 相機編號 & MPJPE & 相機編號 & MPJPE & 相機編號 & MPJPE \\
       \hline
       1	& 514.76 & 2 & 782.01 & 3 & 611.84 & 4 & 520.97 \\
       5	& 653.96 & 6 & 573.41 & 7 & 599.78 & 8 & 542.36 \\
@@ -55,11 +57,11 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_2cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S}
+      相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       12 & 194.4957 & 13 & 81.9440 & 14 & 47.4927 & 15 & 76.7795 \\
       16 & 66.8653 & 17 & 58.7619 & 18 & 46.9798 & & \\
@@ -96,12 +98,12 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_3cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S}
+      相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       123 & 41.8538 & 124 & 43.2544 & 125 & 70.4747 & 126 & 41.7470 & 127 & 54.5721 \\
       128 & 46.7714 & & & & & & & & \\
@@ -144,13 +146,13 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_4cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S}
       % \hline
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+      相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       1234 & 30.9409 & 1235 & 28.8549 & 1236 & 30.3748 & 1237 & 28.8213 & 1238 & 31.1560 \\
       1245 & 33.1706 & 1246 & 31.5377 & 1247 & 32.1031 & 1248 & 33.6613 &            &         \\
@@ -193,12 +195,12 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c|
-   >{\columncolor[HTML]{E7E6E6}}c |c}
-      相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE & 相機配置 & MPJPE \\
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S|
+   >{\columncolor[HTML]{E7E6E6}}c |S}
+      相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       12345 & 27.2222 & 12346 & 28.7270 & 12347 & 27.2410 & 12348 & 28.1424 & 12356 & 27.5630  \\
       12357 & 25.4345 & 12358 & 26.9508 & 12367 & 27.4309 & 12368 & 27.9631 & 12378 & 27.5871  \\
@@ -220,7 +222,7 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 % \clearpage
 
 \subsubsection{使用六台相機、七台相機與八個 IMU 進行人體姿態重建實驗結果}
-由於六台相機與七台相機之估計結果皆與四台相機及五台相機的估計結果相近，因此不再完整將結果列出。
+由於六台相機與七台相機之估計結果皆與四台相機及五台相機的估計結果相近，因此將於附錄~\ref{appendix:6cam7cam} 列出。
 六台相機姿勢估計誤差之標準差為 1.3281 (mm)，平均值為 25.9980 (mm)，
 七台相機姿勢估計誤差之標準差為 0.8525 (mm)，平均值為 24.9272 (mm)。
 將兩者的標準差及平均值與五台相機的標準差及平均值進行比較，
@@ -253,7 +255,7 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 因此可以推斷，當相機數量增加到四台時，MPJPE 的表現已經相當穩定，且相機數量增加到五台以上時，MPJPE 的表現並不會有太大的改善。
 另外，若觀察每一相機數量的最佳表現 (即 MPJPE 最小值)，可以發現兩台相機及三台相機的最佳表現皆有到達誤差 50 (mm) 以下，平均誤差約 40 \textasciitilde\ 100 (mm)，所以，若希望盡可能減少相機數量，且容許誤差 100 (mm)，則可以選擇兩台相機或三台相機進行姿勢估計，因此，綜上所述可推斷，為增加實驗架設方便性，減少相機數量是可考慮的選擇。
 % 所以，若要達到最佳的姿勢估計結果，相機數量應選擇四台即可。
-% MPJPE 約都在 20\textasciitilde40 mm 左右，只是如果三台相機的配置適當的話，結果並不會比四台相機的結果差。
+% MPJPE 約都在 20\textasciitilde40 mm 左右，只是如果三台相機的組合適當的話，結果並不會比四台相機的結果差。
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=\linewidth]{figure/ch3_fig_1to7cam.png}
@@ -264,7 +266,8 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 \clearpage
 
 % ------------------------- 4.2 ------------------------- %
-\section{個人化三維人體模型建立實驗結果與討論}\label{ch4_skeleton_exp}
+% \section{個人化三維人體模型建立實驗結果與討論}\label{ch4_skeleton_exp}
+\section{個人化三維人體模型建立實驗}\label{ch4_skeleton_exp}
 % 實驗設定；實驗執行；結果與討論
 % 在章節~\ref{ch3_skeleton_method} 中已詳細描述了個人化三維人體模型建立的方法，
 % 本節使用 TotalCapture Dataset~\cite{Trumble:BMVC:2017} 提供的影片資料及相機校正數據，
@@ -272,12 +275,13 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 
 \subsection{實驗設定}
 % 把 total capture dataset s1 系列做完
-本章節使用 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供的 s1\_acting1 \textasciitilde\ s1\_acting3、s1\_freestyle1 \textasciitilde\ s1\_freestyle3、s1\_rom1 \textasciitilde\ s1\_rom3 共九組影片資料及相機校正資料進行實驗，每組實驗皆取用 TotalCapture Dataset  提供的相機 1 與相機 8 之影像資料、兩台相機的校正資訊，以及 .bvh 檔案中 HIERARCHY 部分提供的 Vicon 三維人體模型資訊 (此資訊可由 Vicon 量測而得，因此以下將稱為 Vicon 三維人體模型)。首先，利用影像資料進行 OpenPose 影像辨識，再使用 Pose2Sim 進行相機校正及三角測量計算，建立出個人化三維人體模型。最後，取前 60 幀的資訊，計算個人化三維人體模型的平均四肢長度，並與 Vicon 三維人體模型的四肢長度進行比較。
+% FIXME:只取九組的原因
+本章節使用 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供的 s1\_acting1 \textasciitilde\ s1\_acting3、s1\_freestyle1 \textasciitilde\ s1\_freestyle3、s1\_rom1 \textasciitilde\ s1\_rom3 共九組影片資料及相機校正資料進行實驗，每組實驗皆取用 TotalCapture Dataset  中，與本實驗視角最為相近的相機 1 與相機 8 之影像資料、兩台相機的校正資訊，以及 .bvh 檔案中 HIERARCHY 部分提供的 Vicon 三維人體模型資訊 (此資訊可由 Vicon 量測而得，因此以下將稱為 Vicon 三維人體模型)。首先，利用影像資料進行 OpenPose 影像辨識，再使用 Pose2Sim 進行相機校正及三角測量計算，建立出個人化三維人體模型。最後，由於每個檔案只有前 60 幀為 T-pose 動作，因此取前 60 幀的資訊，計算個人化三維人體模型的平均四肢長度，並與 Vicon 三維人體模型的四肢長度進行比較。
 
 \subsection{實驗結果與誤差評估}
 % 個人化三維人體模型建立結果與驗證
 % 分別評估四肢的誤差，然後再綜合再一起評估，總結誤差大概在多少內
-分別計算出自行建立個人化三維人體模型的四肢長度及 Vicon 三維人體模型長度後，將兩者相減得到誤差，並計算平均誤差，結果如表~\ref{ch3_skeleton_compare} 所示，可以發現自行建立個人化三維人體模型之四肢長度與 Vicon 三維人體模型之四肢長度相當接近，整體平均誤差為 25.7515 (mm)。本研究推斷，此項誤差可能來自 OpenPose 自身影像辨識造成的誤差，以及相機校正及三角測量的誤差。
+分別計算出自行建立個人化三維人體模型的四肢長度及 Vicon 三維人體模型長度後，將兩者相減並取絕對值得到誤差，再計算平均誤差，結果如表~\ref{ch3_skeleton_compare} 所示，可以發現自行建立個人化三維人體模型之四肢長度與 Vicon 三維人體模型之四肢長度相當接近，整體平均誤差為 25.7515 (mm)。本研究推斷，此項誤差可能來自 OpenPose 自身影像辨識造成的誤差，以及相機校正及三角測量的誤差。
 % \sout{因此，若要進一步提升個人化三維人體模型的精確度，可能需要改善 OpenPose 的影像辨識精度，或是改善相機校正及三角測量的精確度。}
 
 \begin{table}[!ht]
@@ -290,16 +294,16 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
     \begin{tabular}{c|S|S|S|S|S|S|S|S|S||S}
       & {s1\_acting1} & {s1\_acting2} & {s1\_acting3} & {s1\_freestyle1} & {s1\_freestyle2} & {s1\_freestyle3} & {s1\_rom1} & {s1\_rom2} & {s1\_rom3} & {average} \\
       \midrule[1.5pt]
-      右大腿 & 15.5895 & 16.8009 & 5.8655 & 27.9576 & 24.0688 & 18.2016 & 9.7907 & 12.2067 & 1.5568 & 14.6709  \\
-      右小腿 & 20.4312 & 0.7514 & 8.9552 & 11.4757 & 12.7413 & 2.5780 & 19.0733 & 20.5609 & 8.6443 & 11.6902  \\
-      左大腿 & 20.1423 & 23.3496 & 14.8347 & 34.8388 & 25.4773 & 29.7342 & 18.8850 & 15.3576 & 24.7152 & 23.0372  \\
-      左小腿 & 3.4795 & 7.8705 & 16.6157 & 15.0529 & 12.4442 & 15.5452 & 12.3024 & 3.2584 & 3.2571 & 9.9807  \\
-      右上臂 & 37.1875 & 39.5958 & 43.2833 & 76.6637 & 59.6534 & 34.1348 & 59.4540 & 29.4289 & 32.0788 & 45.7200  \\
-      右前臂 & 4.0619 & 20.9168 & 14.4801 & 59.1019 & 37.3311 & 10.6598 & 36.6949 & 4.3855 & 13.8587 & 22.3878  \\
-      左上臂 & 47.6423 & 50.8824 & 51.3296 & 41.4413 & 48.9365 & 51.4196 & 36.5617 & 50.4505 & 53.2362 & 47.9889  \\
-      左前臂 & 30.7583 & 24.3253 & 36.5486 & 19.8007 & 29.5842 & 34.7937 & 22.6062 & 35.9636 & 40.4441 & 30.5361  \\
+      右大腿 & 15.59 & 16.80 & 5.87 & 27.96 & 24.07 & 18.20 & 9.79 & 12.21 & 1.56 & 14.67 \\
+      右小腿 & 20.43 & 0.75 & 8.96 & 11.48 & 12.74 & 2.58 & 19.07 & 20.56 & 8.64 & 11.69 \\
+      左大腿 & 20.14 & 23.35 & 14.83 & 34.84 & 25.48 & 29.73 & 18.88 & 15.36 & 24.72 & 23.04 \\
+      左小腿 & 3.48 & 7.87 & 16.62 & 15.05 & 12.44 & 15.55 & 12.30 & 3.26 & 3.26 & 9.98 \\
+      右上臂 & 37.19 & 39.60 & 43.28 & 76.66 & 59.65 & 34.13 & 59.45 & 29.43 & 32.08 & 45.72 \\
+      右前臂 & 4.06 & 20.92 & 14.48 & 59.10 & 37.33 & 10.66 & 36.69 & 4.39 & 13.86 & 22.39 \\
+      左上臂 & 47.64 & 50.88 & 51.33 & 41.44 & 48.94 & 51.42 & 36.56 & 50.45 & 53.24 & 47.99 \\
+      左前臂 & 30.76 & 24.33 & 36.55 & 19.80 & 29.58 & 34.79 & 22.61 & 35.96 & 40.44 & 30.54 \\
       \midrule[1.5pt]
-      average & 22.4116 & 23.0616 & 23.9891 & 35.7916 & 31.2796 & 24.6334 & 26.9210 & 21.4515 & 22.2239 & 25.7515  \\
+      Average & 22.41 & 23.06 & 23.99 & 35.79 & 31.28 & 24.63 & 26.92 & 21.45 & 22.22 & 25.75 \\
    \end{tabular}}
 \end{table}
 
@@ -898,9 +902,9 @@ T pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
    \caption{影像辨識有無融合 IMU 的結果比較}
    \label{ch4_tab_conclusion}
    \centering
-   \begin{tabular}{ccccccc}
+   \begin{tabular}{ccSSSSS}
    \toprule
-    & IMU 融合 & T pose & 蹲站 & 開合跳 & 折返跑 & 熱身運動 \\
+   & IMU 融合 & T pose & 蹲站 & 開合跳 & 折返跑 & 熱身運動 \\
    \midrule
    \multirow{2}{*}{誤差 (mm)} & O & 82.7502 & 76.8410 & 80.8609 & 82.6446 & 75.9740 \\
    & X & 95.0632 & 94.5808 & 76.4561 & 80.0463 & 67.2949 \\
@@ -911,7 +915,7 @@ T pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
    \end{tabular}
 \end{table}
 
-可以發現，影像辨識融合 IMU 資訊的肢段的平均估計成功率皆高於僅使用影像辨識的肢段，平均約有 23.8\% 的提升，本研究推斷，在 T pose 有顯著提升的原因為在實驗過程中受試者皆靜止不動，相較其他實驗過程中，受試者有執行指定動作，因此 IMU 朝向資訊除量測誤差外的其餘誤差較小，因此加上 IMU 的朝向資訊後，成功率有顯著提升，如圖~\ref{ch4_fig_error_success} (a) 所示。而影像辨識融合 IMU 資訊的肢段的平均有效誤差在 T pose 實驗與蹲站實驗的誤差比較中，影像辨識融合 IMU 資訊重建人體姿態相較僅使用影像辨識重建人體姿態有約 10 (mm) 的改善，而在開合跳、折返跑、熱身運動中，影像辨識融合 IMU 資訊重建人體姿態相較僅使用影像辨識重建人體姿態誤差約提升 5 \textasciitilde\ 10 (mm)，如圖~\ref{ch4_fig_error_success} (b) 所示。整體而言，將影像辨識結果融合 IMU 後，無論是誤差有所改善或是沒有明顯增加，在重建成功率上都有所提升，因此本研究推斷，影像辨識融合 IMU 資訊的方法可以提升影像辨識的成功率，且改善影像辨識的重建結果。
+可以發現，影像辨識融合 IMU 資訊的肢段的平均估計成功率皆高於僅使用影像辨識的肢段，平均約有 23.8\% 的提升，本研究推斷，在 T pose 有顯著提升的原因為在實驗過程中受試者皆靜止不動，相較其他實驗過程中，受試者有執行指定動作，因此 IMU 朝向資訊除量測誤差外的其餘誤差較小，因此加上 IMU 的朝向資訊後，成功率有顯著提升，如圖~\ref{ch4_fig_error_success} (a) 所示。而影像辨識融合 IMU 資訊的肢段的平均有效誤差在 T pose 實驗與蹲站實驗的誤差比較中，影像辨識融合 IMU 資訊重建人體姿態相較僅使用影像辨識重建人體姿態有約 10 (mm) 的改善，而在開合跳、折返跑、熱身運動中，影像辨識融合 IMU 資訊重建人體姿態相較僅使用影像辨識重建人體姿態誤差約提升 5 \textasciitilde\ 10 (mm)，如圖~\ref{ch4_fig_error_success} (b) 所示，本研究推斷，造成此現象的原因可能是這三組動作較為複雜，造成影像辨識關節點較為困難，使得辨識結果較差，而 IMU 朝向資訊雖然可以提供方向資訊，但是在這三組動作中，受試者的動作較快速，且量測時間較長，因此在 IMU 整合朝向資訊時產生誤差。整體而言，將影像辨識結果融合 IMU 後，無論是誤差有所改善或是沒有明顯增加，在重建成功率上都有所提升，因此本研究推斷，影像辨識融合 IMU 資訊的方法可以提升影像辨識的成功率，且改善影像辨識的重建結果。
 
 \begin{figure}[!ht]
    \centering

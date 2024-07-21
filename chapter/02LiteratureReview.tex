@@ -8,35 +8,26 @@
 \section{動作捕捉系統}
 % 概述人體動作捕捉，再說分為單感測器動作捕捉系統及多感測器動作捕捉系統，單感測動作捕捉系統又分為光學動作系統及無學動作捕捉系統
 % 下面的子段落要寫的：原理、特色、目前可達到的誤差、優缺點
-動作捕捉系統為現今常用於擷取人體動作、表情、手勢或其他物體動作等資訊的技術，其可應用於運動分析~\cite{armitano2022swot}、
-醫學研究~\cite{alarcon2020upper}~\cite{gu2023imu}、遊戲開發、影片製作等領域，
-藉由取得的資訊，可進行分析、模擬、辨識等應用。
-根據感測器種類及數量的不同，動作捕捉系統可分為單感測器動作捕捉系統及多感測器融合動作捕捉系統，
-其中單感測器動作捕捉系統又可分為光學動作捕捉系統及慣性動作捕捉系統。 
+動作捕捉系統 (Motion Capture System) 為現今常用於擷取人體動作、表情、手勢或其他物體動作等資訊的技術，從而將人體姿態 (pose) 量化，其可應用於運動分析~\cite{armitano2022swot}、醫學研究~\cite{alarcon2020upper}~\cite{gu2023imu}、遊戲開發、影片製作等領域，藉由取得的資訊，可進行分析、模擬、辨識等應用。根據感測器種類及數量的不同，動作捕捉系統可分為單感測器動作捕捉系統及多感測器融合 (sensor fusion) 動作捕捉系統，其中單感測器動作捕捉系統又可分為光學動作捕捉系統及慣性動作捕捉系統。 
 
-而人體姿態 (pose) 則可使用位置資訊 (position) 或朝向資訊 (orientation) 進行定義，
-位置資訊通常以笛卡爾坐標系描述物體在空間中的位置，因此可使用量測結果為位置資訊的光學動作捕捉系統進行姿態追蹤；
-而朝向資訊則常以尤拉角 (Euler angles) 、旋轉矩陣 (rotation matrix) 或四元數 (quaternions) 來描述物體的朝向狀態，
-因此可使用量測結果為朝向資訊的慣性動作捕捉系統進行姿態追蹤。
-以下將針對光學動作捕捉系統、慣性動作捕捉系統、多感測器融合動作捕捉系統，這三大類系統進行介紹。
+人體姿態 (pose) 可使用位置資訊 (position) 或朝向資訊 (orientation) 進行定義，位置資訊通常以笛卡爾坐標系 (Cartesian coordinate system) 描述物體在空間中的位置，因此可使用量測結果為位置資訊的光學動作捕捉系統 (optical motion capture, OMC) 進行姿態追蹤；而朝向資訊則常以尤拉角 (Euler angles) 、旋轉矩陣 (rotation matrix) 或四元數 (quaternions) 來描述物體的朝向狀態，因此可使用量測結果為朝向資訊的慣性動作捕捉系統 (inertial motion capture) 進行姿態追蹤。以下將針對光學動作捕捉系統、慣性動作捕捉系統、多感測器融合動作捕捉系統，這三大類系統進行介紹。
 
 \subsection{單感測器-光學動作捕捉系統}
 % 有沒有光標記的都放在這一段裡面一起描述，可能用句號分開就好
-光學動作捕捉系統是目前最常見的動作捕捉系統，其原理為透過辨別標記點或特定特徵點的位置來追蹤物體的運動，再進一步由邊際點或特徵點的位置推估物體的姿態。
-根據受試者身上有無光標記 (marker)，可將光學動作捕捉系統以有無光標記的分類方法細分為光標記捕捉系統及無標記捕捉系統。
+光學動作捕捉系統 (optical motion capture, OMC) 是目前最常見的動作捕捉系統，其原理為透過辨別標記點或特定特徵點的位置來追蹤物體的運動，再進一步由邊際點或特徵點的位置推估物體的姿態。根據受試者身上有無光標記 (marker)，可將光學動作捕捉系統以有無光標記的分類方法細分為光標記捕捉系統 (marker-based motion capture) 及無標記捕捉系統 (markerless motion capture)。
 
 \subsubsection{光標記動作捕捉系統}
 % - 量測精確度高，作為目前開發其他動作捕捉系統的標準
 % - 無法在室外量測
 % - 器材架設不易，價格昂貴
 % - 量測誤差約落在 1 公分
-光標記 (marker-based) 動作捕捉系統，
+光標記動作捕捉系統 (marker-based motion capture)，
 如 Vicon ~\cite{vicon_web}是目前最常見且最精準的動作捕捉系統，
 其在靜態實驗中，平均絕對定位誤差為 0.15 (mm)~\cite{merriaux2017study}，
-因此常被當作黃金標準，用於確認其他動作捕捉系統的準確性。
+因此其量測結果常被當作正確答案，用於確認其他動作捕捉系統的準確性。
 光標記動作捕捉系統所需量測設備為多個紅外光攝影機及多個反光標記點，
 反光標記點需黏貼在受試者多處明顯不易被遮擋的部位，例如骨突點，確保在實驗過程中的多數時間可於影像中看見並被記錄，
-而已經過校正的多個紅外光攝影機需同時記錄下影像，確保不同角度間的影像無時間差，
+而經過校正的多個紅外光攝影機需同時記錄下影像，確保不同角度間的影像無時間差，
 每台紅外光攝影機可發出紅外光，也可接收反光標記點反射的紅外光，透過三角測量計算標記點的位置來推估受試者的姿態，
 實驗環境及實驗設置如圖~\ref{ch2_fig_OMC_Vicon} 所示。
 由於光標記動作捕捉系統主要傳遞訊息的媒介為紅外光，需要嚴格控管環境光（例如陽光）的影響，減少環境光造成的雜訊，
@@ -46,7 +37,7 @@
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=8cm]{figure/ch2_fig_OMC_Vicon.jpg}
-     \caption[Vicon 實驗環境與設置]{Vicon 實驗環境與設置}
+     \caption[Vicon 實驗環境與設置~\cite{vicon_web}]{Vicon 實驗環境與設置~\cite{vicon_web}}
      \label{ch2_fig_OMC_Vicon}
 \end{figure}
 
@@ -59,10 +50,10 @@
     % - 若被遮擋，則無法辨識出被遮擋的關節
     % - 上到下或下到上的辨識（不知道找不找得到相關有提到這方面的paper）
     % - 想想看要怎麼把兩種方法的辨識結果圖片塞進去
-因為光標記動作捕捉系統的限制，加上電腦視覺與深度學習的崛起，無標記 (marker-less) 動作捕捉系統逐漸受到重視~\cite{sarafianos20163d}，
+因為光標記動作捕捉系統的限制，加上電腦視覺與深度學習的崛起，無標記動作捕捉系統 (markerless motion capture) 逐漸受到重視~\cite{sarafianos20163d}，
 其中 OpenPose ~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}、
 由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect ~\cite{zhang2012microsoft} 等系統是目前常見的無標記動作捕捉系統，
-下方圖~\ref{ch2_fig_rec_result} 為光標記捕捉系統的實際應用。 
+下方圖~\ref{ch2_fig_rec_result} 為無標記動作捕捉系統的實際應用。 
 
 透過已經過校正的單一或多個攝影機同時拍攝受試者的影像，利用電腦視覺及深度學習技術辨識出受試者在二維平面上的關節點位置，
 辨識關節點位置的方法分為上到下方法 (top-down method) 及下到上方法 (bottom-up method) 兩種~\cite{nie2019single}，
@@ -134,34 +125,33 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 透過三個感測器量得重力方向及地球磁場方向，
 經由資料融合演算法推估出 IMU 當下的姿態~\cite{young2009comparison}~\cite{madgwick2011estimation}~\cite{nazarahari202140}，
 將 IMU 黏貼於欲量測的身體部位，例如頭部、手臂、腰部、腿等，即可量測受試者該部位的姿態。
-現今最常被使用於量測人體姿態的 IMU 設備為 Xsens ~\cite{roetenberg2009xsens}~\cite{paulich2018xsens}，
+現今最常被使用於量測人體姿態的 IMU 設備為 Movella Xsens MVN ~\cite{roetenberg2009xsens}~\cite{paulich2018xsens}，
 其使用無線傳輸技術傳遞量測資料，並可透過其提供的軟體進行各感測器間的時間同步與空間校正，
 進而基於骨骼結構模型重建人體姿態~\cite{mcgrath2020body}~\cite{DIP:SIGGRAPHAsia:2018}，如圖~\ref{ch2_fig_IMU_pose_estimate}所示，
 更有學者進一步使用 IMU 的量測結果計算反向跳躍能力及骶骨運動學，以評估受試者的運動表現~\cite{mcginnis2016quantifying}~\cite{miranda2022accuracy}，
 或是使用 IMU 進行步態分析，用於評估步態障礙患者的康復情況~\cite{wang2020imu}~\cite{uchitomi2022three}，如圖~\ref{ch2_fig_IMU_gait_estimate} 所示。
 
-IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器，
+透過微機電系統 (micro-electromechanical systems, MEMS) 設計的 IMU，
 其功率消耗低、體積小、重量輕、攜帶方便，因此可量測場域廣泛，不受空間限制，可以作為日常配戴的裝置，時刻監測受試者的姿態；
-且其可克服在無標記動作捕捉系統中的遮擋問題，及運動速度過快產生的模糊問題。
+且其可克服在無標記動作捕捉系統中的遮擋問題，及運動速度過快產生的影像動態模糊問題。
 但是，IMU 僅可量測方向，無法量測位置，且隨著量測時間拉長，
 將加速度進行積分後會產生嚴重的飄移問題 (drift)，從而無法計算位置資訊；
 且每次測量皆需校正每一感測器與其黏貼的身體部位的相對位置及相對方向，以確保量測結果的準確性，
 在量測過程中，IMU 可能會因為肌肉出力與放鬆而有相對位置的變化，
 進而影響量測結果的準確性~\cite{fiorentino2017soft}~\cite{stagni2005quantification}。
-
-% FIXME:沒寫到誤差
+慣性動作捕捉系統使用 IMU 及運動學模型、運動學限制等資訊後，可重建受試者的姿態，其整體平均位置估計誤差約為 35 (mm)~\cite{s17061257}。
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{figure/ch2_fig_IMU_pose_estimate.png}
-     \caption[使用 IMU 重建人體姿態]{使用 IMU 重建人體姿態}
+     \caption[使用 IMU 重建人體姿態 ~\cite{DIP:SIGGRAPHAsia:2018}]{使用 IMU 重建人體姿態 ~\cite{DIP:SIGGRAPHAsia:2018}}
      \label{ch2_fig_IMU_pose_estimate}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{figure/ch2_fig_IMU_gait_estimate.png}
-     \caption[使用 IMU 進行步態分析]{使用 IMU 進行步態分析}
+     \caption[使用 IMU 進行步態分析 ~\cite{uchitomi2022three}]{使用 IMU 進行步態分析 ~\cite{uchitomi2022three}}
      \label{ch2_fig_IMU_gait_estimate}
 \end{figure}
 
@@ -169,26 +159,28 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 % - 相機與 IMU 融合
 % - 3DPW、totalcapture、real-time full-body…、wearable fusing…
 由於無標記光學動作捕捉系統會因為遮擋問題而無法辨識出被遮擋的關節，IMU 量測時長拉長會產生飄移問題，
-因此，學者們開始將光學動作捕捉系統與 IMU 進行融合，以彌補各自的缺點~\cite{li2023visual}，
+因此，學者們開始將光學動作捕捉系統與 IMU 進行感測器融合，以彌補各自的缺點~\cite{li2023visual}，
 藉由 IMU 的量測資料補足光學動作捕捉系統的遮擋、移動快速產生模糊的問題，
-並藉由光學動作捕捉系統不受磁場影響的特性，解決 IMU 量測時長拉長產生飄移的問題，同時可用於計算受試者於空間中的位置資訊。
+並藉由光學動作捕捉系統不需積分的特性，解決 IMU 量測時長拉長產生飄移的問題，同時可用於計算受試者於空間中的位置資訊。
 
 多感測器融合方法可應用於自動駕駛、智慧機器人、增強實境 (AR) 及虛擬實境 (VR) 等領域~\cite{jinyu2019survey}~\cite{zhu2023camera}，
-也可應用於人體動作捕捉領域，人體動作捕捉範圍可包含手部、上半身、下半身、全身等不同部位，
+也可應用於人體動作捕捉領域，
+% 人體動作捕捉範圍可包含手部、上半身、下半身、全身等不同部位，
+在多感測器融合動作捕捉系統中，相機及 IMU 使用數量可有多種組合，
 例如 Matthew Trumble 等人使用 4 或 8 台相機及 13 個 IMU 進行融合，建立人體全身姿態，
 並發表一系列經過時間同步的多視角影片 (multi-viewpoint video, MVV) 搭配 IMU 資料集~\cite{Trumble:BMVC:2017}；
 或如學者 Zhe Zhang 等人使用 TotalCapture 資料集中的 4 台攝影機，及 8 個 IMU 資料融合，
 並使用同資料集的 Vicon 資料驗證融合方法，誤差為 24.6 (mm) ~\cite{Zhang_2020_CVPR}；
-又如學者 Von Marcard 等人提出的 3DPW ~\cite{vonMarcard2018}，
-使用一台手持式可移動相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，
+又如學者 Von Marcard 等人提出的 \textit{3D Poses in the Wild} (3DPW) ~\cite{vonMarcard2018}，
+使用一台手持相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，
 使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集。
 % TODO:想加上下半身的研究
-相機及 IMU 使用數量可有多種組合，端看學者們的需求及實驗設計。
+% 相機及 IMU 使用數量可有多種組合，端看學者們的需求及實驗設計。
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{figure/ch2_fig_3DPW.png}
-     \caption[多感測器融合建立人體姿態]{多感測器融合建立人體姿態}
+     \caption[多感測器融合建立人體姿態~\cite{vonMarcard2018}]{多感測器融合建立人體姿態~\cite{vonMarcard2018}}
      \label{ch2_fig_3DPW}
 \end{figure}
 
@@ -198,9 +190,10 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 % - 可能可以提及前人的做法，例如使用 Vicon 作為骨架，但是這樣的骨架不夠個人化，所以我要做這些事情
 在人體姿態估計領域，使用動作捕捉系統過程中，通常會參考人體模型的骨架結構及物理限制，以避免估計出不符合人體結構的姿態，
 動作捕捉系統建立人體姿態後，常會使用人體模型 (human body model) 來描述與表示受試者的姿態，
-因此需建立一個個人化的人體模型，其符合受試者的骨架結構、體型及物理限制，以提高姿態估計的準確性，
+% 因此需建立一個個人化的人體模型，
+其符合受試者的骨架結構、體型及物理限制，以提高姿態估計的準確性，
 人體模型可用於描述人體結構、人體形狀及人體表面紋理等資訊~\cite{gong2016human}。
-依照模型包含的資訊不同，人體模型可分為運動學模型 (Kinematic model)、平面模型 (Planar Model)、體積模型 (Volumetric Model) 三類，
+依照模型包含的資訊不同，人體模型可分為運動學模型 (Kinematic Model)、平面模型 (Planar Model)、體積模型 (Volumetric Model) 三類，
 如圖~\ref{ch2_fig_personal_model} 所示。
 
 \begin{figure}[!ht]
@@ -227,7 +220,7 @@ IMU 為一種微機電系統 (micro-electromechanical systems, MEMS) 感測器�
 
 \subsection*{運動學模型}
 運動學模型是最常見且最頻繁被應用的模型，可用於描述二維或三維人體姿態，
-通常只考慮人體骨架結構，不考慮人體的肌肉組織，以點描述關節位置，並以棍子連接關節，代表人體指定肢體的骨骼方向，
+通常只考慮人體骨架結構，不考慮人體的肌肉組織，以點描述關節位置，並以 bar 連接關節，代表人體指定肢體的骨骼方向，
 因此運動學模型可以淺顯易懂的方式描述人體部位間的關係，但無法描述人體的形狀及表面紋理。
 
 運動學模型可分為兩類，一類為預定義模型 (predefined model)，另一類為學習圖像結構模型 (learned graph structure model)。
@@ -259,7 +252,7 @@ SMPL 模型為一款開源的人體體積模型，由 23 個關節及 6890 個�
 % ------------------------- 2.3 ------------------------- %
 \section{時間同步}
 % 時間同步的重要性
-感測器間皆有各自的計時器及採樣頻率，因此無論是使用同類型感測器或是使用並融合不同類型的感測器，皆需考慮使用的資料點是否位於相同的時刻，
+感測器間皆有各自的計時器及採樣頻率，因此無論是使用同類型感測器或是融合不同類型的感測器，皆需考慮使用的資料點是否位於相同的時刻，
 若資料點不在相同時刻，則需進行時間同步 (time synchronization) 的處理，以確保資料點的一致性。
 最常見的時間同步方法，一為使用硬體觸發器，透過硬體觸發器同時觸發所有感測器進行採樣，確保所有感測器的資料點位於相同時刻；
 二為使用預先定義的動作進行時間同步，
@@ -271,7 +264,7 @@ SMPL 模型為一款開源的人體體積模型，由 23 個關節及 6890 個�
 在影像方面，可以直接從影像辨識到的踝關節運動進行推測，
 在 IMU 方面，可透過貼於腳上的 IMU 的加速度測量值中計算出腳與地面接觸的時間點~\cite{kaichi2020resolving}；
 也可使用 LED 燈及遠紅外光 LED 燈進行時間同步，透過 LED 燈的閃爍進行影像間的時間同步~\cite{nakano2020evaluation}~\cite{needham2021accuracy}。
-上述之時間同步方法，皆有對應適合的感測器，因此在選擇時間同步方法時，需依照研究需求進行選擇。
+% 上述之時間同步方法，皆有對應適合的感測器，因此在選擇時間同步方法時，需依照研究需求進行選擇。
 
 % ------------------------- 2.4 ------------------------- %
 \section{感測器融合演算法}
