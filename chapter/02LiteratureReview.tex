@@ -53,37 +53,7 @@
 因為光標記動作捕捉系統的限制，加上電腦視覺與深度學習的崛起，無標記動作捕捉系統 (markerless motion capture) 逐漸受到重視~\cite{sarafianos20163d}，
 其中 OpenPose ~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}、
 由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect ~\cite{zhang2012microsoft} 等系統是目前常見的無標記動作捕捉系統，
-下方圖~\ref{ch2_fig_rec_result} 為無標記動作捕捉系統的實際應用。 
-
-透過已經過校正的單一或多個攝影機同時拍攝受試者的影像，利用電腦視覺及深度學習技術辨識出受試者在二維平面上的關節點位置，
-辨識關節點位置的方法分為上到下方法 (top-down method) 及下到上方法 (bottom-up method) 兩種~\cite{nie2019single}，
-上到下方法如圖~\ref{ch2_fig_topvsbottom} 上半部分，
-先辨識出受試者的周圍方塊 (detected bounding boxes)，再由周圍方塊內的範圍辨識出關節點位置，例如 MediaPipe 即為上到下方法，
-其缺點為若在辨識過程中找不到人，無法匡出周圍方塊，則無法辨識出關節點位置，
-且計算量會隨著出現在畫面中的人數增加而增加，計算時間也會隨之上升；
-下到上方法如圖~\ref{ch2_fig_topvsbottom} 下半部分，
-為先偵測到關節，再將關節組成群組，最後形成特定姿勢的方法，例如 OpenPose 即為下到上方法，
-計算時間不會因為出現在畫面中的人數增加而增加，計算量也相對較小，
-缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組進而被判斷為一個人，
-且也有可能會把非人類，但形狀與人類相似的關節點誤認。
-
-經過影像辨識的圖像的輸出資料為熱圖 (heatmap)，熱圖的概念為將一張影像分割成多個網格，每個網格內的數值代表該網格內的像素點為某個關節點的機率，將其可視化後如圖~\ref{ch2_fig_heatmap} 所示，
-由左至右分別為左肩膀、左手肘、左手腕、右肩膀的熱圖，
-有學者會進一步對熱圖進行後處理，例如 OpenPose 將熱圖與其定義的 Part Affinity Fields (PAF) 結合，進一步更準確的辨識出關節點位置，
-又或者如 MultiPoseNet 將熱圖與 Pose Residual Network (PRN) 結合，
-從熱圖結果中篩選出研究者有興趣的關節點位置~\cite{kocabas2018multiposenet}。
-因此，要使用哪一種辨識方法，是否對輸出的熱圖進行後處理，需經過學者們仔細思索自身需求，再進行選擇。
-無論選擇哪一種辨識方法，最容易被大眾應用的相機為 RGB 相機 (Red-Green-Blue camera)，因此蒐集到的影像資訊缺乏受試者的深度資訊，
-需再透過棋盤格方法~\cite{zhang1999flexible} 進行相機校正及三角測量計算，取得受試者的三維姿態。
-
-使用無標記動作捕捉系統進行人體姿態重建時，誤差會受到多個因素影響，
-例如輸入影像辨識模型訓練集的多樣性、受試者的姿態及服裝顏色、背景複雜程度、相機校正的準確度、相機的數量等，
-因此誤差範圍較廣，例如 OpenPse 使用五台相機進行量測，其誤差約為 30 (mm)~\cite{nakano2020evaluation}，
-Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang2020adafuse}。
-儘管無標記動作捕捉系統的誤差無法與光標記動作捕捉系統匹敵，
-但是，無標記動作捕捉系統較不受環境光限制，因此可以解決實驗場地必須設置於室內的限制，可拓展至室外進行量測，也增加了可量測的範圍及動作多樣性，
-且器材架設相對容易，使用手機也可進行影像錄製，架設成本相對較低，
-但其缺點為易受到遮擋而影響辨識結果，若受試者的部分關節被自身遮擋或是被場域中的其他障礙物遮擋，則無法辨識出被遮擋的關節。
+下方圖~\ref{ch2_fig_rec_result} 為無標記動作捕捉系統的實際應用。
 
 \begin{figure}[!ht]
     \centering
@@ -101,6 +71,18 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
     \label{ch2_fig_rec_result}
 \end{figure}
 
+透過已經過校正的單一或多個攝影機同時拍攝受試者的影像，利用電腦視覺及深度學習技術辨識出受試者在二維平面上的關節點位置，
+辨識關節點位置的方法分為上到下方法 (top-down method) 及下到上方法 (bottom-up method) 兩種~\cite{nie2019single}，
+上到下方法如圖~\ref{ch2_fig_topvsbottom} 上半部分，
+先辨識出受試者的周圍方塊 (detected bounding boxes)，再由周圍方塊內的範圍辨識出關節點位置，例如 MediaPipe 即為上到下方法，
+其缺點為若在辨識過程中找不到人，無法匡出周圍方塊，則無法辨識出關節點位置，
+且計算量會隨著出現在畫面中的人數增加而增加，計算時間也會隨之上升；
+下到上方法如圖~\ref{ch2_fig_topvsbottom} 下半部分，
+為先偵測到關節，再將關節組成群組，最後形成特定姿勢的方法，例如 OpenPose 即為下到上方法，
+計算時間不會因為出現在畫面中的人數增加而增加，計算量也相對較小，
+缺點為若受試者沒有完整的出現在畫面中，則有可能辨識點無法組成一個人的群組進而被判斷為一個人，
+且也有可能會把非人類，但形狀與人類相似的關節點誤認。
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=11cm]{figure/ch2_fig_topvsbottom.png}
@@ -108,12 +90,30 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
      \label{ch2_fig_topvsbottom}
 \end{figure}
 
+經過影像辨識的圖像的輸出資料為熱圖 (heatmap)，熱圖的概念為將一張影像分割成多個網格，每個網格內的數值代表該網格內的像素點為某個關節點的機率，將其可視化後如圖~\ref{ch2_fig_heatmap} 所示，
+由左至右分別為左肩膀、左手肘、左手腕、右肩膀的熱圖，
+有學者會進一步對熱圖進行後處理，例如 OpenPose 將熱圖與其定義的 Part Affinity Fields (PAF) 結合，進一步更準確的辨識出關節點位置，
+又或者如 MultiPoseNet 將熱圖與 Pose Residual Network (PRN) 結合，
+從熱圖結果中篩選出研究者有興趣的關節點位置~\cite{kocabas2018multiposenet}。
+因此，要使用哪一種辨識方法，是否對輸出的熱圖進行後處理，需經過學者們仔細思索自身需求，再進行選擇。
+無論選擇哪一種辨識方法，最容易被大眾應用的相機為 RGB 相機 (Red-Green-Blue camera)，因此蒐集到的影像資訊缺乏受試者的深度資訊，
+需再透過棋盤格方法~\cite{zhang1999flexible} 進行相機校正及三角測量計算，取得受試者的三維姿態。
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{figure/ch2_fig_heatmap.jpg}
      \caption[影像辨識的輸出熱圖]{影像辨識的輸出熱圖}
      \label{ch2_fig_heatmap}
 \end{figure}
+
+使用無標記動作捕捉系統進行人體姿態重建時，誤差會受到多個因素影響，
+例如輸入影像辨識模型訓練集的多樣性、受試者的姿態及服裝顏色、背景複雜程度、相機校正的準確度、相機的數量等，
+因此誤差範圍較廣，例如 OpenPse 使用五台相機進行量測，其誤差約為 30 (mm)~\cite{nakano2020evaluation}，
+Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang2020adafuse}。
+儘管無標記動作捕捉系統的誤差無法與光標記動作捕捉系統匹敵，
+但是，無標記動作捕捉系統較不受環境光限制，因此可以解決實驗場地必須設置於室內的限制，可拓展至室外進行量測，也增加了可量測的範圍及動作多樣性，
+且器材架設相對容易，使用手機也可進行影像錄製，架設成本相對較低，
+但其缺點為易受到遮擋而影響辨識結果，若受試者的部分關節被自身遮擋或是被場域中的其他障礙物遮擋，則無法辨識出被遮擋的關節。
 
 \subsection{單感測器-慣性動作捕捉系統}
 %  - IMU
@@ -155,6 +155,8 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
      \label{ch2_fig_IMU_gait_estimate}
 \end{figure}
 
+\clearpage
+
 \subsection{多感測器融合動作捕捉系統}
 % - 相機與 IMU 融合
 % - 3DPW、totalcapture、real-time full-body…、wearable fusing…
@@ -183,6 +185,8 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
      \caption[多感測器融合建立人體姿態~\cite{vonMarcard2018}]{多感測器融合建立人體姿態~\cite{vonMarcard2018}}
      \label{ch2_fig_3DPW}
 \end{figure}
+
+\clearpage
 
 % ------------------------- 2.2 ------------------------- %
 \section{個人化人體模型}
@@ -248,6 +252,8 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 例如學者 Matthew Loper 等人提出的 SMPL 模型 (Skinned Multi-Person Linear model)~\cite{SMPL:2015}，
 SMPL 模型為一款開源的人體體積模型，由 23 個關節及 6890 個網格頂點組成，可用於描述人體的形狀及姿態，
 體積模型可以描述人體的形狀及表面紋理，且具有較好的人體描述能力，但是模型結構較為複雜，且計算速度較慢。
+
+\clearpage
 
 % ------------------------- 2.3 ------------------------- %
 \section{時間同步}

@@ -57,10 +57,10 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_2cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S}
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c}
       相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       12 & 194.4957 & 13 & 81.9440 & 14 & 47.4927 & 15 & 76.7795 \\
@@ -98,11 +98,11 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_3cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S}
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c}
       相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       123 & 41.8538 & 124 & 43.2544 & 125 & 70.4747 & 126 & 41.7470 & 127 & 54.5721 \\
@@ -146,11 +146,11 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_4cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S}
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c}
       % \hline
       相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
@@ -195,11 +195,11 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
    \renewcommand\arraystretch{1.5}
    \resizebox{\textwidth}{!}{
    \begin{tabular}{
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S|
-   >{\columncolor[HTML]{E7E6E6}}c |S}
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c|
+   >{\columncolor[HTML]{E7E6E6}}c |c}
       相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
       \hline
       12345 & 27.2222 & 12346 & 28.7270 & 12347 & 27.2410 & 12348 & 28.1424 & 12356 & 27.5630  \\
@@ -258,7 +258,7 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 % MPJPE 約都在 20\textasciitilde40 mm 左右，只是如果三台相機的組合適當的話，結果並不會比四台相機的結果差。
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=\linewidth]{figure/ch3_fig_1to7cam.png}
+   \includegraphics[width=13cm]{figure/ch3_fig_1to7cam.png}
    \caption[一台相機到七台相機的組合估計結果]{一台相機到七台相機的組合估計結果}
    \label{ch3_fig_1to7cam}
 \end{figure}
@@ -310,8 +310,6 @@ MPJPE 計算結果如表~\ref{ch3_cameraset_5cam} 所示，其中最佳組合方
 \subsection{結論}
 % 結論
 由以上誤差評估可知，本方法的整體平均誤差約為 25.75 (mm)，若僅用於建立三維人體模型、評估人體全身姿勢，不進行複雜動作的量測，使動作產生許多遮擋問題，或是延伸應用於評估手指姿勢等細微動作，則此誤差並不會造成誤判的影響，因此證明本方法確實可應用於建立三維人體模型，作為將 IMU 朝向資訊轉換為位置資訊的媒介。
-
-\clearpage
 
 % ------------------------- 4.3 ------------------------- %
 % \section{使用影像辨識估計姿態}
@@ -898,13 +896,13 @@ T pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
 \subsection{結論}
 % 結論
 將以上實驗的成功率與誤差整理成表格，如表~\ref{ch4_tab_conclusion} 所示。
-\begin{table}[ht]
+\begin{table}[ht!]
    \caption{影像辨識有無融合 IMU 的結果比較}
    \label{ch4_tab_conclusion}
    \centering
-   \begin{tabular}{ccSSSSS}
+   \begin{tabular}{ccccccc}
    \toprule
-   & IMU 融合 & T pose & 蹲站 & 開合跳 & 折返跑 & 熱身運動 \\
+    & IMU 融合 & T pose & 蹲站 & 開合跳 & 折返跑 & 熱身運動 \\
    \midrule
    \multirow{2}{*}{誤差 (mm)} & O & 82.7502 & 76.8410 & 80.8609 & 82.6446 & 75.9740 \\
    & X & 95.0632 & 94.5808 & 76.4561 & 80.0463 & 67.2949 \\

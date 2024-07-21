@@ -72,7 +72,7 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=\linewidth]{figure/ch3_fig_exp_flow.png}
+   \includegraphics[width=11cm]{figure/ch3_fig_exp_flow.png}
     \caption[人體姿態估計實驗方法]{人體姿態估計實驗方法}
     \label{ch3_fig_exp_flow}
 \end{figure}
@@ -298,13 +298,6 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 % 考慮要不要寫為何選擇使用 OpenPose 不選 mediapipe，要寫的話可以寫在這一段的開頭
 本方法流程如圖~\ref{ch3_fig_skeleton_flow} 所示。
 以 T-pose 的姿勢拍攝影片後，進入後續軟體端處理流程。
-首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
-影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
-% 圖~\ref{ch3_fig_OpenPose_result} (a) 為
-% 其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose} 所示；
-接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
-再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
-最後，基於 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供之 Vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}。
 
 \begin{figure}[!ht]
    \centering
@@ -312,6 +305,14 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
     \caption[個人化三維人體模型建立流程圖]{個人化三維人體模型建立流程圖}
     \label{ch3_fig_skeleton_flow}
 \end{figure}
+
+首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
+影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
+% 圖~\ref{ch3_fig_OpenPose_result} (a) 為
+% 其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose} 所示；
+接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
+再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
+最後，基於 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供之 Vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}。
 
 \begin{figure}[!ht]
    \centering
@@ -517,7 +518,7 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 使用 IMU 進行肢體朝向量測時，由於 IMU 黏貼於肢體上的方向及位置可能會和人體模型定義之方向及位置有所偏差，
 因此需使用感測器座標 - 人體模型座標旋轉矩陣($R^b_s$)，將位於感測器座標系的量測數值轉換為以人體模型座標系表示的人體模型朝向。
 感測器座標 - 人體模型座標旋轉矩陣計算方式如方程式~\ref{ch3_equ_b2s_rotation_matrix}，
-假設受試者在最初始開始實驗時，設定一個與 IMU local 座標系校正的座標系統，且受試者的姿勢為 T-pose，
+假設受試者在最初始開始實驗時，設定一個與 IMU local 座標系對齊的人體模型座標系統，且受試者的姿勢為 T-pose，
 因此此時 IMU 到其附著肢段的旋轉矩陣與 IMU 到 IMU local 的旋轉矩陣相同，即 $R^{b}_{s}(t_0) = R^{i}_{s}(t_0)$，
 因此，在 $t_0$ 時刻量得的 IMU - IMU local 旋轉四元數即可視為感測器座標 - 人體模型座標旋轉四元數，
 而由於在章節~\ref{ch3_skeleton_method} 中建立的人體模型座標與 IMU 附著於人體模型定義的座標系相差 $180^{\circ}$，
@@ -575,7 +576,7 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 % 解釋表示方法是以哪個座標系去看哪個座標系，然後解釋計算方法
 經過上一步 $R^i_s$ 的轉換，已將人體模型朝向轉換為以統一的 IMU local 感測器座標系為表示方式，
 接著，為方便後續與影像辨識而得的位置資訊進行融合，需要進一步將人體模型朝向轉換至位置資訊所在之座標系。
-假設所有 IMU 間的 IMU local - 全域座標旋轉矩陣 $R^g_i$ 皆一致，且與天頂及磁北極校正，
+假設所有 IMU 間的 IMU local - 全域座標旋轉矩陣 $R^g_i$ 皆一致，且與天頂及磁北極對齊，
 再將整體座標系相對 x 軸旋轉 $-90^{\circ}$，即可得 IMU local - 全域座標旋轉矩陣。
 % 包含兩個階段的旋轉，
 % 第一階段先將於 IMU local 座標系的人體模型朝向轉換至以全域座標系表示，與天頂及磁北極校正，
@@ -605,7 +606,24 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
    \label{ch3_equ_cal_qk}
 \end{equation}
 
-理論上，與 $Y_P$ 相對應的 $Y_{Q_k}$ 的投影位置在熱圖 $H_2$ 上會有很高的數值，藉此提高 $J_1$ 在 $H_1$ 的位置是 $Y_P$ 的機率。但由於缺乏影像的深度資訊，無法得知真正與 $Y_P$ 對應的 $Y_{Q_k}$ 為何，因此 $Y_{Q_k}$ 會一併增加線上的所有網格點的機率，如圖~\ref{ch3_fig_same_view}，可發現圖中有一條明顯的線條，即為 $J_2$ 的可能位置。
+理論上，與 $Y_P$ 相對應的 $Y_{Q_k}$ 的投影位置在熱圖 $H_2$ 上會有很高的數值，藉此提高 $J_1$ 在 $H_1$ 的位置是 $Y_P$ 的機率。但由於缺乏影像的深度資訊，無法得知真正與 $Y_P$ 對應的 $Y_{Q_k}$ 為何，因此 $Y_{Q_k}$ 會一併增加線上的所有網格點的機率，如圖~\ref{ch3_fig_fusion_result} (a)，可發現圖中有一條明顯的線條，即為 $J_2$ 的可能位置。
+
+% \begin{figure}[!ht]
+%    \centering
+%    \includegraphics[width=8cm]{figure/ch3_fig_same_view.png}
+%     \caption[同視角融合結果]{同視角融合結果}
+%     \label{ch3_fig_same_view}
+% \end{figure}
+
+\subsection{跨視角融合}
+從同視角融合可得到每一視角下被增加機率的格點，這條線上包含與 $Y_P$ 對應的格點及不與 $Y_P$ 對應的格點，也就是說與 $Y_P$ 不相關的格點的機率也被提高，但是，由於每一視角的線條中必存在一個正確的 $Y_{Q_k}$，因此，透過跨視角融合，將每一視角的熱圖與 $J_2$ 的初始熱圖 $H_2$ 進行疊加後取熱圖中的最大值即為 $Y_{Q_k^*}$，進而提高 $J_1$ 在 $H_1$ 的位置是 $Y_P$ 的機率。如圖~\ref{ch3_fig_fusion_result} (b)，可發現圖中有兩條明顯的線條，其交點即為正確的關節點位置。
+
+% \begin{figure}[!ht]
+%    \centering
+%    \includegraphics[width=8cm]{figure/ch3_fig_cross_view.png}
+%     \caption[跨視角融合結果]{跨視角融合結果}
+%     \label{ch3_fig_cross_view}
+% \end{figure}
 
 \begin{figure}[!ht]
    \centering
@@ -616,19 +634,20 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=11cm]{figure/ch3_fig_same_view.png}
-    \caption[同視角融合結果]{同視角融合結果}
-    \label{ch3_fig_same_view}
-\end{figure}
-
-\subsection{跨視角融合}
-從同視角融合可得到每一視角下被增加機率的格點，這條線上包含與 $Y_P$ 對應的格點及不與 $Y_P$ 對應的格點，也就是說與 $Y_P$ 不相關的格點的機率也被提高，但是，由於每一視角的線條中必存在一個正確的 $Y_{Q_k}$，因此，透過跨視角融合，將每一視角的熱圖與 $J_2$ 的初始熱圖 $H_2$ 進行疊加後取熱圖中的最大值即為 $Y_{Q_k^*}$，進而提高 $J_1$ 在 $H_1$ 的位置是 $Y_P$ 的機率。如圖~\ref{ch3_fig_cross_view}，可發現圖中有兩條明顯的線條，其交點即為正確的關節點位置。
-
-\begin{figure}[!ht]
-   \centering
-   \includegraphics[width=11cm]{figure/ch3_fig_cross_view.png}
-    \caption[跨視角融合結果]{跨視角融合結果}
-    \label{ch3_fig_cross_view}
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\linewidth]{figure/ch3_fig_same_view.png}
+      \caption*{(a) 同視角融合結果}
+   \end{minipage}%
+   \vspace{5mm}%
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\linewidth]{figure/ch3_fig_cross_view.png}
+      \caption*{(b) 跨視角融合結果}
+   \end{minipage}
+   \captionsetup{justification=centering}
+   \caption[感測器融合結果]{感測器融合結果}
+   \label{ch3_fig_fusion_result}
 \end{figure}
 
 % ------------------------- 3.5 ------------------------- %
