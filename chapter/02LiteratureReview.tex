@@ -52,7 +52,7 @@
     % - 想想看要怎麼把兩種方法的辨識結果圖片塞進去
 因為光標記動作捕捉系統的限制，加上電腦視覺與深度學習的崛起，無標記動作捕捉系統 (markerless motion capture) 逐漸受到重視~\cite{sarafianos20163d}，
 其中 OpenPose ~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}、
-由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect ~\cite{zhang2012microsoft} 等系統是目前常見的無標記動作捕捉系統，
+由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect ~\cite{zhang2012microsoft} 等系統是目前常見的無標記動作捕捉系統，常被應用於重建人體姿態，或是估計關節角度~\cite{LATRECHE2023112826}，
 下方圖~\ref{ch2_fig_rec_result} 為無標記動作捕捉系統的實際應用。
 
 \begin{figure}[!ht]
@@ -162,7 +162,7 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 % - 3DPW、totalcapture、real-time full-body…、wearable fusing…
 由於無標記光學動作捕捉系統會因為遮擋問題而無法辨識出被遮擋的關節，IMU 量測時長拉長會產生飄移問題，
 因此，學者們開始將光學動作捕捉系統與 IMU 進行感測器融合，以彌補各自的缺點~\cite{li2023visual}，
-藉由 IMU 的量測資料補足光學動作捕捉系統的遮擋、移動快速產生模糊的問題，
+藉由 IMU 的量測資料補足光學動作捕捉系統的遮擋、移動快速產生影像動態模糊的問題，
 並藉由光學動作捕捉系統不需積分的特性，解決 IMU 量測時長拉長產生飄移的問題，同時可用於計算受試者於空間中的位置資訊。
 
 多感測器融合方法可應用於自動駕駛、智慧機器人、增強實境 (AR) 及虛擬實境 (VR) 等領域~\cite{jinyu2019survey}~\cite{zhu2023camera}，
