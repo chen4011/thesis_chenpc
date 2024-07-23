@@ -29,7 +29,7 @@
 反光標記點需黏貼在受試者多處明顯不易被遮擋的部位，例如骨突點，確保在實驗過程中的多數時間可於影像中看見並被記錄，
 而經過校正的多個紅外光攝影機需同時記錄下影像，確保不同角度間的影像無時間差，
 每台紅外光攝影機可發出紅外光，也可接收反光標記點反射的紅外光，透過三角測量計算標記點的位置來推估受試者的姿態，
-實驗環境及實驗設置如圖~\ref{ch2_fig_OMC_Vicon} 所示。
+實驗環境及實驗設置如圖~\ref{ch2_fig_OMC_Vicon} 所示，可看到在右後方上側掛有紅外光攝影機，下方有一位穿著黑色緊身衣的受試者，經由量測可建立出圖中左下側螢幕中的人體姿態。
 由於光標記動作捕捉系統主要傳遞訊息的媒介為紅外光，需要嚴格控管環境光（例如陽光）的影響，減少環境光造成的雜訊，
 因此實驗環境多為使用人造光為主要照明的的室內，無法在會受到大量陽光干擾的室外進行量測，
 且由於需使用多台攝影機，因此器材架設不易，價格昂貴。
@@ -52,22 +52,22 @@
     % - 想想看要怎麼把兩種方法的辨識結果圖片塞進去
 因為光標記動作捕捉系統的限制，加上電腦視覺與深度學習的崛起，無標記動作捕捉系統 (markerless motion capture) 逐漸受到重視~\cite{sarafianos20163d}，
 其中 OpenPose ~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}、
-由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect ~\cite{zhang2012microsoft} 等系統是目前常見的無標記動作捕捉系統，常被應用於重建人體姿態，或是估計關節角度~\cite{LATRECHE2023112826}，
-下方圖~\ref{ch2_fig_rec_result} 為無標記動作捕捉系統的實際應用。
+由 Google 團隊開發的 MediaPipe ~\cite{mediapipe_web} 及由 Microsoft 開發的 Kinect ~\cite{zhang2012microsoft} 等系統是目前常見的無標記動作捕捉系統，常被應用於偵測及重建人體姿態，或是估計關節角度~\cite{LATRECHE2023112826}，
+如圖~\ref{ch2_fig_rec_result} (a) 使用影像辨識方法偵測人體關節點，從而得出人體姿態，圖~\ref{ch2_fig_rec_result} (b) 則使用影像辨識方法先偵測出關節點，進而計算出關節角度。
 
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}{.5\textwidth}
+    \begin{minipage}{.37\textwidth}
       \centering
       \includegraphics[width=.95\linewidth]{figure/ch2_fig_rec_openpose.png}
-      \caption*{(a) OpenPose}
+      \caption*{(a) 偵測人體姿態}
     \end{minipage}%
-    \begin{minipage}{.5\textwidth}
+    \begin{minipage}{.63\textwidth}
        \centering
-       \includegraphics[width=.95\linewidth]{figure/ch2_fig_rec_mediapipe.png}
-       \caption*{(b) MediaPipe}
+       \includegraphics[width=.95\linewidth]{figure/ch2_fig_joint_angle.jpg}
+       \caption*{(b) 估計關節角度~\cite{LATRECHE2023112826}}
     \end{minipage}
-    \caption[影像辨識結果]{影像辨識結果}
+    \caption[無標記動作捕捉系統應用]{無標記動作捕捉系統應用}
     \label{ch2_fig_rec_result}
 \end{figure}
 
@@ -91,7 +91,7 @@
 \end{figure}
 
 經過影像辨識的圖像的輸出資料為熱圖 (heatmap)，熱圖的概念為將一張影像分割成多個網格，每個網格內的數值代表該網格內的像素點為某個關節點的機率，將其可視化後如圖~\ref{ch2_fig_heatmap} 所示，
-由左至右分別為左肩膀、左手肘、左手腕、右肩膀的熱圖，
+由左至右分別為左肩膀、左手肘、左手腕、右肩膀的熱圖，可發現對應關節點的位置會有紅色的標記，即為經過影像辨識後，判斷該像素點為該關節點的機率最高。
 有學者會進一步對熱圖進行後處理，例如 OpenPose 將熱圖與其定義的 Part Affinity Fields (PAF) 結合，進一步更準確的辨識出關節點位置，
 又或者如 MultiPoseNet 將熱圖與 Pose Residual Network (PRN) 結合，
 從熱圖結果中篩選出研究者有興趣的關節點位置~\cite{kocabas2018multiposenet}。
@@ -127,9 +127,9 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 將 IMU 黏貼於欲量測的身體部位，例如頭部、手臂、腰部、腿等，即可量測受試者該部位的姿態。
 現今最常被使用於量測人體姿態的 IMU 設備為 Movella Xsens MVN ~\cite{roetenberg2009xsens}~\cite{paulich2018xsens}，
 其使用無線傳輸技術傳遞量測資料，並可透過其提供的軟體進行各感測器間的時間同步與空間校正，
-進而基於骨骼結構模型重建人體姿態~\cite{mcgrath2020body}~\cite{DIP:SIGGRAPHAsia:2018}，如圖~\ref{ch2_fig_IMU_pose_estimate}所示，
+進而基於骨骼結構模型重建人體姿態~\cite{mcgrath2020body}~\cite{DIP:SIGGRAPHAsia:2018}，如圖~\ref{ch2_fig_IMU_pose_estimate}所示，可看到受試者右邊有一個與受試者動作相同的人體模型，即為人體姿態的重建結果，
 更有學者進一步使用 IMU 的量測結果計算反向跳躍能力及骶骨運動學，以評估受試者的運動表現~\cite{mcginnis2016quantifying}~\cite{miranda2022accuracy}，
-或是使用 IMU 進行步態分析，用於評估步態障礙患者的康復情況~\cite{wang2020imu}~\cite{uchitomi2022three}，如圖~\ref{ch2_fig_IMU_gait_estimate} 所示。
+或是使用 IMU 進行步態分析，用於評估步態障礙患者的康復情況~\cite{wang2020imu}~\cite{uchitomi2022three}，如圖~\ref{ch2_fig_IMU_gait_estimate} 所示，可經由安裝於受試者小腿的 IMU 量測數據，推估受試者的步態軌跡。
 
 透過微機電系統 (micro-electromechanical systems, MEMS) 設計的 IMU，
 其功率消耗低、體積小、重量輕、攜帶方便，因此可量測場域廣泛，不受空間限制，可以作為日常配戴的裝置，時刻監測受試者的姿態；
@@ -173,9 +173,7 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 並發表一系列經過時間同步的多視角影片 (multi-viewpoint video, MVV) 搭配 IMU 資料集~\cite{Trumble:BMVC:2017}；
 或如學者 Zhe Zhang 等人使用 TotalCapture 資料集中的 4 台攝影機，及 8 個 IMU 資料融合，
 並使用同資料集的 Vicon 資料驗證融合方法，誤差為 24.6 (mm) ~\cite{Zhang_2020_CVPR}；
-又如學者 Von Marcard 等人提出的 \textit{3D Poses in the Wild} (3DPW) ~\cite{vonMarcard2018}，
-使用一台手持相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，
-使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集。
+又如學者 Von Marcard 等人提出的 \textit{3D Poses in the Wild} (3DPW) ~\cite{vonMarcard2018}，使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集，並進一步使用一台手持相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，經由攝影機拍攝受試者的活動，並由 IMU 決定要重建姿態的對象，從而融合影像及 IMU 資訊，重建感興趣的受試者的姿態，因此可以發現即使有許多人存在於畫面中，也能夠重建出特定受試者的姿態。
 % TODO:想加上下半身的研究
 % 相機及 IMU 使用數量可有多種組合，端看學者們的需求及實驗設計。
 
@@ -193,12 +191,12 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 % 個人化骨架，還沒頭緒要寫什麼
 % - 可能可以提及前人的做法，例如使用 Vicon 作為骨架，但是這樣的骨架不夠個人化，所以我要做這些事情
 在人體姿態估計領域，使用動作捕捉系統過程中，通常會參考人體模型的骨架結構及物理限制，以避免估計出不符合人體結構的姿態，
-動作捕捉系統建立人體姿態後，常會使用人體模型 (human body model) 來描述與表示受試者的姿態，
+而在動作捕捉系統建立人體姿態後，也常會使用人體模型 (human body model) 來描述與表示受試者的姿態，
 % 因此需建立一個個人化的人體模型，
 其符合受試者的骨架結構、體型及物理限制，以提高姿態估計的準確性，
-人體模型可用於描述人體結構、人體形狀及人體表面紋理等資訊~\cite{gong2016human}。
+如圖~\ref{ch2_fig_personal_model} 所示，
 依照模型包含的資訊不同，人體模型可分為運動學模型 (Kinematic Model)、平面模型 (Planar Model)、體積模型 (Volumetric Model) 三類，
-如圖~\ref{ch2_fig_personal_model} 所示。
+人體模型可用於描述人體結構、人體形狀及人體表面紋理等資訊~\cite{gong2016human}。
 
 \begin{figure}[!ht]
     \centering
@@ -218,7 +216,7 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
       \caption*{(c) 體積模型}
     \end{minipage}
     \captionsetup{justification=centering}
-    \caption[三種人體模型]{三種人體模型}
+    \caption[三種人體模型~\cite{gong2016human}]{三種人體模型~\cite{gong2016human}}
     \label{ch2_fig_personal_model}
  \end{figure}
 

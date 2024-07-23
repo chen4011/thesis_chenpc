@@ -38,8 +38,7 @@
 % 目前的相機用量及擺放位置敘述，要 cite totalcapture 和 data fusion
 TotalCapture Dataset~\cite{Trumble:BMVC:2017} 共蒐集了五位受試者的動作資料，每位受試者進行四組動作，每組動作重複三次，每組動作皆提供 8 台相機資料，可將整個實驗場域完整拍攝、13 個 IMU 資料、Vicon 資料，且這些資料已進行時間同步、空間校正，可直接進行感測器融合實驗，因此本研究選擇使用 TotalCapture Dataset 進行實驗。
 
-TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面牆面上方架設兩台相機，
-四面牆共計八台相機，每台相機距離地面高度皆為 2.5 (m)，擺放位置以上視的視角呈現，如圖~\ref{ch3_fig_cameraset_totalcap} 所示。
+TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面牆面上方架設兩台相機，如圖~\ref{ch3_fig_cameraset_totalcap} 所示，四面牆共計八台相機，每台相機距離地面高度皆為 2.5 (m)，擺放位置以上視的視角呈現。
 
 \begin{figure}[!ht]
    \centering
@@ -48,7 +47,9 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
     \label{ch3_fig_cameraset_totalcap}
 \end{figure}
 
-本次實驗將分成七類情況進行，每一類情況的實驗流程皆如圖~\ref{ch3_fig_cameraset_flow}，第一類情況為從八台相機中任選一台相機與 8 個 IMU 進行感測器融合計算，並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，第二類為任選兩台相機與 8 個 IMU 進行姿勢估計，以此方式遞增至第七類，任選七台相機與 8 個 IMU 進行姿勢估計，每一類情況皆會產生一組 MPJPE，藉由觀察每一類 MPJPE 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
+本次實驗將分成七類情況進行，每一類情況的實驗流程皆如圖~\ref{ch3_fig_cameraset_flow}，首先選擇 x 台相機作為此次實驗資料，並與 IMU 進行感測器融合，接著將估計結果與 Vicon 資訊比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，最後計算每一類結果的平均及標準差。
+
+例如，第一類情況為從八台相機中任選一台相機與 8 個 IMU 進行感測器融合計算，並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，第二類為任選兩台相機與 8 個 IMU 進行姿勢估計，以此方式遞增至第七類，任選七台相機與 8 個 IMU 進行姿勢估計，每一類情況皆會產生一組 MPJPE，藉由觀察每一類 MPJPE 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
 
 \begin{figure}[!ht]
    \centering
@@ -68,7 +69,7 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
 % 講我蒐集資料的事前工作，和整個方法的概述
 在進行人體姿態估計的實驗方法如圖~\ref{ch3_fig_exp_flow} 所示，共可分為量測、融合與模擬、驗證重建結果三個階段。於量測階段，首先進行相機內部校正參數 (intrinsic parameters) 及外部校正參數 (extrinsic parameters) 拍攝，拍攝內部參數影片時，需使棋盤格校正板盡可能填滿畫面，並涵蓋多種不同角度的畫面，以便進行內部參數校正，拍攝外部參數影片時，需由受試者站在實驗初始位置並拿著棋盤格校正板，以便進行外部參數校正，與此同時將蒐集校正板上的 IMU 資料，完成相機端的空間校正資料蒐集。
 % 接著進行個人化三維人體模型資料蒐集，由受試者站在實驗初始位置，進行時間同步動作後，維持 T-pose 約 1 \textasciitilde\ 2 秒進行拍攝及 IMU 量測，最後再進行一次時間同步動作，完成個人化三維人體模型資料蒐集。
-再來即可開始進行實驗動作資料蒐集，由受試者站在實驗初始位置，進行時間同步動作後，進行實驗動作拍攝及 IMU 量測，最後再進行一次時間同步動作，完成實驗動作資料蒐集，以上即為量測階段的資料蒐集工作，接著將蒐集到的影像資料及 IMU 量測資料進行融合及模擬，包括時間同步、空間校正，建立三維人體模型、感測器融合等工作，融合及模擬的輸出即為三維人體姿態估計結果，最後計算肢段長度進行驗證。
+再來即可開始進行實驗動作資料蒐集，由受試者站在實驗初始位置，進行時間同步動作後，進行實驗動作拍攝及 IMU 量測，最後再進行一次時間同步動作，完成實驗動作資料蒐集，以上即為量測階段的資料蒐集工作，接著將蒐集到的影像資料及 IMU 量測資料進行融合及模擬，包括時間同步、空間校正，建立三維人體模型、感測器融合等工作，融合及模擬的輸出即為三維人體姿態估計結果，最後計算肢段長度，並與量測的人體肢段長度比對，進行驗證。
 
 \begin{figure}[!ht]
    \centering
@@ -86,8 +87,8 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
 量測時間為晚上 8 點至 9 點，以確保環境光線穩定，並減少環境光對影像資料的影響。
 實驗環境及尺寸如圖~\ref{ch3_fig_indoor_scale} 所示，
 受試者初始位置為圖中黑色空心圓圈位置，實驗過程中於 278$\times$283 (cm) 的方形範圍內進行動作，
-用於錄製影像的兩台手機位置於圖~\ref{ch3_fig_indoor_scale}中紅點標示處。
-實際實驗環境及受試者位置如圖~\ref{ch3_fig_indoor_position} 所示。
+用於錄製影像的兩台手機位置於圖~\ref{ch3_fig_indoor_scale} 中紅點標示處。
+實際實驗環境及受試者位置如圖~\ref{ch3_fig_indoor_position} 所示，圖~\ref{ch3_fig_indoor_position} (a) 為相機與受試者位置的前視情形， cam01 及 cam02 分別於圖中的右側中間位置及圖中的左下位置，圖~\ref{ch3_fig_indoor_position} (b) 為相機與受試者位置的前視情形， cam01 及 cam02 分別於圖中的左側中間位置及圖中的正中位置。
 
 \begin{figure}[!ht]
    \centering
@@ -111,6 +112,8 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
    \caption[實際實驗環境及相機與受試者位置]{實際實驗環境及相機與受試者位置}
    \label{ch3_fig_indoor_position}
 \end{figure}
+
+\clearpage
 
 % \subsection{室外實驗環境及尺寸}
 % % 室外實驗環境介紹
@@ -139,9 +142,8 @@ cam 01 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中綠色範圍，cam 02
 \subsubsection{朝向資訊量測工具 - Xsens}
 本研究使用 Xsens 提供之硬體 Awinda 及軟體 MT-manager 作為量測姿態朝向的工具，採樣率設定為 60 Hz，共使用 10+1 顆 IMU 進行量測，
 十顆 IMU 分別黏貼於左右上臂中段外側、左右手腕外側、胸骨、骨盆、左右大腿中段外側、左右小腿中段外側，共十處，
-如圖~\ref{ch3_fig_humanimu} 所示， IMU 長軸 (即 x 軸) 與骨頭長度方向對齊，隨時間進行蒐集各時間點受試者各肢段的朝向資訊。
-另一顆 IMU 黏貼於棋盤格校正板，量測棋盤格校正板的初始朝向，用以轉換影像座標系至全域座標系，如圖~\ref{ch3_fig_imgimu} 所示，
-IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
+如圖~\ref{ch3_fig_humanimu} 所示，分別為前視、左視、後視、右視時可看到的 IMU 位置， IMU 長軸 (即 x 軸) 與骨頭長度方向對齊，隨時間進行蒐集各時間點受試者各肢段的朝向資訊。
+另一顆 IMU 黏貼於棋盤格校正板，量測棋盤格校正板的初始朝向，用以轉換影像座標系至全域座標系，如圖~\ref{ch3_fig_imgimu} 所示，IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 
 \begin{figure}[!ht]
    \centering
@@ -273,7 +275,7 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 內部參數包含焦距、影像座標系的圓點位置、解析度、 pixel 夾角等參數，
 由於這些參數皆與相機內部的硬體參數有關，因此稱為相機內部參數。
 
-\subsection{個人化三維人體模型建立}\label{ch3_skeleton_method}
+\subsection{以影像辨識方法建立個人化三維人體模型}\label{ch3_skeleton_method}
 % 個人化三維人體模型建立介紹
 % 伸縮沒有寫到，要怎麼加進去?
 % TODO:覺得可以把我為甚麼選擇用 OpenPose 不用 mediapipe 寫在這邊
@@ -307,12 +309,12 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 \end{figure}
 
 首先，使用 OpenPose~\cite{8765346}~\cite{wei2016cpm}~\cite{simon2017hand}~\cite{cao2017realtime}
-影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，
+影像辨識技術辨識每一視角人體關節點在影像中的位置(使用 BODY-25B model)，辨識結果如圖~\ref{ch3_fig_OpenPose_result} 所示，其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，
 % 圖~\ref{ch3_fig_OpenPose_result} (a) 為
 % 其可辨識出左右肩膀、左右手肘、左右手腕、左右骨盆、左右膝蓋、左右腳踝等關節位置，如圖~\ref{ch3_fig_OpenPose} 所示；
 接著，利用棋盤格方法之相機校正技術計算出各個相機的內部參數及外部參數；
 再來，利用方才相機校正之結果，經由三角測量計算建立出關節在空間中的位置，並使用距離公式計算每一關節之間的距離；
-最後，基於 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供之 Vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}。
+最後，基於 TotalCapture Dataset ~\cite{Trumble:BMVC:2017} 提供之 Vicon 三維人體模型，利用計算出的距離進行三維人體模型伸縮，得到與受試者四肢、身高相似之個人化三維人體模型，如圖~\ref{ch3_fig_my_skeleton}，圖中有四種顏色分別代表四肢，紅色為右腿，兩個座標點分別代表右膝蓋及右腳踝，黃色為左腿，兩個座標點分別代表左膝蓋及左腳踝，藍色為右手兩個座標點分別代表右手肘及右手腕，紫色為左手，兩個座標點分別代表左手肘及左手腕。
 
 \begin{figure}[!ht]
    \centering
@@ -348,6 +350,8 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 % FIXME:加圖
 現階段建立出的三維人體模型僅用於後續感測器融合的過程中，將 IMU 的朝向資訊轉換成以座標點為描述方式的人體姿態，經由旋轉矩陣可利用 IMU 的朝向資訊，將初始三維人體模型的每一對應肢段向量進行旋轉，得到受試者在活動過程中的人體姿態。
 
+\clearpage
+
 \subsection{計算骨盆在影像坐標系中的位置}
 % 軟體介紹；OpenPose
 % OpenPose 為一款
@@ -375,16 +379,18 @@ IMU 的 x、y 軸方向對齊棋盤格校正板的 x、y 座標方向。
 並在 IMU 資料中找到快速拍手動作的時間點，因為迅速合攏手掌的拍手動作會產生明顯加速度變化，
 以此時間點作為時間同步的基準點，將影像資料及 IMU 資料進行時間同步，以確保兩者之間的時間軸一致。
 在同步並剪輯影像資料及 IMU 資料時有一點需要注意，如圖~\ref{ch3_fig_timesyn} 所示，
-同步兩種資訊時，由於加速度的明顯變化是發生在拍手那一刻的前後一幀，
+同步兩種資訊時，由於加速度的明顯變化是發生在拍手那一刻的前後一幀，IMU 記錄到的最大加速度時刻會與拍手瞬間的前一幀相對應，
 因此在裁切 IMU 資料時，需將拍手動作前後一幀的資料保留，確保拍手動作的加速度變化完整呈現，
 進行影像剪輯時，需將合掌姿勢前後一個幀的影像資料保留，以確保拍手動作的完整呈現，且可與 IMU 資料同步。
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=\linewidth]{figure/ch3_fig_timesyn.png}
+   \includegraphics[width=11cm]{figure/ch3_fig_timesyn.png}
    \caption[時間同步方法]{時間同步方法}
    \label{ch3_fig_timesyn}
 \end{figure}
+
+\clearpage
 
 \subsection{空間校正}
 % 座標系轉換介紹
@@ -399,12 +405,11 @@ IMU local 座標系 (imu local coordinate system, i)、全域座標系 (global c
 
 \subsubsection{座標系定義}
 % 各座標系定義介紹
-圖像座標系為二維座標系，以圖像左上角為原點，x 軸沿圖像右側為延伸為正，y 軸沿圖像下側延伸為正，如圖~\ref{ch3_fig_frame} (a) 所示；
-相機座標系以相機的光軸 0 點為原點，z 軸與光軸重和，指向相機前方為正， x 軸指向相機右方為正， y 軸指向相機下方為正，如圖~\ref{ch3_fig_frame} (b) 所示；
+圖像座標系為二維座標系，如圖~\ref{ch3_fig_frame} (a) 所示，以圖像左上角為原點，x 軸沿圖像右側為延伸為正，y 軸沿圖像下側延伸為正；
+相機座標系如圖~\ref{ch3_fig_frame} (b) 所示，以相機的光軸 0 點為原點，z 軸與光軸重和，指向相機前方為正， x 軸指向相機右方為正， y 軸指向相機下方為正；
 人體模型座標系以 TotalCapture Dataset 提供之 Vicon 三維人體模型所在之座標系為基礎，如圖~\ref{ch3_fig_frame} (c) 所示，其以人體骨盆中心為原點， +x、+y、+z 方向分別為向右 (red)、向後 (green)、向下 (blue)；
-感測器座標系，以感測器本身為原點，
-於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向，
-如圖~\ref{ch3_fig_frame} (d) 所示；
+感測器座標系如圖~\ref{ch3_fig_frame} (d) 所示，以感測器本身為原點，
+於 Xsens 系統中，定義其 x 軸為長邊延伸方向，y 軸為短邊延伸方向，z 軸則沿最大平面法向；
 IMU local 座標系以感測器所在地為原點，y 軸沿子午線指向正北為正，z 軸指向天頂為正，x 軸與 yz 平面垂直，指向正東為正；
 全域座標系以固定的全球基準點為原點 (例如地球中心)，x 軸以磁北極為參考方向，z 軸參考方向與 IMU local 座標系 z 軸相同，指向天頂為正，
 y 軸則以右手定則決定，通常指向西方為正。
@@ -437,6 +442,8 @@ y 軸則以右手定則決定，通常指向西方為正。
    \caption[座標系定義]{座標系定義}
    \label{ch3_fig_frame}
 \end{figure}
+
+\clearpage
 
 \subsubsection{各座標系間的關係}
 % 各座標系間的關係介紹
@@ -576,8 +583,9 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 % 解釋表示方法是以哪個座標系去看哪個座標系，然後解釋計算方法
 經過上一步 $R^i_s$ 的轉換，已將人體模型朝向轉換為以統一的 IMU local 感測器座標系為表示方式，
 接著，為方便後續與影像辨識而得的位置資訊進行融合，需要進一步將人體模型朝向轉換至位置資訊所在之座標系。
-假設所有 IMU 間的 IMU local - 全域座標旋轉矩陣 $R^g_i$ 皆一致，且與天頂及磁北極對齊，
-再將整體座標系相對 x 軸旋轉 $-90^{\circ}$，即可得 IMU local - 全域座標旋轉矩陣。
+假設所有 IMU 間的 IMU local - 全域座標旋轉矩陣 $R^g_i$ 皆一致，此時兩者的座標相差 $-90^{\circ}$，因此需再對 Z 軸旋轉 $-90^{\circ}$，因此對 Z 軸旋轉 $-90^{\circ}$ 的旋轉矩陣即為 IMU local - 全域座標旋轉矩陣。
+% 且與天頂及磁北極對齊，
+% 再將整體座標系相對 x 軸旋轉 $-90^{\circ}$，即可得 IMU local - 全域座標旋轉矩陣。
 % 包含兩個階段的旋轉，
 % 第一階段先將於 IMU local 座標系的人體模型朝向轉換至以全域座標系表示，與天頂及磁北極校正，
 % 第二階段將於全域座標系的人體模型朝向轉換至位置資訊所在之座標系，該座標系相對全域座標系的 x 軸旋轉 $-90^{\circ}$。
@@ -627,20 +635,20 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=11cm]{figure/ch3_fig_joint_project.png}
-    \caption[影像與 IMU 同視角融合方法]{影像與 IMU 同視角融合方法}
+   \includegraphics[width=10cm]{figure/ch3_fig_joint_project.png}
+    \caption[影像與 IMU 同視角融合方法~\cite{Zhang_2020_CVPR}]{影像與 IMU 同視角融合方法~\cite{Zhang_2020_CVPR}}
     \label{ch3_fig_joint_project}
 \end{figure}
 
 \begin{figure}[!ht]
    \centering
-   \begin{minipage}{.5\textwidth}
+   \begin{minipage}{.45\textwidth}
       \centering
       \includegraphics[width=.95\linewidth]{figure/ch3_fig_same_view.png}
       \caption*{(a) 同視角融合結果}
    \end{minipage}%
    \vspace{5mm}%
-   \begin{minipage}{.5\textwidth}
+   \begin{minipage}{.45\textwidth}
       \centering
       \includegraphics[width=.95\linewidth]{figure/ch3_fig_cross_view.png}
       \caption*{(b) 跨視角融合結果}
@@ -649,6 +657,8 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
    \caption[感測器融合結果]{感測器融合結果}
    \label{ch3_fig_fusion_result}
 \end{figure}
+
+\clearpage
 
 % ------------------------- 3.5 ------------------------- %
 \section{人體姿態估計結果評估與驗證}
@@ -667,6 +677,8 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
     \caption[評估重建結果流程]{評估重建結果流程}
     \label{ch3_fig_est_flow}
 \end{figure}
+
+\clearpage
 
 % ------------------------- 3.6 ------------------------- %
 \section{人體姿態估計結果可視化}
@@ -688,6 +700,8 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
     \caption[人體姿態可視化]{人體姿態可視化}
     \label{ch3_fig_posevis}
 \end{figure}
+
+\clearpage
 
 % ------------------------- 3.6 ------------------------- %
 \section{小結}
