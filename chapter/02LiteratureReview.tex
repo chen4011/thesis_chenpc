@@ -171,18 +171,26 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 在多感測器融合動作捕捉系統中，相機及 IMU 使用數量可有多種組合，
 例如 Matthew Trumble 等人使用 4 或 8 台相機及 13 個 IMU 進行融合，建立人體全身姿態，
 並發表一系列經過時間同步的多視角影片 (multi-viewpoint video, MVV) 搭配 IMU 資料集~\cite{Trumble:BMVC:2017}；
-或如學者 Zhe Zhang 等人使用 TotalCapture 資料集中的 4 台攝影機，及 8 個 IMU 資料融合，
+或如學者 Zhe Zhang 等人使用 TotalCapture 資料集中的 4 台攝影機，及 8 個 IMU 資料融合，如圖~\ref{ch2_fig_fusing} 所示，其將結果以運動學模型的方式呈現重建的人體姿態，
 並使用同資料集的 Vicon 資料驗證融合方法，誤差為 24.6 (mm) ~\cite{Zhang_2020_CVPR}；
-又如學者 Von Marcard 等人提出的 \textit{3D Poses in the Wild} (3DPW) ~\cite{vonMarcard2018}，使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集，並進一步使用一台手持相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態，如圖~\ref{ch2_fig_3DPW} 所示，經由攝影機拍攝受試者的活動，並由 IMU 決定要重建姿態的對象，從而融合影像及 IMU 資訊，重建感興趣的受試者的姿態，因此可以發現即使有許多人存在於畫面中，也能夠重建出特定受試者的姿態。
+又如學者 Von Marcard 等人提出的 \textit{3D Poses in the Wild} (3DPW) ~\cite{vonMarcard2018}，使用 TotalCapture 資料集驗證融合方法，誤差為 26 (mm)，並發表一系列可供下載的資料集，並進一步使用一台手持相機及 6 \textasciitilde\ 17 個 IMU 融合重建人體在戶外運動的姿態。
+% ，如圖~\ref{ch2_fig_3DPW} 所示，經由攝影機拍攝受試者的活動，並由 IMU 決定要重建姿態的對象，從而融合影像及 IMU 資訊，重建感興趣的受試者的姿態，因此可以發現即使有許多人存在於畫面中，也能夠重建出特定受試者的姿態。
 % TODO:想加上下半身的研究
 % 相機及 IMU 使用數量可有多種組合，端看學者們的需求及實驗設計。
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{figure/ch2_fig_3DPW.png}
-     \caption[多感測器融合建立人體姿態~\cite{vonMarcard2018}]{多感測器融合建立人體姿態~\cite{vonMarcard2018}}
-     \label{ch2_fig_3DPW}
+    \includegraphics[width=\linewidth]{figure/ch2_fig_fusing.png}
+     \caption[多感測器融合建立人體姿態~\cite{Zhang_2020_CVPR}]{多感測器融合建立人體姿態~\cite{Zhang_2020_CVPR}}
+     \label{ch2_fig_fusing}
 \end{figure}
+
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{figure/ch2_fig_3DPW.png}
+%      \caption[多感測器融合建立人體姿態~\cite{vonMarcard2018}]{多感測器融合建立人體姿態~\cite{vonMarcard2018}}
+%      \label{ch2_fig_3DPW}
+% \end{figure}
 
 \clearpage
 

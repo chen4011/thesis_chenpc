@@ -49,7 +49,14 @@ TotalCapture Dataset 實驗環境為一個 4x6 (m) 的方形空間，每一面�
 
 本次實驗將分成七類情況進行，每一類情況的實驗流程皆如圖~\ref{ch3_fig_cameraset_flow}，首先選擇 x 台相機作為此次實驗資料，並與 IMU 進行感測器融合，接著將估計結果與 Vicon 資訊比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，最後計算每一類結果的平均及標準差。
 
-例如，第一類情況為從八台相機中任選一台相機與 8 個 IMU 進行感測器融合計算，並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，第二類為任選兩台相機與 8 個 IMU 進行姿勢估計，以此方式遞增至第七類，任選七台相機與 8 個 IMU 進行姿勢估計，每一類情況皆會產生一組 MPJPE，藉由觀察每一類 MPJPE 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
+其中，平均每關節誤差 (mean per joint position error, MPJPE) 為常用於評估三維人體姿態估計的指標，計算方式如式~\ref{ch3_equ_MPJPE} ，其中， $N$ 為關節點數量，$p_i$、$q_i$ 分別為關節點的估計座標與真實座標，其概念為取每個關節點估計結果與真實結果間的歐式距離，再將所有關節點的距離值加總後取平均，即為 MPJPE。
+
+\begin{equation}
+    MPJPE = \frac{1}{N} \sum_{i=1}^{N} \parallel p_i - q_i \parallel_2
+    \label{ch3_equ_MPJPE}
+\end{equation}
+
+例如，第一類情況為從八台相機中任選一台相機與 8 個 IMU 進行感測器融合計算，並將得到的姿勢估計結果與 TotalCapture Dataset 提供的 Vicon 位置資料進行比對，計算平均每關節誤差 (mean per joint position error, MPJPE)，第二類為任選兩台相機與 8 個 IMU 進行姿勢估計，以此方式遞增至第七類，任選七台相機與 8 個 IMU 進行姿勢估計，每一類情況皆會產生一組 MPJPE 數值，藉由觀察每一類 MPJPE 數值 的平均值及標準差，探討相機的使用數量與姿勢估計的準確度之間的關係。
 
 \begin{figure}[!ht]
    \centering
@@ -208,10 +215,12 @@ cam 01 的拍攝視角為圖~\ref{ch3_fig_indoor_scale} 中綠色範圍，cam 02
    \setlength{\tabcolsep}{3pt}
    \renewcommand\arraystretch{1.5}
    \begin{tabular}{c|c|c|c|c}
+      \toprule
        & 上臂 (mm) & 前臂 (mm) & 大腿 (mm) & 小腿 (mm) \\ 
       \midrule[2pt]
       右 & 307 & 215 & 375 & 360 \\
       左 & 295 & 211 & 365 & 365 \\
+      \bottomrule
    \end{tabular}
 \end{table}
 
@@ -572,10 +581,10 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 經過上一步 $(R^b_s)^{-1}$ 的轉換，已將人體模型朝向轉換為以附著其上的 IMU 感測器座標系為表示方式，
 接著，需要進一步將各自表示的感測器座標系轉換至統一以東北天 (East - North - Up, ENU) 為定義的 IMU local 座標系。
 感測器座標 - IMU local 旋轉矩陣 ($R^i_s$) 為 IMU 的量測朝向，可直接經由 Xsens 系統所提供軟體 (MT manager) 輸出四元數取得。
-在 MT manager 中讀入量測時所記錄的 .mtb 檔案，
+在 MT manager 中讀入量測時所記錄的檔案，
 % TODO:...模型為基礎
-並於 file>export 中的輸出選項勾選 quaternion 後輸出，
-每一 .txt 檔案中的 q0、q1、q2、q3 即為將朝向旋轉乘以 IMU local 座標系為表示方式的旋轉四元數，分別代表四元數的 w、x、y、z，
+% 並於 file>export 中的輸出選項勾選 quaternion 後輸出，
+每一輸出檔案中的 q0、q1、q2、q3 即為將朝向旋轉乘以 IMU local 座標系為表示方式的旋轉四元數，分別代表四元數的 w、x、y、z，
 將四元數轉換為旋轉矩陣即可得感測器座標 - IMU local 旋轉矩陣。
 
 \subsubsection{IMU local - 全域座標旋轉矩陣，$R^g_i$}
@@ -662,13 +671,18 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 
 % ------------------------- 3.5 ------------------------- %
 \section{人體姿態估計結果評估與驗證}
-經過感測器融合後，將得到 16 個關鍵點的三維座標，分別為鼻子、頸部、肚子、左右肩膀、左右手肘、左右手腕、骨盆中點、左右骨盆、左右膝蓋、左右腳踝。多數學者將估計位置點直接與 Vicon 量測位置點進行比對，計算 MPJPE，也有少數學者使用目視檢查的方式，決定位置跟蹤結果是否符合人體姿態~\cite{nakano2020evaluation}，因此本研究將人體姿態估計結果驗證分為三個步驟，分別為檢查結果與人體是否相似、計算誤差及決定是否估計成功。
+經過感測器融合後，將得到 16 個關鍵點的三維座標，分別為鼻子、頸部、肚子、左右肩膀、左右手肘、左右手腕、骨盆中點、左右骨盆、左右膝蓋、左右腳踝。多數學者將估計位置點直接與 Vicon 量測位置點進行比對，計算 MPJPE 數值，也有少數學者使用目視檢查的方式，決定位置跟蹤結果是否符合人體姿態~\cite{nakano2020evaluation}，因此本研究將人體姿態估計結果驗證分為三個步驟，分別為檢查結果與人體是否相似、計算誤差及決定是否估計成功。
 
-本研究將實驗結果每 20 幀進行一次取樣，等同於約 $\frac{1}{3}$ 秒取樣一次。每一樣本皆進行如圖~\ref{ch3_fig_est_flow} 的評估及驗證，首先以人工目視檢查重建結果是否符合人體姿態，符合則分別取肩膀、手肘、手腕、骨盆、膝蓋、腳踝共 12 個關節點計算肢段長度，並與受試者實際肢段長度相減取絕對值，再取平均，如式~\ref{ch3_equ_error}，若平均差值小於 10 公分，則將該樣本點視為估計成功，同時計入估計成功次數，反之若平均差值大於 10 公分，則將該樣本視為估計失敗，不計入估計成功次數。最後將估計成功次數與總樣本數相除，即為該實驗的成功率。
+本研究將實驗結果每 20 幀進行一次取樣，等同於約 $\frac{1}{3}$ 秒取樣一次。每一樣本皆進行如圖~\ref{ch3_fig_est_flow} 的評估及驗證，首先以人工目視檢查重建結果是否符合人體姿態，符合則分別取肩膀、手肘、手腕、骨盆、膝蓋、腳踝共 12 個關節點計算肢段長度，並與受試者實際肢段長度相減取絕對值，再取平均，如式~\ref{ch3_equ_error}，若平均差值小於 10 公分，則將該樣本點視為估計成功，同時計入估計成功次數，反之若平均差值大於 10 公分，則將該樣本視為估計失敗，不計入估計成功次數。最後將估計成功次數與總樣本數相除，如式~\ref{ch3_equ_success_rate}，即為該實驗的成功率。
 
 \begin{equation}
    error = \frac{\sum(\text{估計肢段長度} - \text{實際肢段長度})}{8}
    \label{ch3_equ_error}
+\end{equation}
+
+\begin{equation}
+   success\_rate = \frac{\text{成功次數}}{\text{樣本數}}
+   \label{ch3_equ_success_rate}
 \end{equation}
 
 \begin{figure}[!ht]
