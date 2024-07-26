@@ -606,7 +606,7 @@ $R^g_i$ 為 IMU local 座標系轉換至全域座標系之旋轉矩陣，
 \section{感測器融合方法}
 % 感測器融合方法介紹
 本研究使用學者 Zhe Zhang 等人提出的感測器融合方法進行影像與 IMU 資訊的融合~\cite{Zhang_2020_CVPR}。
-此方法以學者 Bin Xiao ~\cite{Xiao_2018_ECCV} 等人提出的影像辨識方法作為基本框架，
+此方法以學者 Bin Xiao ~\cite{Xiao_2018_ECCV} 等人提出的影像辨識方法 SimpleNet 作為基本框架，
 並套入 Zhe Zhang 等人訓練的 $occlusion\_person\_8view.pth$ 模型進行影像辨識~\cite{zhang2020adafuse}，
 取得紀錄關節點於影像中位置的初步熱圖 (每一張熱圖僅記錄一個關節點的可能位置，因此同一時刻共會輸出 16 張關節點熱圖)。
 由於初步熱圖可能存在辨識錯誤，因此會再使用 IMU 朝向資料進行同視角融合及跨視角融合。

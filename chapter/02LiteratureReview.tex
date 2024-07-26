@@ -127,7 +127,7 @@ Adafuse 使用八台相機進行測量，其誤差約為 19.2 (mm)~\cite{zhang20
 將 IMU 黏貼於欲量測的身體部位，例如頭部、手臂、腰部、腿等，即可量測受試者該部位的姿態。
 現今最常被使用於量測人體姿態的 IMU 設備為 Movella Xsens MVN ~\cite{roetenberg2009xsens}~\cite{paulich2018xsens}，
 其使用無線傳輸技術傳遞量測資料，並可透過其提供的軟體進行各感測器間的時間同步與空間校正，
-進而基於骨骼結構模型重建人體姿態~\cite{mcgrath2020body}~\cite{DIP:SIGGRAPHAsia:2018}，如圖~\ref{ch2_fig_IMU_pose_estimate}所示，可看到受試者右邊有一個與受試者動作相同的人體模型，即為人體姿態的重建結果，
+進而基於運動學模型重建人體姿態~\cite{mcgrath2020body}~\cite{DIP:SIGGRAPHAsia:2018}，如圖~\ref{ch2_fig_IMU_pose_estimate}所示，可看到受試者右邊有一個與受試者動作相同的人體模型，即為人體姿態的重建結果，
 更有學者進一步使用 IMU 的量測結果計算反向跳躍能力及骶骨運動學，以評估受試者的運動表現~\cite{mcginnis2016quantifying}~\cite{miranda2022accuracy}，
 或是使用 IMU 進行步態分析，用於評估步態障礙患者的康復情況~\cite{wang2020imu}~\cite{uchitomi2022three}，如圖~\ref{ch2_fig_IMU_gait_estimate} 所示，可經由安裝於受試者小腿的 IMU 量測數據，推估受試者的步態軌跡。
 
