@@ -228,13 +228,62 @@ MPJPE 數值計算結果如表~\ref{ch3_cameraset_4cam} 所示，其中最佳組
 \clearpage
 
 \subsubsection{使用六台相機、七台相機與八個 IMU 進行人體姿態重建實驗結果}
-由於六台相機與七台相機之估計結果皆與四台相機及五台相機的估計結果相近，因此將於附錄~\ref{appendix:6cam7cam} 列出。
-六台相機姿勢估計誤差之標準差為 1.3281 (mm)，平均值為 25.9980 (mm)，
-七台相機姿勢估計誤差之標準差為 0.8525 (mm)，平均值為 24.9272 (mm)。
-將兩者的標準差及平均值與五台相機的標準差及平均值進行比較，
-可以發現六台相機及七台相機的表現皆與五台相機的表現結果相近，無大幅度的進步，
-因此推測增加相機數量以改善姿勢估計誤差的策略存在極限，使用四台相機即可，
-再繼續增加相機數量無法顯著改善估計準確性。
+% 由於六台相機與七台相機之估計結果皆與四台相機及五台相機的估計結果相近，因此將於附錄~\ref{appendix:6cam7cam} 列出。
+將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選六台進行排列組合，共計有 28 種組合方式之估計結果，每一結果皆可計算出 MPJPE 數值，MPJPE 數值計算結果如表~\ref{ch3_cameraset_6cam} 所示，六台相機姿勢估計誤差之標準差為 1.3281 (mm)，平均值為 25.9980 (mm)。
+
+\begin{table}[!ht]
+    \caption[六台相機組合與其估計結果誤差]{六台相機組合與其估計結果誤差}
+    \centering
+    \label{ch3_cameraset_6cam}
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand\arraystretch{1.5}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{
+    >{\columncolor[HTML]{E7E6E6}}c |c|
+    >{\columncolor[HTML]{E7E6E6}}c |c|
+    >{\columncolor[HTML]{E7E6E6}}c |c|
+    >{\columncolor[HTML]{E7E6E6}}c |c}
+    \toprule
+       相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
+       \midrule
+        123456 & 26.8215 & 123457 & 24.9722 & 123458 & 25.5851 & 123467 & 26.6366 \\
+        123468 & 26.6403 & 123478 & 25.9450 & 123567 & 25.3907 & 123568 & 26.0888 \\
+        123578 & 24.9857 & 123678 & 26.1367 & 124567 & 26.3538 & 124568 & 27.2836 \\
+        124578 & 26.2943 & 124678 & 26.6054 & 125678 & 26.9609 &        &         \\
+        \midrule
+        134567 & 24.3427 & 134568 & 24.5231 & 134578 & 23.4599 & 134678 & 24.1122 \\
+        135678 & 23.8219 & 145678 & 24.5035 &        &         &        &         \\
+        \midrule
+        234567 & 28.3596 & 234568 & 27.7637 & 234578 & 26.3288 & 234678 & 28.3135 \\
+        235678 & 26.9275 & 245678 & 27.6373 & 345678 & 25.1506 &        &         \\
+   \bottomrule
+   \end{tabular}}
+ \end{table}
+
+將圖~\ref{ch3_fig_cameraset_totalcap} 中的相機任選七台進行排列組合，共計有 8 種組合方式之估計結果，每一結果皆可計算出 MPJPE 數值， MPJPE 數值計算結果如表~\ref{ch3_cameraset_7cam} 所示，七台相機姿勢估計誤差之標準差為 0.8525 (mm)，平均值為 24.9272 (mm)。
+
+\begin{table}[!ht]
+    \caption[七台相機組合與其估計結果誤差]{七台相機組合與其估計結果誤差}
+    \centering
+    \label{ch3_cameraset_7cam}
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand\arraystretch{1.5}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{
+    >{\columncolor[HTML]{E7E6E6}}c |c|
+    >{\columncolor[HTML]{E7E6E6}}c |c|
+    >{\columncolor[HTML]{E7E6E6}}c |c|
+    >{\columncolor[HTML]{E7E6E6}}c |c}
+    \toprule
+       相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE & 相機組合 & MPJPE \\
+       \midrule
+        1234567 & 25.0931 & 1234568 & 25.2446 & 1234578 & 24.2100 & 1234678 & 25.2497 \\
+        1235678 & 24.5841 & 1245678 & 25.4337 & 1345678 & 23.3984 & 2345678 & 26.2036 \\
+   \bottomrule
+   \end{tabular}}
+ \end{table}
+
+將兩者的標準差及平均值與五台相機的標準差及平均值進行比較，可以發現六台相機及七台相機的表現皆與五台相機的表現結果相近，無大幅度的進步，因此推測增加相機數量以改善姿勢估計誤差的策略存在極限，使用四台相機即可，再繼續增加相機數量無法顯著改善估計準確性。
 
 \clearpage
 
@@ -492,12 +541,12 @@ T-pose 重建結果如圖~\ref{ch4_fig_Tpose} 所示，(a)、(b) 為同一時刻
    % \begin{minipage}{.25\textwidth}
    %    \centering
    %    \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_result_with1.png}
-   %    \caption*{(c) 影像辨識融合 IMU 重建結果}
+   %    \caption*{(c) 融合 IMU 重建結果}
    % \end{minipage}%
    % \begin{minipage}{.25\textwidth}
    %    \centering
    %    \includegraphics[width=\linewidth]{figure/ch4_fig_tpose_result_no1.png}
-   %    \caption*{(d) 影像辨識重建結果}
+   %    \caption*{(d) 不融合 IMU 重建結果}
    % \end{minipage}
    \begin{minipage}{.5\textwidth}
      \centering
@@ -512,12 +561,12 @@ T-pose 重建結果如圖~\ref{ch4_fig_Tpose} 所示，(a)、(b) 為同一時刻
    \begin{minipage}{.5\textwidth}
       \centering
       \includegraphics[width=.95\linewidth]{figure/ch4_fig_tpose_result_with2.png}
-      \caption*{(c) 影像辨識融合 IMU 重建結果}
+      \caption*{(c) 融合 IMU 重建結果}
    \end{minipage}%
    \begin{minipage}{.5\textwidth}
       \centering
       \includegraphics[width=.95\linewidth]{figure/ch4_fig_tpose_result_no2.png}
-      \caption*{(d) 影像辨識重建結果}
+      \caption*{(d) 不融合 IMU 重建結果}
    \end{minipage}
    \caption[T-pose 重建結果]{T-pose 重建結果}
    \label{ch4_fig_Tpose}
@@ -567,12 +616,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_bar_result_with1.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_bar_result_no1.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[蹲站中站立的重建結果]{蹲站中站立的重建結果}
    \label{ch4_fig_bar_stand}
@@ -597,12 +646,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_bar_result_with2.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_bar_result_no2.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[蹲站中蹲下的重建結果]{蹲站中蹲下的重建結果}
    \label{ch4_fig_bar_squat}
@@ -632,12 +681,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_jump_result_with1.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_jump_result_no1.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[開合跳中跳起時的重建結果]{開合跳中跳起時的重建結果}
    \label{ch4_fig_jump_jump}
@@ -662,12 +711,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_jump_result_with2.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_jump_result_no2.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[開合跳中落地時的重建結果]{開合跳中落地時的重建結果}
    \label{ch4_fig_jump_stand}
@@ -698,12 +747,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_run_result_with1.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_run_result_no1.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[折返跑中跑步時的重建結果]{折返跑中跑步時的重建結果}
    \label{ch4_fig_run_run}
@@ -728,12 +777,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_run_result_with2.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_run_result_no2.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[折返跑中轉身時的重建結果]{折返跑中轉身時的重建結果}
    \label{ch4_fig_run_turn}
@@ -758,12 +807,12 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_run_result_with3.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_run_result_no3.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
    \caption[折返跑中手摸地時的重建結果]{折返跑中手摸地時的重建結果}
    \label{ch4_fig_run_touch}
@@ -775,8 +824,8 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
 \clearpage
 
 \subsubsection*{熱身運動實驗結果}
-% pose_594、818、1622、1786，上半身伸展備用410、510、596，肩膀伸展比較屬於正面運動119、151、229、287，腿部拉筋備用778、889，蹲下姿勢1277、1280
-熱身運動實驗重建中，腰部伸展時的實驗結果如圖~\ref{ch4_fig_warm_warm} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
+% pose_229、594、818、1170、1622、1786，上半身伸展備用410、510、596，肩膀伸展比較屬於正面運動119、151、229、287，腿部拉筋備用778、889，蹲下姿勢1277、1280
+熱身運動實驗重建中，手臂繞肩的實驗結果如圖~\ref{ch4_fig_warm_arm} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
 
 \begin{figure}[!ht]
    \centering
@@ -793,20 +842,20 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_with1.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_no1.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
-   \caption[熱身運動中腰部伸展時的重建結果]{熱身運動中腰部伸展時的重建結果}
-   \label{ch4_fig_warm_warm}
+   \caption[熱身運動中手臂繞肩的重建結果]{熱身運動中手臂繞肩的重建結果}
+   \label{ch4_fig_warm_arm}
 \end{figure}
 
 \clearpage
 
-側面腿部伸展側身時的實驗結果如圖~\ref{ch4_fig_warm_side} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
+熱身運動實驗重建中，腰部伸展時的實驗結果如圖~\ref{ch4_fig_warm_warm} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
 
 \begin{figure}[!ht]
    \centering
@@ -823,20 +872,20 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_with2.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_no2.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
-   \caption[熱身運動中側面腿部伸展側身時的重建結果]{熱身運動中側面腿部伸展側身時的重建結果}
-   \label{ch4_fig_warm_side}
+   \caption[熱身運動中腰部伸展時的重建結果]{熱身運動中腰部伸展時的重建結果}
+   \label{ch4_fig_warm_warm}
 \end{figure}
 
 \clearpage
 
-正面腿部伸展時的實驗結果如圖~\ref{ch4_fig_warm_front} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
+側面弓箭步腿部拉筋時的實驗結果如圖~\ref{ch4_fig_warm_side} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
 
 \begin{figure}[!ht]
    \centering
@@ -853,20 +902,20 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_with3.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_no3.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
-   \caption[熱身運動中正面腿部伸展時的重建結果]{熱身運動中跑步時的重建結果}
-   \label{ch4_fig_warm_front}
+   \caption[熱身運動中側面弓箭步腿部拉筋時的重建結果]{熱身運動中側面弓箭步腿部拉筋時的重建結果}
+   \label{ch4_fig_warm_side}
 \end{figure}
 
 \clearpage
 
-背面腿部伸展時的實驗結果如圖~\ref{ch4_fig_warm_back} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
+熱身運動實驗重建中，蹲下腿部拉筋時的實驗結果如圖~\ref{ch4_fig_warm_squat} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
 
 \begin{figure}[!ht]
    \centering
@@ -883,19 +932,79 @@ T-pose 實驗總計有 318 幀，每一幀皆估計出人體姿態，每 20 幀�
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_with4.png}
-       \caption*{(c) 影像辨識融合 IMU 重建結果}
+       \caption*{(c) 融合 IMU 重建結果}
     \end{minipage}%
     \begin{minipage}{.5\textwidth}
        \centering
        \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_no4.png}
-       \caption*{(d) 影像辨識重建結果}
+       \caption*{(d) 不融合 IMU 重建結果}
     \end{minipage}
-   \caption[熱身運動中背面腿部伸展時的重建結果]{熱身運動中背面腿部伸展時的重建結果}
+   \caption[熱身運動中蹲下腿部拉筋時的重建結果]{熱身運動中蹲下腿部拉筋時的重建結果}
+   \label{ch4_fig_warm_squat}
+\end{figure}
+
+\clearpage
+
+正面弓箭步腿部拉筋時的實驗結果如圖~\ref{ch4_fig_warm_front} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
+
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_cam01_with5.jpg}
+      \caption*{(a) cam01 真實影像}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_cam02_with5.jpg}
+       \caption*{(b) cam02 真實影像}
+    \end{minipage}
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_with5.png}
+       \caption*{(c) 融合 IMU 重建結果}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_no5.png}
+       \caption*{(d) 不融合 IMU 重建結果}
+    \end{minipage}
+   \caption[熱身運動中正面弓箭步腿部拉筋時的重建結果]{熱身運動中正面弓箭步腿部拉筋時的重建結果}
+   \label{ch4_fig_warm_front}
+\end{figure}
+
+\clearpage
+
+背面弓箭步腿部拉筋時的實驗結果如圖~\ref{ch4_fig_warm_back} 所示，(a)、(b) 為同一時刻點 cam01 的真實影像及 cam02 的真實影像，(c) 為使用影像辨識融合 IMU 資訊的人體重建結果，(d) 為僅使用影像辨識的人體重建結果。
+
+\begin{figure}[!ht]
+   \centering
+   \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_cam01_with6.jpg}
+      \caption*{(a) cam01 真實影像}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_cam02_with6.jpg}
+       \caption*{(b) cam02 真實影像}
+    \end{minipage}
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_with6.png}
+       \caption*{(c) 融合 IMU 重建結果}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+       \centering
+       \includegraphics[width=.95\linewidth]{figure/ch4_fig_warm_result_no6.png}
+       \caption*{(d) 不融合 IMU 重建結果}
+    \end{minipage}
+   \caption[熱身運動中背面弓箭步腿部拉筋時的重建結果]{熱身運動中背面弓箭步腿部拉筋時的重建結果}
    \label{ch4_fig_warm_back}
 \end{figure}
 
 \subsubsection*{熱身運動誤差評估}
-熱身運動實驗總計有 2135 幀，每一幀皆估計出人體姿態，每 20 幀進行一次採樣，共計 107 個樣本點進行評估及驗證，可以發現，熱身運動實驗中，影像辨識融合 IMU 資訊的肢段的平均估計重建成功率約 46.73\%，平均有效誤差約在 7.5974 (mm)，僅使用影像辨識的肢段的平均估計重建成功率約 31.78\%，平均有效誤差約在 67.2949 (mm)。從圖~\ref{ch4_fig_warm_warm}、圖~\ref{ch4_fig_warm_side}、圖~\ref{ch4_fig_warm_front}、圖~\ref{ch4_fig_warm_back} (c)、(d) 可以發現，影像辨識融合 IMU 朝向資訊的人體重建結果，由於加上朝向的限制，所以較為接近真實人體姿態，且即使是圖~\ref{ch4_fig_warm_side} 中，有一半關節被遮擋的情境下也可以成功建立，但在圖~\ref{ch4_fig_warm_back} 中，可以發現重建的效果較差，可能是因為影像辨識模型並沒有被訓練辨識背面的影像，因此影像辨識較難成功。
+熱身運動實驗總計有 2135 幀，每一幀皆估計出人體姿態，每 20 幀進行一次採樣，共計 107 個樣本點進行評估及驗證，可以發現，熱身運動實驗中，影像辨識融合 IMU 資訊的肢段的平均估計重建成功率約 46.73\%，平均有效誤差約在 7.5974 (mm)，僅使用影像辨識的肢段的平均估計重建成功率約 31.78\%，平均有效誤差約在 67.2949 (mm)。從圖~\ref{ch4_fig_warm_arm}、~\ref{ch4_fig_warm_warm}、圖~\ref{ch4_fig_warm_side}、圖~\ref{ch4_fig_warm_front} (c)、(d) 可以發現，影像辨識融合 IMU 朝向資訊的人體重建結果，由於加上朝向的限制，所以較為接近真實人體姿態，且即使是圖~\ref{ch4_fig_warm_side} 中，有一半關節被遮擋的情境下也可以成功建立，但在圖~\ref{ch4_fig_warm_squat}、~\ref{ch4_fig_warm_back} 中，可以發現無論有沒有融合 IMU ，重建的效果都不甚理想，本研究推測可能是因為影像辨識模型的資料集中沒有包含這兩個冬作，因此模型並沒有被訓練辨識相關的影像，因此影像辨識較難成功導致重建結果不理想。
 
 % \subsubsection*{組合動作實驗結果}
 % \subsubsection*{組合動作誤差評估}

@@ -6,7 +6,7 @@ Vassilios~D Tsakanikas, Dimitrios Gatsios, Dimitrios Dimopoulos, Athanasios
 \newblock {Evaluating the Performance of Balance Physiotherapy Exercises Using
   a Sensory Platform: The Basis for a Persuasive Balance Rehabilitation Virtual
   Coaching System}.
-\newblock {\em Frontiers in digital health}, 2:545885, 2020.
+\newblock {\em Frontiers in Digital Health}, 2:545885, 2020.
 
 \bibitem{zhao2017imu}
 Hongyu Zhao, Zhelong Wang, Sen Qiu, Yanming Shen, and Jianjun Wang.
@@ -94,7 +94,7 @@ Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
 \bibitem{zhang2012microsoft}
 Zhengyou Zhang.
 \newblock {Microsoft Kinect Sensor and Its Effect}.
-\newblock {\em IEEE multimedia}, 19(2):4--10, 2012.
+\newblock {\em IEEE MultiMedia}, 19(2):4--10, 2012.
 
 \bibitem{LATRECHE2023112826}
 Ameur Latreche, Ridha Kelaiaia, Ahmed Chemori, and Adlen Kerboua.
@@ -119,21 +119,29 @@ Muhammed Kocabas, Salih Karagoz, and Emre Akbas.
 Zhengyou Zhang.
 \newblock {Flexible Camera Calibration By Viewing a Plane From Unknown
   Orientations}.
-\newblock In {\em Proceedings of the seventh ieee international conference on
-  computer vision}, volume~1, pages 666--673. Ieee, 1999.
+\newblock In {\em Proceedings of the seventh IEEE international conference on
+  computer vision}, volume~1, pages 666--673. IEEE, 1999.
 
 \bibitem{nakano2020evaluation}
 Nobuyasu Nakano, Tetsuro Sakura, Kazuhiro Ueda, Leon Omura, Arata Kimura,
   Yoichi Iino, Senshi Fukashiro, and Shinsuke Yoshioka.
 \newblock {Evaluation of 3D Markerless Motion Capture Accuracy Using OpenPose
   with Multiple Video Cameras}.
-\newblock {\em Frontiers in sports and active living}, 2:50, 2020.
+\newblock {\em Frontiers in Sports and Active Living}, 2:50, 2020.
 
 \bibitem{zhang2020adafuse}
 Zhe Zhang, Chunyu Wang, Weichao Qiu, Wenhu Qin, and Wenjun Zeng.
 \newblock {AdaFuse: Adaptive Multiview Fusion for Accurate Human Pose
   Estimation in the Wild}.
 \newblock {\em IJCV}, pages 1--16, 2020.
+
+\bibitem{article}
+Sebastian Dill, Andreas Rösch, Maurice Rohr, Gökhan Güney, Luisa Witte,
+  Elias Schwartz, and Christoph Hoog~Antink.
+\newblock {Accuracy Evaluation of 3D Pose Estimation with MediaPipe Pose for
+  Physical Exercises}.
+\newblock {\em Current Directions in Biomedical Engineering}, 9:563--566, 09
+  2023.
 
 \bibitem{young2009comparison}
 Alexander~D Young.
@@ -213,13 +221,13 @@ Niccolo~M Fiorentino, Penny~R Atkins, Michael~J Kutschke, Justine~M Goebel,
   K~Bo Foreman, and Andrew~E Anderson.
 \newblock {Soft tissue artifact causes significant errors in the calculation of
   joint angles and range of motion at the hip}.
-\newblock {\em Gait \& posture}, 55:184--190, 2017.
+\newblock {\em Gait \& Posture}, 55:184--190, 2017.
 
 \bibitem{stagni2005quantification}
 Rita Stagni, Silvia Fantozzi, Angelo Cappello, and Alberto Leardini.
 \newblock {Quantification of soft tissue artefact in motion analysis by
   combining 3D fluoroscopy and stereophotogrammetry: a study on two subjects}.
-\newblock {\em Clinical biomechanics}, 20(3):320--329, 2005.
+\newblock {\em Clinical Biomechanics}, 20(3):320--329, 2005.
 
 \bibitem{s17061257}
 Alessandro Filippeschi, Norbert Schmitz, Markus Miezal, Gabriele Bleser,
@@ -325,7 +333,7 @@ Laurie Needham, Murray Evans, Darren~P Cosker, Logan Wade, Polly~M McGuigan,
   James~L Bilzon, and Steffi~L Colyer.
 \newblock {The accuracy of several pose estimation methods for 3D joint centre
   localisation}.
-\newblock {\em Scientific reports}, 11(1):20673, 2021.
+\newblock {\em Scientific Reports}, 11(1):20673, 2021.
 
 \bibitem{majumder2020vision}
 Sharmin Majumder and Nasser Kehtarnavaz.
@@ -337,7 +345,7 @@ Sharmin Majumder and Nasser Kehtarnavaz.
 Masataka Yamamoto, Koji Shimatani, Yuto Ishige, and Hiroshi Takemura.
 \newblock {Verification of gait analysis method fusing camera-based pose
   estimation and an IMU sensor in various gait conditions}.
-\newblock {\em Scientific reports}, 12(1):17719, 2022.
+\newblock {\em Scientific Reports}, 12(1):17719, 2022.
 
 \bibitem{s17122857}
 Grzegorz Glonek and Adam Wojciechowski.
@@ -412,7 +420,7 @@ Bin Xiao, Haiping Wu, and Yichen Wei.
 
 \bibitem{Hunter:2007}
 J.~D. Hunter.
-\newblock Matplotlib: A 2d graphics environment.
+\newblock {Matplotlib: A 2D graphics environment}.
 \newblock {\em Computing in Science \& Engineering}, 9(3):90--95, 2007.
 
 \end{thebibliography}
